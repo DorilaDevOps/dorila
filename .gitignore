@@ -1,0 +1,12 @@
+# Documentos internos y recetas que no se suben al repositorio
+Cremas.txt
+
+# Archivos temporales y del sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs y archivos de entorno
+*.log
+.env
+.env.*
