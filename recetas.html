@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -29,12 +29,12 @@
 <meta name="twitter:description" content="Infusiones, aceites, ungüentos y cold cream. Recetas paso a paso con hierbas medicinales.">
 <meta name="twitter:image" content="https://dorila.netlify.app/img/girasol_bg.jpeg">
 
-<link rel="icon" type="image/png" sizes="512x512" href="https://dorila.netlify.app/img/favicon.png">
-<link rel="apple-touch-icon" href="https://dorila.netlify.app/img/favicon.png">
+<link rel="icon" type="image/png" sizes="512x512" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/favicon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rye&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Rye&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
 {
@@ -67,8 +67,13 @@
   --color-line:                 rgba(51, 35, 15, 0.18);
   --lime:                      #C8FF57;
 
+  --color-forest-bosque:       #29483A;   /* verde bosque — footer */
+  --color-salvia:              #879F82;   /* verde salvia — detalles/franjas */
+  --color-crema:               #F4EBDD;   /* crema — letra del footer */
+  --color-terracotta-cta:      #B96F52;   /* terracota — promociones/llamadas */
+
   --font-display: "Rye", serif;
-  --font-body: "Lora", Georgia, serif;
+  --font-body: "Montserrat", Georgia, serif;
 
   --fs-hero:     clamp(2.2rem, 7vw + 0.5rem, 4rem);
   --fs-h2:       clamp(1.9rem, 5vw + 0.4rem, 3rem);
@@ -120,6 +125,12 @@ body{
     radial-gradient(ellipse at bottom right, rgba(60,80,45,0.08), transparent 55%);
 }
 img{ max-width:100%; display:block; }
+/* Tratamiento de imágenes compartido — tonos cálidos, contraste moderado, saturación natural */
+img.img-toned,
+.recipes-hero .hero-image,
+.recipe-media img{
+  filter: saturate(0.92) contrast(1.03) sepia(0.06) brightness(1.02);
+}
 ul{ list-style:none; margin:0; padding:0; }
 a{ color:inherit; text-decoration:none; }
 button{ font: inherit; cursor:pointer; }
@@ -180,32 +191,80 @@ h1,h2,h3,h4,p{ margin:0; }
   position: fixed;
   top:0; left:0; right:0;
   z-index: 100;
-  background: rgb(103 179 50 / 40%);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: var(--color-salvia);
   border-bottom: 1px solid rgba(250,243,227,0.35);
   transition: background var(--transition-med), border-color var(--transition-med), box-shadow var(--transition-med), transform var(--transition-med);
 }
-.site-header.is-scrolled{ background: transparent; border-bottom: 1px solid rgba(51,35,15,0.08); box-shadow: 0 2px 24px rgba(51,35,15,0.10); }
+.site-header.is-scrolled{ background: var(--color-salvia); border-bottom: 1px solid rgba(51,35,15,0.08); box-shadow: 0 2px 24px rgba(51,35,15,0.10); }
 .site-header.is-hidden{ transform: translateY(-100%); }
 .header-inner{ display:flex; align-items:center; justify-content:space-between; padding-block: var(--space-2); }
-.brand{ display:flex; align-items:center; gap: 0.6rem; }
+.brand{ display:flex; align-items:center; gap: 0.6rem; flex-shrink:0; }
 .brand-logo{ width:34px; height:34px; object-fit:cover; border-radius:50%; flex-shrink:0; }
 .brand-name{ font-family: var(--font-display); font-size: clamp(1.2rem, 1.2vw + 0.9rem, 1.5rem); color: var(--color-ink); }
 
-.nav-desktop{ display:none; }
-.nav-desktop ul{ display:flex; gap: var(--space-4); }
-.nav-desktop a{ font-size: var(--fs-mid); font-weight:600; color: var(--color-body); position:relative; padding-bottom:4px; }
+.nav-desktop{ display:none; flex:1; }
+.nav-desktop ul{ display:flex; gap: var(--space-4); justify-content:center; }
+.nav-desktop a{ font-size: var(--fs-small); font-weight:600; color: var(--color-body); position:relative; padding-bottom:4px; }
 .nav-desktop a::after{ content:""; position:absolute; left:0; right:100%; bottom:0; height:2px; background: var(--color-terracotta); transition: right var(--transition-fast); }
 .nav-desktop a:hover::after,
 .nav-desktop a.is-current::after{ right:0; }
 .nav-desktop a.is-current{ color: var(--color-terracotta-deep); }
 
-.header-actions{ display:flex; align-items:center; gap: var(--space-1); }
+/* Dropdown de categorías (desktop) */
+.nav-desktop ul > li.has-menu{ position:relative; }
+.nav-desktop .dropdown{
+  position:absolute; top:calc(100% + 8px); left:50%;
+  transform: translate(-50%, 8px);
+  min-width: 210px;
+  background: var(--color-parchment-soft);
+  border: 1px solid var(--color-line);
+  border-radius: 14px;
+  box-shadow: var(--shadow-card);
+  padding: var(--space-1);
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
+  z-index: 60;
+}
+.nav-desktop .dropdown::before{
+  content:""; position:absolute; top:-8px; left:50%; transform:translateX(-50%);
+  border:6px solid transparent; border-bottom-color: var(--color-parchment-soft);
+}
+.nav-desktop .dropdown a{
+  display:block; padding: 0.6em 0.9em; border-radius: 10px;
+  font-size: var(--fs-small); font-weight:600; color: var(--color-body);
+  white-space:nowrap;
+}
+.nav-desktop .dropdown a::after{ display:none; }
+.nav-desktop .dropdown a:hover{ background: color-mix(in srgb, var(--color-terracotta) 12%, transparent); color: var(--color-terracotta-deep); }
+.nav-desktop li.has-menu.is-open .dropdown{
+  opacity:1; visibility:visible; pointer-events:auto;
+  transform: translate(-50%, 0);
+}
+.nav-desktop .dropdown-indicator{ display:inline-flex; align-items:center; margin-left:0.3em; transition: transform var(--transition-fast); }
+.nav-desktop li.has-menu.is-open .dropdown-indicator{ transform: rotate(180deg); }
+.nav-desktop .dropdown-indicator svg{ width:14px; height:14px; }
+
+.header-actions{ display:flex; align-items:center; gap: var(--space-1); flex-shrink:0; }
+.search-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  width: 38px; height:38px;
+  border-radius: 50%;
+  border: 2px solid var(--color-ink);
+  color: var(--color-ink);
+  background: transparent;
+  cursor:pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.search-btn:hover{ background: var(--color-ink); color: var(--color-parchment-soft); }
+.search-btn svg{ width:17px; height:17px; }
+@media (min-width: 640px){
+  .search-btn{ width: 42px; height: 42px; }
+  .search-btn svg{ width: 20px; height: 20px; }
+}
 .menu-toggle{
   display:inline-flex; align-items:center; justify-content:center;
   width:38px; height:38px;
-  background: transparent; border:none; color: var(--color-ink);
+  background: transparent; border: none; color: var(--color-ink);
 }
 .menu-toggle svg{ width:17px; height:17px; }
 .menu-toggle .icon-close{ display:none; }
@@ -229,6 +288,34 @@ h1,h2,h3,h4,p{ margin:0; }
 .nav-mobile ul{ display:flex; flex-direction:column; gap: var(--space-3); }
 .nav-mobile a{ font-family: var(--font-display); font-size: clamp(1.2rem, 0.6vw + 1.05rem, 1.4rem); color: var(--lime); }
 .nav-mobile a.is-current{ text-decoration: underline; text-underline-offset: 6px; text-decoration-color: var(--lime); }
+
+/* Acordeón de categorías dentro del menú móvil */
+.nav-acc{
+  display:flex; align-items:center; justify-content:space-between; gap:0.5rem;
+  width:100%; text-align:left;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 0.6vw + 1.05rem, 1.4rem);
+  color: var(--lime);
+  background:transparent; border:none; padding:0;
+}
+.nav-acc .acc-indicator{ display:inline-flex; transition: transform var(--transition-fast); }
+.nav-acc.is-open .acc-indicator{ transform: rotate(180deg); }
+.nav-acc .acc-indicator svg{ width:20px; height:20px; }
+.nav-sublist{
+  display:grid; grid-template-rows: 0fr; opacity:0;
+  transition: grid-template-rows var(--transition-med), opacity var(--transition-med);
+}
+.nav-sublist > .nav-sublist-inner{ overflow:hidden; }
+.nav-acc-parent.is-open .nav-sublist{ grid-template-rows: 1fr; opacity:1; margin-top:0.4rem; }
+.nav-sublist .nav-sublist-inner a{
+  font-family: var(--font-body);
+  font-size: var(--fs-mid);
+  color: rgba(200,255,87,0.85);
+  padding: 0.4em 0.4em 0.4em 0.8em;
+  display:block;
+}
+.nav-sublist .nav-sublist-inner a:hover{ color: var(--lime); }
+.nav-sublist .nav-sublist-inner a.is-current{ text-decoration:none; color: var(--lime); }
 .nav-close{
   position:absolute; top:12px; right:14px;
   width:38px; height:38px; border-radius:50%;
@@ -247,8 +334,183 @@ a.nav-mobile-cta{
 }
 a.nav-mobile-cta svg{ width:18px; height:18px; }
 
-.scrim{ position:fixed; inset:0; background: rgba(51,35,15,0.45); opacity:0; pointer-events:none; transition: opacity var(--transition-med); z-index:140; }
-.scrim.is-open{ opacity:1; pointer-events:auto; }
+.scrim{ position:fixed; inset:0; background: rgba(20,14,6,0.45); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); opacity:0; visibility:hidden; pointer-events:none; transition: opacity var(--transition-med), visibility var(--transition-med); z-index:140; }
+.scrim.is-open{ opacity:1; visibility:visible; pointer-events:auto; }
+
+/* --- Botón carrito (enlaces) en páginas secundarias --- */
+.cart-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:38px; height:38px; border-radius:50%;
+  border:2px solid var(--color-ink); color: var(--color-ink); background:transparent;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.cart-btn:hover{ background: var(--color-ink); color: var(--color-parchment-soft); }
+.cart-btn .cart-icon-img{ width:22px; height:22px; object-fit:contain; }
+
+/* --- Buscador overlay (header) --- */
+.search-overlay{
+  position:fixed; inset:0; z-index:200;
+  background:rgba(41,72,58,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  display:flex; flex-direction:column; align-items:center;
+  padding: clamp(4rem, 10vw, 7rem) var(--space-3) var(--space-3);
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition: opacity var(--transition-med), visibility var(--transition-med);
+}
+.search-overlay.is-open{ opacity:1; visibility:visible; pointer-events:auto; }
+.search-overlay-close{
+  position:absolute; top:16px; right:18px;
+  width:42px; height:42px; border-radius:50%;
+  border:2px solid var(--color-parchment); background:transparent; color:var(--color-parchment);
+  display:inline-flex; align-items:center; justify-content:center;
+  cursor:pointer; transition: background var(--transition-fast), color var(--transition-fast);
+}
+.search-overlay-close:hover{ background:var(--color-parchment); color:var(--color-ink); }
+.search-overlay-close svg{ width:22px; height:22px; }
+.search-overlay-inner{ width:100%; max-width:520px; }
+.search-overlay-label{
+  display:block; margin-bottom:var(--space-2);
+  font-family:var(--font-display); font-size:var(--fs-h3); color:var(--color-parchment);
+  text-align:center;
+}
+.search-overlay-wrap{ position:relative; }
+.search-overlay-wrap svg{
+  position:absolute; left:18px; top:50%; transform:translateY(-50%);
+  width:20px; height:20px; color:var(--color-body-soft); pointer-events:none;
+}
+.search-overlay-input{
+  width:100%; padding:1em 3em 1em 3.2em;
+  border-radius:999px; border:2px solid rgba(244,233,211,0.3);
+  background:var(--color-parchment-soft); font-family:var(--font-body);
+  font-size:var(--fs-body); color:var(--color-ink);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.search-overlay-input:focus{ outline:none; border-color:var(--color-terracotta); box-shadow:0 0 0 3px rgba(156,70,38,0.2); }
+.search-overlay-clear{
+  position:absolute; right:10px; top:50%; transform:translateY(-50%);
+  display:none; align-items:center; justify-content:center;
+  width:28px; height:28px; border-radius:50%;
+  border:none; background:var(--color-line); color:var(--color-ink);
+  font-size:var(--fs-tiny); line-height:1; cursor:pointer;
+}
+.search-overlay-clear.is-visible{ display:inline-flex; }
+
+/* --- Footer: info de pago/envío --- */
+.footer-info{
+  display:flex; flex-wrap:wrap; gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-top: 1px solid rgba(244,235,221,0.2);
+}
+.footer-info-col{ flex:1; min-width:200px; }
+.footer-info-col h4{
+  font-family: var(--font-display);
+  font-size: var(--fs-small);
+  color: var(--color-crema);
+  margin-bottom:0.3rem;
+}
+.footer-info-col p{ font-size: var(--fs-small); color: rgba(244,235,221,0.7); }
+
+/* ===========================================================
+   MODALES — información legal (privacidad y aviso legal)
+   =========================================================== */
+.modal{
+  position: fixed; inset:0; z-index:300;
+  display:flex; align-items:center; justify-content:center;
+  padding: var(--space-2);
+  visibility:hidden; opacity:0;
+  transition: opacity var(--transition-med), visibility var(--transition-med);
+}
+.modal.is-open{ visibility:visible; opacity:1; }
+.modal-scrim{
+  position:absolute; inset:0;
+  background: rgba(28,19,10,0.65);
+  backdrop-filter: blur(4px);
+}
+.modal-dialog{
+  position:relative; z-index:1;
+  width: min(680px, 100%);
+  max-width:760px;
+  max-height: 90vh; overflow-y:auto;
+  background: var(--color-parchment-soft);
+  border-radius:22px;
+  border: var(--border-frame);
+  box-shadow:0 24px 60px -20px rgba(28,19,10,0.7);
+  transform: translateY(18px) scale(0.97);
+  transition: transform var(--transition-med);
+}
+.modal.is-open .modal-dialog{ transform:none; }
+.modal-close{
+  position:absolute; top:12px; right:12px; z-index:2;
+  width:40px; height:40px; border-radius:50%;
+  border:2px solid var(--color-ink);
+  background: var(--color-parchment-soft);
+  color: var(--color-ink);
+  display:inline-flex; align-items:center; justify-content:center;
+  cursor:pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.modal-close:hover{ background: var(--color-ink); color: var(--color-parchment-soft); }
+.modal-close svg{ width:18px; height:18px; }
+.modal-body{ padding: clamp(2rem, 6vw, 2.5rem) clamp(1.1rem, 5vw, 1.8rem); }
+.m-tag{
+  display:inline-block; margin-bottom: var(--space-2);
+  font-size:0.7rem; font-weight:700; letter-spacing:0.06em;
+  text-transform:uppercase; color:#fff;
+  background: var(--color-terracotta);
+  padding:0.35em 0.9em; border-radius:999px;
+}
+.modal-body h2{
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  color: var(--color-ink);
+  margin-bottom: var(--space-2);
+}
+.modal-body p{
+  color: var(--color-body);
+  font-size: var(--fs-small);
+  margin-bottom: var(--space-2);
+}
+.modal-body strong{ color: var(--color-ink); }
+
+/* --- Footer: información legal --- */
+.footer-legal{
+  margin-top: var(--space-3); padding-top: var(--space-2);
+  border-top:1px solid rgba(244,235,221,0.2);
+  display:flex; flex-wrap:wrap; gap: var(--space-3);
+  align-items:center; justify-content:space-between;
+}
+.footer-legal-title{ margin:0; font-family: var(--font-display); font-size: var(--fs-mid); color: var(--color-crema); }
+.footer-legal-links{ display:flex; flex-direction:column; align-items:flex-start; gap: var(--space-2); }
+.footer-legal-links a,
+.footer-legal-links button{
+  background:none; border:none; padding:0; cursor:pointer;
+  font-family: var(--font-body); font-size: var(--fs-tiny);
+  color: rgba(244,235,221,0.85); text-decoration:underline;
+  text-underline-offset:2px;
+}
+.footer-legal-links a:hover,
+.footer-legal-links button:hover{ color: var(--color-crema); }
+
+/* --- Pago y envíos (sección en el cuerpo) --- */
+.contact-meta{ margin-top: var(--space-3); }
+.contact-meta-list{ display:flex; flex-direction:column; gap: var(--space-3); }
+.contact-meta-item{
+  display:flex; flex-direction:column; gap:0.25rem;
+  padding: var(--space-2);
+  border:1px solid var(--color-line);
+  border-radius:16px;
+  background: var(--color-parchment-soft);
+}
+.contact-meta-item h3{
+  font-family: var(--font-display);
+  font-size: var(--fs-mid);
+  color: var(--color-ink);
+}
+.contact-meta-item p{ font-size: var(--fs-small); color: var(--color-body-soft); }
+.contact-meta-item p strong{ color: var(--color-ink); }
+@media (min-width: 640px){
+  .contact-meta-list{ flex-direction:row; }
+  .contact-meta-item{ flex:1; }
+}
 
 .wa-float{
   position:fixed; right:16px; bottom:16px;
@@ -376,6 +638,7 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
 .conservation-grid{ display:grid; gap: var(--space-3); grid-template-columns: 1fr; }
 .conservation-item{ display:flex; gap: var(--space-2); align-items:flex-start; }
 .conservation-item svg{ width:30px; height:30px; color: var(--color-gold); flex-shrink:0; margin-top:2px; }
+.conservation-item img{ width:34px; height:34px; object-fit:contain; flex-shrink:0; margin-top:2px; }
 .conservation-item h3{ font-family: var(--font-display); font-size: clamp(1.05rem, 0.5vw + 0.95rem, 1.15rem); color: var(--color-parchment-soft); margin-bottom:0.2rem; }
 .conservation-item p{ font-size: var(--fs-small); color: rgba(244,233,211,0.75); }
 
@@ -388,19 +651,68 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
 /* ===========================================================
    FOOTER
    =========================================================== */
-.site-footer{ padding-block: var(--space-4); background: var(--color-ink); color: rgba(244,233,211,0.7); }
+.site-footer{ padding-block: var(--space-4); background: var(--color-forest-bosque); color: rgba(244,235,221,0.85); }
 .footer-inner{ display:flex; flex-direction:column; gap: var(--space-3); padding-top: var(--space-3); }
 .footer-brand{ display:flex; align-items:center; gap:0.6rem; }
 .footer-brand img{ width:30px; height:30px; object-fit:cover; border-radius:50%; }
-.footer-brand span{ font-family: var(--font-display); font-size: clamp(1.1rem, 0.4vw + 1rem, 1.2rem); color: var(--color-parchment-soft); }
+.footer-brand span{ font-family: var(--font-display); font-size: clamp(1.1rem, 0.4vw + 1rem, 1.2rem); color: var(--color-crema); }
 .footer-links{ display:flex; flex-wrap:wrap; gap: var(--space-3); }
-.footer-links a{ font-size: var(--fs-small); }
-.footer-links a:hover{ color: var(--color-parchment-soft); }
+.footer-links a{ font-size: var(--fs-small); color: rgba(244,235,221,0.85); }
+.footer-links a:hover{ color: var(--color-crema); }
 .footer-social{ display:flex; gap:0.7rem; }
-.footer-social a{ width:36px; height:36px; border-radius:50%; border:1.5px solid rgba(244,233,211,0.35); display:inline-flex; align-items:center; justify-content:center; }
-.footer-social a:hover{ border-color: var(--color-gold); color: var(--color-gold); }
+.footer-social a{ width:36px; height:36px; border-radius:50%; border:1.5px solid rgba(244,235,221,0.35); display:inline-flex; align-items:center; justify-content:center; }
+.footer-social a:hover{ border-color: var(--color-salvia); color: var(--color-crema); }
+.footer-social img{ width:18px; height:18px; object-fit:contain; }
 .footer-social svg{ width:16px; height:16px; }
-.footer-bottom{ margin-top: var(--space-3); padding-top: var(--space-2); border-top:1px solid rgba(244,233,211,0.15); font-size: var(--fs-tiny); display:flex; flex-wrap:wrap; justify-content:space-between; gap:0.5rem; }
+.footer-bottom{ margin-top: var(--space-3); padding-top: var(--space-2); border-top:1px solid rgba(244,235,221,0.2); font-size: var(--fs-tiny); display:flex; flex-wrap:wrap; justify-content:space-between; gap:0.5rem; color: rgba(244,235,221,0.7); }
+
+/* ===========================================================
+   CTA + FORMULARIO DE SOLICITAR INFORMACIÓN
+   =========================================================== */
+.cta-recipes{ padding-block: var(--space-5); }
+.cta-card{
+  border: var(--border-frame);
+  border-radius: var(--radius-card);
+  background: var(--color-parchment-soft);
+  padding: clamp(1.4rem, 5vw, 2.2rem);
+  text-align:center;
+}
+.cta-card h2{ font-family: var(--font-display); font-size: var(--fs-h2); color: var(--color-ink); text-wrap: balance; }
+.cta-card p{ margin-top: var(--space-2); color: var(--color-body-soft); max-width: 48ch; margin-inline:auto; }
+.info-request{ padding-block: var(--space-5); }
+.info-request-card{
+  border: var(--border-frame);
+  border-radius: 24px;
+  background: var(--color-parchment-soft);
+  padding: clamp(1.5rem, 7vw, 2.5rem) clamp(1.1rem, 6vw, 1.5rem);
+  max-width: 640px; margin-inline:auto;
+}
+.info-request-card h2{ font-family: var(--font-display); font-size: var(--fs-h3); color: var(--color-ink); margin-top:0.6rem; }
+.info-request-card > p{ margin-top: var(--space-2); color: var(--color-body-soft); max-width: 46ch; font-size: var(--fs-small); }
+.info-form{ margin-top: var(--space-3); display:flex; flex-direction:column; gap: var(--space-2); text-align:left; }
+.info-form .field{ display:flex; flex-direction:column; gap:0.35rem; }
+.info-form label{ font-size: var(--fs-small); font-weight:700; color: var(--color-ink); }
+.info-form label em{ font-style:normal; color: var(--color-body-soft); font-weight:400; }
+.info-form input, .info-form select, .info-form textarea{
+  width:100%; min-width:0;
+  padding: 0.85em 1em;
+  border-radius: 12px;
+  border: 2px solid var(--color-line);
+  background: var(--color-parchment);
+  font-family: var(--font-body);
+  font-size: var(--fs-mid);
+  color: var(--color-ink);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.info-form input:focus, .info-form select:focus, .info-form textarea:focus{
+  outline:none; border-color: var(--color-terracotta);
+  box-shadow: 0 0 0 3px rgba(156,70,38,0.15);
+}
+.info-form textarea{ resize:vertical; min-height:110px; }
+.info-form .btn{ align-self:flex-start; }
+.info-form-note{ font-size: var(--fs-tiny); color: var(--color-body-soft); }
+.info-success{ display:none; margin-top:0.6rem; color: var(--color-forest-deep); font-weight:700; font-size: var(--fs-small); }
+.info-success.is-visible{ display:block; }
 
 .reveal{ opacity:0; transform: translateY(14px); transition: opacity 700ms ease, transform 700ms ease; }
 .reveal.is-visible{ opacity:1; transform:none; }
@@ -429,6 +741,7 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
   .recipes-hero .hero-content{ min-height: 74vh; padding: clamp(4rem, 12vw, 8rem) var(--space-4) var(--space-6); }
   .recipe-grid{ grid-template-columns: repeat(2, 1fr); }
   .footer-inner{ flex-direction:row; align-items:center; justify-content:space-between; }
+  .footer-info{ justify-content:space-between; }
   .footer-bottom{ flex-wrap:nowrap; }
 }
 @media (min-width: 1180px){
@@ -443,21 +756,54 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
 <!-- ===================== HEADER ===================== -->
 <header class="site-header" id="siteHeader">
   <div class="wrap header-inner">
-    <a class="brand" href="index.html" aria-label="DORILA, inicio">
+    <a class="brand" href="index.html#top" aria-label="DORILA, inicio">
       <img class="brand-logo" src="img/sunflower_logo.png" alt="" width="2000" height="2000">
       <span class="brand-name">DORILA</span>
     </a>
 
     <nav class="nav-desktop" aria-label="Navegación principal">
       <ul>
-        <li><a href="index.html">Inicio</a></li>
+        <li class="has-menu">
+          <a href="index.html#categorias" aria-haspopup="true" aria-expanded="false">
+            Categorías
+            <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+          </a>
+          <ul class="dropdown">
+            <li><a href="index.html#productos">Descanso</a></li>
+            <li><a href="index.html#productos">Digestivo</a></li>
+            <li><a href="index.html#productos">Belleza</a></li>
+            <li><a href="index.html#productos">Aromaterapia</a></li>
+            <li><a href="index.html#productos">Masajes</a></li>
+            <li><a href="index.html#productos">Tratamientos</a></li>
+            <li><a href="index.html#productos">Aceites</a></li>
+            <li><a href="index.html#productos">Ungüentos</a></li>
+            <li><a href="index.html#productos">Cremas</a></li>
+          </ul>
+        </li>
         <li><a href="index.html#productos">Productos</a></li>
-        <li><a href="recetas.html" class="is-current" aria-current="page">Recetas y remedios</a></li>
-        <li><a href="index.html#contacto">Contacto</a></li>
+        <li class="has-menu">
+          <a href="#" aria-haspopup="true" aria-expanded="false">
+            Explorar
+            <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+          </a>
+          <ul class="dropdown">
+            <li><a href="index.html#historia">Nuestra historia</a></li>
+            <li><a href="recetas.html" class="is-current">Recetas y remedios</a></li>
+            <li><a href="saber.html">Cosas que deberías saber</a></li>
+            <li><a href="testimonios.html">Testimonios</a></li>
+            <li><a href="gracias.html">Agradecimientos</a></li>
+          </ul>
+        </li>
       </ul>
     </nav>
 
     <div class="header-actions">
+      <button class="search-btn" type="button" id="searchOpen" aria-label="Buscar en el catálogo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+      <a class="cart-btn" href="index.html#productos" aria-label="Ver carrito de compras" role="button">
+        <img class="cart-icon-img" src="img/cart22.png" alt="Carrito de compras" width="1234" height="1234">
+      </a>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMobile">
         <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
         <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -466,16 +812,62 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
   </div>
 </header>
 
+<!-- ===================== BUSCADOR OVERLAY ===================== -->
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Buscar productos">
+  <button class="search-overlay-close" type="button" id="searchOverlayClose" aria-label="Cerrar búsqueda">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <div class="search-overlay-inner">
+    <label class="search-overlay-label" for="searchOverlayInput">Buscá tu hierba favorita</label>
+    <div class="search-overlay-wrap">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input class="search-overlay-input" id="searchOverlayInput" type="search" placeholder="Nombre, uso o nombre científico…" autocomplete="off" aria-label="Buscar en el catálogo">
+      <button class="search-overlay-clear" id="searchOverlayClear" type="button" aria-label="Limpiar búsqueda">&times;</button>
+    </div>
+  </div>
+</div>
+
 <div class="scrim" id="scrim"></div>
 <nav class="nav-mobile" id="navMobile" aria-label="Navegación móvil">
   <button class="nav-close" type="button" id="navClose" aria-label="Cerrar menú">
     <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
   <ul>
-    <li><a href="index.html">Inicio</a></li>
+    <li class="nav-acc-parent">
+      <button class="nav-acc" type="button" id="mobileCatsToggle" aria-expanded="false" aria-controls="mobileCatList">
+        Categorías
+        <span class="acc-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button>
+      <div class="nav-sublist" id="mobileCatList">
+        <div class="nav-sublist-inner">
+          <a href="index.html#productos">Descanso</a>
+          <a href="index.html#productos">Digestivo</a>
+          <a href="index.html#productos">Belleza</a>
+          <a href="index.html#productos">Aromaterapia</a>
+          <a href="index.html#productos">Masajes</a>
+          <a href="index.html#productos">Tratamientos</a>
+          <a href="index.html#productos">Aceites</a>
+          <a href="index.html#productos">Ungüentos</a>
+          <a href="index.html#productos">Cremas</a>
+        </div>
+      </div>
+    </li>
     <li><a href="index.html#productos">Productos</a></li>
-    <li><a href="recetas.html" class="is-current" aria-current="page">Recetas y remedios</a></li>
-    <li><a href="index.html#contacto">Contacto</a></li>
+    <li class="nav-acc-parent">
+      <button class="nav-acc" type="button" id="mobileExplorarToggle" aria-expanded="false" aria-controls="mobileExplorarList">
+        Explorar
+        <span class="acc-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button>
+      <div class="nav-sublist" id="mobileExplorarList">
+        <div class="nav-sublist-inner">
+          <a href="index.html#historia">Nuestra historia</a>
+          <a href="recetas.html" class="is-current">Recetas y remedios</a>
+          <a href="saber.html">Cosas que deberías saber</a>
+          <a href="testimonios.html">Testimonios</a>
+          <a href="gracias.html">Agradecimientos</a>
+        </div>
+      </div>
+    </li>
   </ul>
   <a class="nav-mobile-cta" href="https://wa.me/59894872605" target="_blank" rel="noopener">
     <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.73-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.24.25-.41.08-.16.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.39 1.01 2.56.13.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.29Z"/></svg>
@@ -490,9 +882,8 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
     <div class="hero-media">
       <img
         class="hero-image"
-        src="img/girasol_bg.jpeg"
-        alt="Campo de girasoles al atardecer, inspiración de los remedios caseros de DORILA"
-        width="2048" height="1152"
+        src="img/hills.jpg"
+        alt="Laderas verdes y cerros de la campiña uruguaya, inspiración de los remedios caseros de DORILA"
         fetchpriority="high"
         decoding="async">
     </div>
@@ -915,27 +1306,27 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
       </div>
       <ul class="conservation-grid reveal">
         <li class="conservation-item">
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22V8M12 8L6 5M12 8l6-3M3 8v8m18-8v8"/></svg>
+          <img src="img/icons/icons86-leaf-100.png" alt="" loading="lazy" width="100" height="100">
           <div><h3>Plantas siempre secas</h3><p>La humedad es la enemiga: seca bien antes de macerar o infusionar cualquier planta.</p></div>
         </li>
         <li class="conservation-item">
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 0 1 9 9c0 2-.7 3.9-1.8 5.4M3 12a9 9 0 0 1 9-9c2 0 3.9.7 5.4 1.8M3 12v6h6"/></svg>
+          <img src="img/icons/icons8-stones-100.png" alt="" loading="lazy" width="100" height="100">
           <div><h3>Vidrio oscuro y fresco</h3><p>Guardá aceites y cremas en frasco oscuro, lejos del sol y el calor.</p></div>
         </li>
         <li class="conservation-item">
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <img src="img/icons/icons8-plant-100.png" alt="" loading="lazy" width="100" height="100">
           <div><h3>Etiquetá todo</h3><p>Anotá planta, fecha de preparación y fecha de vencimiento estimada.</p></div>
         </li>
         <li class="conservation-item">
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v6M12 16v6M2 12h6M16 12h6M20 6l-4 4M6 18l4-4M20 18l-4-4M4 6l4 4"/></svg>
+          <img src="img/icons/icons8-trust-100.png" alt="" loading="lazy" width="100" height="100">
           <div><h3>Vitamina E, tu aliada</h3><p>Una gotita de aceite de vitamina E ayuda a prevenir la oxidación y a prolongar la vida útil.</p></div>
         </li>
         <li class="conservation-item">
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          <img src="img/icons/icons8-mortar-and-pestle-100.png" alt="" loading="lazy" width="100" height="100">
           <div><h3>Problemas con agua</h3><p>Si un aceite se ve turbio o huele raro, desechalo. Su salud no vale un frasco.</p></div>
         </li>
         <li class="conservation-item">
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 14l5-5m-1 6h.01M14 9h.01"/><path d="M12 21c-4-1-7-5-7-9V5l7-2 7 2v7c0 4-3 8-7 9z"/></svg>
+          <img src="img/icons/icons8-olive-oil-100.png" alt="" loading="lazy" width="100" height="100">
           <div><h3>Poca dosis</h3><p>Sobre todo en tinturas y aceites esenciales: unas gotas alcanzan y sobran.</p></div>
         </li>
       </ul>
@@ -965,25 +1356,101 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
     </div>
   </section>
 
+  <!-- ===================== SOLICITAR INFORMACIÓN ===================== -->
+  <section class="info-request wrap" id="solicitar-info" aria-labelledby="info-request-heading">
+    <div class="info-request-card reveal">
+      <span class="eyebrow-mark">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 9h3v6h2"/></svg>
+        Consultas
+      </span>
+      <h2 id="info-request-heading">Solicitá información</h2>
+      <p>Contanos qué te interesa y te respondemos por WhatsApp con todo el detalle.</p>
+      <form class="info-form" id="infoForm" novalidate>
+        <div class="field">
+          <label for="infoName">Nombre <em>(obligatorio)</em></label>
+          <input type="text" id="infoName" name="nombre" autocomplete="name" required placeholder="Tu nombre">
+        </div>
+        <div class="field">
+          <label for="infoEmail">Correo electrónico <em>(opcional)</em></label>
+          <input type="email" id="infoEmail" name="email" autocomplete="email" placeholder="nombre@correo.com">
+        </div>
+        <div class="field">
+          <label for="infoPhone">Teléfono <em>(obligatorio)</em></label>
+          <input type="tel" id="infoPhone" name="telefono" autocomplete="tel" required placeholder="099 000 000">
+        </div>
+        <div class="field">
+          <label for="infoTopic">Tema</label>
+          <select id="infoTopic" name="tema">
+            <option value="Pedir hierbas">Pedir hierbas</option>
+            <option value="Pedir el catálogo completo">Pedir el catálogo completo</option>
+            <option value="Consulta general">Consulta general</option>
+            <option value="Envíos">Envíos</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="infoMsg">Mensaje <em>(obligatorio)</em></label>
+          <textarea id="infoMsg" name="mensaje" required placeholder="Escribinos tu consulta…"></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Enviar por WhatsApp</button>
+        <p class="info-form-note">Al enviar se abrirá WhatsApp con tu mensaje armado; solo tenés que confirmar el envío.</p>
+        <p class="info-success" id="infoSuccess" role="status">¡Gracias! Se abrió WhatsApp con tu consulta.</p>
+      </form>
+    </div>
+  </section>
+
+<!-- ===================== PAGO Y ENVÍOS ===================== -->
+  <section class="wrap" id="pago-envios" aria-labelledby="pago-envios-heading">
+    <div class="section-head">
+      <h2 id="pago-envios-heading">Pago y envíos</h2>
+      <p>Trabajamos por WhatsApp y coordinamos la entrega según tu punto del país.</p>
+    </div>
+    <div class="contact-meta">
+      <div class="contact-meta-list">
+        <div class="contact-meta-item">
+          <h3>Métodos de pago</h3>
+          <p>Efectivo o transferencia <strong>Prex</strong></p>
+        </div>
+        <div class="contact-meta-item">
+          <h3>Envíos</h3>
+          <p>Montevideo: <strong>$200</strong> &middot; Interior: por <strong>DAC</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <!-- ===================== FOOTER ===================== -->
 <footer class="site-footer">
   <div class="wrap footer-inner">
     <div class="footer-brand">
-      <img src="img/sunflower_logo.png" alt="" width="2000" height="2000">
+      <img class="footer-logo" src="img/sunflower_logo.png" alt="" width="2000" height="2000">
       <span>DORILA</span>
     </div>
     <nav class="footer-links" aria-label="Enlaces del pie de página">
-      <a href="index.html">Inicio</a>
+      <a href="index.html#top">Inicio</a>
+      <a href="index.html#categorias">Categorías</a>
       <a href="index.html#productos">Productos</a>
+      <a href="index.html#historia">Nuestra historia</a>
       <a href="recetas.html">Recetas y remedios</a>
+      <a href="saber.html">Cosas que deberías saber</a>
+      <a href="testimonios.html">Testimonios</a>
+      <a href="gracias.html">Agradecimientos</a>
       <a href="index.html#contacto">Contacto</a>
     </nav>
     <div class="footer-social">
       <a href="#" aria-label="Instagram"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
       <a href="https://wa.me/59894872605" aria-label="WhatsApp"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5Z"/></svg></a>
     </div>
+  </div>
+  <div class="wrap footer-legal">
+    <h3 class="footer-legal-title">Información legal</h3>
+    <nav class="footer-legal-links" aria-label="Información legal">
+      <a href="https://kikiriya-devops.netlify.app" target="_blank" rel="noopener">Garantía de autenticidad</a>
+      <button type="button" data-open-modal="privacyModal" aria-haspopup="dialog">Política de privacidad</button>
+      <button type="button" data-open-modal="disclaimerModal" aria-haspopup="dialog">Aviso legal</button>
+    </nav>
   </div>
   <div class="wrap footer-bottom">
     <span>&copy; <span id="year"></span> DORILA. Uruguay.</span>
@@ -1063,8 +1530,184 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
     if (e.key === "Escape") closeMenu();
   });
 
+  /* Acordeón de categorías dentro del menú móvil */
+  var mobileToggle = document.getElementById("mobileCatsToggle");
+  if (mobileToggle){
+    mobileToggle.addEventListener("click", function(){
+      var parent = mobileToggle.closest(".nav-acc-parent");
+      var isOpen = parent.classList.toggle("is-open");
+      mobileToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+  }
+
+  /* Acordeón Explorar dentro del menú móvil */
+  var mobileExplorarToggle = document.getElementById("mobileExplorarToggle");
+  if (mobileExplorarToggle){
+    mobileExplorarToggle.addEventListener("click", function(){
+      var parent = mobileExplorarToggle.closest(".nav-acc-parent");
+      var isOpen = parent.classList.toggle("is-open");
+      mobileExplorarToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+  }
+
+  /* Dropdown desktop: hover/focus para todos los li.has-menu */
+  document.querySelectorAll(".nav-desktop li.has-menu").forEach(function(li){
+    var link = li.querySelector(":scope > a");
+    li.addEventListener("mouseenter", function(){ li.classList.add("is-open"); if (link) link.setAttribute("aria-expanded", "true"); });
+    li.addEventListener("mouseleave", function(){ li.classList.remove("is-open"); if (link) link.setAttribute("aria-expanded", "false"); });
+    li.addEventListener("focusin", function(){ li.classList.add("is-open"); if (link) link.setAttribute("aria-expanded", "true"); });
+    li.addEventListener("focusout", function(){ li.classList.remove("is-open"); if (link) link.setAttribute("aria-expanded", "false"); });
+  });
+
+  /* Buscador overlay (header) */
+  var searchOpen = document.getElementById("searchOpen");
+  var searchOverlay = document.getElementById("searchOverlay");
+  var searchOverlayClose = document.getElementById("searchOverlayClose");
+  var searchOverlayInput = document.getElementById("searchOverlayInput");
+  var searchOverlayClear = document.getElementById("searchOverlayClear");
+  function openSearchOverlay(){
+    searchOverlay.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+    setTimeout(function(){ searchOverlayInput.focus(); }, 100);
+  }
+  function closeSearchOverlay(){
+    searchOverlay.classList.remove("is-open");
+    document.body.style.overflow = "";
+  }
+  if (searchOpen){
+    searchOpen.addEventListener("click", function(){
+      openSearchOverlay();
+      window.location.href = "index.html#productos";
+    });
+  }
+  if (searchOverlayClose){
+    searchOverlayClose.addEventListener("click", closeSearchOverlay);
+  }
+  if (searchOverlay){
+    searchOverlay.addEventListener("keydown", function(e){
+      if (e.key === "Escape") closeSearchOverlay();
+    });
+  }
+  if (searchOverlayInput && searchOverlayClear){
+    searchOverlayInput.addEventListener("input", function(){
+      searchOverlayClear.classList.toggle("is-visible", searchOverlayInput.value.length > 0);
+    });
+    searchOverlayClear.addEventListener("click", function(){
+      searchOverlayInput.value = "";
+      searchOverlayClear.classList.remove("is-visible");
+      searchOverlayInput.focus();
+    });
+  }
+
+  /* Formulario de solicitar información → WhatsApp */
+  var infoForm = document.getElementById("infoForm");
+  if (infoForm){
+    infoForm.addEventListener("submit", function(e){
+      e.preventDefault();
+      if (!infoForm.checkValidity()){
+        infoForm.reportValidity();
+        return;
+      }
+      var name = document.getElementById("infoName").value.trim();
+      var email = document.getElementById("infoEmail").value.trim();
+      var phone = document.getElementById("infoPhone").value.trim();
+      var topic = document.getElementById("infoTopic").value;
+      var msg = document.getElementById("infoMsg").value.trim();
+
+      var text = "Hola DORILA, quiero solicitar información.\n" +
+        "Nombre: " + name + "\n" +
+        "Teléfono: " + phone + "\n";
+      if (email) text += "Correo: " + email + "\n";
+      text += "Tema: " + topic + "\n" +
+        "Mensaje: " + msg;
+
+      var wa = document.getElementById("infoSuccess");
+      if (wa) wa.classList.add("is-visible");
+      window.open("https://wa.me/59894872605?text=" + encodeURIComponent(text), "_blank", "noopener");
+      infoForm.reset();
+    });
+  }
+
+  /* Modales de información legal (privacidad y aviso legal) */
+  var legalModals = ["privacyModal", "disclaimerModal"];
+  function openLegalModal(id){
+    var m = document.getElementById(id);
+    if (!m) return;
+    m.classList.add("is-open");
+    m.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    var close = m.querySelector(".modal-close");
+    if (close) close.focus();
+  }
+  function closeLegalModal(m){
+    if (!m) return;
+    m.classList.remove("is-open");
+    m.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    var trigger = document.querySelector('[data-open-modal="' + m.id + '"]');
+    if (trigger) trigger.focus();
+  }
+  document.querySelectorAll("[data-open-modal]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      openLegalModal(btn.getAttribute("data-open-modal"));
+    });
+  });
+  legalModals.forEach(function(id){
+    var m = document.getElementById(id);
+    if (!m) return;
+    var closeBtn = m.querySelector(".modal-close");
+    if (closeBtn) closeBtn.addEventListener("click", function(){ closeLegalModal(m); });
+    m.querySelectorAll("[data-close-modal]").forEach(function(el){
+      el.addEventListener("click", function(){ closeLegalModal(m); });
+    });
+  });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape"){
+      var openM = document.querySelector(".modal.is-open");
+      if (openM && legalModals.indexOf(openM.id) !== -1) closeLegalModal(openM);
+    }
+  });
+
   document.getElementById("year").textContent = new Date().getFullYear();
 })();
 </script>
+
+<!-- ===================== MODAL PRIVACIDAD ===================== -->
+<div class="modal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" aria-hidden="true">
+  <div class="modal-scrim" data-close-modal></div>
+  <div class="modal-dialog" role="document">
+    <button class="modal-close" type="button" id="privacyClose" aria-label="Cerrar">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="modal-body">
+      <span class="m-tag">Legal</span>
+      <h2 id="privacyTitle">Política de privacidad</h2>
+      <p><strong>Qué datos recopilamos.</strong> Cuando completás el formulario de cotización, solo usamos tu nombre, lo que solicitás, el departamento, el barrio y las notas o dirección que nos escribís. Estos datos se envían directamente a nuestro WhatsApp; el sitio no los guarda ni los almacena en ningún servidor propio.</p>
+      <p><strong>Para qué los usamos.</strong> Únicamente para coordinar tu presupuesto, visita o consulta. No compartimos tus datos con terceros ni los usamos con fines publicitarios.</p>
+      <p><strong>Cookies.</strong> Este sitio no utiliza cookies de seguimiento ni analíticas de terceros.</p>
+      <p><strong>Contacto.</strong> Ante cualquier duda sobre esta política, escribinos al 094 872 605.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MODAL AVISO LEGAL ===================== -->
+<div class="modal" id="disclaimerModal" role="dialog" aria-modal="true" aria-labelledby="disclaimerTitle" aria-hidden="true">
+  <div class="modal-scrim" data-close-modal></div>
+  <div class="modal-dialog" role="document">
+    <button class="modal-close" type="button" id="disclaimerClose" aria-label="Cerrar">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="modal-body">
+      <span class="m-tag">Legal</span>
+      <h2 id="disclaimerTitle">Aviso legal — Descargo de responsabilidad</h2>
+      <p>Esta política de Descargo de responsabilidad limita nuestra responsabilidad e informa a los visitantes de este sitio sobre las limitaciones de sus contenidos, productos o servicios. En esencia, es una forma de protegernos legalmente y, al mismo tiempo, ser transparentes con nuestro público.</p>
+      <p>Aunque nos esforzamos por asegurar que la información de este sitio sea correcta, no garantizamos que sea completa o exacta; tampoco nos comprometemos a asegurar que el sitio web siga estando disponible o que el material del sitio web se mantenga actualizado.</p>
+      <p>La información proporcionada por DORILA en este sitio tiene únicamente fines informativos generales. Toda la información contenida en dicho sitio se facilita de buena fe.</p>
+      <p>Si tiene alguna pregunta sobre este Descargo de responsabilidad, póngase en contacto con nosotros.</p>
+      <p>El sitio puede contener enlaces a sitios web afiliados. Si hace clic en uno de estos enlaces y realiza una compra, es posible que recibamos una comisión sin coste adicional para usted.</p>
+      <p>DORILA se reserva el derecho a cambiar o modificar este Descargo de responsabilidad en cualquier momento para mejorar el servicio y usted acepta quedar vinculado por dichas modificaciones o revisiones.</p>
+    </div>
+  </div>
+</div>
 </body>
 </html>

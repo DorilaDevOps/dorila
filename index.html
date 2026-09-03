@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -30,12 +30,12 @@
 <meta name="twitter:description" content="Hierbas medicinales, tés, aceites y tinturas seleccionados a mano. Herbolaria artesanal.">
 <meta name="twitter:image" content="https://dorila.netlify.app/img/og-dorila.png">
 
-<link rel="icon" type="image/png" sizes="512x512" href="https://dorila.netlify.app/img/favicon.png">
-<link rel="apple-touch-icon" href="https://dorila.netlify.app/img/favicon.png">
+<link rel="icon" type="image/png" sizes="512x512" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/favicon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rye&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Rye&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
 {
@@ -85,9 +85,15 @@
   --glass:                     rgba(255, 255, 255, 0.15);
   --lime:                      #C8FF57;
 
+  /* --- color: identidad renovada --- */
+  --color-forest-bosque:       #29483A;   /* verde bosque — footer */
+  --color-salvia:              #879F82;   /* verde salvia — detalles/franjas */
+  --color-crema:               #F4EBDD;   /* crema — letra del footer */
+  --color-terracotta-cta:      #B96F52;   /* terracota — promociones/llamadas */
+
   /* --- tipografía --- */
   --font-display: "Rye", serif;
-  --font-body: "Lora", Georgia, serif;
+  --font-body: "Montserrat", Georgia, serif;
 
   --fs-hero:     clamp(2.6rem, 9vw + 0.5rem, 5rem);
   --fs-h2:       clamp(1.9rem, 5vw + 0.4rem, 3rem);
@@ -179,6 +185,17 @@ body{
   transition: filter var(--transition-med);
 }
 .lazy-img.is-loaded{ filter: blur(0); }
+
+/* Tratamiento de imágenes — tonos cálidos, contraste moderado,
+   saturación natural, verdes suaves y blancos cálidos para unificar la marca */
+img.img-toned,
+.hero-image,
+.product-media img,
+.story-media img,
+.modal-media img,
+.recipe-media img{
+  filter: saturate(0.92) contrast(1.03) sepia(0.06) brightness(1.02);
+}
 
 .wrap{
   max-width: var(--max-content);
@@ -277,14 +294,12 @@ body{
   position: fixed;
   top:0; left:0; right:0;
   z-index: 100;
-  background: rgb(103 179 50 / 40%);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: var(--color-salvia);
   border-bottom: 1px solid rgba(250,243,227,0.35);
   transition: background var(--transition-med), border-color var(--transition-med), box-shadow var(--transition-med), transform var(--transition-med);
 }
 .site-header.is-scrolled{
-  background: transparent;
+  background: var(--color-salvia);
   border-bottom: 1px solid rgba(51,35,15,0.08);
   box-shadow: 0 2px 24px rgba(51,35,15,0.10);
 }
@@ -294,7 +309,7 @@ body{
   display:flex; align-items:center; justify-content:space-between;
   padding-block: var(--space-2);
 }
-.brand{ display:flex; align-items:center; gap: 0.6rem; }
+.brand{ display:flex; align-items:center; gap: 0.6rem; flex-shrink:0; }
 .brand svg{ width: 34px; height: 34px; color: var(--color-forest); flex-shrink:0; }
 .brand-logo{ width:34px; height:34px; object-fit:cover; border-radius:50%; flex-shrink:0; }
 .brand-name{
@@ -304,10 +319,10 @@ body{
   letter-spacing: 0.01em;
 }
 
-.nav-desktop{ display:none; }
-.nav-desktop ul{ display:flex; gap: var(--space-4); }
+.nav-desktop{ display:none; flex:1; }
+.nav-desktop ul{ display:flex; gap: var(--space-4); justify-content:center; }
 .nav-desktop a{
-  font-size: var(--fs-mid);
+  font-size: var(--fs-small);
   font-weight: 600;
   color: var(--color-body);
   position:relative;
@@ -319,8 +334,64 @@ body{
   transition: right var(--transition-fast);
 }
 .nav-desktop a:hover::after{ right:0; }
+.nav-desktop a.is-current{ color: var(--color-terracotta-deep); }
+.nav-desktop a.is-current::after{ right:0; }
 
-.header-actions{ display:flex; align-items:center; gap: var(--space-1); }
+/* Dropdown de categorías (desktop) */
+.nav-desktop ul > li.has-menu{ position:relative; }
+.nav-desktop .dropdown{
+  position:absolute; top:calc(100% + 8px); left:50%;
+  transform: translate(-50%, 8px);
+  min-width: 210px;
+  background: var(--color-parchment-soft);
+  border: 1px solid var(--color-line);
+  border-radius: 14px;
+  box-shadow: var(--shadow-card);
+  padding: var(--space-1);
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
+  z-index: 60;
+}
+.nav-desktop .dropdown::before{
+  content:""; position:absolute; top:-8px; left:50%; transform:translateX(-50%);
+  border:6px solid transparent; border-bottom-color: var(--color-parchment-soft);
+}
+.nav-desktop .dropdown a{
+  display:block; padding: 0.6em 0.9em; border-radius: 10px;
+  font-size: var(--fs-small); font-weight:600; color: var(--color-body);
+  white-space:nowrap;
+}
+.nav-desktop .dropdown a::after{ display:none; }
+.nav-desktop .dropdown a:hover{ background: color-mix(in srgb, var(--color-terracotta) 12%, transparent); color: var(--color-terracotta-deep); }
+.nav-desktop li.has-menu.is-open .dropdown{
+  opacity:1; visibility:visible; pointer-events:auto;
+  transform: translate(-50%, 0);
+}
+.nav-desktop .dropdown-indicator{
+  display:inline-flex; align-items:center; margin-left:0.3em;
+  transition: transform var(--transition-fast);
+}
+.nav-desktop li.has-menu.is-open .dropdown-indicator{ transform: rotate(180deg); }
+.nav-desktop .dropdown-indicator svg{ width:14px; height:14px; }
+
+.header-actions{ display:flex; align-items:center; gap: var(--space-1); flex-shrink:0; }
+
+.search-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  width: 38px; height:38px;
+  border-radius: 50%;
+  border: 2px solid var(--color-ink);
+  color: var(--color-ink);
+  background: transparent;
+  cursor:pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.search-btn:hover{ background: var(--color-ink); color: var(--color-parchment-soft); }
+.search-btn svg{ width:17px; height:17px; }
+@media (min-width: 640px){
+  .search-btn{ width: 42px; height: 42px; }
+  .search-btn svg{ width: 20px; height: 20px; }
+}
 
 .cart-btn{
   position:relative;
@@ -377,6 +448,33 @@ body{
   color: var(--lime);
 }
 .nav-mobile a:hover{ color: var(--lime); }
+
+/* Acordeón de categorías dentro del menú móvil */
+.nav-acc{
+  display:flex; align-items:center; justify-content:space-between; gap:0.5rem;
+  width:100%; text-align:left;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 0.6vw + 1.05rem, 1.4rem);
+  color: var(--lime);
+  background:transparent; border:none; padding:0;
+}
+.nav-acc .acc-indicator{ display:inline-flex; transition: transform var(--transition-fast); }
+.nav-acc.is-open .acc-indicator{ transform: rotate(180deg); }
+.nav-acc .acc-indicator svg{ width:20px; height:20px; }
+.nav-sublist{
+  display:grid; grid-template-rows: 0fr; opacity:0;
+  transition: grid-template-rows var(--transition-med), opacity var(--transition-med);
+}
+.nav-sublist > .nav-sublist-inner{ overflow:hidden; }
+.nav-acc-parent.is-open .nav-sublist{ grid-template-rows: 1fr; opacity:1; margin-top:0.4rem; }
+.nav-sublist .nav-sublist-inner a{
+  font-family: var(--font-body);
+  font-size: var(--fs-mid);
+  color: rgba(200,255,87,0.85);
+  padding: 0.4em 0.4em 0.4em 0.8em;
+  display:block;
+}
+.nav-sublist .nav-sublist-inner a:hover{ color: var(--lime); }
 a.nav-mobile-cta{
   display:inline-flex; align-items:center; justify-content:center; gap:0.5em;
   align-self:center;
@@ -405,6 +503,74 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
 }
 .nav-close:hover{ background: var(--lime); color: var(--color-ink); }
 .nav-close svg{ width:18px; height:18px; }
+.nav-mobile a.is-current{ text-decoration:underline; text-underline-offset:6px; text-decoration-color:var(--lime); }
+.nav-sublist .nav-sublist-inner a.is-current{ text-decoration:none; color:var(--lime); }
+
+/* --- Buscador overlay (header) --- */
+.search-overlay{
+  position:fixed; inset:0; z-index:200;
+  background:rgba(41,72,58,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  display:flex; flex-direction:column; align-items:center;
+  padding: clamp(4rem, 10vw, 7rem) var(--space-3) var(--space-3);
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition: opacity var(--transition-med), visibility var(--transition-med);
+}
+.search-overlay.is-open{ opacity:1; visibility:visible; pointer-events:auto; }
+.search-overlay-close{
+  position:absolute; top:16px; right:18px;
+  width:42px; height:42px; border-radius:50%;
+  border:2px solid var(--color-parchment); background:transparent; color:var(--color-parchment);
+  display:inline-flex; align-items:center; justify-content:center;
+  cursor:pointer; transition: background var(--transition-fast), color var(--transition-fast);
+}
+.search-overlay-close:hover{ background:var(--color-parchment); color:var(--color-ink); }
+.search-overlay-close svg{ width:22px; height:22px; }
+.search-overlay-inner{ width:100%; max-width:520px; }
+.search-overlay-label{
+  display:block; margin-bottom:var(--space-2);
+  font-family:var(--font-display); font-size:var(--fs-h3); color:var(--color-parchment);
+  text-align:center;
+}
+.search-overlay-wrap{ position:relative; }
+.search-overlay-wrap svg{
+  position:absolute; left:18px; top:50%; transform:translateY(-50%);
+  width:20px; height:20px; color:var(--color-body-soft); pointer-events:none;
+}
+.search-overlay-input{
+  width:100%; padding:1em 3em 1em 3.2em;
+  border-radius:999px; border:2px solid rgba(244,233,211,0.3);
+  background:var(--color-parchment-soft); font-family:var(--font-body);
+  font-size:var(--fs-body); color:var(--color-ink);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.search-overlay-input:focus{ outline:none; border-color:var(--color-terracotta); box-shadow:0 0 0 3px rgba(156,70,38,0.2); }
+.search-overlay-clear{
+  position:absolute; right:10px; top:50%; transform:translateY(-50%);
+  display:none; align-items:center; justify-content:center;
+  width:28px; height:28px; border-radius:50%;
+  border:none; background:var(--color-line); color:var(--color-ink);
+  font-size:var(--fs-tiny); line-height:1; cursor:pointer;
+}
+.search-overlay-clear.is-visible{ display:inline-flex; }
+.search-overlay-hint{
+  margin-top:var(--space-2); text-align:center;
+  font-size:var(--fs-small); color:rgba(244,233,211,0.6);
+}
+
+/* --- Footer: info de pago/envío --- */
+.footer-info{
+  display:flex; flex-wrap:wrap; gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-top: 1px solid rgba(244,235,221,0.2);
+}
+.footer-info-col{ flex:1; min-width:200px; }
+.footer-info-col h4{
+  font-family: var(--font-display);
+  font-size: var(--fs-small);
+  color: var(--color-crema);
+  margin-bottom:0.3rem;
+}
+.footer-info-col p{ font-size: var(--fs-small); color: rgba(244,235,221,0.7); }
 
 /* --- botón flotante de WhatsApp --- */
 .wa-float{
@@ -451,11 +617,12 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
 .to-top svg{ width:24px; height:24px; }
 
 .scrim{
-  position: fixed; inset:0; background: rgba(51,35,15,0.45);
-  opacity:0; pointer-events:none; transition: opacity var(--transition-med);
+  position: fixed; inset:0; background: rgba(20,14,6,0.45);
+  backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
+  opacity:0; visibility:hidden; pointer-events:none; transition: opacity var(--transition-med), visibility var(--transition-med);
   z-index: 140;
 }
-.scrim.is-open{ opacity:1; pointer-events:auto; }
+.scrim.is-open{ opacity:1; visibility:visible; pointer-events:auto; }
 
 /* ===========================================================
    HERO
@@ -527,9 +694,11 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   max-width: 42ch;
 }
 .hero-ctas{
-  display:flex; flex-wrap:wrap; justify-content:center; gap: var(--space-2);
-  margin-top: var(--space-4);
+  display:flex; flex-wrap:nowrap; justify-content:center; gap: var(--space-1);
+  margin-top: var(--space-3);
+  width:100%;
 }
+.hero-ctas .btn{ font-size: var(--fs-small); padding: 0.7em 1.1em; flex: 1 1 auto; min-width:0; }
 .hero-ctas .btn-outline{
   border-color: rgba(250,243,227,0.7);
   color: var(--color-parchment-soft);
@@ -582,6 +751,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   color: var(--color-parchment-soft);
 }
 .category-icon svg{ width:28px; height:28px; }
+.category-icon img{ width:30px; height:30px; object-fit:contain; }
 .category-card h3{
   font-family: var(--font-display);
   font-size: clamp(1rem, 0.8vw + 0.9rem, 1.15rem);
@@ -867,6 +1037,29 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
 }
 .modal-more{ margin-top: var(--space-3); }
 
+/* --- Modales de información legal (privacidad y aviso legal) --- */
+.modal-legal .modal-dialog{ max-width: 760px; }
+.modal-legal .modal-body{ padding-top: var(--space-3); }
+.m-tag{
+  display:inline-block; margin-bottom: var(--space-2);
+  font-size: 0.7rem; font-weight:700; letter-spacing:0.06em;
+  text-transform:uppercase; color:#fff;
+  background: var(--color-terracotta);
+  padding: 0.35em 0.9em; border-radius:999px;
+}
+.modal-legal h2{
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  color: var(--color-ink);
+  margin-bottom: var(--space-2);
+}
+.modal-legal .modal-body p{
+  color: var(--color-body);
+  font-size: var(--fs-small);
+  margin-bottom: var(--space-2);
+}
+.modal-legal .modal-body strong{ color: var(--color-ink); }
+
 .products-more{ text-align:center; margin-top: var(--space-4); }
 
 /* ===========================================================
@@ -881,6 +1074,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
 }
 .benefit-item{ display:flex; gap: var(--space-2); align-items:flex-start; }
 .benefit-item svg{ width:30px; height:30px; color: var(--color-gold); flex-shrink:0; margin-top:2px; }
+.benefit-item img{ width:34px; height:34px; object-fit:contain; flex-shrink:0; margin-top:2px; }
 .benefit-item h3{ font-family: var(--font-display); font-size: clamp(1.05rem, 0.5vw + 0.95rem, 1.15rem); color: var(--color-parchment-soft); margin-bottom:0.2rem; }
 .benefit-item p{ font-size: var(--fs-small); color: rgba(244,233,211,0.75); }
 
@@ -976,63 +1170,125 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
 .contact-actions{ margin-top: var(--space-3); display:flex; flex-wrap:wrap; gap: var(--space-2); }
 .contact-actions .btn{ flex: 1 1 auto; }
 
-.newsletter-form{
-  margin-top: var(--space-3);
-  display:flex; flex-direction:column; gap: 0.7rem;
-  max-width: 420px;
-}
-.newsletter-form label{ font-size: var(--fs-small); font-weight:700; color: var(--color-ink); }
-.newsletter-row{ display:flex; flex-direction:column; gap:0.6rem; }
-.newsletter-row input{
-  width:100%;
-  min-width:0;
-  padding: 0.85em 1em;
-  border-radius: 999px;
-  border: 2px solid var(--color-line);
+.contact-meta{ margin-top: var(--space-3); }
+.contact-meta-list{ display:flex; flex-direction:column; gap: var(--space-3); }
+.contact-meta-item{
+  display:flex; flex-direction:column; gap:0.25rem;
+  padding: var(--space-2);
+  border: 1px solid var(--color-line);
+  border-radius: 16px;
   background: var(--color-parchment-soft);
-  font-family: var(--font-body);
+}
+.contact-meta-item h3{
+  font-family: var(--font-display);
   font-size: var(--fs-mid);
   color: var(--color-ink);
 }
-.newsletter-row input:focus{ border-color: var(--color-terracotta); outline:none; }
-.newsletter-row button{ align-self: flex-start; }
-.newsletter-note{ font-size: var(--fs-tiny); color: var(--color-body-soft); }
-.form-success{
+.contact-meta-item p{ font-size: var(--fs-small); color: var(--color-body-soft); }
+.contact-meta-item p strong{ color: var(--color-ink); }
+@media (min-width: 640px){
+  .contact-meta-list{ flex-direction:row; }
+  .contact-meta-item{ flex:1; }
+}
+
+/* ===========================================================
+   FORMULARIO DE SOLICITAR INFORMACIÓN
+   =========================================================== */
+.info-request{ padding-block: var(--space-5); }
+.info-request-card{
+  border: var(--border-frame);
+  border-radius: 24px;
+  background: var(--color-parchment-soft);
+  padding: clamp(1.5rem, 7vw, 2.5rem) clamp(1.1rem, 6vw, 1.5rem);
+  max-width: 640px; margin-inline:auto;
+}
+.info-request-card h2{
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  color: var(--color-ink);
+}
+.info-request-card > p{ margin-top: var(--space-2); color: var(--color-body-soft); max-width: 46ch; font-size: var(--fs-small); }
+.info-form{ margin-top: var(--space-3); display:flex; flex-direction:column; gap: var(--space-2); }
+.info-form .field{ display:flex; flex-direction:column; gap:0.35rem; }
+.info-form label{ font-size: var(--fs-small); font-weight:700; color: var(--color-ink); }
+.info-form label em{ font-style:normal; color: var(--color-body-soft); font-weight:400; }
+.info-form input,
+.info-form select,
+.info-form textarea{
+  width:100%; min-width:0;
+  padding: 0.85em 1em;
+  border-radius: 12px;
+  border: 2px solid var(--color-line);
+  background: var(--color-parchment);
+  font-family: var(--font-body);
+  font-size: var(--fs-mid);
+  color: var(--color-ink);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.info-form input:focus,
+.info-form select:focus,
+.info-form textarea:focus{
+  outline:none; border-color: var(--color-terracotta);
+  box-shadow: 0 0 0 3px rgba(156,70,38,0.15);
+}
+.info-form textarea{ resize:vertical; min-height:110px; }
+.info-form .btn{ align-self:flex-start; }
+.info-form-note{ font-size: var(--fs-tiny); color: var(--color-body-soft); }
+.info-success{
   display:none; margin-top:0.6rem;
   color: var(--color-forest-deep); font-weight:700; font-size: var(--fs-small);
 }
-.form-success.is-visible{ display:block; }
+.info-success.is-visible{ display:block; }
 
 /* ===========================================================
-   FOOTER
+   FOOTER — verde bosque de fondo, crema de letra, salvia en detalles
    =========================================================== */
-.site-footer{ padding-block: var(--space-4); background: var(--color-ink); color: rgba(244,233,211,0.7); }
+.site-footer{ padding-block: var(--space-4); background: var(--color-forest-bosque); color: rgba(244,235,221,0.85); }
 .footer-inner{
   display:flex; flex-direction:column; gap: var(--space-3);
   padding-top: var(--space-3);
 }
 .footer-brand{ display:flex; align-items:center; gap:0.6rem; }
-.footer-brand svg{ width:26px; height:26px; color: var(--color-gold); }
+.footer-brand svg{ width:26px; height:26px; color: var(--color-salvia); }
 .footer-brand img{ width:30px; height:30px; object-fit:cover; border-radius:50%; }
-.footer-brand span{ font-family: var(--font-display); font-size: clamp(1.1rem, 0.4vw + 1rem, 1.2rem); color: var(--color-parchment-soft); }
+.footer-brand span{ font-family: var(--font-display); font-size: clamp(1.1rem, 0.4vw + 1rem, 1.2rem); color: var(--color-crema); }
 .footer-links{ display:flex; flex-wrap:wrap; gap: var(--space-3); }
-.footer-links a{ font-size: var(--fs-small); }
-.footer-links a:hover{ color: var(--color-parchment-soft); }
+.footer-links a{ font-size: var(--fs-small); color: rgba(244,235,221,0.85); }
+.footer-links a:hover{ color: var(--color-crema); }
 .footer-social{ display:flex; gap: 0.7rem; }
 .footer-social a{
   width:36px; height:36px; border-radius:50%;
-  border: 1.5px solid rgba(244,233,211,0.35);
+  border: 1.5px solid rgba(244,235,221,0.35);
   display:inline-flex; align-items:center; justify-content:center;
   transition: border-color var(--transition-fast), color var(--transition-fast);
 }
-.footer-social a:hover{ border-color: var(--color-gold); color: var(--color-gold); }
+.footer-social a:hover{ border-color: var(--color-salvia); color: var(--color-crema); }
+.footer-social img{ width:18px; height:18px; object-fit:contain; }
 .footer-social svg{ width:16px; height:16px; }
 .footer-bottom{
   margin-top: var(--space-3); padding-top: var(--space-2);
-  border-top: 1px solid rgba(244,233,211,0.15);
+  border-top: 1px solid rgba(244,235,221,0.2);
   font-size: var(--fs-tiny);
   display:flex; flex-wrap:wrap; justify-content:space-between; gap:0.5rem;
+  color: rgba(244,235,221,0.7);
 }
+.footer-legal{
+  margin-top: var(--space-3); padding-top: var(--space-2);
+  border-top: 1px solid rgba(244,235,221,0.2);
+  display:flex; flex-wrap:wrap; gap: var(--space-3);
+  align-items:center; justify-content:space-between;
+}
+.footer-legal-title{ margin:0; font-family: var(--font-display); font-size: var(--fs-mid); color: var(--color-crema); }
+.footer-legal-links{ display:flex; flex-direction:column; align-items:flex-start; gap: var(--space-2); }
+.footer-legal-links a,
+.footer-legal-links button{
+  background:none; border:none; padding:0; cursor:pointer;
+  font-family: var(--font-body); font-size: var(--fs-tiny);
+  color: rgba(244,235,221,0.85); text-decoration:underline;
+  text-underline-offset:2px;
+}
+.footer-legal-links a:hover,
+.footer-legal-links button:hover{ color: var(--color-crema); }
 
 /* ===========================================================
    CARRITO — página de compra, verificación y orden
@@ -1171,10 +1427,6 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
    BREAKPOINTS — mobile-first (base = móvil, min-width = escalado)
    =========================================================== */
 /* ≥ 480px — formularios en fila */
-@media (min-width: 480px){
-  .newsletter-row{ flex-direction:row; }
-  .newsletter-row button{ align-self: stretch; }
-}
 
 /* ≥ 640px — tablet vertical: columnas y retorno del modo "medio" */
 @media (min-width: 640px){
@@ -1203,9 +1455,6 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   .story-text.reveal.is-visible p,
   .story-text.reveal.is-visible .story-signature{ text-shadow: none; }
 
-  .testimonial-slide{ padding: var(--space-5) var(--space-4); }
-  .hero-ctas .btn{ flex: initial; }
-
   .brand-logo{ width:40px; height:40px; }
   .header-actions{ gap: var(--space-2); }
   .cart-btn, .menu-toggle{ width: 42px; height: 42px; }
@@ -1230,9 +1479,10 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   .nav-desktop{ display:block; }
   .menu-toggle{ display:none; }
   .hero-content{ min-height: 92vh; padding: clamp(4rem, 12vw, 8rem) var(--space-4) var(--space-6); }
-  .category-grid{ grid-template-columns: repeat(6, 1fr); }
+  .category-grid{ grid-template-columns: repeat(3, 1fr); }
   .benefit-grid{ grid-template-columns: repeat(3, 1fr); }
   .footer-inner{ flex-direction:row; align-items:center; justify-content:space-between; }
+  .footer-info{ justify-content:space-between; }
   .footer-bottom{ flex-wrap:nowrap; }
 }
 
@@ -1256,15 +1506,44 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
 
     <nav class="nav-desktop" aria-label="Navegación principal">
       <ul>
-        <li><a href="#categorias">Categorías</a></li>
+        <li class="has-menu">
+          <a href="#categorias" aria-haspopup="true" aria-expanded="false">
+            Categorías
+            <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+          </a>
+          <ul class="dropdown" id="deskCatDropdown">
+            <li><a href="#productos" data-cat="descanso">Descanso</a></li>
+            <li><a href="#productos" data-cat="digestivo">Digestivo</a></li>
+            <li><a href="#productos" data-cat="belleza">Belleza</a></li>
+            <li><a href="#productos" data-cat="aromaterapia">Aromaterapia</a></li>
+            <li><a href="#productos" data-cat="masajes">Masajes</a></li>
+            <li><a href="#productos" data-cat="tratamientos">Tratamientos</a></li>
+            <li><a href="#productos" data-cat="aceites">Aceites</a></li>
+            <li><a href="#productos" data-cat="unguentos">Ungüentos</a></li>
+            <li><a href="#productos" data-cat="cremas">Cremas</a></li>
+          </ul>
+        </li>
         <li><a href="#productos">Productos</a></li>
-        <li><a href="recetas.html">Recetas y remedios</a></li>
-        <li><a href="#historia">Nuestra historia</a></li>
-        <li><a href="#contacto">Contacto</a></li>
+        <li class="has-menu">
+          <a href="#" aria-haspopup="true" aria-expanded="false">
+            Explorar
+            <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+          </a>
+          <ul class="dropdown">
+            <li><a href="#historia">Nuestra historia</a></li>
+            <li><a href="recetas.html">Recetas y remedios</a></li>
+            <li><a href="saber.html">Cosas que deberías saber</a></li>
+            <li><a href="testimonios.html">Testimonios</a></li>
+            <li><a href="gracias.html">Agradecimientos</a></li>
+          </ul>
+        </li>
       </ul>
     </nav>
 
     <div class="header-actions">
+      <button class="search-btn" type="button" id="searchOpen" aria-label="Buscar en el catálogo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
       <button class="cart-btn" type="button" id="cartBtn" aria-label="Carrito, 0 productos">
         <img class="cart-icon-img" src="img/cart22.png" alt="Carrito de compras" width="1234" height="1234">
         <span class="cart-count" id="cartCount" aria-hidden="true">0</span>
@@ -1277,17 +1556,63 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   </div>
 </header>
 
+<!-- ===================== BUSCADOR OVERLAY ===================== -->
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Buscar productos">
+  <button class="search-overlay-close" type="button" id="searchOverlayClose" aria-label="Cerrar búsqueda">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <div class="search-overlay-inner">
+    <label class="search-overlay-label" for="searchOverlayInput">Buscá tu hierba favorita</label>
+    <div class="search-overlay-wrap">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input class="search-overlay-input" id="searchOverlayInput" type="search" placeholder="Nombre, uso o nombre científico…" autocomplete="off" aria-label="Buscar en el catálogo">
+      <button class="search-overlay-clear" id="searchOverlayClear" type="button" aria-label="Limpiar búsqueda">&times;</button>
+    </div>
+    <p class="search-overlay-hint">Escribí y se filtrarán los productos en la galería de abajo.</p>
+  </div>
+</div>
+
 <div class="scrim" id="scrim"></div>
 <nav class="nav-mobile" id="navMobile" aria-label="Navegación móvil">
   <button class="nav-close" type="button" id="navClose" aria-label="Cerrar menú">
     <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
   <ul>
-    <li><a href="#categorias">Categorías</a></li>
+    <li class="nav-acc-parent">
+      <button class="nav-acc" type="button" id="mobileCatsToggle" aria-expanded="false" aria-controls="mobileCatList">
+        Categorías
+        <span class="acc-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button>
+      <div class="nav-sublist" id="mobileCatList">
+        <div class="nav-sublist-inner">
+          <a href="#productos" data-cat="descanso">Descanso</a>
+          <a href="#productos" data-cat="digestivo">Digestivo</a>
+          <a href="#productos" data-cat="belleza">Belleza</a>
+          <a href="#productos" data-cat="aromaterapia">Aromaterapia</a>
+          <a href="#productos" data-cat="masajes">Masajes</a>
+          <a href="#productos" data-cat="tratamientos">Tratamientos</a>
+          <a href="#productos" data-cat="aceites">Aceites</a>
+          <a href="#productos" data-cat="unguentos">Ungüentos</a>
+          <a href="#productos" data-cat="cremas">Cremas</a>
+        </div>
+      </div>
+    </li>
     <li><a href="#productos">Productos</a></li>
-    <li><a href="recetas.html">Recetas y remedios</a></li>
-    <li><a href="#historia">Nuestra historia</a></li>
-    <li><a href="#contacto">Contacto</a></li>
+    <li class="nav-acc-parent">
+      <button class="nav-acc" type="button" id="mobileExplorarToggle" aria-expanded="false" aria-controls="mobileExplorarList">
+        Explorar
+        <span class="acc-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button>
+      <div class="nav-sublist" id="mobileExplorarList">
+        <div class="nav-sublist-inner">
+          <a href="#historia">Nuestra historia</a>
+          <a href="recetas.html">Recetas y remedios</a>
+          <a href="saber.html">Cosas que deberías saber</a>
+          <a href="testimonios.html">Testimonios</a>
+          <a href="gracias.html">Agradecimientos</a>
+        </div>
+      </div>
+    </li>
   </ul>
   <a class="nav-mobile-cta" href="https://wa.me/59894872605" target="_blank" rel="noopener">
     <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.73-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.24.25-.41.08-.16.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.39 1.01 2.56.13.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.29Z"/></svg>
@@ -1302,10 +1627,9 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
     <div class="hero-content">
       <div class="hero-media">
         <img
-          src="img/olgavolkovitskaia-massage-7441858_1920.jpg"
-          alt="Masaje relajante con aceites esenciales de plantas medicinales"
+          src="img/hills.jpg"
+          alt="Laderas verdes y cerros de la campiña uruguaya, inspiración de las hierbas de DORILA"
           class="hero-image"
-          width="1920" height="1080"
           fetchpriority="high"
           decoding="async">
       </div>
@@ -1315,8 +1639,8 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
           <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c0-6-4-8-4-13a4 4 0 0 1 8 0c0 5-4 7-4 13Z"/></svg>
           DORILA — Donde las plantas guardan historias.
         </span>
-        <h1 id="hero-heading">La naturaleza<br>que te sana.</h1>
-        <p class="lead">Hierbas medicinales seleccionadas con amor, procesadas artesanalmente para llevar el poder ancestral de las plantas directamente a tu hogar.</p>
+        <h1 id="hero-heading">Plantas que inspiran,<br>terapias que acompañan</h1>
+        <p class="lead">Hierbas medicinales seleccionadas con amor y conciencia, honrando la sabiduría ancestral de las plantas para acercarte su esencia y acompañar tu bienestar.</p>
         <div class="hero-ctas">
           <a class="btn btn-primary" href="#productos">Ver catálogo</a>
           <a class="btn btn-outline" href="#historia">Conocer la historia</a>
@@ -1345,7 +1669,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
       <article class="category-card" data-category="descanso">
         <div class="category-card-inner">
           <div class="category-icon">
-            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v14"/><path d="M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4"/></svg>
+            <img src="img/icons/icons82-lotus-50.png" alt="" loading="lazy" width="50" height="50">
           </div>
           <h3>Descanso</h3>
           <p>Hierbas que calman la mente y preparan noches tranquilas.</p>
@@ -1358,7 +1682,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
       <article class="category-card" data-category="digestivo">
         <div class="category-card-inner">
           <div class="category-icon">
-            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            <img src="img/icons/icons8-mortar-and-pestle-50.png" alt="" loading="lazy" width="50" height="50">
           </div>
           <h3>Digestivo</h3>
           <p>Aliadas después de comer: carminativas y suaves para el estómago.</p>
@@ -1371,7 +1695,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
       <article class="category-card" data-category="belleza">
         <div class="category-card-inner">
           <div class="category-icon">
-            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c0-6-4-8-4-13a4 4 0 0 1 8 0c0 5-4 7-4 13Z"/></svg>
+            <img src="img/icons/icons8-plant-50.png" alt="" loading="lazy" width="50" height="50">
           </div>
           <h3>Belleza</h3>
           <p>Para la piel, el cabello y el cuidado diario natural.</p>
@@ -1384,7 +1708,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
       <article class="category-card" data-category="aromaterapia">
         <div class="category-card-inner">
           <div class="category-icon">
-            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 2h8l1 5-9 13-9-13 1-5Z"/><path d="M12 12v8"/></svg>
+            <img src="img/icons/icons86-leaf-100.png" alt="" loading="lazy" width="100" height="100">
           </div>
           <h3>Aromaterapia</h3>
           <p>Aceites y esencias que transforman el ánimo de un ambiente.</p>
@@ -1397,7 +1721,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
       <article class="category-card" data-category="masajes">
         <div class="category-card-inner">
           <div class="category-icon">
-            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 3h8l1 5-9 13-9-13 1-5Z"/><path d="M12 9v8"/><circle cx="12" cy="14" r="2"/></svg>
+            <img src="img/icons/icons8-olive-oil-100.png" alt="" loading="lazy" width="100" height="100">
           </div>
           <h3>Masajes</h3>
           <p>Oleatos y aceites corporales para relajar músculos y piel.</p>
@@ -1410,12 +1734,51 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
       <article class="category-card is-featured" data-category="tratamientos">
         <div class="category-card-inner">
           <div class="category-icon">
-            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c0-6-4-8-4-13a4 4 0 0 1 8 0c0 5-4 7-4 13Z"/><path d="M12 12c3-1 5-3 5-6"/></svg>
+            <img src="img/icons/icons8-stones-100.png" alt="" loading="lazy" width="100" height="100">
           </div>
           <span class="category-badge">La más elegida</span>
           <h3>Tratamientos</h3>
           <p>Las clásicas de la botica: depurativas, tópicas y de temporada.</p>
           <span class="category-links" aria-label="Ver tratamientos">
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </article>
+
+      <article class="category-card" data-category="aceites">
+        <div class="category-card-inner">
+          <div class="category-icon">
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="var(--color-forest)" stroke-width="1.6" width="50" height="50"><path d="M12 2C8 7 5 10.5 5 14a7 7 0 0 0 14 0c0-3.5-3-7-7-12Z"/></svg>
+          </div>
+          <h3>Aceites</h3>
+          <p>Aceites esenciales y vegetales para el cuerpo y el alma.</p>
+          <span class="category-links" aria-label="Ver aceites">
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </article>
+
+      <article class="category-card" data-category="unguentos">
+        <div class="category-card-inner">
+          <div class="category-icon">
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="var(--color-forest)" stroke-width="1.6" width="50" height="50"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg>
+          </div>
+          <h3>Ungüentos</h3>
+          <p>Pomadas artesanales para pieles que necesitan cuidado extra.</p>
+          <span class="category-links" aria-label="Ver ungüentos">
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </article>
+
+      <article class="category-card" data-category="cremas">
+        <div class="category-card-inner">
+          <div class="category-icon">
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="var(--color-forest)" stroke-width="1.6" width="50" height="50"><circle cx="12" cy="13" r="8"/><path d="M8 13a4 4 0 0 1 8 0"/><path d="M9 5h6"/></svg>
+          </div>
+          <h3>Cremas</h3>
+          <p>Texturas suaves con hierbas para el cuidado diario de la piel.</p>
+          <span class="category-links" aria-label="Ver cremas">
             <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </span>
         </div>
@@ -1501,22 +1864,22 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
       </div>
       <ul class="benefit-grid">
         <li class="benefit-item">
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c0-6-4-8-4-13a4 4 0 0 1 8 0c0 5-4 7-4 13Z"/></svg>
+          <img src="img/icons/icons8-trust-100.png" alt="" loading="lazy" width="100" height="100">
           <div><h3>Origen conocido</h3><p>Sabemos quién cultivó cada planta y cómo la secó.</p></div>
         </li>
         <li class="benefit-item">
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          <img src="img/icons/icons86-leaf-100.png" alt="" loading="lazy" width="100" height="100">
           <div><h3>Envasado en tandas chicas</h3><p>Preparamos poco por vez para que llegue fresco.</p></div>
         </li>
         <li class="benefit-item">
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12l2-7h14l2 7M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7M5 12h14"/></svg>
-          <div><h3>Envíos a todo el país</h3><p>Coordinamos por agencia o encuentro personalizado.</p></div>
+          <img src="img/icons/icons8-delivery-100.png" alt="" loading="lazy" width="100" height="100">
+          <div><h3>Envíos a todo el país</h3><p>Montevideo: $200 &middot; Interior: por DAC. Coordinamos por WhatsApp.</p></div>
         </li>
       </ul>
     </div>
   </section>
 
-  <!-- ===================== TESTIMONIOS ===================== -->
+  <!-- ===================== TESTIMONIOS (enlace a página) ===================== -->
   <section class="testimonials wrap" id="testimonios" aria-labelledby="testimonios-heading">
     <div class="section-head reveal" style="margin-inline:auto; text-align:center;">
       <span class="eyebrow-mark">
@@ -1524,26 +1887,9 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
         Voces del herbario
       </span>
       <h2 id="testimonios-heading">Lo que cuentan quienes ya nos probaron</h2>
-    </div>
-
-    <div class="testimonial-carousel reveal"
-         id="testimonialCarousel"
-         role="region"
-         aria-roledescription="carrusel"
-         aria-label="Testimonios de clientas y clientes"
-         tabindex="0">
-      <div class="testimonial-track" id="testimonialTrack">
-        <!-- las diapositivas se generan por JS desde el array TESTIMONIALS -->
-      </div>
-
-      <div class="testimonial-controls">
-        <button type="button" id="testimonialPrev" aria-label="Testimonio anterior">
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
-        </button>
-        <div class="testimonial-dots" id="testimonialDots" role="tablist" aria-label="Elegir testimonio"></div>
-        <button type="button" id="testimonialNext" aria-label="Testimonio siguiente">
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
-        </button>
+      <p style="margin-top:1rem; color:var(--color-body-soft);">Leé las historias y experiencias completas en nuestra página de testimonios.</p>
+      <div class="hero-ctas" style="justify-content:center;">
+        <a class="btn btn-primary" href="testimonios.html">Ver testimonios</a>
       </div>
     </div>
   </section>
@@ -1564,19 +1910,65 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
         </div>
       </article>
 
-      <article class="contact-card reveal" aria-labelledby="contact-newsletter-heading">
-        <h2 id="contact-newsletter-heading" style="font-size: var(--fs-h3);">Novedades del herbario</h2>
-        <p>Un correo al mes con lo que está en flor y ofertas de temporada. Sin spam.</p>
-        <form class="newsletter-form" id="newsletterForm" novalidate>
-          <label for="newsletterEmail">Tu correo electrónico</label>
-          <div class="newsletter-row">
-            <input type="email" id="newsletterEmail" name="email" placeholder="nombre@correo.com" required autocomplete="email">
-            <button class="btn btn-primary" type="submit">Sumarme</button>
+      <article class="contact-card reveal" aria-labelledby="contact-meta-heading">
+        <h2 id="contact-meta-heading" style="font-size: var(--fs-h3);">Pago y envíos</h2>
+        <p>Trabajamos por WhatsApp y coordinamos la entrega según tu punto del país.</p>
+        <div class="contact-meta">
+          <div class="contact-meta-list">
+            <div class="contact-meta-item">
+              <h3>Métodos de pago</h3>
+              <p>Efectivo o transferencia <strong>Prex</strong></p>
+            </div>
+            <div class="contact-meta-item">
+              <h3>Envíos</h3>
+              <p>Montevideo: <strong>$200</strong> &middot; Interior: por <strong>DAC</strong></p>
+            </div>
           </div>
-          <p class="newsletter-note">Podés darte de baja cuando quieras.</p>
-          <p class="form-success" id="formSuccess" role="status">¡Listo! Ya estás en la lista.</p>
-        </form>
+        </div>
       </article>
+    </div>
+  </section>
+
+  <!-- ===================== SOLICITAR INFORMACIÓN ===================== -->
+  <section class="info-request wrap" id="solicitar-info" aria-labelledby="info-request-heading">
+    <div class="info-request-card reveal">
+      <span class="eyebrow-mark">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 9h3v6h2"/></svg>
+        Consultas
+      </span>
+      <h2 id="info-request-heading">Solicitá información</h2>
+      <p>Contanos qué te interesa y te respondemos por WhatsApp con todo el detalle.</p>
+      <form class="info-form" id="infoForm" novalidate>
+        <div class="field">
+          <label for="infoName">Nombre <em>(obligatorio)</em></label>
+          <input type="text" id="infoName" name="nombre" autocomplete="name" required placeholder="Tu nombre">
+        </div>
+        <div class="field">
+          <label for="infoEmail">Correo electrónico <em>(opcional)</em></label>
+          <input type="email" id="infoEmail" name="email" autocomplete="email" placeholder="nombre@correo.com">
+        </div>
+        <div class="field">
+          <label for="infoPhone">Teléfono <em>(obligatorio)</em></label>
+          <input type="tel" id="infoPhone" name="telefono" autocomplete="tel" required placeholder="099 000 000">
+        </div>
+        <div class="field">
+          <label for="infoTopic">Tema</label>
+          <select id="infoTopic" name="tema">
+            <option value="Pedir hierbas">Pedir hierbas</option>
+            <option value="Pedir el catálogo completo">Pedir el catálogo completo</option>
+            <option value="Consulta general">Consulta general</option>
+            <option value="Envíos">Envíos</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="infoMsg">Mensaje <em>(obligatorio)</em></label>
+          <textarea id="infoMsg" name="mensaje" required placeholder="Escribinos tu consulta…"></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Enviar por WhatsApp</button>
+        <p class="info-form-note">Al enviar se abrirá WhatsApp con tu mensaje armado; solo tenés que confirmar el envío.</p>
+        <p class="info-success" id="infoSuccess" role="status">¡Gracias! Se abrió WhatsApp con tu consulta.</p>
+      </form>
     </div>
   </section>
 
@@ -1590,16 +1982,28 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
       <span>DORILA</span>
     </div>
     <nav class="footer-links" aria-label="Enlaces del pie de página">
+      <a href="#top">Inicio</a>
       <a href="#categorias">Categorías</a>
       <a href="#productos">Productos</a>
+      <a href="#historia">Nuestra historia</a>
       <a href="recetas.html">Recetas y remedios</a>
-      <a href="#historia">Historia</a>
+      <a href="saber.html">Cosas que deberías saber</a>
+      <a href="testimonios.html">Testimonios</a>
+      <a href="gracias.html">Agradecimientos</a>
       <a href="#contacto">Contacto</a>
     </nav>
     <div class="footer-social">
       <a href="#" aria-label="Instagram"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
       <a href="https://wa.me/59894872605" aria-label="WhatsApp"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5Z"/></svg></a>
     </div>
+  </div>
+  <div class="wrap footer-legal">
+    <h3 class="footer-legal-title">Información legal</h3>
+    <nav class="footer-legal-links" aria-label="Información legal">
+      <a href="https://kikiriya-devops.netlify.app" target="_blank" rel="noopener">Garantía de autenticidad</a>
+      <button type="button" data-open-modal="privacyModal" aria-haspopup="dialog">Política de privacidad</button>
+      <button type="button" data-open-modal="disclaimerModal" aria-haspopup="dialog">Aviso legal</button>
+    </nav>
   </div>
   <div class="wrap footer-bottom">
     <span>&copy; <span id="year"></span> DORILA. Uruguay.</span>
@@ -1631,6 +2035,44 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
       <div class="modal-more">
         <a class="btn btn-primary" href="https://wa.me/59894872605" target="_blank" rel="noopener">Consultar por esta hierba</a>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MODAL PRIVACIDAD ===================== -->
+<div class="modal modal-legal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" aria-hidden="true">
+  <div class="modal-scrim" data-close-modal></div>
+  <div class="modal-dialog" role="document">
+    <button class="modal-close" type="button" id="privacyClose" aria-label="Cerrar">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="modal-body">
+      <span class="m-tag">Legal</span>
+      <h2 id="privacyTitle">Política de privacidad</h2>
+      <p><strong>Qué datos recopilamos.</strong> Cuando completás el formulario de cotización, solo usamos tu nombre, lo que solicitás, el departamento, el barrio y las notas o dirección que nos escribís. Estos datos se envían directamente a nuestro WhatsApp; el sitio no los guarda ni los almacena en ningún servidor propio.</p>
+      <p><strong>Para qué los usamos.</strong> Únicamente para coordinar tu presupuesto, visita o consulta. No compartimos tus datos con terceros ni los usamos con fines publicitarios.</p>
+      <p><strong>Cookies.</strong> Este sitio no utiliza cookies de seguimiento ni analíticas de terceros.</p>
+      <p><strong>Contacto.</strong> Ante cualquier duda sobre esta política, escribinos al 094 872 605.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MODAL AVISO LEGAL ===================== -->
+<div class="modal modal-legal" id="disclaimerModal" role="dialog" aria-modal="true" aria-labelledby="disclaimerTitle" aria-hidden="true">
+  <div class="modal-scrim" data-close-modal></div>
+  <div class="modal-dialog" role="document">
+    <button class="modal-close" type="button" id="disclaimerClose" aria-label="Cerrar">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="modal-body">
+      <span class="m-tag">Legal</span>
+      <h2 id="disclaimerTitle">Aviso legal — Descargo de responsabilidad</h2>
+      <p>Esta política de Descargo de responsabilidad limita nuestra responsabilidad e informa a los visitantes de este sitio sobre las limitaciones de sus contenidos, productos o servicios. En esencia, es una forma de protegernos legalmente y, al mismo tiempo, ser transparentes con nuestro público.</p>
+      <p>Aunque nos esforzamos por asegurar que la información de este sitio sea correcta, no garantizamos que sea completa o exacta; tampoco nos comprometemos a asegurar que el sitio web siga estando disponible o que el material del sitio web se mantenga actualizado.</p>
+      <p>La información proporcionada por DORILA en este sitio tiene únicamente fines informativos generales. Toda la información contenida en dicho sitio se facilita de buena fe.</p>
+      <p>Si tiene alguna pregunta sobre este Descargo de responsabilidad, póngase en contacto con nosotros.</p>
+      <p>El sitio puede contener enlaces a sitios web afiliados. Si hace clic en uno de estos enlaces y realiza una compra, es posible que recibamos una comisión sin coste adicional para usted.</p>
+      <p>DORILA se reserva el derecho a cambiar o modificar este Descargo de responsabilidad en cualquier momento para mejorar el servicio y usted acepta quedar vinculado por dichas modificaciones o revisiones.</p>
     </div>
   </div>
 </div>
@@ -2075,12 +2517,6 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
     }
   ];
 
-  var TESTIMONIALS = [
-    { quote: "\u201CEl té para dormir de DORILA cambió mis noches. Se nota que no es una mezcla de supermercado.\u201D", author: "Marcela R. — clienta desde 2021" },
-    { quote: "\u201CPedí el aceite de lavanda para mi consultorio y los pacientes preguntan de dónde es.\u201D", author: "Julián P. — masoterapeuta" },
-    { quote: "\u201CMe encanta que cada frasco diga la fecha de cosecha. Se siente artesanal de verdad.\u201D", author: "Noelia G. — clienta desde 2019" }
-  ];
-
   /* -----------------------------------------------------------
      2. IMÁGENES — todo lo relacionado a <img> en un solo lugar
      ----------------------------------------------------------- */
@@ -2151,7 +2587,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   var cartCountEl = document.getElementById("cartCount");
   var cartBtn = document.getElementById("cartBtn");
 
-  var CATEGORIES = ["descanso", "digestivo", "belleza", "aromaterapia", "masajes", "tratamientos"];
+  var CATEGORIES = ["descanso", "digestivo", "belleza", "aromaterapia", "masajes", "tratamientos", "aceites", "unguentos", "cremas"];
 
   function cardForProduct(p){
     var card = document.createElement("article");
@@ -2611,111 +3047,201 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   });
 
   /* -----------------------------------------------------------
-     Carrusel de testimonios — dinámico, con swipe y teclado
+     Formulario de novedades (demo sin backend)
      ----------------------------------------------------------- */
-  var tIndex = 0;
-  var track = document.getElementById("testimonialTrack");
-  var dotsWrap = document.getElementById("testimonialDots");
-  var carousel = document.getElementById("testimonialCarousel");
-  var slideEls = [];
-  var dotEls = [];
-
-  TESTIMONIALS.forEach(function(t, i){
-    var slide = document.createElement("blockquote");
-    slide.className = "testimonial-slide";
-    slide.setAttribute("role", "group");
-    slide.setAttribute("aria-roledescription", "diapositiva");
-    slide.setAttribute("aria-label", "Testimonio " + (i + 1) + " de " + TESTIMONIALS.length);
-    slide.setAttribute("aria-hidden", i === 0 ? "false" : "true");
-
-    var quote = document.createElement("p");
-    quote.className = "testimonial-quote";
-    quote.textContent = t.quote;
-
-    var footer = document.createElement("footer");
-    var cite = document.createElement("cite");
-    cite.textContent = t.author;
-    footer.appendChild(cite);
-
-    slide.appendChild(quote);
-    slide.appendChild(footer);
-    track.appendChild(slide);
-    slideEls.push(slide);
-
-    var dot = document.createElement("button");
-    dot.type = "button";
-    dot.setAttribute("role", "tab");
-    dot.setAttribute("aria-selected", i === 0 ? "true" : "false");
-    dot.setAttribute("aria-label", "Ir al testimonio " + (i + 1) + " de " + TESTIMONIALS.length);
-    dot.addEventListener("click", function(){ goToTestimonial(i); resetAuto(); });
-    dotsWrap.appendChild(dot);
-    dotEls.push(dot);
+  /* -----------------------------------------------------------
+     Modales de información legal (privacidad y aviso legal)
+     ----------------------------------------------------------- */
+  function openLegalModal(id){
+    var m = document.getElementById(id);
+    if (!m) return;
+    m.classList.add("is-open");
+    m.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    var close = m.querySelector(".modal-close");
+    if (close) close.focus();
+  }
+  function closeLegalModal(m){
+    if (!m) return;
+    m.classList.remove("is-open");
+    m.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    var trigger = document.querySelector('[data-open-modal="' + m.id + '"]');
+    if (trigger) trigger.focus();
+  }
+  document.querySelectorAll("[data-open-modal]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      openLegalModal(btn.getAttribute("data-open-modal"));
+    });
   });
-
-  function goToTestimonial(i){
-    tIndex = (i + TESTIMONIALS.length) % TESTIMONIALS.length;
-    track.style.transform = "translateX(-" + (tIndex * 100) + "%)";
-    slideEls.forEach(function(s, idx){ s.setAttribute("aria-hidden", idx === tIndex ? "false" : "true"); });
-    dotEls.forEach(function(d, idx){ d.setAttribute("aria-selected", idx === tIndex ? "true" : "false"); });
-  }
-
-  var autoTimer = null;
-  function startAuto(){
-    clearInterval(autoTimer);
-    autoTimer = setInterval(function(){ goToTestimonial(tIndex + 1); }, 3000);
-  }
-  startAuto();
-  function resetAuto(){
-    clearInterval(autoTimer);
-    startAuto();
-  }
-
-  document.getElementById("testimonialPrev").addEventListener("click", function(){ goToTestimonial(tIndex - 1); resetAuto(); });
-  document.getElementById("testimonialNext").addEventListener("click", function(){ goToTestimonial(tIndex + 1); resetAuto(); });
-
-  carousel.addEventListener("keydown", function(e){
-    if (e.key === "ArrowLeft"){ goToTestimonial(tIndex - 1); resetAuto(); }
-    if (e.key === "ArrowRight"){ goToTestimonial(tIndex + 1); resetAuto(); }
+  document.querySelectorAll(".modal.modal-legal").forEach(function(m){
+    var closeBtn = m.querySelector(".modal-close");
+    if (closeBtn) closeBtn.addEventListener("click", function(){ closeLegalModal(m); });
+    m.querySelectorAll("[data-close-modal]").forEach(function(el){
+      el.addEventListener("click", function(){ closeLegalModal(m); });
+    });
   });
-
-  // swipe táctil, pensado mobile-first
-  var touchStartX = 0, touchDeltaX = 0, isTouching = false;
-  track.addEventListener("touchstart", function(e){
-    isTouching = true;
-    touchStartX = e.touches[0].clientX;
-    touchDeltaX = 0;
-    track.style.transition = "none";
-  }, { passive: true });
-  track.addEventListener("touchmove", function(e){
-    if (!isTouching) return;
-    touchDeltaX = e.touches[0].clientX - touchStartX;
-    var base = -(tIndex * 100);
-    var dragPercent = (touchDeltaX / track.clientWidth) * 100;
-    track.style.transform = "translateX(" + (base + dragPercent) + "%)";
-  }, { passive: true });
-  track.addEventListener("touchend", function(){
-    isTouching = false;
-    track.style.transition = "";
-    if (touchDeltaX < -40) goToTestimonial(tIndex + 1);
-    else if (touchDeltaX > 40) goToTestimonial(tIndex - 1);
-    else goToTestimonial(tIndex);
-    resetAuto();
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape"){
+      document.querySelectorAll(".modal.modal-legal.is-open").forEach(function(m){
+        closeLegalModal(m);
+      });
+    }
   });
 
   /* -----------------------------------------------------------
-     Formulario de novedades (demo sin backend)
+     Menú desplegable de categorías (desktop + móvil)
      ----------------------------------------------------------- */
-  var form = document.getElementById("newsletterForm");
-  var success = document.getElementById("formSuccess");
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-    if (!form.checkValidity()){
-      form.reportValidity();
-      return;
+  var filtersWrapMobile = document.getElementById("productFilters");
+
+  // Aplica el filtro de categoría y baja a la galería
+  function applyCategoryFilter(cat){
+    if (!filtersWrapMobile) return;
+    var btns = filtersWrapMobile.querySelectorAll(".filter-btn");
+    for (var i = 0; i < btns.length; i++){
+      var b = btns[i];
+      b.classList.toggle("is-active", b.dataset.category === cat);
     }
-    success.classList.add("is-visible");
-    form.reset();
+    render();
+    var prods = document.getElementById("productos");
+    if (prods) prods.scrollIntoView({ behavior: "smooth" });
+    closeMenu();
+  }
+
+  // Dropdown desktop: clic en categoría
+  document.querySelectorAll(".nav-desktop .dropdown a[data-cat]").forEach(function(a){
+    a.addEventListener("click", function(e){
+      e.preventDefault();
+      applyCategoryFilter(a.dataset.cat);
+      var parent = a.closest("li.has-menu");
+      if (parent) parent.classList.remove("is-open");
+    });
   });
+
+  // Dropdown desktop: hover/focus para TODOS los li.has-menu
+  document.querySelectorAll(".nav-desktop li.has-menu").forEach(function(li){
+    var link = li.querySelector(":scope > a");
+    li.addEventListener("mouseenter", function(){
+      li.classList.add("is-open");
+      if (link) link.setAttribute("aria-expanded", "true");
+    });
+    li.addEventListener("mouseleave", function(){
+      li.classList.remove("is-open");
+      if (link) link.setAttribute("aria-expanded", "false");
+    });
+    li.addEventListener("focusin", function(){
+      li.classList.add("is-open");
+      if (link) link.setAttribute("aria-expanded", "true");
+    });
+    li.addEventListener("focusout", function(){
+      li.classList.remove("is-open");
+      if (link) link.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  // Acordeón móvil: Categorías
+  var mobileToggle = document.getElementById("mobileCatsToggle");
+  if (mobileToggle){
+    mobileToggle.addEventListener("click", function(){
+      var parent = mobileToggle.closest(".nav-acc-parent");
+      var isOpen = parent.classList.toggle("is-open");
+      mobileToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+    navMobile.querySelectorAll("#mobileCatList a[data-cat]").forEach(function(a){
+      a.addEventListener("click", function(e){
+        e.preventDefault();
+        applyCategoryFilter(a.dataset.cat);
+      });
+    });
+  }
+
+  // Acordeón móvil: Explorar
+  var mobileExplorarToggle = document.getElementById("mobileExplorarToggle");
+  if (mobileExplorarToggle){
+    mobileExplorarToggle.addEventListener("click", function(){
+      var parent = mobileExplorarToggle.closest(".nav-acc-parent");
+      var isOpen = parent.classList.toggle("is-open");
+      mobileExplorarToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+  }
+
+  // Buscador overlay (header)
+  var searchOpen = document.getElementById("searchOpen");
+  var searchOverlay = document.getElementById("searchOverlay");
+  var searchOverlayClose = document.getElementById("searchOverlayClose");
+  var searchOverlayInput = document.getElementById("searchOverlayInput");
+  var searchOverlayClear = document.getElementById("searchOverlayClear");
+  var searchInputMain = document.getElementById("searchInput");
+
+  function openSearchOverlay(){
+    searchOverlay.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+    setTimeout(function(){ searchOverlayInput.focus(); }, 100);
+  }
+  function closeSearchOverlay(){
+    searchOverlay.classList.remove("is-open");
+    document.body.style.overflow = "";
+  }
+  if (searchOpen){
+    searchOpen.addEventListener("click", openSearchOverlay);
+  }
+  if (searchOverlayClose){
+    searchOverlayClose.addEventListener("click", closeSearchOverlay);
+  }
+  if (searchOverlay){
+    searchOverlay.addEventListener("keydown", function(e){
+      if (e.key === "Escape") closeSearchOverlay();
+    });
+  }
+  if (searchOverlayInput && searchOverlayClear){
+    searchOverlayInput.addEventListener("input", function(){
+      searchOverlayClear.classList.toggle("is-visible", searchOverlayInput.value.length > 0);
+      if (searchInputMain){
+        searchInputMain.value = searchOverlayInput.value;
+        searchInputMain.dispatchEvent(new Event("input"));
+      }
+    });
+    searchOverlayClear.addEventListener("click", function(){
+      searchOverlayInput.value = "";
+      searchOverlayClear.classList.remove("is-visible");
+      if (searchInputMain){
+        searchInputMain.value = "";
+        searchInputMain.dispatchEvent(new Event("input"));
+      }
+      searchOverlayInput.focus();
+    });
+  }
+
+  /* -----------------------------------------------------------
+     Formulario de solicitar información → WhatsApp
+     ----------------------------------------------------------- */
+  var infoForm = document.getElementById("infoForm");
+  if (infoForm){
+    infoForm.addEventListener("submit", function(e){
+      e.preventDefault();
+      if (!infoForm.checkValidity()){
+        infoForm.reportValidity();
+        return;
+      }
+      var name = document.getElementById("infoName").value.trim();
+      var email = document.getElementById("infoEmail").value.trim();
+      var phone = document.getElementById("infoPhone").value.trim();
+      var topic = document.getElementById("infoTopic").value;
+      var msg = document.getElementById("infoMsg").value.trim();
+
+      var text = "Hola DORILA, quiero solicitar información.\n" +
+        "Nombre: " + name + "\n" +
+        "Teléfono: " + phone + "\n";
+      if (email) text += "Correo: " + email + "\n";
+      text += "Tema: " + topic + "\n" +
+        "Mensaje: " + msg;
+
+      var wa = document.getElementById("infoSuccess");
+      if (wa) wa.classList.add("is-visible");
+      window.open("https://wa.me/59894872605?text=" + encodeURIComponent(text), "_blank", "noopener");
+      infoForm.reset();
+    });
+  }
 
   /* -----------------------------------------------------------
      Año en el footer
