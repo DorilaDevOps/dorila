@@ -24,6 +24,21 @@ const THUMB_WIDTH = 32;
 const QUALITY = 80;
 const SKIP = new Set(["favicon.png", "og-dorila.png"]);
 
+function loadSiteText() {
+  let text = "";
+  const walk = (dir) => {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const e of entries) {
+      if (e.name === "node_modules" || e.name === ".git" || e.name === "img") continue;
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) walk(p);
+      else if (/\.(html|js|css)$/i.test(e.name)) text += fs.readFileSync(p, "utf8") + "\n";
+    }
+  };
+  walk(ROOT);
+  return text;
+}
+
 (async () => {
   const sources = fs
     .readdirSync(SRC_DIR)
@@ -68,8 +83,39 @@ const SKIP = new Set(["favicon.png", "og-dorila.png"]);
     updated++;
   }
 
+  const siteText = loadSiteText();
+  let removed = 0;
+  for (const f of fs.readdirSync(SRC_DIR)) {
+    if (!f.endsWith(".webp")) continue;
+    const base = f.endsWith("-thumb.webp")
+      ? f.slice(0, f.length - "-thumb.webp".length)
+      : f.slice(0, f.length - ".webp".length);
+    const hasSource = [".jpg", ".jpeg", ".png"].some((ext) =>
+      fs.existsSync(path.join(SRC_DIR, base + ext))
+    );
+    if (hasSource) continue;
+    const plainName = base + ".webp";
+    if (siteText.includes("img/" + f) || siteText.includes("img/" + plainName)) continue;
+    fs.unlinkSync(path.join(SRC_DIR, f));
+    console.log("⌫ huérfano eliminado: " + f);
+    removed++;
+  }
+
+  let thumbAdded = 0;
+  for (const f of fs.readdirSync(SRC_DIR)) {
+    if (!f.endsWith(".webp") || f.endsWith("-thumb.webp")) continue;
+    const thumb = f.slice(0, f.length - ".webp".length) + "-thumb.webp";
+    if (fs.existsSync(path.join(SRC_DIR, thumb))) continue;
+    await sharp(path.join(SRC_DIR, f))
+      .resize({ width: THUMB_WIDTH })
+      .webp({ quality: 60 })
+      .toFile(path.join(SRC_DIR, thumb));
+    console.log("→ thumb reparado: " + thumb);
+    thumbAdded++;
+  }
+
   console.log(
-    `\nImágenes: ${updated} regeneradas, ${kept} sin cambios.`
+    `\nImágenes: ${updated} regeneradas, ${kept} sin cambios, ${removed} huérfanos eliminados, ${thumbAdded} thumbs reparados.`
   );
   if (updated) {
     console.log("Corré también: node tools/generate.js (no necesario por contenido).");
