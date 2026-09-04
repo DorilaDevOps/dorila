@@ -267,7 +267,7 @@ img.img-toned,
 }
 .btn:active{ transform: translateY(1px); }
 .btn-primary{
-  background: var(--color-terracotta);
+  background: var(--color-salvia);
   color: var(--color-parchment-soft);
   box-shadow: 0 8px 18px -8px rgba(122, 52, 25, 0.65);
 }
@@ -985,6 +985,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   position:relative;
 }
 .modal-media img.lazy-img{ display:block; }
+
 .modal-cat{
   position:absolute; left:14px; bottom:-14px;
   background: var(--color-terracotta); color:#fff;
@@ -1932,7 +1933,6 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
             <textarea id="infoMsg" name="mensaje" required placeholder="Escribinos tu consulta…"></textarea>
           </div>
           <button class="btn btn-primary" type="submit">Enviar por WhatsApp</button>
-          <p class="info-form-note"><strong>Nota: Al enviar se abrirá WhatsApp con tu mensaje armado; solo tenés que confirmar el envío.</strong></p>
           <p class="info-success" id="infoSuccess" role="status">¡Gracias! Se abrió WhatsApp con tu consulta.</p>
         </form>
       </article>
@@ -2000,7 +2000,6 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
     </button>
     <div class="modal-media">
       <img id="modalImg" src="" alt="">
-      <span class="modal-cat" id="modalCat"></span>
       <span class="modal-id" id="modalId"></span>
     </div>
     <div class="modal-body">
@@ -2608,7 +2607,6 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
     function openModal(){
       var modal = document.getElementById("plantModal");
       setModalMedia(p);
-      document.getElementById("modalCat").textContent = p.category;
       document.getElementById("modalId").textContent = p.id;
       document.getElementById("plantModalName").textContent = p.name;
       document.getElementById("modalScientific").textContent = p.scientific;
