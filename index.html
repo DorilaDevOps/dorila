@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -95,8 +95,8 @@
   --font-display: "Rye", serif;
   --font-body: "Montserrat", Georgia, serif;
 
-  --fs-hero:     clamp(2.6rem, 9vw + 0.5rem, 5rem);
-  --fs-h2:       clamp(1.9rem, 5vw + 0.4rem, 3rem);
+  --fs-hero: clamp(2rem, 6vw + 0.4rem, 3.5rem);
+  --fs-h2:       clamp(1.5rem, 4vw + 0.4rem, 3.5rem);
   --fs-h3:       clamp(1.25rem, 2.6vw + 0.4rem, 1.6rem);
   --fs-lead:     clamp(1.05rem, 1.6vw + 0.6rem, 1.3rem);
   --fs-body:     clamp(1rem, 0.6vw + 0.85rem, 1.06rem);
@@ -492,8 +492,6 @@ a.nav-mobile-cta{
 }
 a.nav-mobile-cta svg{ width:18px; height:18px; flex-shrink:0; }
 a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(-1px); }
-a.nav-mobile-cta--instagram{ background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
-a.nav-mobile-cta--instagram:hover{ background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
 .nav-close{
   position:absolute; top:12px; right:14px;
   width:38px; height:38px; border-radius:50%;
@@ -665,7 +663,7 @@ a.nav-mobile-cta--instagram:hover{ background: linear-gradient(45deg,#f09433,#e6
   display:flex;
   align-items:center;
   justify-content:center;
-  padding: calc(var(--space-6) + 2rem) var(--space-3) var(--space-5);
+  padding: calc(var(--space-2) + 2rem) var(--space-1) var(--space-5);
   text-align:center;
   text-wrap-mode: balance;
 }
@@ -1280,8 +1278,8 @@ a.nav-mobile-cta--instagram:hover{ background: linear-gradient(45deg,#f09433,#e6
   display:flex; flex-wrap:wrap; gap: var(--space-3);
   align-items:center; justify-content:space-between;
 }
-.footer-legal-title{ margin:0; font-family: var(--font-body); font-size: var(--fs-mid); color: var(--color-crema); }
-.footer-legal-links{ display:flex; flex-direction:column; align-items:flex-start; gap: var(--space-2); }
+.footer-legal-copy{ font-size: var(--fs-tiny); color: rgba(244,235,221,0.7); }
+.footer-legal-links{ display:flex; flex-wrap:wrap; gap: var(--space-3); }
 .footer-legal-links a,
 .footer-legal-links button{
   background:none; border:none; padding:0; cursor:pointer;
@@ -1620,10 +1618,6 @@ a.nav-mobile-cta--instagram:hover{ background: linear-gradient(45deg,#f09433,#e6
     <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.73-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.24.25-.41.08-.16.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.39 1.01 2.56.13.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.29Z"/></svg>
     WhatsApp
   </a>
-  <a class="nav-mobile-cta nav-mobile-cta--instagram" href="https://instagram.com/dorilanatural" target="_blank" rel="noopener">
-    <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-    @dorilanatural
-  </a>
 </nav>
 
 <main id="main">
@@ -1642,12 +1636,12 @@ a.nav-mobile-cta--instagram:hover{ background: linear-gradient(45deg,#f09433,#e6
       <div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-text">
         <span class="eyebrow-mark">
-          DORILA — Donde las plantas guardan historias.
+          Donde las plantas guardan historias.
         </span>
-        <h1 id="hero-heading">Plantas que inspiran,<br>terapias que acompañan</h1>
+        <h1 id="hero-heading">Elegí productos naturales<br>terapias que acompañan</h1>
         <p class="lead">Hierbas medicinales seleccionadas con amor y conciencia, honrando la sabiduría ancestral de las plantas para acercarte su esencia y acompañar tu bienestar.</p>
         <div class="hero-ctas">
-          <a class="btn btn-primary" href="#productos">Ver catálogo</a>
+          <a class="btn btn-primary" href="#productos">Decubrí nuestros productos</a>
           <a class="btn btn-outline" href="#historia">Conocer la historia</a>
         </div>
         <div class="hero-tags">
@@ -1663,6 +1657,7 @@ a.nav-mobile-cta--instagram:hover{ background: linear-gradient(45deg,#f09433,#e6
   <section class="categories wrap" id="categorias" aria-labelledby="categorias-heading">
     <div class="section-head reveal">
       <span class="eyebrow-mark">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/></svg>
         El herbario
       </span>
       <h2 id="categorias-heading">Seis formas de encontrar tu hierba</h2>
@@ -1794,6 +1789,7 @@ a.nav-mobile-cta--instagram:hover{ background: linear-gradient(45deg,#f09433,#e6
   <section class="products wrap" id="productos" aria-labelledby="productos-heading">
     <div class="section-head reveal">
       <span class="eyebrow-mark">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h13a3 3 0 0 1 0 6h-1"/><path d="M4 8v9a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2V8"/></svg>
         El herbario
       </span>
       <h2 id="productos-heading">Nuestras hierbas medicinales</h2>
@@ -1840,6 +1836,7 @@ a.nav-mobile-cta--instagram:hover{ background: linear-gradient(45deg,#f09433,#e6
       </div>
       <div class="story-text reveal">
         <span class="eyebrow-mark">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V5a2 2 0 0 1 2-2h11l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/></svg>
           Nuestra historia
         </span>
         <h2 id="historia-heading" style="font-family:var(--font-display); font-size:var(--fs-h2); color:var(--color-ink); margin-top:0.6rem;">Hay historias que el tiempo no consigue borrar.</h2>
@@ -1859,6 +1856,7 @@ a.nav-mobile-cta--instagram:hover{ background: linear-gradient(45deg,#f09433,#e6
     <div class="wrap">
       <div class="section-head reveal">
         <span class="eyebrow-mark" style="color:var(--color-gold);">
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/></svg>
           Cómo trabajamos
         </span>
         <h2 id="beneficios-heading">Lo que cuidamos en cada envase</h2>
@@ -1866,15 +1864,15 @@ a.nav-mobile-cta--instagram:hover{ background: linear-gradient(45deg,#f09433,#e6
       <ul class="benefit-grid">
         <li class="benefit-item">
           <img src="img/icons/icons8-trust-100.png" alt="" loading="lazy" width="100" height="100">
-          <div><h3>Origen conocido</h3><p>Controlamos cada paso para asegurar tu bienestar.</p></div>
+          <div><h3>Origen conocido</h3><p>Supervisamos con rigor cada etapa: desde la siembra responsable hasta que el producto herbal llega a ti.</p></div>
         </li>
         <li class="benefit-item">
-          <img src="img/icons/icons86-leaf-100.png" alt="" loading="lazy" width="100" height="100">
-          <div><h3>Envasado en tandas chicas</h3><p>Preparamos poco por vez para asegurar que cada propiedad se mantenga intacta.</p></div>
+          <img src="img/icons/icons8-leaf-100.png" alt="" loading="lazy" width="100" height="100">
+          <div><h3>Envasado en tandas chicas</h3><p>Preparamos poco por vez para que recibas la máxima potencia botánica.</p></div>
         </li>
         <li class="benefit-item">
           <img src="img/icons/icons8-mortar-and-pestle-100.png" alt="" loading="lazy" width="100" height="100">
-          <div><h3>Fórmulas limpias</h3><p>Elaboradas mediante procesos lentos que respetan los tiempos de la naturaleza.</p></div>
+          <div><h3>Procesos Respetuosos:</h3><p>Extraemos la esencia de cada planta de forma delicada para entregarte un producto verdaderamente activo.</p></div>
         </li>
       </ul>
     </div>
@@ -1884,6 +1882,7 @@ a.nav-mobile-cta--instagram:hover{ background: linear-gradient(45deg,#f09433,#e6
   <section class="testimonials wrap" id="testimonios" aria-labelledby="testimonios-heading">
     <div class="section-head reveal" style="margin-inline:auto; text-align:center;">
       <span class="eyebrow-mark">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 8h10M7 12h6"/><path d="M4 19V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-5 4Z"/></svg>
         Voces del herbario
       </span>
       <h2 id="testimonios-heading">Lo que cuentan quienes ya nos probaron</h2>
@@ -1921,7 +1920,7 @@ a.nav-mobile-cta--instagram:hover{ background: linear-gradient(45deg,#f09433,#e6
             </div>
             <div class="contact-meta-item">
               <h3>Envíos</h3>
-              <p>Montevideo: <strong>$200</strong> &middot; Interior: por DAC</p>
+              <p>Montevideo: <strong>$200</strong> &middot; Interior: por agencias</p>
             </div>
           </div>
         </div>
@@ -1933,6 +1932,7 @@ a.nav-mobile-cta--instagram:hover{ background: linear-gradient(45deg,#f09433,#e6
   <section class="info-request wrap" id="solicitar-info" aria-labelledby="info-request-heading">
     <div class="info-request-card reveal">
       <span class="eyebrow-mark">
+        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 9h3v6h2"/></svg>
         Consultas
       </span>
       <h2 id="info-request-heading">Solicitá información</h2>
@@ -1965,7 +1965,7 @@ a.nav-mobile-cta--instagram:hover{ background: linear-gradient(45deg,#f09433,#e6
           <textarea id="infoMsg" name="mensaje" required placeholder="Escribinos tu consulta…"></textarea>
         </div>
         <button class="btn btn-primary" type="submit">Enviar por WhatsApp</button>
-        <p class="info-form-note"><strong>Al enviar se abrirá WhatsApp con tu mensaje armado; solo tenés que confirmar el envío.</strong></p>
+        <p class="info-form-note"><strong>Nota:</strong> Al enviar se abrirá WhatsApp con tu mensaje armado; solo tenés que confirmar el envío.</p>
         <p class="info-success" id="infoSuccess" role="status">¡Gracias! Se abrió WhatsApp con tu consulta.</p>
       </form>
     </div>
@@ -1978,20 +1978,23 @@ a.nav-mobile-cta--instagram:hover{ background: linear-gradient(45deg,#f09433,#e6
   <div class="wrap footer-inner">
     <div class="footer-brand">
       <img class="footer-logo" src="img/sunflower_logo.png" alt="" width="2000" height="2000">
-      <span>DORILA</span>
+      <span>GENERAL</span>
     </div>
     <nav class="footer-links" aria-label="Enlaces del pie de página">
       <a href="#top">Inicio</a>
+      <a href="#categorias">Categorías</a>
       <a href="#productos">Productos</a>
+      <a href="recetas.html">Recetas y remedios</a>
+      <a href="saber.html">Cosas que deberías saber</a>
       <a href="#contacto">Contacto</a>
     </nav>
     <div class="footer-social">
-      <a href="https://instagram.com/dorilanatural" target="_blank" rel="noopener" aria-label="Instagram"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
-      <a href="tel:+59894872605" aria-label="Teléfono"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.8 2Z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+      <a href="https://wa.me/59894872605" aria-label="WhatsApp"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5Z"/></svg></a>
     </div>
   </div>
   <div class="wrap footer-legal">
-    <h3 class="footer-legal-title">Información legal</h3>
+    <p class="footer-legal-copy">DORILA &middot; Herbolaria artesanal.</p>
     <nav class="footer-legal-links" aria-label="Información legal">
       <a href="https://kikiriya-devops.netlify.app" target="_blank" rel="noopener">Garantía de autenticidad</a>
       <button type="button" data-open-modal="privacyModal" aria-haspopup="dialog">Política de privacidad</button>
@@ -2013,6 +2016,7 @@ a.nav-mobile-cta--instagram:hover{ background: linear-gradient(45deg,#f09433,#e6
     </button>
     <div class="modal-media">
       <img id="modalImg" src="" alt="">
+      <span class="modal-cat" id="modalCat"></span>
       <span class="modal-id" id="modalId"></span>
     </div>
     <div class="modal-body">
@@ -2595,6 +2599,11 @@ a.nav-mobile-cta--instagram:hover{ background: linear-gradient(45deg,#f09433,#e6
     var img = buildLazyImg(p.img, p.name + ", hierba medicinal de DORILA");
     media.appendChild(img);
 
+    var tagEl = document.createElement("span");
+    tagEl.className = "product-tag";
+    tagEl.textContent = p.category;
+    media.appendChild(tagEl);
+
     var body = document.createElement("div");
     body.className = "product-body";
     body.innerHTML =
@@ -2620,6 +2629,7 @@ a.nav-mobile-cta--instagram:hover{ background: linear-gradient(45deg,#f09433,#e6
     function openModal(){
       var modal = document.getElementById("plantModal");
       setModalMedia(p);
+      document.getElementById("modalCat").textContent = p.category;
       document.getElementById("modalId").textContent = p.id;
       document.getElementById("plantModalName").textContent = p.name;
       document.getElementById("modalScientific").textContent = p.scientific;
@@ -3159,22 +3169,7 @@ a.nav-mobile-cta--instagram:hover{ background: linear-gradient(45deg,#f09433,#e6
   var searchOverlayClear = document.getElementById("searchOverlayClear");
   var searchInputMain = document.getElementById("searchInput");
 
-  var dorilaSearch = sessionStorage.getItem("dorila-search");
-  if (dorilaSearch){
-    sessionStorage.removeItem("dorila-search");
-    if (searchInputMain){
-      searchInputMain.value = dorilaSearch;
-      searchInputMain.dispatchEvent(new Event("input"));
-      var prodTarget = document.getElementById("productos");
-      if (prodTarget) prodTarget.scrollIntoView({ behavior: "smooth" });
-    }
-  }
-
   function openSearchOverlay(){
-    if (searchInputMain){
-      searchOverlayInput.value = searchInputMain.value;
-      searchOverlayClear.classList.toggle("is-visible", searchOverlayInput.value.length > 0);
-    }
     searchOverlay.classList.add("is-open");
     document.body.style.overflow = "hidden";
     setTimeout(function(){ searchOverlayInput.focus(); }, 100);
@@ -3210,16 +3205,6 @@ a.nav-mobile-cta--instagram:hover{ background: linear-gradient(45deg,#f09433,#e6
         searchInputMain.dispatchEvent(new Event("input"));
       }
       searchOverlayInput.focus();
-    });
-  }
-  if (searchOverlayInput){
-    searchOverlayInput.addEventListener("keydown", function(e){
-      if (e.key === "Enter"){
-        e.preventDefault();
-        closeSearchOverlay();
-        var prodTarget = document.getElementById("productos");
-        if (prodTarget) prodTarget.scrollIntoView({ behavior: "smooth" });
-      }
     });
   }
 
