@@ -757,8 +757,15 @@ a.nav-mobile-cta:hover{ background:#1eab52; transform: translateY(-1px); }
   if (searchOpen){
     searchOpen.addEventListener("click", function(){
       openSearchOverlay();
-      if (searchOverlayInput.value) sessionStorage.setItem("dorila-search", searchOverlayInput.value);
-      window.location.href = "index.html#productos";
+    });
+  }
+  if (searchOverlayInput){
+    searchOverlayInput.addEventListener("keydown", function(e){
+      if (e.key === "Enter"){
+        e.preventDefault();
+        sessionStorage.setItem("dorila-search", searchOverlayInput.value);
+        window.location.href = "index.html#productos";
+      }
     });
   }
   if (searchOverlayClose){

@@ -894,7 +894,7 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
           La botica de la abuela
         </span>
         <h1 id="hero-heading">Recetas y remedios<br>caseros con plantas</h1>
-        <p class="lead">Del herbario a tu cocina: infusiones, aceites, ungüentos y aguas florales, preparados paso a paso con las plantas que cosechamos en DORILA.</p>
+        <p class="lead">Del herbario a tu hogar, nos dedicamos a ofrecer hierbas medicinales, aceites, cremas, ungüentos, lociones y cosméticos naturales.</p>
         <div class="hero-ctas">
           <a class="btn btn-primary" href="#recetas">Ver las recetas</a>
           <a class="btn btn-outline" href="#tecnicas">Técnicas de preparación</a>
@@ -1573,8 +1573,15 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
   if (searchOpen){
     searchOpen.addEventListener("click", function(){
       openSearchOverlay();
-      if (searchOverlayInput.value) sessionStorage.setItem("dorila-search", searchOverlayInput.value);
-      window.location.href = "index.html#productos";
+    });
+  }
+  if (searchOverlayInput){
+    searchOverlayInput.addEventListener("keydown", function(e){
+      if (e.key === "Enter"){
+        e.preventDefault();
+        sessionStorage.setItem("dorila-search", searchOverlayInput.value);
+        window.location.href = "index.html#productos";
+      }
     });
   }
   if (searchOverlayClose){
