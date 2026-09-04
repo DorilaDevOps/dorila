@@ -1455,7 +1455,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
         color-mix(in srgb, var(--color-parchment-soft) 16%, transparent) 0%,
         color-mix(in srgb, var(--color-parchment-soft) 60%, transparent) 100%
       ),
-      url(img/girasol_bg.jpeg);
+      url(img/girasol_bg.webp);
     background-color: var(--color-parchment-deep);
     background-size: cover;
     background-position: center;
@@ -1534,7 +1534,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
 <header class="site-header" id="siteHeader">
   <div class="wrap header-inner">
     <a class="brand" href="#top" aria-label="DORILA, inicio">
-      <img class="brand-logo" src="img/sunflower_logo.png" alt="" width="2000" height="2000">
+      <img class="brand-logo" src="img/sunflower_logo.webp" alt="" width="2000" height="2000">
       <span class="brand-name">DORILA</span>
     </a>
 
@@ -1579,7 +1579,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
       </button>
       <button class="cart-btn" type="button" id="cartBtn" aria-label="Carrito, 0 productos">
-        <img class="cart-icon-img" src="img/cart22.png" alt="Carrito de compras" width="1234" height="1234">
+        <img class="cart-icon-img" src="img/cart22.webp" alt="Carrito de compras" width="1234" height="1234">
         <span class="cart-count" id="cartCount" aria-hidden="true">0</span>
       </button>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMobile">
@@ -1665,7 +1665,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
     <div class="hero-content">
       <div class="hero-media">
         <img
-          src="img/hills.jpg"
+          src="img/hills.webp"
           alt="Laderas verdes y cerros de la campiña uruguaya, inspiración de las hierbas de DORILA"
           class="hero-image"
           fetchpriority="high"
@@ -1864,8 +1864,8 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
     <div class="wrap story-grid">
       <div class="story-media reveal">
         <img
-          data-src="img/girasol_bg.jpeg"
-          src="img/girasol_bg.jpeg"
+          data-src="img/girasol_bg.webp"
+          src="img/girasol_bg.webp"
           class="lazy-img"
           alt="Campo de girasoles al atardecer, origen de los aceites de DORILA"
           loading="lazy" width="2048" height="1152">
@@ -1976,7 +1976,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
 <footer class="site-footer">
   <div class="wrap footer-inner">
     <div class="footer-brand">
-      <img class="footer-logo" src="img/sunflower_logo.png" alt="" width="2000" height="2000">
+      <img class="footer-logo" src="img/sunflower_logo.webp" alt="" width="2000" height="2000">
       <span>GENERAL</span>
     </div>
     <nav class="footer-links" aria-label="Enlaces del pie de página">
@@ -2075,7 +2075,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
 <div class="cart-page" id="cartPage" role="dialog" aria-modal="true" aria-labelledby="cartTitle" aria-hidden="true">
   <div class="cart-page-inner">
     <header class="cart-page-head">
-      <img class="brand-logo" src="img/sunflower_logo.png" alt="" width="2000" height="2000">
+      <img class="brand-logo" src="img/sunflower_logo.webp" alt="" width="2000" height="2000">
       <h2 id="cartTitle">Tu carrito</h2>
       <button class="cart-close-x" type="button" id="cartClose" aria-label="Cerrar carrito">
         <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -2083,7 +2083,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
     </header>
 
     <div class="cart-empty" id="cartEmpty">
-      <img class="cart-empty-img" src="img/cart22.png" alt="" width="1234" height="1234">
+      <img class="cart-empty-img" src="img/cart22.webp" alt="" width="1234" height="1234">
       <p>Tu carrito está vacío.</p>
       <a class="btn btn-primary" href="#productos" data-cart-go-shop>Seguir comprando</a>
     </div>
@@ -2123,7 +2123,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   <div class="cart-modal-scrim" data-order-close></div>
   <div class="cart-modal-card order-card">
     <header class="order-head">
-      <img class="order-logo" src="img/sunflower_logo.png" alt="" width="2000" height="2000">
+      <img class="order-logo" src="img/sunflower_logo.webp" alt="" width="2000" height="2000">
       <div>
         <h3 id="orderTitle">Orden de compra</h3>
         <p class="order-number">N.º <span id="orderNumber"></span></p>
@@ -2168,7 +2168,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
 
   // Crea un <img> lazy con placeholder + clase compartida .lazy-img
   function buildLazyImg(fullUrl, alt){
-    var thumb = fullUrl.replace(/w=\d+/, "w=40").replace(/q=\d+/, "q=20");
+    var thumb = fullUrl.replace(/\.webp$/, "-thumb.webp");
     var img = document.createElement("img");
     img.className = "lazy-img";
     img.src = thumb;

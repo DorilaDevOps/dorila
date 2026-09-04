@@ -13,3 +13,6 @@ desktop.ini
 
 # Configuración local de opencode (planes, ajustes)
 .opencode/
+
+# Dependencias de desarrollo (sharp para optimizar imágenes)
+node_modules/

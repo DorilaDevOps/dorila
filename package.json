@@ -1,0 +1,14 @@
+{
+  "name": "dorila",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DORILA — sitio estático de herboristería artesanal",
+  "scripts": {
+    "images": "node tools/images.js",
+    "generate": "node tools/generate.js",
+    "build": "npm run images && npm run generate"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.5"
+  }
+}
