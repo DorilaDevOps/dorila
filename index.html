@@ -153,7 +153,7 @@ h1,h2,h3,p{ margin:0; }
    BASE
    =========================================================== */
 body{
-  background: var(--color-parchment);
+  background: #f7f4f0;
   color: var(--color-body);
   font-family: var(--font-body);
   font-size: var(--fs-body);
@@ -218,7 +218,7 @@ img.img-toned,
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.eyebrow-mark svg{ width: 1em; height: 1em; flex-shrink:0; }
+
 
 .section-head{
   max-width: var(--max-text);
@@ -704,6 +704,22 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   color: var(--color-parchment-soft);
 }
 .hero-ctas .btn-outline:hover{ background: var(--color-parchment-soft); color: var(--color-ink); }
+
+/* Hero CTA primario — estilo renovado */
+.hero-ctas .btn-primary{
+  background: var(--color-salvia);
+  font-size: clamp(1rem, 0.8vw + 0.9rem, 1.2rem);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.hero-ctas .btn-primary:hover{ background: var(--color-forest-deep); }
+
+/* Mobile: btn-outline oculto, primario full width */
+@media (max-width: 639px){
+  .hero-ctas{ flex-direction:column; }
+  .hero-ctas .btn-outline{ display:none; }
+  .hero-ctas .btn-primary{ width:100%; }
+}
 .hero-tags{
   display:flex; flex-wrap:wrap; justify-content:center; gap: 0.5rem 1.2rem;
   margin-top: var(--space-4);
@@ -782,16 +798,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
    =========================================================== */
 .story{
   padding-block: var(--space-5);
-  background-image:
-    linear-gradient(
-      to bottom,
-      color-mix(in srgb, var(--color-parchment-soft) 16%, transparent) 0%,
-      color-mix(in srgb, var(--color-parchment-soft) 60%, transparent) 100%
-    ),
-    url(img/girasol_bg.jpeg);
-  background-color: var(--color-parchment-deep);
-  background-size: cover;
-  background-position: center;
+  background-color: var(--color-parchment);
 }
 .story-text.reveal.is-visible p,
 .story-text.reveal.is-visible .story-signature{
@@ -1065,7 +1072,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
 /* ===========================================================
    BENEFICIOS
    =========================================================== */
-.benefits{ padding-block: var(--space-5); background: var(--color-ink); color: var(--color-parchment-soft); }
+.benefits{ padding-block: var(--space-5); background: var(--color-forest-bosque); color: var(--color-parchment-soft); }
 .benefits .section-head h2{ color: var(--color-parchment-soft); }
 .benefits .section-head p{ color: rgba(244,233,211,0.7); }
 .benefit-grid{
@@ -1426,7 +1433,22 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
 /* ===========================================================
    BREAKPOINTS — mobile-first (base = móvil, min-width = escalado)
    =========================================================== */
-/* ≥ 480px — formularios en fila */
+/* ≥ 480px — story media aparece + fondo con imagen */
+@media (min-width: 480px){
+  .story{
+    background-image:
+      linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--color-parchment-soft) 16%, transparent) 0%,
+        color-mix(in srgb, var(--color-parchment-soft) 60%, transparent) 100%
+      ),
+      url(img/girasol_bg.jpeg);
+    background-color: var(--color-parchment-deep);
+    background-size: cover;
+    background-position: center;
+  }
+  .story-media{ display:block; }
+}
 
 /* ≥ 640px — tablet vertical: columnas y retorno del modo "medio" */
 @media (min-width: 640px){
@@ -1451,7 +1473,6 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
     background-image: none;
     background-color: var(--color-parchment-deep);
   }
-  .story-media{ display:block; }
   .story-text.reveal.is-visible p,
   .story-text.reveal.is-visible .story-signature{ text-shadow: none; }
 
@@ -1641,7 +1662,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
         <h1 id="hero-heading">Elegí productos naturales<br>terapias que acompañan</h1>
         <p class="lead">Hierbas medicinales seleccionadas con amor y conciencia, honrando la sabiduría ancestral de las plantas para acercarte su esencia y acompañar tu bienestar.</p>
         <div class="hero-ctas">
-          <a class="btn btn-primary" href="#productos">Decubrí nuestros productos</a>
+          <a class="btn btn-primary" href="#productos">Descubrí nuestros productos</a>
           <a class="btn btn-outline" href="#historia">Conocer la historia</a>
         </div>
         <div class="hero-tags">
@@ -1657,7 +1678,6 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   <section class="categories wrap" id="categorias" aria-labelledby="categorias-heading">
     <div class="section-head reveal">
       <span class="eyebrow-mark">
-        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/></svg>
         El herbario
       </span>
       <h2 id="categorias-heading">Seis formas de encontrar tu hierba</h2>
@@ -1789,7 +1809,6 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   <section class="products wrap" id="productos" aria-labelledby="productos-heading">
     <div class="section-head reveal">
       <span class="eyebrow-mark">
-        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h13a3 3 0 0 1 0 6h-1"/><path d="M4 8v9a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2V8"/></svg>
         El herbario
       </span>
       <h2 id="productos-heading">Nuestras hierbas medicinales</h2>
@@ -1836,7 +1855,6 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
       </div>
       <div class="story-text reveal">
         <span class="eyebrow-mark">
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V5a2 2 0 0 1 2-2h11l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/></svg>
           Nuestra historia
         </span>
         <h2 id="historia-heading" style="font-family:var(--font-display); font-size:var(--fs-h2); color:var(--color-ink); margin-top:0.6rem;">Hay historias que el tiempo no consigue borrar.</h2>
@@ -1856,7 +1874,6 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
     <div class="wrap">
       <div class="section-head reveal">
         <span class="eyebrow-mark" style="color:var(--color-gold);">
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/></svg>
           Cómo trabajamos
         </span>
         <h2 id="beneficios-heading">Lo que cuidamos en cada envase</h2>
@@ -1882,7 +1899,6 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   <section class="testimonials wrap" id="testimonios" aria-labelledby="testimonios-heading">
     <div class="section-head reveal" style="margin-inline:auto; text-align:center;">
       <span class="eyebrow-mark">
-        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 8h10M7 12h6"/><path d="M4 19V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H9l-5 4Z"/></svg>
         Voces del herbario
       </span>
       <h2 id="testimonios-heading">Lo que cuentan quienes ya nos probaron</h2>
@@ -1932,7 +1948,6 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   <section class="info-request wrap" id="solicitar-info" aria-labelledby="info-request-heading">
     <div class="info-request-card reveal">
       <span class="eyebrow-mark">
-        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 9h3v6h2"/></svg>
         Consultas
       </span>
       <h2 id="info-request-heading">Solicitá información</h2>
