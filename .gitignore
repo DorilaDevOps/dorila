@@ -10,3 +10,6 @@ desktop.ini
 *.log
 .env
 .env.*
+
+# Configuración local de opencode (planes, ajustes)
+.opencode/

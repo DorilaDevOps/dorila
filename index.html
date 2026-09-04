@@ -226,7 +226,7 @@ img.img-toned,
 }
 .section-head h2{
   font-family: var(--font-display);
-  font-size: var(--fs-h2);
+  font-size: var(--fs-h3);
   line-height: var(--lh-display);
   color: var(--color-ink);
   text-wrap: balance;
@@ -1661,7 +1661,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
         <span class="eyebrow-mark">
           Donde las plantas guardan historias.
         </span>
-        <h1 id="hero-heading">Elegí productos naturales<br>terapias que acompañan</h1>
+        <h1 id="hero-heading">Elegí productos naturales,<br>terapias que acompañan</h1>
         <p class="lead">Hierbas medicinales seleccionadas con amor y conciencia, honrando la sabiduría ancestral de las plantas para acercarte su esencia y acompañar tu bienestar.</p>
         <div class="hero-ctas">
           <a class="btn btn-primary" href="#productos">Descubrí nuestros productos</a>
@@ -1897,34 +1897,44 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
     </div>
   </section>
 
-  <!-- ===================== TESTIMONIOS (enlace a página) ===================== -->
-  <section class="testimonials wrap" id="testimonios" aria-labelledby="testimonios-heading">
-    <div class="section-head reveal" style="margin-inline:auto; text-align:center;">
-      <span class="eyebrow-mark">
-        Voces del herbario
-      </span>
-      <h2 id="testimonios-heading">Lo que cuentan quienes ya nos probaron</h2>
-      <p style="margin-top:1rem; color:var(--color-body-soft);">Leé las historias y experiencias completas en nuestra página de testimonios.</p>
-      <div class="hero-ctas" style="justify-content:center;">
-        <a class="btn btn-primary" href="testimonios.html">Ver testimonios</a>
-      </div>
-    </div>
-  </section>
-
   <!-- ===================== CONTACTO ===================== -->
   <section class="contact" id="contacto" aria-labelledby="contact-order-heading">
     <div class="wrap contact-grid">
       <article class="contact-card reveal" aria-labelledby="contact-order-heading">
         <h2 id="contact-order-heading">Hacé tu pedido</h2>
-        <p>Escribinos y te contamos qué hierbas tenemos frescas esta semana. Respondemos de lunes a sábado.</p>
-        <address class="contact-address contact-phone">
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.8 2Z"/></svg>
-          <a href="tel:+59894872605">094 872 605</a>
-        </address>
-        <div class="contact-actions">
-          <a class="btn btn-primary" href="https://wa.me/59894872605" target="_blank" rel="noopener">Escribir por WhatsApp</a>
-          <a class="btn btn-ghost" href="mailto:dorilanatural@gmail.com">dorilanatural@gmail.com</a>
-        </div>
+        <p>Contanos qué te interesa y te respondemos por WhatsApp con todo el detalle.</p>
+        <p class="info-form-note"><strong>Nota: Al enviar se abrirá WhatsApp con tu mensaje armado; solo tenés que confirmar el envío.</strong></p>
+        <form class="info-form" id="infoForm" novalidate>
+          <div class="field">
+            <label for="infoName">Nombre <em>(obligatorio)</em></label>
+            <input type="text" id="infoName" name="nombre" autocomplete="name" required placeholder="Tu nombre">
+          </div>
+          <div class="field">
+            <label for="infoEmail">Correo electrónico <em>(opcional)</em></label>
+            <input type="email" id="infoEmail" name="email" autocomplete="email" placeholder="nombre@correo.com">
+          </div>
+          <div class="field">
+            <label for="infoPhone">Teléfono <em>(obligatorio)</em></label>
+            <input type="tel" id="infoPhone" name="telefono" autocomplete="tel" required placeholder="099 000 000">
+          </div>
+          <div class="field">
+            <label for="infoTopic">Tema</label>
+            <select id="infoTopic" name="tema">
+              <option value="Pedir hierbas">Pedir hierbas</option>
+              <option value="Pedir el catálogo completo">Pedir el catálogo completo</option>
+              <option value="Consulta general">Consulta general</option>
+              <option value="Envíos">Envíos</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="infoMsg">Mensaje <em>(obligatorio)</em></label>
+            <textarea id="infoMsg" name="mensaje" required placeholder="Escribinos tu consulta…"></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Enviar por WhatsApp</button>
+          <p class="info-form-note"><strong>Nota: Al enviar se abrirá WhatsApp con tu mensaje armado; solo tenés que confirmar el envío.</strong></p>
+          <p class="info-success" id="infoSuccess" role="status">¡Gracias! Se abrió WhatsApp con tu consulta.</p>
+        </form>
       </article>
 
       <article class="contact-card reveal" aria-labelledby="contact-meta-heading">
@@ -1943,48 +1953,6 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
           </div>
         </div>
       </article>
-    </div>
-  </section>
-
-  <!-- ===================== SOLICITAR INFORMACIÓN ===================== -->
-  <section class="info-request wrap" id="solicitar-info" aria-labelledby="info-request-heading">
-    <div class="info-request-card reveal">
-      <span class="eyebrow-mark">
-        Consultas
-      </span>
-      <h2 id="info-request-heading">Solicitá información</h2>
-      <p>Contanos qué te interesa y te respondemos por WhatsApp con todo el detalle.</p>
-      <form class="info-form" id="infoForm" novalidate>
-        <div class="field">
-          <label for="infoName">Nombre <em>(obligatorio)</em></label>
-          <input type="text" id="infoName" name="nombre" autocomplete="name" required placeholder="Tu nombre">
-        </div>
-        <div class="field">
-          <label for="infoEmail">Correo electrónico <em>(opcional)</em></label>
-          <input type="email" id="infoEmail" name="email" autocomplete="email" placeholder="nombre@correo.com">
-        </div>
-        <div class="field">
-          <label for="infoPhone">Teléfono <em>(obligatorio)</em></label>
-          <input type="tel" id="infoPhone" name="telefono" autocomplete="tel" required placeholder="099 000 000">
-        </div>
-        <div class="field">
-          <label for="infoTopic">Tema</label>
-          <select id="infoTopic" name="tema">
-            <option value="Pedir hierbas">Pedir hierbas</option>
-            <option value="Pedir el catálogo completo">Pedir el catálogo completo</option>
-            <option value="Consulta general">Consulta general</option>
-            <option value="Envíos">Envíos</option>
-            <option value="Otro">Otro</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="infoMsg">Mensaje <em>(obligatorio)</em></label>
-          <textarea id="infoMsg" name="mensaje" required placeholder="Escribinos tu consulta…"></textarea>
-        </div>
-        <button class="btn btn-primary" type="submit">Enviar por WhatsApp</button>
-        <p class="info-form-note"><strong>Nota: Al enviar se abrirá WhatsApp con tu mensaje armado; solo tenés que confirmar el envío.</strong></p>
-        <p class="info-success" id="infoSuccess" role="status">¡Gracias! Se abrió WhatsApp con tu consulta.</p>
-      </form>
     </div>
   </section>
 
@@ -2615,11 +2583,6 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
     var img = buildLazyImg(p.img, p.name + ", hierba medicinal de DORILA");
     media.appendChild(img);
 
-    var tagEl = document.createElement("span");
-    tagEl.className = "product-tag";
-    tagEl.textContent = p.category;
-    media.appendChild(tagEl);
-
     var body = document.createElement("div");
     body.className = "product-body";
     body.innerHTML =
@@ -3213,6 +3176,13 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
         searchInputMain.dispatchEvent(new Event("input"));
       }
     });
+    searchOverlayInput.addEventListener("keydown", function(e){
+      if (e.key === "Enter"){
+        e.preventDefault();
+        closeSearchOverlay();
+        document.getElementById("productos").scrollIntoView({ behavior: "smooth" });
+      }
+    });
     searchOverlayClear.addEventListener("click", function(){
       searchOverlayInput.value = "";
       searchOverlayClear.classList.remove("is-visible");
@@ -3220,7 +3190,8 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
         searchInputMain.value = "";
         searchInputMain.dispatchEvent(new Event("input"));
       }
-      searchOverlayInput.focus();
+      closeSearchOverlay();
+      document.getElementById("productos").scrollIntoView({ behavior: "smooth" });
     });
   }
 
