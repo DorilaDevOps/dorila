@@ -2152,6 +2152,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
 </button>
 
 <script src="js/productos.js"></script>
+<script src="js/cart.js"></script>
 <script>
 (function(){
   "use strict";
@@ -2634,8 +2635,12 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
     else if (cartPage.classList.contains("is-open")) closeCart();
   });
 
+  Object.keys(cart).forEach(function(id){ if (!findProduct(id)) delete cart[id]; });
+  saveCart();
+
   updateBadge();
   renderCart();
+  if (new URLSearchParams(window.location.search).get("open-cart") === "1") openCart();
   render();
 
   /* -----------------------------------------------------------
