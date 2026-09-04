@@ -140,7 +140,7 @@ html{ scroll-behavior: smooth; scroll-padding-top: 78px; overflow-x: hidden; }
 }
 body{
   margin:0;
-  padding-top: 78px;
+padding-top: 64px;
   overflow-x: hidden;
 }
 img{ max-width:100%; display:block; }
@@ -301,7 +301,7 @@ img.img-toned,
 .site-header.is-scrolled{
   background: var(--color-salvia);
   border-bottom: 1px solid rgba(51,35,15,0.08);
-  box-shadow: 0 2px 24px rgba(51,35,15,0.10);
+  box-shadow: 0 2px 24px rgb(64 44 18 / 82%);
 }
 .site-header.is-hidden{ transform: translateY(-100%); }
 
@@ -676,7 +676,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   align-items:center;
   max-width: 46ch;
 }
-.hero-text .eyebrow-mark{ color: var(--color-gold); }
+.hero-text .eyebrow-mark{ color: var(--color-parchment-deep); }
 
 .hero-content h1{
   font-family: var(--font-display);
@@ -708,9 +708,6 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
 /* Hero CTA primario — estilo renovado */
 .hero-ctas .btn-primary{
   background: var(--color-salvia);
-  font-size: clamp(1rem, 0.8vw + 0.9rem, 1.2rem);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
 }
 .hero-ctas .btn-primary:hover{ background: var(--color-forest-deep); }
 
@@ -719,6 +716,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   .hero-ctas{ flex-direction:column; }
   .hero-ctas .btn-outline{ display:none; }
   .hero-ctas .btn-primary{ width:100%; }
+  #categorias{ display:none; }
 }
 .hero-tags{
   display:flex; flex-wrap:wrap; justify-content:center; gap: 0.5rem 1.2rem;
@@ -1258,7 +1256,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
 .footer-brand{ display:flex; align-items:center; gap:0.6rem; }
 .footer-brand svg{ width:26px; height:26px; color: var(--color-salvia); }
 .footer-brand img{ width:30px; height:30px; object-fit:cover; border-radius:50%; }
-.footer-brand span{ font-family: var(--font-display); font-size: clamp(1.1rem, 0.4vw + 1rem, 1.2rem); color: var(--color-crema); }
+.footer-brand span{ font-family: var(--font-body); font-size: clamp(1.1rem, 0.4vw + 1rem, 1.2rem); color: var(--color-crema); }
 .footer-links{ display:flex; flex-wrap:wrap; gap: var(--space-3); }
 .footer-links a{ font-size: var(--fs-small); color: rgba(244,235,221,0.85); }
 .footer-links a:hover{ color: var(--color-crema); }
@@ -1639,6 +1637,10 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
     <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.73-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.24.25-.41.08-.16.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.39 1.01 2.56.13.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.29Z"/></svg>
     WhatsApp
   </a>
+  <a class="nav-mobile-cta" href="https://instagram.com/dorilanatural" target="_blank" rel="noopener" style="background:linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);">
+    <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+    Instagram
+  </a>
 </nav>
 
 <main id="main">
@@ -1688,7 +1690,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
       <article class="category-card" data-category="descanso">
         <div class="category-card-inner">
           <div class="category-icon">
-            <img src="img/icons/icons82-lotus-50.png" alt="" loading="lazy" width="50" height="50">
+            <img src="img/icons/icons83-lotus-100.png" alt="" loading="lazy" width="100" height="100">
           </div>
           <h3>Descanso</h3>
           <p>Hierbas que calman la mente y preparan noches tranquilas.</p>
@@ -1701,7 +1703,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
       <article class="category-card" data-category="digestivo">
         <div class="category-card-inner">
           <div class="category-icon">
-            <img src="img/icons/icons8-mortar-and-pestle-50.png" alt="" loading="lazy" width="50" height="50">
+            <img src="img/icons/icons8-mortar-and-pestle-100.png" alt="" loading="lazy" width="100" height="100">
           </div>
           <h3>Digestivo</h3>
           <p>Aliadas después de comer: carminativas y suaves para el estómago.</p>
@@ -1714,7 +1716,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
       <article class="category-card" data-category="belleza">
         <div class="category-card-inner">
           <div class="category-icon">
-            <img src="img/icons/icons8-plant-50.png" alt="" loading="lazy" width="50" height="50">
+            <img src="img/icons/icons8-plant-100.png" alt="" loading="lazy" width="100" height="100">
           </div>
           <h3>Belleza</h3>
           <p>Para la piel, el cabello y el cuidado diario natural.</p>
@@ -1727,7 +1729,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
       <article class="category-card" data-category="aromaterapia">
         <div class="category-card-inner">
           <div class="category-icon">
-            <img src="img/icons/icons86-leaf-100.png" alt="" loading="lazy" width="100" height="100">
+            <img src="img/icons/icons8-leaf-100.png" alt="" loading="lazy" width="100" height="100">
           </div>
           <h3>Aromaterapia</h3>
           <p>Aceites y esencias que transforman el ánimo de un ambiente.</p>
@@ -1980,7 +1982,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
           <textarea id="infoMsg" name="mensaje" required placeholder="Escribinos tu consulta…"></textarea>
         </div>
         <button class="btn btn-primary" type="submit">Enviar por WhatsApp</button>
-        <p class="info-form-note"><strong>Nota:</strong> Al enviar se abrirá WhatsApp con tu mensaje armado; solo tenés que confirmar el envío.</p>
+        <p class="info-form-note"><strong>Nota: Al enviar se abrirá WhatsApp con tu mensaje armado; solo tenés que confirmar el envío.</strong></p>
         <p class="info-success" id="infoSuccess" role="status">¡Gracias! Se abrió WhatsApp con tu consulta.</p>
       </form>
     </div>
@@ -1997,15 +1999,14 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
     </div>
     <nav class="footer-links" aria-label="Enlaces del pie de página">
       <a href="#top">Inicio</a>
-      <a href="#categorias">Categorías</a>
       <a href="#productos">Productos</a>
       <a href="recetas.html">Recetas y remedios</a>
       <a href="saber.html">Cosas que deberías saber</a>
       <a href="#contacto">Contacto</a>
     </nav>
     <div class="footer-social">
-      <a href="#" aria-label="Instagram"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
-      <a href="https://wa.me/59894872605" aria-label="WhatsApp"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5Z"/></svg></a>
+      <a href="https://instagram.com/dorilanatural" target="_blank" rel="noopener" aria-label="Instagram"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+      <a href="tel:+59894872605" aria-label="Teléfono"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.8 2Z"/></svg></a>
     </div>
   </div>
   <div class="wrap footer-legal">
@@ -2018,7 +2019,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   </div>
   <div class="wrap footer-bottom">
     <span>&copy; <span id="year"></span> DORILA. Uruguay.</span>
-    <span>Herbolaria artesanal — no reemplaza indicación médica.</span>
+    <span>Plantas medicinales, recetas naturales y herbolaria artesanal — no reemplaza indicación médica.</span>
   </div>
 </footer>
 
