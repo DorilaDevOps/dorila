@@ -48,7 +48,18 @@ products.forEach(function(p){
   var url = BASE + "/productos/" + slug + ".html";
   var absImg = BASE + "/" + p.img;
   var imgLocal = "../" + p.img.replace(/^\.?\//, "");
+  var img2Local = p.img2 ? ("../" + p.img2.replace(/^\.?\//, "")) : "";
   var cat = p.category || "hierbas";
+  var gallery2 = "";
+  if (p.img2){
+    var t1 = imgLocal.replace(/\.webp$/, "-thumb.webp");
+    var t2 = img2Local.replace(/\.webp$/, "-thumb.webp");
+    gallery2 =
+      '<div class="ficha-thumbs">' +
+        '<button type="button" class="ficha-thumb is-active" data-img="' + imgLocal + '" aria-label="Imagen principal de ' + esc(p.name) + '"><img src="' + t1 + '" alt="" loading="lazy"></button>' +
+        '<button type="button" class="ficha-thumb" data-img="' + img2Local + '" aria-label="Segunda imagen de ' + esc(p.name) + '"><img src="' + t2 + '" alt="" loading="lazy"></button>' +
+      '</div>';
+  }
   var title = p.name + " — " + label(cat) + " | DORILA Uruguay";
   var desc = (p.desc || p.name) + " Envíos a todo el país desde Uruguay.";
   var waLink = "https://wa.me/59894872605?text=" + encodeURIComponent("Hola DORILA, quiero pedir " + p.name + " (" + p.id + ")");
@@ -104,6 +115,8 @@ products.forEach(function(p){
     .replace(/\{\{OG_DESC\}\}/g, desc)
     .replace(/\{\{OG_IMAGE\}\}/g, absImg)
     .replace(/\{\{IMAGE\}\}/g, imgLocal)
+    .replace(/\{\{IMAGE_2\}\}/g, img2Local)
+    .replace(/\{\{IMAGE_2_GALLERY\}\}/g, gallery2)
     .replace(/\{\{WA_LINK\}\}/g, waLink)
     .replace(/\{\{NAME\}\}/g, p.name)
     .replace(/\{\{SCIENTIFIC\}\}/g, p.scientific)

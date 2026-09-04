@@ -998,6 +998,16 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   position:relative;
 }
 .modal-media img.lazy-img{ display:block; }
+.modal-img2{
+  position:absolute; top:10px; right:10px;
+  width:44px; height:44px; padding:0; border:2px solid var(--color-parchment-soft);
+  border-radius:12px; background:none; cursor:pointer; overflow:hidden;
+  box-shadow: 0 4px 12px -4px rgba(51,35,15,0.5);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+.modal-img2:hover{ transform: translateY(-2px); border-color: var(--color-terracotta); }
+.modal-img2 img{ width:100%; height:100%; object-fit:cover; }
+.modal-img2[hidden]{ display:none; }
 
 .modal-cat{
   position:absolute; left:14px; bottom:-14px;
@@ -2014,6 +2024,9 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
     </button>
     <div class="modal-media">
       <img id="modalImg" src="" alt="">
+      <button type="button" id="modalImg2Btn" class="modal-img2" hidden aria-label="Ver segunda imagen">
+        <img id="modalImg2" src="" alt="">
+      </button>
       <span class="modal-id" id="modalId"></span>
     </div>
     <div class="modal-body">
@@ -2223,7 +2236,33 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
     img.alt = p.name;
     img.setAttribute("data-src", p.img);
     mediaLoad(img);
+
+    var btn = document.getElementById("modalImg2Btn");
+    var thumb = document.getElementById("modalImg2");
+    if (btn && thumb && p.img2){
+      btn.hidden = false;
+      thumb.src = p.img2.replace(/\.webp$/, "-thumb.webp");
+      thumb.alt = p.name + ", segunda imagen";
+      btn.dataset.img = p.img2;
+      btn.dataset.other = p.img;
+    } else if (btn){
+      btn.hidden = true;
+    }
   }
+
+  (function(){
+    var btn = document.getElementById("modalImg2Btn");
+    if (!btn) return;
+    btn.addEventListener("click", function(){
+      var main = document.getElementById("modalImg");
+      var cur = main.getAttribute("data-src") || btn.dataset.other;
+      var next = cur === btn.dataset.img ? btn.dataset.other : btn.dataset.img;
+      main.className = "";
+      main.src = next;
+      main.setAttribute("data-src", next);
+      main.alt = btn.dataset.other ? btn.getAttribute("aria-label") : main.alt;
+    });
+  })();
 
   /* -----------------------------------------------------------
      3. RENDER — galería, buscador, filtros y modal

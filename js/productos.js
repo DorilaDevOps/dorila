@@ -65,6 +65,7 @@ var DORILA_PRODUCTS = [
       desc: "Pétalos dorados para ungüentos y piel delicada.",
       price: "$220",
       img: "img/zoosnow-calendula-3072786_1920.webp",
+      img2: "img/hans-daisies-324403_1920.webp",
       props: [
         "Emoliente y regeneradora de la piel.",
         "Ayuda en heridas leves y rozaduras.",
