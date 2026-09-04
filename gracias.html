@@ -452,7 +452,6 @@ a.nav-mobile-cta:hover{ background:#1eab52; transform: translateY(-1px); }
   <!-- ===================== HERO ===================== -->
   <section class="page-hero wrap">
     <span class="eyebrow-mark">
-      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c0-6-4-8-4-13a4 4 0 0 1 8 0c0 5-4 7-4 13Z"/></svg>
       Muchas gracias
     </span>
     <h1>Gracias por elegir DORILA</h1>
@@ -539,7 +538,7 @@ a.nav-mobile-cta:hover{ background:#1eab52; transform: translateY(-1px); }
       <a href="index.html#contacto">Contacto</a>
     </nav>
     <div class="footer-social">
-      <a href="#" aria-label="Instagram"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+      <a href="https://instagram.com/dorilanatural" target="_blank" rel="noopener" aria-label="Instagram"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
       <a href="https://wa.me/59894872605" aria-label="WhatsApp"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5Z"/></svg></a>
     </div>
   </div>
@@ -630,6 +629,8 @@ a.nav-mobile-cta:hover{ background:#1eab52; transform: translateY(-1px); }
   var searchOverlayInput = document.getElementById("searchOverlayInput");
   var searchOverlayClear = document.getElementById("searchOverlayClear");
   function openSearchOverlay(){
+    searchOverlayInput.value = sessionStorage.getItem("dorila-search") || "";
+    searchOverlayClear.classList.toggle("is-visible", searchOverlayInput.value.length > 0);
     searchOverlay.classList.add("is-open");
     document.body.style.overflow = "hidden";
     setTimeout(function(){ searchOverlayInput.focus(); }, 100);
@@ -641,6 +642,7 @@ a.nav-mobile-cta:hover{ background:#1eab52; transform: translateY(-1px); }
   if (searchOpen){
     searchOpen.addEventListener("click", function(){
       openSearchOverlay();
+      if (searchOverlayInput.value) sessionStorage.setItem("dorila-search", searchOverlayInput.value);
       window.location.href = "index.html#productos";
     });
   }
@@ -655,10 +657,12 @@ a.nav-mobile-cta:hover{ background:#1eab52; transform: translateY(-1px); }
   if (searchOverlayInput && searchOverlayClear){
     searchOverlayInput.addEventListener("input", function(){
       searchOverlayClear.classList.toggle("is-visible", searchOverlayInput.value.length > 0);
+      sessionStorage.setItem("dorila-search", searchOverlayInput.value);
     });
     searchOverlayClear.addEventListener("click", function(){
       searchOverlayInput.value = "";
       searchOverlayClear.classList.remove("is-visible");
+      sessionStorage.removeItem("dorila-search");
       searchOverlayInput.focus();
     });
   }

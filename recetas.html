@@ -891,7 +891,6 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
     <div class="hero-content">
       <div class="hero-text">
         <span class="eyebrow-mark">
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 16V4h16v12m-16 0a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4M4 16H2m20 0h-2"/></svg>
           La botica de la abuela
         </span>
         <h1 id="hero-heading">Recetas y remedios<br>caseros con plantas</h1>
@@ -908,7 +907,6 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
   <section class="intro wrap" id="intro" aria-labelledby="intro-heading">
     <div class="section-head reveal">
       <span class="eyebrow-mark">
-        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/></svg>
         Por qué lo hacemos en casa
       </span>
       <h2 id="intro-heading">Preparar remedios caseros es volver a lo simple</h2>
@@ -930,7 +928,6 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
     <div class="wrap">
       <div class="section-head reveal">
         <span class="eyebrow-mark">
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h13a3 3 0 0 1 0 6h-1"/><path d="M4 8v9a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2V8"/></svg>
           Método y tiempo
         </span>
         <h2 id="tecnicas-heading">Las técnicas de preparación</h2>
@@ -993,7 +990,6 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
   <section class="recipes wrap" id="recetas" aria-labelledby="recetas-heading">
     <div class="section-head reveal">
       <span class="eyebrow-mark">
-        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V5a2 2 0 0 1 2-2h11l3 3v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M9 9h6M9 13h4"/></svg>
         Paso a paso
       </span>
       <h2 id="recetas-heading">Recetas para hacer en casa</h2>
@@ -1298,7 +1294,6 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
     <div class="wrap">
       <div class="section-head reveal">
         <span class="eyebrow-mark" style="color:var(--color-gold);">
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
           Conservación
         </span>
         <h2 id="conservacion-heading">Que dure en el tiempo</h2>
@@ -1360,7 +1355,6 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
   <section class="info-request wrap" id="solicitar-info" aria-labelledby="info-request-heading">
     <div class="info-request-card reveal">
       <span class="eyebrow-mark">
-        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9 9h3v6h2"/></svg>
         Consultas
       </span>
       <h2 id="info-request-heading">Solicitá información</h2>
@@ -1440,7 +1434,7 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
       <a href="index.html#contacto">Contacto</a>
     </nav>
     <div class="footer-social">
-      <a href="#" aria-label="Instagram"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+      <a href="https://instagram.com/dorilanatural" target="_blank" rel="noopener" aria-label="Instagram"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
       <a href="https://wa.me/59894872605" aria-label="WhatsApp"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5Z"/></svg></a>
     </div>
   </div>
@@ -1566,6 +1560,8 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
   var searchOverlayInput = document.getElementById("searchOverlayInput");
   var searchOverlayClear = document.getElementById("searchOverlayClear");
   function openSearchOverlay(){
+    searchOverlayInput.value = sessionStorage.getItem("dorila-search") || "";
+    searchOverlayClear.classList.toggle("is-visible", searchOverlayInput.value.length > 0);
     searchOverlay.classList.add("is-open");
     document.body.style.overflow = "hidden";
     setTimeout(function(){ searchOverlayInput.focus(); }, 100);
@@ -1577,6 +1573,7 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
   if (searchOpen){
     searchOpen.addEventListener("click", function(){
       openSearchOverlay();
+      if (searchOverlayInput.value) sessionStorage.setItem("dorila-search", searchOverlayInput.value);
       window.location.href = "index.html#productos";
     });
   }
@@ -1591,10 +1588,12 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
   if (searchOverlayInput && searchOverlayClear){
     searchOverlayInput.addEventListener("input", function(){
       searchOverlayClear.classList.toggle("is-visible", searchOverlayInput.value.length > 0);
+      sessionStorage.setItem("dorila-search", searchOverlayInput.value);
     });
     searchOverlayClear.addEventListener("click", function(){
       searchOverlayInput.value = "";
       searchOverlayClear.classList.remove("is-visible");
+      sessionStorage.removeItem("dorila-search");
       searchOverlayInput.focus();
     });
   }
