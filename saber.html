@@ -20,224 +20,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Rye&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="asset/base.css">
 <style>
-/* ===========================================================
-   TOKENS
-   =========================================================== */
-:root{
-  --color-parchment:        #F4E9D3;
-  --color-parchment-soft:   #FAF3E3;
-  --color-parchment-deep:   #E4D2A6;
-  --color-ink:               #33230F;
-  --color-body:               #5B4630;
-  --color-body-soft:          #7A6448;
-  --color-forest:             #3E5A34;
-  --color-forest-deep:        #2C3F24;
-  --color-terracotta:         #9C4626;
-  --color-terracotta-deep:    #7A3419;
-  --color-terracotta-cta:     #B96F52;
-  --color-gold:                #B0793B;
-  --color-line:                 rgba(51, 35, 15, 0.18);
-  --lime:                      #C8FF57;
-
-  --color-forest-bosque:       #29483A;
-  --color-salvia:              #879F82;
-  --color-crema:               #F4EBDD;
-
-  --font-display: "Rye", serif;
-  --font-body: "Montserrat", Georgia, serif;
-
-  --fs-h1:     clamp(2.1rem, 6vw + 0.4rem, 3.6rem);
-  --fs-h2:     clamp(1.9rem, 5vw + 0.4rem, 3rem);
-  --fs-h3:     clamp(1.25rem, 2.6vw + 0.4rem, 1.6rem);
-  --fs-lead:   clamp(1.05rem, 1.6vw + 0.6rem, 1.3rem);
-  --fs-body:   clamp(1rem, 0.6vw + 0.85rem, 1.06rem);
-  --fs-mid:    clamp(0.9rem, 0.5vw + 0.78rem, 0.98rem);
-  --fs-small:  clamp(0.8rem, 0.4vw + 0.7rem, 0.875rem);
-  --fs-tiny:   clamp(0.72rem, 0.3vw + 0.65rem, 0.78rem);
-
-  --lh-display: 1.12;
-  --lh-body: 1.7;
-
-  --space-1: 0.5rem;
-  --space-2: 0.9rem;
-  --space-3: 1.5rem;
-  --space-4: 2.5rem;
-  --space-5: 4rem;
-  --space-6: 6rem;
-
-  --radius-card: 26px;
-  --radius-sm: 10px;
-  --border-frame: 3px solid var(--color-terracotta);
-  --shadow-card: 0 10px 24px -14px rgba(51,35,15,0.45);
-
-  --max-content: 1180px;
-  --max-text: 62ch;
-
-  --transition-fast: 180ms ease;
-  --transition-med: 420ms cubic-bezier(.22,.68,.35,1);
-}
-
-*, *::before, *::after{ box-sizing: border-box; }
-html{ scroll-behavior: smooth; scroll-padding-top: 78px; overflow-x: hidden; }
-@media (prefers-reduced-motion: reduce){
-  html{ scroll-behavior:auto; }
-  *, *::before, *::after{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
-}
-body{ margin:0; padding-top:78px; overflow-x:hidden; }
-img{ max-width:100%; display:block; }
-ul,ol{ list-style:none; margin:0; padding:0; }
-a{ color:inherit; text-decoration:none; }
-button{ font:inherit; cursor:pointer; }
-h1,h2,h3,h4,p{ margin:0; }
-
-body{
-  background: var(--color-parchment);
-  color: var(--color-body);
-  font-family: var(--font-body);
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
-  background-image:
-    radial-gradient(ellipse at top left, rgba(176,121,59,0.10), transparent 55%),
-    radial-gradient(ellipse at bottom right, rgba(60,80,45,0.08), transparent 55%);
-}
-
-/* Tratamiento de imágenes compartido */
-img.img-toned,
+/* Tratamiento de imágenes específico de Saber */
 .saber-hero img,
 .plant-media img{ filter: saturate(0.92) contrast(1.03) sepia(0.06) brightness(1.02); }
 
-.skip-link{ position:absolute; left:-999px; top:auto; background: var(--color-ink); color: var(--color-parchment-soft); padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); z-index:200; }
-.skip-link:focus{ left: var(--space-2); top: var(--space-2); }
-:focus-visible{ outline:3px solid var(--color-terracotta); outline-offset:3px; }
-
-.wrap{ max-width: var(--max-content); margin-inline:auto; padding-inline: var(--space-2); }
-.eyebrow-mark{ display:inline-flex; align-items:center; gap:0.45em; padding:0.45em 1.15em; border-radius:999px; background: color-mix(in srgb, currentColor 14%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border:1px solid color-mix(in srgb, currentColor 38%, transparent); color: var(--color-forest); font-family: var(--font-body); font-weight:700; font-size: var(--fs-label, 0.75rem); letter-spacing:0.08em; text-transform:uppercase; }
-.eyebrow-mark svg{ width:1em; height:1em; flex-shrink:0; }
-
-.btn{ display:inline-flex; align-items:center; justify-content:center; gap:0.55em; padding:0.9em 1.7em; border-radius:999px; font-family: var(--font-body); font-weight:600; font-size: var(--fs-mid); letter-spacing:0.02em; border:2px solid transparent; transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast); white-space:nowrap; }
-.btn:active{ transform: translateY(1px); }
-.btn-primary{ background: var(--color-terracotta); color: var(--color-parchment-soft); box-shadow:0 8px 18px -8px rgba(122,52,25,0.65); }
+/* Botones primarios con la terracota de esta página */
+.btn-primary{ background: var(--color-terracotta); box-shadow: 0 8px 18px -8px rgba(122,52,25,0.65); }
 .btn-primary:hover{ background: var(--color-terracotta-deep); }
-.btn-outline{ background:transparent; border-color:var(--color-ink); color:var(--color-ink); }
-.btn-outline:hover{ background: var(--color-ink); color: var(--color-parchment-soft); }
 
-/* ===========================================================
-   HEADER
-   =========================================================== */
-.site-header{ position:fixed; top:0; left:0; right:0; z-index:100; background: var(--color-salvia); border-bottom:1px solid rgba(250,243,227,0.35); transition: background var(--transition-med), border-color var(--transition-med), box-shadow var(--transition-med), transform var(--transition-med); }
-.site-header.is-scrolled{ background: var(--color-salvia); border-bottom:1px solid rgba(51,35,15,0.08); box-shadow:0 2px 24px rgba(51,35,15,0.10); }
-.site-header.is-hidden{ transform: translateY(-100%); }
-.header-inner{ display:flex; align-items:center; justify-content:space-between; padding-block: var(--space-2); }
-.brand{ display:flex; align-items:center; gap:0.6rem; flex-shrink:0; }
-.brand-logo{ width:34px; height:34px; object-fit:cover; border-radius:50%; flex-shrink:0; }
-.brand-name{ font-family: var(--font-display); font-size: clamp(1.2rem, 1.2vw + 0.9rem, 1.5rem); color: var(--color-ink); letter-spacing:0.01em; }
-
-.nav-desktop{ display:none; flex:1; }
-.nav-desktop ul{ display:flex; gap: var(--space-4); justify-content:center; }
-.nav-desktop a{ font-size: var(--fs-small); font-weight:600; color: var(--color-body); position:relative; padding-bottom:4px; }
-.nav-desktop a::after{ content:""; position:absolute; left:0; right:100%; bottom:0; height:2px; background: var(--color-terracotta); transition: right var(--transition-fast); }
-.nav-desktop a:hover::after,
-.nav-desktop a.is-current::after{ right:0; }
-.nav-desktop a.is-current{ color: var(--color-terracotta-deep); }
-.nav-desktop ul > li.has-menu{ position:relative; }
-.nav-desktop .dropdown{ position:absolute; top:calc(100% + 8px); left:50%; transform: translate(-50%, 8px); min-width:210px; background: var(--color-parchment-soft); border:1px solid var(--color-line); border-radius:14px; box-shadow: var(--shadow-card); padding: var(--space-1); opacity:0; visibility:hidden; pointer-events:none; transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast); z-index:60; }
-.nav-desktop .dropdown::before{ content:""; position:absolute; top:-8px; left:50%; transform:translateX(-50%); border:6px solid transparent; border-bottom-color: var(--color-parchment-soft); }
-.nav-desktop .dropdown a{ display:block; padding:0.6em 0.9em; border-radius:10px; font-size: var(--fs-small); font-weight:600; color: var(--color-body); white-space:nowrap; }
-.nav-desktop .dropdown a::after{ display:none; }
-.nav-desktop .dropdown a:hover{ background: color-mix(in srgb, var(--color-terracotta) 12%, transparent); color: var(--color-terracotta-deep); }
-.nav-desktop li.has-menu.is-open .dropdown{ opacity:1; visibility:visible; pointer-events:auto; transform: translate(-50%,0); }
-.nav-desktop .dropdown-indicator{ display:inline-flex; align-items:center; margin-left:0.3em; transition: transform var(--transition-fast); }
-.nav-desktop li.has-menu.is-open .dropdown-indicator{ transform: rotate(180deg); }
-.nav-desktop .dropdown-indicator svg{ width:14px; height:14px; }
-
-.header-actions{ display:flex; align-items:center; gap: var(--space-1); flex-shrink:0; }
-.search-btn{ display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; border:2px solid var(--color-ink); color: var(--color-ink); background:transparent; cursor:pointer; transition: background var(--transition-fast), color var(--transition-fast); }
-.search-btn:hover{ background: var(--color-ink); color: var(--color-parchment-soft); }
-.search-btn svg{ width:17px; height:17px; }
-@media (min-width: 640px){ .search-btn{ width:42px; height:42px; } .search-btn svg{ width:20px; height:20px; } }
-.cart-btn{ display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:50%; border:2px solid var(--color-ink); color: var(--color-ink); background:transparent; transition: background var(--transition-fast), color var(--transition-fast); }
-.cart-btn:hover{ background: var(--color-ink); color: var(--color-parchment-soft); }
-.cart-btn .cart-icon-img{ width:22px; height:22px; object-fit:contain; }
-.menu-toggle{ display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; background:transparent; border:none; color: var(--color-ink); }
-.menu-toggle svg{ width:17px; height:17px; }
-.menu-toggle .icon-close{ display:none; }
-.menu-toggle[aria-expanded="true"] .icon-open{ display:none; }
-.menu-toggle[aria-expanded="true"] .icon-close{ display:block; }
-
-.nav-mobile{ position:fixed; inset:0 0 0 auto; width:min(84vw, 340px); height:100vh; background: var(--glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-left: var(--border-frame); padding: var(--space-5) var(--space-3) var(--space-3); transform: translateX(100%); transition: transform var(--transition-med), background var(--transition-med); z-index:150; display:flex; flex-direction:column; gap: var(--space-4); }
-.nav-mobile.is-open{ transform: translateX(0); }
-.nav-mobile ul{ display:flex; flex-direction:column; gap: var(--space-3); }
-.nav-mobile a{ font-family: var(--font-display); font-size: clamp(1.2rem, 0.6vw + 1.05rem, 1.4rem); color: var(--lime); }
-.nav-mobile a.is-current{ text-decoration:underline; text-underline-offset:6px; text-decoration-color:var(--lime); }
-.nav-mobile a:hover{ color: var(--lime); }
-.nav-acc{ display:flex; align-items:center; justify-content:space-between; gap:0.5rem; width:100%; text-align:left; font-family: var(--font-display); font-size: clamp(1.2rem, 0.6vw + 1.05rem, 1.4rem); color: var(--lime); background:transparent; border:none; padding:0; }
-.nav-acc .acc-indicator{ display:inline-flex; transition: transform var(--transition-fast); }
-.nav-acc.is-open .acc-indicator{ transform: rotate(180deg); }
-.nav-acc .acc-indicator svg{ width:20px; height:20px; }
-.nav-sublist{ display:grid; grid-template-rows:0fr; opacity:0; transition: grid-template-rows var(--transition-med), opacity var(--transition-med); }
-.nav-sublist > .nav-sublist-inner{ overflow:hidden; }
-.nav-acc-parent.is-open .nav-sublist{ grid-template-rows:1fr; opacity:1; margin-top:0.4rem; }
-.nav-sublist .nav-sublist-inner a{ font-family: var(--font-body); font-size: var(--fs-mid); color: rgba(200,255,87,0.85); padding:0.4em 0.4em 0.4em 0.8em; display:block; }
-.nav-sublist .nav-sublist-inner a.is-current{ text-decoration:none; color: var(--lime); }
-.nav-sublist .nav-sublist-inner a:hover{ color: var(--lime); }
-a.nav-mobile-cta{ display:inline-flex; align-items:center; justify-content:center; gap:0.5em; align-self:center; padding:0.6em 1.3em; border-radius:999px; background:#25D366; color:#fff; font-family: var(--font-body); font-weight:700; font-size: var(--fs-small); line-height:1; border:none; white-space:nowrap; transition: transform var(--transition-fast), background var(--transition-fast); }
-a.nav-mobile-cta svg{ width:18px; height:18px; flex-shrink:0; }
-a.nav-mobile-cta:hover{ background:#1eab52; transform: translateY(-1px); }
-.nav-close{ position:absolute; top:12px; right:14px; width:38px; height:38px; border-radius:50%; border:2px solid var(--lime); background:transparent; color: var(--lime); display:inline-flex; align-items:center; justify-content:center; transition: background var(--transition-fast), color var(--transition-fast); }
-.nav-close:hover{ background: var(--lime); color: var(--color-ink); }
-.nav-close svg{ width:18px; height:18px; }
-.scrim{ position:fixed; inset:0; background: rgba(20,14,6,0.45); backdrop-filter: blur(2px); opacity:0; visibility:hidden; transition: opacity var(--transition-med), visibility var(--transition-med); z-index:140; }
-.scrim.is-open{ opacity:1; visibility:visible; }
-
-/* --- Buscador overlay (header) --- */
-.search-overlay{ position:fixed; inset:0; z-index:200; background:rgba(41,72,58,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); display:flex; flex-direction:column; align-items:center; padding: clamp(4rem, 10vw, 7rem) var(--space-3) var(--space-3); opacity:0; visibility:hidden; pointer-events:none; transition: opacity var(--transition-med), visibility var(--transition-med); }
-.search-overlay.is-open{ opacity:1; visibility:visible; pointer-events:auto; }
-.search-overlay-close{ position:absolute; top:16px; right:18px; width:42px; height:42px; border-radius:50%; border:2px solid var(--color-parchment); background:transparent; color:var(--color-parchment); display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition: background var(--transition-fast), color var(--transition-fast); }
-.search-overlay-close:hover{ background:var(--color-parchment); color:var(--color-ink); }
-.search-overlay-close svg{ width:22px; height:22px; }
-.search-overlay-inner{ width:100%; max-width:520px; }
-.search-overlay-label{ display:block; margin-bottom:var(--space-2); font-family:var(--font-display); font-size:var(--fs-h3); color:var(--color-parchment); text-align:center; }
-.search-overlay-wrap{ position:relative; }
-.search-overlay-wrap svg{ position:absolute; left:18px; top:50%; transform:translateY(-50%); width:20px; height:20px; color:var(--color-body-soft); pointer-events:none; }
-.search-overlay-input{ width:100%; padding:1em 3em 1em 3.2em; border-radius:999px; border:2px solid rgba(244,233,211,0.3); background:var(--color-parchment-soft); font-family:var(--font-body); font-size:var(--fs-body); color:var(--color-ink); transition: border-color var(--transition-fast), box-shadow var(--transition-fast); }
-.search-overlay-input:focus{ outline:none; border-color:var(--color-terracotta); box-shadow:0 0 0 3px rgba(156,70,38,0.2); }
-.search-overlay-clear{ position:absolute; right:10px; top:50%; transform:translateY(-50%); display:none; align-items:center; justify-content:center; width:28px; height:28px; border-radius:50%; border:none; background:var(--color-line); color:var(--color-ink); font-size:var(--fs-tiny); line-height:1; cursor:pointer; }
-.search-overlay-clear.is-visible{ display:inline-flex; }
-
-/* --- Footer: info de pago/envío --- */
-/* --- Modales de información legal --- */
-.modal{ position:fixed; inset:0; z-index:300; display:flex; align-items:center; justify-content:center; padding: var(--space-2); visibility:hidden; opacity:0; transition: opacity var(--transition-med), visibility var(--transition-med); }
-.modal.is-open{ visibility:visible; opacity:1; }
-.modal-scrim{ position:absolute; inset:0; background: rgba(28,19,10,0.65); backdrop-filter: blur(4px); }
-.modal-dialog{ position:relative; z-index:1; width: min(680px, 100%); max-width:760px; max-height: 90vh; overflow-y:auto; background: var(--color-parchment-soft); border-radius:22px; border: var(--border-frame); box-shadow:0 24px 60px -20px rgba(28,19,10,0.7); transform: translateY(18px) scale(0.97); transition: transform var(--transition-med); }
-.modal.is-open .modal-dialog{ transform:none; }
-.modal-close{ position:absolute; top:12px; right:12px; z-index:2; width:40px; height:40px; border-radius:50%; border:2px solid var(--color-ink); background: var(--color-parchment-soft); color: var(--color-ink); display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition: background var(--transition-fast), color var(--transition-fast); }
-.modal-close:hover{ background: var(--color-ink); color: var(--color-parchment-soft); }
-.modal-close svg{ width:18px; height:18px; }
-.modal-body{ padding: clamp(2rem, 6vw, 2.5rem) clamp(1.1rem, 5vw, 1.8rem); }
-.m-tag{ display:inline-block; margin-bottom: var(--space-2); font-size:0.7rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:#fff; background: var(--color-terracotta); padding:0.35em 0.9em; border-radius:999px; }
-.modal-body h2{ font-family: var(--font-display); font-size: var(--fs-h3); color: var(--color-ink); margin-bottom: var(--space-2); }
-.modal-body p{ color: var(--color-body); font-size: var(--fs-small); margin-bottom: var(--space-2); }
-.modal-body strong{ color: var(--color-ink); }
-/* --- Footer: información legal --- */
-.footer-legal{ margin-top: var(--space-3); padding-top: var(--space-2); border-top:1px solid rgba(244,235,221,0.2); display:flex; flex-wrap:wrap; gap: var(--space-3); align-items:center; justify-content:space-between; }
-.footer-legal-title{ margin:0; font-family: var(--font-display); font-size: var(--fs-mid); color: var(--color-crema); }
-.footer-legal-links{ display:flex; flex-direction:column; align-items:flex-start; gap: var(--space-2); }
-.footer-legal-links a, .footer-legal-links button{ background:none; border:none; padding:0; cursor:pointer; font-family: var(--font-body); font-size: var(--fs-tiny); color: rgba(244,235,221,0.85); text-decoration:underline; text-underline-offset:2px; }
-.footer-legal-links a:hover, .footer-legal-links button:hover{ color: var(--color-crema); }
-/* --- Pago y envíos (sección en el cuerpo) --- */
-.contact-meta{ margin-top: var(--space-3); }
-.contact-meta-list{ display:flex; flex-direction:column; gap: var(--space-3); }
-.contact-meta-item{ display:flex; flex-direction:column; gap:0.25rem; padding: var(--space-2); border:1px solid var(--color-line); border-radius:16px; background: var(--color-parchment-soft); }
-.contact-meta-item h3{ font-family: var(--font-display); font-size: var(--fs-mid); color: var(--color-ink); }
-.contact-meta-item p{ font-size: var(--fs-small); color: var(--color-body-soft); }
-.contact-meta-item p strong{ color: var(--color-ink); }
-@media (min-width: 640px){ .contact-meta-list{ flex-direction:row; } .contact-meta-item{ flex:1; } }
-
-.wa-float{ position:fixed; right:16px; bottom:16px; width:46px; height:46px; z-index:120; display:flex; align-items:center; justify-content:center; border-radius:50%; background:#25D366; color:#fff; box-shadow:0 8px 18px -6px rgba(20,14,6,0.5); transition: transform var(--transition-fast), background var(--transition-fast); }
-.wa-float:hover{ background:#1eab52; transform: translateY(-2px); }
-.wa-float svg{ width:24px; height:24px; }
+/* Encabezados de sección: títulos con la escala de esta página */
+.section-head h2{ font-size: var(--fs-h2); }
 
 /* ===========================================================
    HERO
@@ -254,9 +48,6 @@ a.nav-mobile-cta:hover{ background:#1eab52; transform: translateY(-1px); }
    TEMAS CLAVE (tarjetas + acordeón)
    =========================================================== */
 .saber-section{ padding-block: var(--space-2) var(--space-5); }
-.section-head{ max-width: var(--max-text); margin-bottom: var(--space-4); }
-.section-head h2{ font-family: var(--font-display); font-size: var(--fs-h2); line-height: var(--lh-display); color: var(--color-ink); text-wrap:balance; }
-.section-head p{ margin-top: var(--space-2); color: var(--color-body-soft); font-size: var(--fs-lead); max-width: 48ch; }
 
 .stats-row{ display:grid; gap: var(--space-3); grid-template-columns: 1fr 1fr; margin-bottom: var(--space-4); }
 .stat-card{ border: var(--border-frame); border-radius: var(--radius-card); background: var(--color-parchment-soft); padding: var(--space-3); text-align:center; }
@@ -298,23 +89,6 @@ a.nav-mobile-cta:hover{ background:#1eab52; transform: translateY(-1px); }
 .cta-fold .cta-actions{ margin-top: var(--space-3); display:flex; gap: var(--space-2); justify-content:center; flex-wrap:wrap; }
 
 /* ===========================================================
-   FOOTER
-   =========================================================== */
-.site-footer{ padding-block: var(--space-4); background: var(--color-forest-bosque); color: rgba(244,235,221,0.85); }
-.footer-inner{ display:flex; flex-direction:column; gap: var(--space-3); padding-top: var(--space-3); }
-.footer-brand{ display:flex; align-items:center; gap:0.6rem; }
-.footer-brand img{ width:30px; height:30px; object-fit:cover; border-radius:50%; }
-.footer-brand span{ font-family: var(--font-display); font-size: clamp(1.1rem, 0.4vw + 1rem, 1.2rem); color: var(--color-crema); }
-.footer-links{ display:flex; flex-wrap:wrap; gap: var(--space-3); }
-.footer-links a{ font-size: var(--fs-small); color: rgba(244,235,221,0.85); }
-.footer-links a:hover{ color: var(--color-crema); }
-.footer-social{ display:flex; gap:0.7rem; }
-.footer-social a{ width:36px; height:36px; border-radius:50%; border:1.5px solid rgba(244,235,221,0.35); display:inline-flex; align-items:center; justify-content:center; transition: border-color var(--transition-fast), color var(--transition-fast); }
-.footer-social a:hover{ border-color: var(--color-salvia); color: var(--color-crema); }
-.footer-social svg{ width:16px; height:16px; }
-.footer-bottom{ margin-top: var(--space-3); padding-top: var(--space-2); border-top:1px solid rgba(244,235,221,0.2); font-size: var(--fs-tiny); display:flex; flex-wrap:wrap; justify-content:space-between; gap:0.5rem; color: rgba(244,235,221,0.7); }
-
-/* ===========================================================
    BREAKPOINTS
    =========================================================== */
 @media (min-width: 560px){
@@ -324,12 +98,7 @@ a.nav-mobile-cta:hover{ background:#1eab52; transform: translateY(-1px); }
   .stats-row{ grid-template-columns: repeat(4, 1fr); }
 }
 @media (min-width: 1000px){
-  .nav-desktop{ display:block; }
-  .menu-toggle{ display:none; }
   .seasonal-grid{ grid-template-columns: repeat(4, 1fr); }
-  .footer-inner{ flex-direction:row; align-items:center; justify-content:space-between; }
-  .footer-info{ justify-content:space-between; }
-  .footer-bottom{ flex-wrap:nowrap; }
 }
 </style>
 </head>
@@ -352,16 +121,19 @@ a.nav-mobile-cta:hover{ background:#1eab52; transform: translateY(-1px); }
             Categorías
             <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
           </a>
-          <ul class="dropdown">
-            <li><a href="index.html#productos">Descanso</a></li>
-            <li><a href="index.html#productos">Digestivo</a></li>
-            <li><a href="index.html#productos">Belleza</a></li>
-            <li><a href="index.html#productos">Aromaterapia</a></li>
-            <li><a href="index.html#productos">Masajes</a></li>
-            <li><a href="index.html#productos">Tratamientos</a></li>
-            <li><a href="index.html#productos">Aceites</a></li>
-            <li><a href="index.html#productos">Ungüentos</a></li>
-            <li><a href="index.html#productos">Cremas</a></li>
+          <ul class="dropdown" id="deskCatDropdown">
+            <li><a href="index.html#productos" data-cat="descanso">Descanso</a></li>
+            <li><a href="index.html#productos" data-cat="digestivo">Digestivo</a></li>
+            <li><a href="index.html#productos" data-cat="belleza">Belleza</a></li>
+            <li><a href="index.html#productos" data-cat="aromaterapia">Aromaterapia</a></li>
+            <li><a href="index.html#productos" data-cat="masajes">Masajes</a></li>
+            <li><a href="index.html#productos" data-cat="tratamientos">Tratamientos</a></li>
+            <li><a href="index.html#productos" data-cat="aceites">Aceites</a></li>
+            <li><a href="index.html#productos" data-cat="unguentos">Ungüentos</a></li>
+            <li><a href="index.html#productos" data-cat="cremas">Cremas</a></li>
+            <li><a href="index.html#productos" data-cat="locion">Loción</a></li>
+            <li><a href="index.html#productos" data-cat="tinturas">Tinturas</a></li>
+            <li><a href="index.html#productos" data-cat="jabones">Jabones</a></li>
           </ul>
         </li>
         <li><a href="index.html#productos">Productos</a></li>
@@ -385,8 +157,9 @@ a.nav-mobile-cta:hover{ background:#1eab52; transform: translateY(-1px); }
       <button class="search-btn" type="button" id="searchOpen" aria-label="Buscar en el catálogo">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
       </button>
-      <a class="cart-btn" href="index.html#productos" aria-label="Ver carrito de compras" role="button">
+      <a class="cart-btn" href="index.html#productos" aria-label="Ver carrito de compras">
         <img class="cart-icon-img" src="img/cart22.webp" alt="Carrito de compras" width="1234" height="1234">
+        <span class="cart-count" aria-hidden="true">0</span>
       </a>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMobile">
         <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -408,6 +181,7 @@ a.nav-mobile-cta:hover{ background:#1eab52; transform: translateY(-1px); }
       <input class="search-overlay-input" id="searchOverlayInput" type="search" placeholder="Nombre, uso o nombre científico…" autocomplete="off" aria-label="Buscar en el catálogo">
       <button class="search-overlay-clear" id="searchOverlayClear" type="button" aria-label="Limpiar búsqueda">&times;</button>
     </div>
+    <p class="search-overlay-hint">Escribí y se filtrarán los productos en la galería de abajo.</p>
   </div>
 </div>
 
@@ -424,15 +198,18 @@ a.nav-mobile-cta:hover{ background:#1eab52; transform: translateY(-1px); }
       </button>
       <div class="nav-sublist" id="mobileCatList">
         <div class="nav-sublist-inner">
-          <a href="index.html#productos">Descanso</a>
-          <a href="index.html#productos">Digestivo</a>
-          <a href="index.html#productos">Belleza</a>
-          <a href="index.html#productos">Aromaterapia</a>
-          <a href="index.html#productos">Masajes</a>
-          <a href="index.html#productos">Tratamientos</a>
-          <a href="index.html#productos">Aceites</a>
-          <a href="index.html#productos">Ungüentos</a>
-          <a href="index.html#productos">Cremas</a>
+          <a href="index.html#productos" data-cat="descanso">Descanso</a>
+          <a href="index.html#productos" data-cat="digestivo">Digestivo</a>
+          <a href="index.html#productos" data-cat="belleza">Belleza</a>
+          <a href="index.html#productos" data-cat="aromaterapia">Aromaterapia</a>
+          <a href="index.html#productos" data-cat="masajes">Masajes</a>
+          <a href="index.html#productos" data-cat="tratamientos">Tratamientos</a>
+          <a href="index.html#productos" data-cat="aceites">Aceites</a>
+          <a href="index.html#productos" data-cat="unguentos">Ungüentos</a>
+          <a href="index.html#productos" data-cat="cremas">Cremas</a>
+          <a href="index.html#productos" data-cat="locion">Loción</a>
+          <a href="index.html#productos" data-cat="tinturas">Tinturas</a>
+          <a href="index.html#productos" data-cat="jabones">Jabones</a>
         </div>
       </div>
     </li>
@@ -457,13 +234,11 @@ a.nav-mobile-cta:hover{ background:#1eab52; transform: translateY(-1px); }
     <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.73-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.24.25-.41.08-.16.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.39 1.01 2.56.13.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.29Z"/></svg>
     WhatsApp
   </a>
-</nav>
-
-<a class="wa-float" href="https://wa.me/59894872605" aria-label="Escribir por WhatsApp" target="_blank" rel="noopener">
-  <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.73-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.24.25-.41.08-.16.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.39 1.01 2.56.13.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.29Z"/></svg>
-</a>
-
-<main id="main">
+  <a class="nav-mobile-cta" href="https://instagram.com/dorilanatural" target="_blank" rel="noopener" style="background:linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);">
+    <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+    Instagram
+  </a>
+</nav><main id="main">
 
   <!-- ===================== HERO ===================== -->
   <section class="page-hero wrap">
@@ -637,27 +412,6 @@ a.nav-mobile-cta:hover{ background:#1eab52; transform: translateY(-1px); }
       <a class="btn btn-outline" href="https://wa.me/59894872605" target="_blank" rel="noopener">Escribir por WhatsApp</a>
     </div>
   </section>
-
-  <!-- ===================== PAGO Y ENVÍOS ===================== -->
-  <section class="wrap section-block" id="pago-envios" aria-labelledby="pago-envios-heading">
-    <div class="section-head">
-      <h2 id="pago-envios-heading">Pago y envíos</h2>
-      <p>Trabajamos por WhatsApp y coordinamos la entrega según tu punto del país.</p>
-    </div>
-    <div class="contact-meta">
-      <div class="contact-meta-list">
-        <div class="contact-meta-item">
-          <h3>Métodos de pago</h3>
-          <p>Efectivo o transferencia <strong>Prex</strong></p>
-        </div>
-        <div class="contact-meta-item">
-          <h3>Envíos</h3>
-          <p>Montevideo: <strong>$200</strong> &middot; Interior: por <strong>DAC</strong></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
 </main>
 
 <!-- ===================== FOOTER ===================== -->
@@ -669,22 +423,18 @@ a.nav-mobile-cta:hover{ background:#1eab52; transform: translateY(-1px); }
     </div>
     <nav class="footer-links" aria-label="Enlaces del pie de página">
       <a href="/">Inicio</a>
-      <a href="index.html#categorias">Categorías</a>
       <a href="index.html#productos">Productos</a>
-      <a href="index.html#historia">Nuestra historia</a>
       <a href="recetas.html">Recetas y remedios</a>
       <a href="saber.html">Cosas que deberías saber</a>
-      <a href="testimonios.html">Testimonios</a>
-      <a href="gracias.html">Agradecimientos</a>
       <a href="index.html#contacto">Contacto</a>
     </nav>
     <div class="footer-social">
       <a href="https://instagram.com/dorilanatural" target="_blank" rel="noopener" aria-label="Instagram"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
-      <a href="https://wa.me/59894872605" aria-label="WhatsApp"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5Z"/></svg></a>
+      <a href="tel:+59894872605" aria-label="Teléfono"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.8 2Z"/></svg></a>
     </div>
   </div>
   <div class="wrap footer-legal">
-    <h3 class="footer-legal-title">Información legal</h3>
+    <p class="footer-legal-copy">DORILA &middot; Herbolaria artesanal.</p>
     <nav class="footer-legal-links" aria-label="Información legal">
       <a href="https://kikiriya-devops.netlify.app" target="_blank" rel="noopener">Garantía de autenticidad</a>
       <button type="button" data-open-modal="privacyModal" aria-haspopup="dialog">Política de privacidad</button>
@@ -693,7 +443,7 @@ a.nav-mobile-cta:hover{ background:#1eab52; transform: translateY(-1px); }
   </div>
   <div class="wrap footer-bottom">
     <span>&copy; <span id="year"></span> DORILA. Uruguay.</span>
-    <span>Herbolaria artesanal — no reemplaza indicación médica.</span>
+    <span>Plantas medicinales, recetas naturales y herbolaria artesanal — no reemplaza indicación médica.</span>
   </div>
 </footer>
 
@@ -879,7 +629,7 @@ a.nav-mobile-cta:hover{ background:#1eab52; transform: translateY(-1px); }
 </script>
 
 <!-- ===================== MODAL PRIVACIDAD ===================== -->
-<div class="modal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" aria-hidden="true">
+<div class="modal modal-legal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" aria-hidden="true">
   <div class="modal-scrim" data-close-modal></div>
   <div class="modal-dialog" role="document">
     <button class="modal-close" type="button" id="privacyClose" aria-label="Cerrar">
@@ -897,7 +647,7 @@ a.nav-mobile-cta:hover{ background:#1eab52; transform: translateY(-1px); }
 </div>
 
 <!-- ===================== MODAL AVISO LEGAL ===================== -->
-<div class="modal" id="disclaimerModal" role="dialog" aria-modal="true" aria-labelledby="disclaimerTitle" aria-hidden="true">
+<div class="modal modal-legal" id="disclaimerModal" role="dialog" aria-modal="true" aria-labelledby="disclaimerTitle" aria-hidden="true">
   <div class="modal-scrim" data-close-modal></div>
   <div class="modal-dialog" role="document">
     <button class="modal-close" type="button" id="disclaimerClose" aria-label="Cerrar">

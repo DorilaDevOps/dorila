@@ -99,7 +99,7 @@ products.forEach(function(p){
     .slice(0, 4)
     .map(function(r){
       var s = slugify(r.name);
-      return '<a class="related-card" href="productos/' + s + '.html">' +
+      return '<a class="related-card" href="' + s + '.html">' +
         '<img src="../' + r.img.replace(/^\.?\//, "") + '" alt="' + esc(r.name) + ', producto de herboristería artesanal de DORILA" loading="lazy">' +
         '<span class="related-name">' + esc(r.name) + '</span>' +
         '<span class="related-price">' + esc(r.price) + '</span>' +

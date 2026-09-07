@@ -81,188 +81,189 @@
   ]
 }</script>
 
+<link rel="stylesheet" href="../asset/base.css">
 <style>
-:root{
-  --color-ink:#33230F;
-  --color-parchment:#FAF3E3;
-  --color-parchment-soft:#F3EAD3;
-  --color-terracotta:#7A3419;
-  --color-terracotta-deep:#5C2712;
-  --color-salvia:#879F82;
-  --color-forest-deep:#2E3A28;
-  --color-body-soft:#6B5B41;
-  --color-card:#FFFDF6;
-
-  --font-display:"Rye", serif;
-  --font-body:"Montserrat", Georgia, serif;
-
-  --space-1:0.5rem;
-  --space-2:0.9rem;
-  --space-3:1.5rem;
-  --space-4:2.5rem;
-  --space-5:4rem;
-
-  --radius-card:26px;
-  --radius-sm:14px;
-  --shadow-card:0 10px 24px -14px rgba(51,35,15,0.45);
-  --max-content:1180px;
-  --transition-med:420ms cubic-bezier(.22,.68,.35,1);
-}
-*, *::before, *::after{ box-sizing:border-box; }
-html{ scroll-behavior:smooth; }
-body{ margin:0; font-family:var(--font-body); color:var(--color-ink); background:var(--color-parchment); line-height:1.7; }
-img{ max-width:100%; display:block; }
-a{ color:inherit; text-decoration:none; }
-ul{ list-style:none; margin:0; padding:0; }
-.wrap{ max-width:var(--max-content); margin-inline:auto; padding-inline:var(--space-3); }
-
-/* --- header --- */
-.site-header{
-  position:sticky; top:0; z-index:50;
-  background:var(--color-salvia);
-  color:var(--color-parchment);
-  box-shadow:0 2px 24px rgba(51,35,15,0.28);
-}
-.header-inner{ display:flex; align-items:center; justify-content:space-between; gap:var(--space-2); padding-block:0.8rem; flex-wrap:wrap; }
-.brand{ display:flex; align-items:center; gap:0.6rem; font-family:var(--font-display); font-size:1.3rem; color:var(--color-parchment); }
-.brand-logo{ width:40px; height:40px; border-radius:50%; object-fit:cover; }
-.nav{ display:flex; gap:var(--space-2); flex-wrap:wrap; }
-.nav a{ font-size:0.85rem; font-weight:700; letter-spacing:0.03em; text-transform:uppercase; color:var(--color-parchment); border-bottom:2px solid transparent; padding-bottom:2px; }
-.nav a:hover{ border-color:var(--color-parchment); }
-.header-cta{
-  display:inline-block; padding:0.55em 1.1em; border-radius:999px;
-  background:var(--color-terracotta); color:#fff; font-weight:800; font-size:0.82rem;
-  letter-spacing:0.04em; text-transform:uppercase;
-}
-.header-cta:hover{ background:var(--color-terracotta-deep); }
-
-/* --- breadcrumbs --- */
-.crumbs{ padding-block:var(--space-3) 0; font-size:var(--space-1,0.85rem); color:var(--color-body-soft); display:flex; flex-wrap:wrap; gap:0.45rem; }
-.crumbs a{ color:var(--color-terracotta); font-weight:600; }
+.crumbs{ padding-block: var(--space-3) 0; font-size: var(--fs-small); color: var(--color-body-soft); display:flex; flex-wrap:wrap; gap:0.45rem; }
+.crumbs a{ color: var(--color-terracotta); font-weight:600; }
 .crumbs a:hover{ text-decoration:underline; }
 
-/* --- ficha --- */
-.ficha{
-  display:grid; grid-template-columns:1fr 1.05fr; gap:var(--space-4);
-  margin-block:var(--space-3) var(--space-5);
-  background:var(--color-card);
-  border:1px solid var(--color-parchment-soft);
-  border-radius:var(--radius-card);
-  overflow:hidden;
-  box-shadow:var(--shadow-card);
-}
+.ficha{ display:grid; grid-template-columns:1fr 1.05fr; gap:var(--space-4); margin-block:var(--space-3) var(--space-5); background:var(--color-card); border:1px solid var(--color-parchment-soft); border-radius:var(--radius-card); overflow:hidden; box-shadow:var(--shadow-card); }
 .ficha-media{ position:relative; background:var(--color-parchment-soft); }
 .ficha-gallery{ display:grid; gap:var(--space-2); }
 .ficha-main{ width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:var(--radius-card); }
 .ficha-thumbs{ display:flex; gap:var(--space-2); }
-.ficha-thumb{
-  width:64px; height:64px; padding:0; border:2px solid transparent; border-radius:12px;
-  background:none; cursor:pointer; overflow:hidden; opacity:.7;
-  transition:opacity var(--transition-fast), border-color var(--transition-fast);
-}
+.ficha-thumb{ width:64px; height:64px; padding:0; border:2px solid transparent; border-radius:12px; background:none; cursor:pointer; overflow:hidden; opacity:.7; transition:opacity var(--transition-med), border-color var(--transition-med); }
 .ficha-thumb img{ width:100%; height:100%; object-fit:cover; border-radius:8px; }
 .ficha-thumb:hover{ opacity:1; }
 .ficha-thumb.is-active{ border-color:var(--color-terracotta); opacity:1; }
 .ficha-info{ padding:var(--space-4); }
-.ficha-cat{
-  display:inline-block; padding:0.25em 0.8em; border-radius:999px;
-  background:var(--color-salvia); color:#fff;
-  font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em;
-}
+.ficha-cat{ display:inline-block; padding:0.25em 0.8em; border-radius:999px; background:var(--color-salvia); color:#fff; font-size:var(--fs-tiny); font-weight:700; text-transform:uppercase; letter-spacing:0.08em; }
 .ficha-info h1{ font-family:var(--font-display); font-size:clamp(1.9rem,4vw,2.8rem); line-height:1.08; margin:var(--space-2) 0 0; color:var(--color-ink); text-wrap:balance; }
 .ficha-scientific{ font-size:0.92rem; color:var(--color-body-soft); margin-top:var(--space-1); }
 .ficha-desc{ font-size:1.05rem; color:var(--color-ink); margin-top:var(--space-3); }
 .ficha-props{ margin-top:var(--space-3); }
 .ficha-props h2{ font-family:var(--font-display); font-size:1.05rem; margin:0 0 var(--space-1); color:var(--color-terracotta); }
 .ficha-props li{ position:relative; padding-left:1.6rem; margin-top:0.4rem; color:var(--color-ink); }
-.ficha-props li::before{
-  content:""; position:absolute; left:0; top:0.5em;
-  width:0.5em; height:0.5em; border-radius:50%;
-  background:var(--color-terracotta);
-}
+.ficha-props li::before{ content:""; position:absolute; left:0; top:0.5em; width:0.5em; height:0.5em; border-radius:50%; background:var(--color-terracotta); }
 .ficha-price{ font-family:var(--font-display); font-size:1.6rem; color:var(--color-forest-deep); margin-block:var(--space-3) 0; }
 .ficha-ctas{ display:flex; flex-wrap:wrap; gap:var(--space-2); margin-top:var(--space-2); }
 .ficha-ctas .btn{ flex:1 1 auto; }
-.btn{
-  display:inline-block; text-align:center; padding:0.8em 1.4em; border-radius:999px;
-  font-weight:800; font-size:0.9rem; letter-spacing:0.05em;
-  transition:background var(--transition-med), transform var(--transition-med);
-}
-.btn-primary{ background:var(--color-terracotta); color:#fff; }
-.btn-primary:hover{ background:var(--color-terracotta-deep); color:#fff; }
-.btn-ghost{
-  background:transparent; color:var(--color-terracotta);
-  border:2px solid var(--color-terracotta);
-}
-.btn-ghost:hover{ background:var(--color-terracotta); color:#fff; }
-.ficha-note{ margin-top:var(--space-3); font-size:0.78rem; color:var(--color-body-soft); }
+.ficha-note{ margin-top:var(--space-3); font-size:var(--fs-small); color:var(--color-body-soft); }
 .ficha-by{ margin-top:var(--space-1); font-size:0.8rem; }
 .ficha-by a{ color:var(--color-terracotta); font-weight:700; }
 .ficha-by a:hover{ text-decoration:underline; }
 
-/* --- relacionados --- */
 .related{ padding-bottom:var(--space-5); }
 .related h2{ font-family:var(--font-display); font-size:clamp(1.4rem,3vw,2rem); margin-block:var(--space-4) var(--space-3); text-wrap:balance; }
 .related-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:var(--space-3); }
-.related-card{
-  display:flex; align-items:center; gap:var(--space-2);
-  background:var(--color-card); border:1px solid var(--color-parchment-soft);
-  border-radius:var(--radius-sm); padding:var(--space-2);
-  box-shadow:var(--shadow-card);
-  transition:transform var(--transition-med), border-color var(--transition-med);
-}
+.related-card{ display:flex; align-items:center; gap:var(--space-2); background:var(--color-card); border:1px solid var(--color-parchment-soft); border-radius:var(--radius-sm); padding:var(--space-2); box-shadow:var(--shadow-card); transition:transform var(--transition-med), border-color var(--transition-med); }
 .related-card:hover{ transform:translateY(-3px); border-color:var(--color-terracotta); }
 .related-card img{ width:74px; height:74px; border-radius:12px; object-fit:cover; flex-shrink:0; }
 .related-name{ font-weight:700; font-size:0.95rem; }
 .related-price{ font-family:var(--font-display); color:var(--color-forest-deep); font-size:0.9rem; margin-left:auto; }
 
-/* --- footer --- */
-.site-footer{ background:var(--color-ink); color:var(--color-parchment); margin-top:var(--space-4); }
-.footer-inner{ display:flex; flex-wrap:wrap; gap:var(--space-3); align-items:center; justify-content:space-between; padding-block:var(--space-4); }
-.footer-brand{ display:flex; align-items:center; gap:0.6rem; font-family:var(--font-display); }
-.footer-logo{ width:40px; height:40px; border-radius:50%; object-fit:cover; }
-.footer-links{ display:flex; flex-wrap:wrap; gap:var(--space-2); }
-.footer-links a{ color:var(--color-parchment); font-size:0.85rem; }
-.footer-links a:hover{ text-decoration:underline; }
-.footer-social{ display:flex; gap:var(--space-2); }
-.footer-social a{
-  width:38px; height:38px; border-radius:50%;
-  border:1px solid var(--color-salvia); color:var(--color-salvia);
-  display:inline-flex; align-items:center; justify-content:center;
-}
-.footer-social a:hover{ border-color:var(--color-salvia); color:var(--color-parchment); }
-.footer-social svg{ width:17px; height:17px; }
-.footer-legal{ padding-block:var(--space-2); border-top:1px solid rgba(250,243,227,0.15); font-size:0.78rem; }
-.footer-bottom{ padding-block:var(--space-2); border-top:1px solid rgba(250,243,227,0.15); font-size:0.75rem; opacity:0.85; display:flex; flex-wrap:wrap; gap:var(--space-2); justify-content:space-between; }
-
-@media (max-width:820px){
-  .ficha{ grid-template-columns:1fr; }
-  .nav{ width:100%; order:3; }
-}
-@media (max-width:560px){
-  .related-grid{ grid-template-columns:1fr; }
-}
+@media (max-width:820px){ .ficha{ grid-template-columns:1fr; } }
+@media (max-width:560px){ .related-grid{ grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
 
-<a class="skip-link" href="#main" style="position:absolute;left:-9999px;">Saltar al contenido</a>
+<a class="skip-link" href="#main">Saltar al contenido</a>
 
-<header class="site-header">
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header" id="siteHeader">
   <div class="wrap header-inner">
-    <a class="brand" href="index.html" aria-label="DORILA, inicio">
+    <a class="brand" href="/" aria-label="DORILA, inicio">
       <img class="brand-logo" src="../img/sunflower_logo.webp" alt="" width="2000" height="2000">
       <span class="brand-name">DORILA</span>
     </a>
-    <nav class="nav" aria-label="Navegación principal">
-      <a href="index.html#categorias">Categorías</a>
-      <a href="index.html#productos">Productos</a>
-      <a href="recetas.html">Recetas</a>
-      <a href="saber.html">Saber</a>
+
+    <nav class="nav-desktop" aria-label="Navegación principal">
+      <ul>
+        <li class="has-menu">
+          <a href="../index.html#categorias" aria-haspopup="true" aria-expanded="false">
+            Categorías
+            <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+          </a>
+          <ul class="dropdown" id="deskCatDropdown">
+            <li><a href="../index.html#productos" data-cat="descanso">Descanso</a></li>
+            <li><a href="../index.html#productos" data-cat="digestivo">Digestivo</a></li>
+            <li><a href="../index.html#productos" data-cat="belleza">Belleza</a></li>
+            <li><a href="../index.html#productos" data-cat="aromaterapia">Aromaterapia</a></li>
+            <li><a href="../index.html#productos" data-cat="masajes">Masajes</a></li>
+            <li><a href="../index.html#productos" data-cat="tratamientos">Tratamientos</a></li>
+            <li><a href="../index.html#productos" data-cat="aceites">Aceites</a></li>
+            <li><a href="../index.html#productos" data-cat="unguentos">Ungüentos</a></li>
+            <li><a href="../index.html#productos" data-cat="cremas">Cremas</a></li>
+            <li><a href="../index.html#productos" data-cat="locion">Loción</a></li>
+            <li><a href="../index.html#productos" data-cat="tinturas">Tinturas</a></li>
+            <li><a href="../index.html#productos" data-cat="jabones">Jabones</a></li>
+          </ul>
+        </li>
+        <li><a href="../index.html#productos">Productos</a></li>
+        <li class="has-menu">
+          <a href="#" aria-haspopup="true" aria-expanded="false">
+            Explorar
+            <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+          </a>
+          <ul class="dropdown">
+            <li><a href="../index.html#historia">Nuestra historia</a></li>
+            <li><a href="../recetas.html">Recetas y remedios</a></li>
+            <li><a href="../saber.html">Cosas que deberías saber</a></li>
+            <li><a href="../testimonios.html">Testimonios</a></li>
+            <li><a href="../gracias.html">Agradecimientos</a></li>
+          </ul>
+        </li>
+      </ul>
     </nav>
-    <a class="header-cta" href="https://wa.me/59894872605" target="_blank" rel="noopener">WhatsApp</a>
+
+    <div class="header-actions">
+      <button class="search-btn" type="button" id="searchOpen" aria-label="Buscar en el catálogo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      </button>
+      <a class="cart-btn" href="../index.html#productos" aria-label="Ver carrito de compras">
+        <img class="cart-icon-img" src="../img/cart22.webp" alt="Carrito de compras" width="1234" height="1234">
+        <span class="cart-count" aria-hidden="true">0</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMobile">
+        <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
   </div>
 </header>
+
+<!-- ===================== BUSCADOR OVERLAY ===================== -->
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Buscar productos">
+  <button class="search-overlay-close" type="button" id="searchOverlayClose" aria-label="Cerrar búsqueda">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <div class="search-overlay-inner">
+    <label class="search-overlay-label" for="searchOverlayInput">Buscá tu hierba favorita</label>
+    <div class="search-overlay-wrap">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input class="search-overlay-input" id="searchOverlayInput" type="search" placeholder="Nombre, uso o nombre científico…" autocomplete="off" aria-label="Buscar en el catálogo">
+      <button class="search-overlay-clear" id="searchOverlayClear" type="button" aria-label="Limpiar búsqueda">&times;</button>
+    </div>
+    <p class="search-overlay-hint">Escribí y se filtrarán los productos en la galería de abajo.</p>
+  </div>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<nav class="nav-mobile" id="navMobile" aria-label="Navegación móvil">
+  <button class="nav-close" type="button" id="navClose" aria-label="Cerrar menú">
+    <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <ul>
+    <li class="nav-acc-parent">
+      <button class="nav-acc" type="button" id="mobileCatsToggle" aria-expanded="false" aria-controls="mobileCatList">
+        Categorías
+        <span class="acc-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button>
+      <div class="nav-sublist" id="mobileCatList">
+        <div class="nav-sublist-inner">
+          <a href="../index.html#productos" data-cat="descanso">Descanso</a>
+          <a href="../index.html#productos" data-cat="digestivo">Digestivo</a>
+          <a href="../index.html#productos" data-cat="belleza">Belleza</a>
+          <a href="../index.html#productos" data-cat="aromaterapia">Aromaterapia</a>
+          <a href="../index.html#productos" data-cat="masajes">Masajes</a>
+          <a href="../index.html#productos" data-cat="tratamientos">Tratamientos</a>
+          <a href="../index.html#productos" data-cat="aceites">Aceites</a>
+          <a href="../index.html#productos" data-cat="unguentos">Ungüentos</a>
+          <a href="../index.html#productos" data-cat="cremas">Cremas</a>
+          <a href="../index.html#productos" data-cat="locion">Loción</a>
+          <a href="../index.html#productos" data-cat="tinturas">Tinturas</a>
+          <a href="../index.html#productos" data-cat="jabones">Jabones</a>
+        </div>
+      </div>
+    </li>
+    <li><a href="../index.html#productos">Productos</a></li>
+    <li class="nav-acc-parent">
+      <button class="nav-acc" type="button" id="mobileExplorarToggle" aria-expanded="false" aria-controls="mobileExplorarList">
+        Explorar
+        <span class="acc-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button>
+      <div class="nav-sublist" id="mobileExplorarList">
+        <div class="nav-sublist-inner">
+          <a href="../index.html#historia">Nuestra historia</a>
+          <a href="../recetas.html">Recetas y remedios</a>
+          <a href="../saber.html">Cosas que deberías saber</a>
+          <a href="../testimonios.html">Testimonios</a>
+          <a href="../gracias.html">Agradecimientos</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <a class="nav-mobile-cta" href="https://wa.me/59894872605" target="_blank" rel="noopener">
+    <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.73-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.24.25-.41.08-.16.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.39 1.01 2.56.13.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.29Z"/></svg>
+    WhatsApp
+  </a>
+  <a class="nav-mobile-cta" href="https://instagram.com/dorilanatural" target="_blank" rel="noopener" style="background:linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);">
+    <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+    Instagram
+  </a>
+</nav>
 
 <main id="main">
   <div class="wrap">
@@ -308,26 +309,27 @@ ul{ list-style:none; margin:0; padding:0; }
   <section class="related wrap" aria-label="Productos relacionados">
     <h2>También te puede interesar</h2>
     <div class="related-grid">
-      <a class="related-card" href="productos/manzanilla.html"><img src="../img/manzanilla2.webp" alt="Manzanilla, producto de herboristería artesanal de DORILA" loading="lazy"><span class="related-name">Manzanilla</span><span class="related-price">$180</span></a>
-<a class="related-card" href="productos/menta-piperita.html"><img src="../img/congerdesign-herbs-5140701_1920.webp" alt="Menta piperita, producto de herboristería artesanal de DORILA" loading="lazy"><span class="related-name">Menta piperita</span><span class="related-price">$150</span></a>
-<a class="related-card" href="productos/hierbabuena.html"><img src="../img/congerdesign-herbs-5140754_1920.webp" alt="Hierbabuena, producto de herboristería artesanal de DORILA" loading="lazy"><span class="related-name">Hierbabuena</span><span class="related-price">$140</span></a>
-<a class="related-card" href="productos/diente-de-leon.html"><img src="../img/diente_de_leon.webp" alt="Diente de león, producto de herboristería artesanal de DORILA" loading="lazy"><span class="related-name">Diente de león</span><span class="related-price">$190</span></a>
+      <a class="related-card" href="manzanilla.html"><img src="../img/manzanilla2.webp" alt="Manzanilla, producto de herboristería artesanal de DORILA" loading="lazy"><span class="related-name">Manzanilla</span><span class="related-price">$180</span></a>
+<a class="related-card" href="menta-piperita.html"><img src="../img/congerdesign-herbs-5140701_1920.webp" alt="Menta piperita, producto de herboristería artesanal de DORILA" loading="lazy"><span class="related-name">Menta piperita</span><span class="related-price">$150</span></a>
+<a class="related-card" href="hierbabuena.html"><img src="../img/congerdesign-herbs-5140754_1920.webp" alt="Hierbabuena, producto de herboristería artesanal de DORILA" loading="lazy"><span class="related-name">Hierbabuena</span><span class="related-price">$140</span></a>
+<a class="related-card" href="diente-de-leon.html"><img src="../img/diente_de_leon.webp" alt="Diente de león, producto de herboristería artesanal de DORILA" loading="lazy"><span class="related-name">Diente de león</span><span class="related-price">$190</span></a>
     </div>
   </section>
 </main>
 
+<!-- ===================== FOOTER ===================== -->
 <footer class="site-footer">
   <div class="wrap footer-inner">
     <div class="footer-brand">
       <img class="footer-logo" src="../img/sunflower_logo.webp" alt="" width="2000" height="2000">
-      <span>GENERAL</span>
+      <span>DORILA</span>
     </div>
     <nav class="footer-links" aria-label="Enlaces del pie de página">
-      <a href="https://dorila.netlify.app/">Inicio</a>
-      <a href="https://dorila.netlify.app/#productos">Productos</a>
-      <a href="recetas.html">Recetas y remedios</a>
-      <a href="saber.html">Cosas que deberías saber</a>
-      <a href="https://dorila.netlify.app/#contacto">Contacto</a>
+      <a href="/">Inicio</a>
+      <a href="../index.html#productos">Productos</a>
+      <a href="../recetas.html">Recetas y remedios</a>
+      <a href="../saber.html">Cosas que deberías saber</a>
+      <a href="../index.html#contacto">Contacto</a>
     </nav>
     <div class="footer-social">
       <a href="https://instagram.com/dorilanatural" target="_blank" rel="noopener" aria-label="Instagram"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
@@ -336,16 +338,278 @@ ul{ list-style:none; margin:0; padding:0; }
   </div>
   <div class="wrap footer-legal">
     <p class="footer-legal-copy">DORILA &middot; Herbolaria artesanal.</p>
+    <nav class="footer-legal-links" aria-label="Información legal">
+      <a href="https://kikiriya-devops.netlify.app" target="_blank" rel="noopener">Garantía de autenticidad</a>
+      <button type="button" data-open-modal="privacyModal" aria-haspopup="dialog">Política de privacidad</button>
+      <button type="button" data-open-modal="disclaimerModal" aria-haspopup="dialog">Aviso legal</button>
+    </nav>
   </div>
   <div class="wrap footer-bottom">
     <span>&copy; <span id="year"></span> DORILA. Uruguay.</span>
-    <span>Plantas medicinales, recetas naturales y herbolaria artesanal &mdash; no reemplaza indicación médica.</span>
+    <span>Plantas medicinales, recetas naturales y herbolaria artesanal — no reemplaza indicación médica.</span>
   </div>
 </footer>
 
+<a class="wa-float" href="https://wa.me/59894872605" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
+  <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.73-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.24.25-.41.08-.16.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.39 1.01 2.56.13.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.29Z"/></svg>
+</a>
+
+<button class="to-top" type="button" id="toTop" aria-label="Volver arriba">
+  <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<!-- ===================== MODAL PRIVACIDAD ===================== -->
+<div class="modal modal-legal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" aria-hidden="true">
+  <div class="modal-scrim" data-close-modal></div>
+  <div class="modal-dialog" role="document">
+    <button class="modal-close" type="button" id="privacyClose" aria-label="Cerrar">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="modal-body">
+      <span class="m-tag">Legal</span>
+      <h2 id="privacyTitle">Política de privacidad</h2>
+      <p><strong>Qué datos recopilamos.</strong> Cuando completás el formulario de cotización, solo usamos tu nombre, lo que solicitás, el departamento, el barrio y las notas o dirección que nos escribís. Estos datos se envían directamente a nuestro WhatsApp; el sitio no los guarda ni los almacena en ningún servidor propio.</p>
+      <p><strong>Para qué los usamos.</strong> Únicamente para coordinar tu presupuesto, visita o consulta. No compartimos tus datos con terceros ni los usamos con fines publicitarios.</p>
+      <p><strong>Cookies.</strong> Este sitio no utiliza cookies de seguimiento ni analíticas de terceros.</p>
+      <p><strong>Contacto.</strong> Ante cualquier duda sobre esta política, escribinos al 094 872 605.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== MODAL AVISO LEGAL ===================== -->
+<div class="modal modal-legal" id="disclaimerModal" role="dialog" aria-modal="true" aria-labelledby="disclaimerTitle" aria-hidden="true">
+  <div class="modal-scrim" data-close-modal></div>
+  <div class="modal-dialog" role="document">
+    <button class="modal-close" type="button" id="disclaimerClose" aria-label="Cerrar">
+      <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <div class="modal-body">
+      <span class="m-tag">Legal</span>
+      <h2 id="disclaimerTitle">Aviso legal — Descargo de responsabilidad</h2>
+      <p>Esta política de Descargo de responsabilidad limita nuestra responsabilidad e informa a los visitantes de este sitio sobre las limitaciones de sus contenidos, productos o servicios. En esencia, es una forma de protegernos legalmente y, al mismo tiempo, ser transparentes con nuestro público.</p>
+      <p>Aunque nos esforzamos por asegurar que la información de este sitio sea correcta, no garantizamos que sea completa o exacta; tampoco nos comprometemos a asegurar que el sitio web siga estando disponible o que el material del sitio web se mantenga actualizado.</p>
+      <p>La información proporcionada por DORILA en este sitio tiene únicamente fines informativos generales. Toda la información contenida en dicho sitio se facilita de buena fe.</p>
+      <p>Si tiene alguna pregunta sobre este Descargo de responsabilidad, póngase en contacto con nosotros.</p>
+      <p>El sitio puede contener enlaces a sitios web afiliados. Si hace clic en uno de estos enlaces y realiza una compra, es posible que recibamos una comisión sin coste adicional para usted.</p>
+      <p>DORILA se reserva el derecho a cambiar o modificar este Descargo de responsabilidad en cualquier momento para mejorar el servicio y usted acepta quedar vinculado por dichas modificaciones o revisiones.</p>
+    </div>
+  </div>
+</div>
+
 <script src="../js/productos.js"></script>
 <script src="../js/cart.js"></script>
-<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+<script>
+(function(){
+  "use strict";
+
+  var revealTargets = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window){
+    var revealObserver = new IntersectionObserver(function(entries, obs){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add("is-visible");
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealTargets.forEach(function(el){ revealObserver.observe(el); });
+  } else {
+    revealTargets.forEach(function(el){ el.classList.add("is-visible"); });
+  }
+
+  var header = document.getElementById("siteHeader");
+  var toTop = document.getElementById("toTop");
+  var onScroll = function(){
+    var progress = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+    if (header) header.classList.toggle("is-scrolled", window.scrollY > 8);
+    if (header) header.classList.toggle("is-hidden", progress >= 0.2);
+    if (toTop) toTop.classList.toggle("is-visible", progress >= 0.25);
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+  if (toTop){
+    toTop.addEventListener("click", function(){
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  var menuToggle = document.getElementById("menuToggle");
+  var navMobile = document.getElementById("navMobile");
+  var scrim = document.getElementById("scrim");
+
+  if (menuToggle && navMobile && scrim){
+    function closeMenu(){
+      navMobile.classList.remove("is-open");
+      scrim.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Abrir menú");
+      document.body.style.overflow = "";
+    }
+    function openMenu(){
+      navMobile.classList.add("is-open");
+      scrim.classList.add("is-open");
+      menuToggle.setAttribute("aria-expanded", "true");
+      menuToggle.setAttribute("aria-label", "Cerrar menú");
+      document.body.style.overflow = "hidden";
+    }
+    menuToggle.addEventListener("click", function(){
+      var isOpen = navMobile.classList.contains("is-open");
+      isOpen ? closeMenu() : openMenu();
+    });
+    var navClose = document.getElementById("navClose");
+    if (navClose) navClose.addEventListener("click", closeMenu);
+    scrim.addEventListener("click", closeMenu);
+    navMobile.querySelectorAll("a").forEach(function(a){
+      a.addEventListener("click", closeMenu);
+    });
+    document.addEventListener("keydown", function(e){
+      if (e.key === "Escape") closeMenu();
+    });
+  }
+
+  var mobileToggle = document.getElementById("mobileCatsToggle");
+  if (mobileToggle){
+    mobileToggle.addEventListener("click", function(){
+      var parent = mobileToggle.closest(".nav-acc-parent");
+      var isOpen = parent.classList.toggle("is-open");
+      mobileToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+  }
+
+  var mobileExplorarToggle = document.getElementById("mobileExplorarToggle");
+  if (mobileExplorarToggle){
+    mobileExplorarToggle.addEventListener("click", function(){
+      var parent = mobileExplorarToggle.closest(".nav-acc-parent");
+      var isOpen = parent.classList.toggle("is-open");
+      mobileExplorarToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+  }
+
+  document.querySelectorAll(".nav-desktop li.has-menu").forEach(function(li){
+    var link = li.querySelector(":scope > a");
+    li.addEventListener("mouseenter", function(){ li.classList.add("is-open"); if (link) link.setAttribute("aria-expanded", "true"); });
+    li.addEventListener("mouseleave", function(){ li.classList.remove("is-open"); if (link) link.setAttribute("aria-expanded", "false"); });
+    li.addEventListener("focusin", function(){ li.classList.add("is-open"); if (link) link.setAttribute("aria-expanded", "true"); });
+    li.addEventListener("focusout", function(){ li.classList.remove("is-open"); if (link) link.setAttribute("aria-expanded", "false"); });
+  });
+
+  var searchOpen = document.getElementById("searchOpen");
+  var searchOverlay = document.getElementById("searchOverlay");
+  var searchOverlayClose = document.getElementById("searchOverlayClose");
+  var searchOverlayInput = document.getElementById("searchOverlayInput");
+  var searchOverlayClear = document.getElementById("searchOverlayClear");
+  function openSearchOverlay(){
+    if (!searchOverlay || !searchOverlayInput) return;
+    searchOverlayInput.value = sessionStorage.getItem("dorila-search") || "";
+    if (searchOverlayClear) searchOverlayClear.classList.toggle("is-visible", searchOverlayInput.value.length > 0);
+    searchOverlay.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+    setTimeout(function(){ searchOverlayInput.focus(); }, 100);
+  }
+  function closeSearchOverlay(){
+    if (!searchOverlay) return;
+    searchOverlay.classList.remove("is-open");
+    document.body.style.overflow = "";
+  }
+  if (searchOpen){ searchOpen.addEventListener("click", openSearchOverlay); }
+  if (searchOverlayInput){
+    searchOverlayInput.addEventListener("keydown", function(e){
+      if (e.key === "Enter"){
+        e.preventDefault();
+        sessionStorage.setItem("dorila-search", searchOverlayInput.value);
+        window.location.href = "../index.html#productos";
+      }
+    });
+  }
+  if (searchOverlayClose){ searchOverlayClose.addEventListener("click", closeSearchOverlay); }
+  if (searchOverlay){
+    searchOverlay.addEventListener("keydown", function(e){
+      if (e.key === "Escape") closeSearchOverlay();
+    });
+  }
+  if (searchOverlayInput && searchOverlayClear){
+    searchOverlayInput.addEventListener("input", function(){
+      searchOverlayClear.classList.toggle("is-visible", searchOverlayInput.value.length > 0);
+      sessionStorage.setItem("dorila-search", searchOverlayInput.value);
+    });
+    searchOverlayClear.addEventListener("click", function(){
+      searchOverlayInput.value = "";
+      searchOverlayClear.classList.remove("is-visible");
+      sessionStorage.removeItem("dorila-search");
+      searchOverlayInput.focus();
+    });
+  }
+
+  var infoForm = document.getElementById("infoForm");
+  if (infoForm){
+    infoForm.addEventListener("submit", function(e){
+      e.preventDefault();
+      if (!infoForm.checkValidity()){
+        infoForm.reportValidity();
+        return;
+      }
+      var name = document.getElementById("infoName").value.trim();
+      var email = document.getElementById("infoEmail").value.trim();
+      var phone = document.getElementById("infoPhone").value.trim();
+      var topic = document.getElementById("infoTopic").value;
+      var msg = document.getElementById("infoMsg").value.trim();
+
+      var text = "Hola DORILA, quiero solicitar información.\n" +
+        "Nombre: " + name + "\n" +
+        "Teléfono: " + phone + "\n";
+      if (email) text += "Correo: " + email + "\n";
+      text += "Tema: " + topic + "\n" +
+        "Mensaje: " + msg;
+
+      var wa = document.getElementById("infoSuccess");
+      if (wa) wa.classList.add("is-visible");
+      window.open("https://wa.me/59894872605?text=" + encodeURIComponent(text), "_blank", "noopener");
+      infoForm.reset();
+    });
+  }
+
+  var legalModals = ["privacyModal", "disclaimerModal"];
+  function openLegalModal(id){
+    var m = document.getElementById(id);
+    if (!m) return;
+    m.classList.add("is-open");
+    m.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    var close = m.querySelector(".modal-close");
+    if (close) close.focus();
+  }
+  function closeLegalModal(m){
+    if (!m) return;
+    m.classList.remove("is-open");
+    m.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    var trigger = document.querySelector('[data-open-modal="' + m.id + '"]');
+    if (trigger) trigger.focus();
+  }
+  document.querySelectorAll("[data-open-modal]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      openLegalModal(btn.getAttribute("data-open-modal"));
+    });
+  });
+  legalModals.forEach(function(id){
+    var m = document.getElementById(id);
+    if (!m) return;
+    var closeBtn = m.querySelector(".modal-close");
+    if (closeBtn) closeBtn.addEventListener("click", function(){ closeLegalModal(m); });
+    m.querySelectorAll("[data-close-modal]").forEach(function(el){
+      el.addEventListener("click", function(){ closeLegalModal(m); });
+    });
+  });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape"){
+      var openM = document.querySelector(".modal.is-open");
+      if (openM && legalModals.indexOf(openM.id) !== -1) closeLegalModal(openM);
+    }
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+})();
+</script>
 <script>
 (function(){
   "use strict";
