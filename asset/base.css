@@ -119,6 +119,12 @@ body{
 }
 .skip-link:focus{ left: var(--space-2); top: var(--space-2); }
 
+/* Migas de pan (breadcrumb) */
+.crumbs{ padding-block: var(--space-3) 0; font-size: var(--fs-small); color: var(--color-body-soft); display:flex; flex-wrap:wrap; gap:0.45rem; }
+.crumbs a{ color: var(--color-terracotta); font-weight:600; }
+.crumbs a:hover{ text-decoration:underline; }
+.crumbs [aria-current="page"]{ color: var(--color-ink); font-weight:700; }
+
 :focus-visible{
   outline: 3px solid var(--color-terracotta);
   outline-offset: 3px;
@@ -636,13 +642,16 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   display:flex; flex-direction:column; gap: var(--space-3);
   padding-top: var(--space-3);
 }
-.footer-brand{ display:flex; align-items:center; gap:0.6rem; }
-.footer-brand svg{ width:26px; height:26px; color: var(--color-logo-tan); }
-.footer-brand img{ width:30px; height:30px; object-fit:cover; border-radius:50%; border:2px solid var(--color-logo-tan); }
-.footer-brand span{ font-family: var(--font-body); font-size: clamp(1.1rem, 0.4vw + 1rem, 1.2rem); color: var(--color-logo-parchment); }
-.footer-links{ display:flex; flex-wrap:wrap; gap: var(--space-3); }
-.footer-links a{ font-size: var(--fs-small); color: rgba(244,235,221,0.85); }
-.footer-links a:hover{ color: var(--color-crema); }
+.footer-inner-slim{ flex-direction:row; flex-wrap:wrap; align-items:center; justify-content:space-between; }
+.footer-contact{
+  display:inline-flex; align-items:center; gap:0.5em;
+  font-weight:700; color: rgba(244,235,221,0.9);
+  border:1.5px solid rgba(244,235,221,0.35);
+  padding:0.65em 1.2em; border-radius:999px;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+.footer-contact svg{ width:16px; height:16px; }
+.footer-contact:hover{ border-color: var(--color-salvia); color: var(--color-crema); }
 .footer-social{ display:flex; gap: 0.7rem; }
 .footer-social a{
   width:36px; height:36px; border-radius:50%;
