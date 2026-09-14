@@ -139,6 +139,24 @@
 .story-text p{ color:var(--color-black); max-width:var(--max-text); }
 .story-text p + p{ margin-top:var(--space-2); }
 .story-signature{ margin-top:var(--space-3); font-family:var(--font-display); font-size:var(--fs-mid); color:var(--color-black); }
+.story-cta{ margin-top:var(--space-3); }
+.story-cta .btn{ display:inline-flex; }
+
+/* ===========================================================
+   TESTIMONIOS (home)
+   =========================================================== */
+.home-testimonials{ padding-block:var(--space-5); }
+.home-testimonial-grid{ display:grid; gap:var(--space-3); grid-template-columns:1fr; }
+.home-testimonial-card{ display:flex; flex-direction:column; gap:var(--space-2); padding:clamp(1.5rem,7vw,2rem); border:var(--border-frame); border-radius:22px; background:var(--color-parchment-soft); box-shadow:var(--shadow-card); }
+.home-testimonial-card .carousel-stars{ display:inline-flex; gap:2px; }
+.home-testimonial-card .carousel-stars svg{ width:18px; height:18px; fill:var(--color-gold); color:var(--color-gold); }
+.home-testimonial-card blockquote{ margin:0; font-family:var(--font-display); font-size:clamp(1.1rem,0.5vw + 1rem,1.25rem); line-height:1.45; color:var(--color-ink); }
+.home-testimonial-author{ margin-top:auto; display:flex; align-items:center; gap:0.7rem; padding-top:var(--space-2); border-top:1px solid var(--color-line); }
+.home-testimonial-avatar{ display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; background:var(--color-forest); color:var(--color-parchment-soft); font-family:var(--font-display); font-weight:700; flex-shrink:0; }
+.home-testimonial-name{ font-weight:700; font-size:var(--fs-mid); color:var(--color-ink); }
+.home-testimonial-meta{ font-size:var(--fs-tiny); color:var(--color-body-soft); }
+.home-testimonials-more{ margin-top:var(--space-3); text-align:center; }
+.home-testimonials-more .btn{ display:inline-flex; }
 
 /* ===========================================================
    PRODUCTOS
@@ -235,6 +253,8 @@
    =========================================================== */
 .contact{ padding-block:var(--space-5); background:var(--color-parchment-deep); }
 .contact-grid{ display:grid; gap:var(--space-4); }
+.contact-stack{ display:grid; gap:var(--space-4); }
+.contact-stack .contact-card{ max-width:640px; margin-inline:auto; width:100%; }
 .contact-card{ border:var(--border-frame); border-radius:24px; background:var(--color-parchment-soft); padding:clamp(1.5rem,7vw,2.5rem) clamp(1.1rem,6vw,1.5rem); min-width:0; }
 .contact-card h2{ font-family:var(--font-display); font-size:var(--fs-h2); color:var(--color-ink); overflow-wrap:break-word; }
 .contact-card p{ margin-top:var(--space-2); color:var(--color-body-soft); max-width:40ch; }
@@ -355,6 +375,7 @@
   .category-card p{ font-size:var(--fs-small); }
   .category-links{ width:36px; height:36px; margin-top:var(--space-1); }
   .benefit-grid{ grid-template-columns:repeat(2,1fr); }
+  .home-testimonial-grid{ grid-template-columns:repeat(3,1fr); }
   .product-grid{ grid-template-columns:repeat(3,1fr); }
   .product-media{ max-height:180px; }
   .product-body{ padding:var(--space-2); }
@@ -370,7 +391,7 @@
 @media (min-width:860px){
   .story-grid{ grid-template-columns:1fr 1fr; }
   .story-grid.reverse .story-media{ order:2; }
-  .contact-grid{ grid-template-columns:1.1fr 0.9fr; }
+  .contact-stack{ grid-template-columns:1fr; }
   .product-grid{ grid-template-columns:repeat(4,1fr); gap:var(--space-3); }
 }
 @media (min-width:1000px){

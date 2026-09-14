@@ -136,7 +136,7 @@ products.forEach(function(p){
   console.log("OK  productos/" + slug + ".html   <- " + p.name);
 });
 
-var mainPages = ["", "testimonios.html", "saber.html", "recetas.html", "gracias.html"];
+var mainPages = ["", "historia.html", "testimonios.html", "saber.html", "recetas.html", "gracias.html"];
 var sitemap = ['<?xml version="1.0" encoding="UTF-8"?>'];
 sitemap.push('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 mainPages.forEach(function(m){ sitemap.push("  <url><loc>" + BASE + "/" + m + "</loc></url>"); });

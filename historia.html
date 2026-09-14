@@ -3,114 +3,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aceite de coco virgen — Aceites | DORILA Uruguay</title>
-<meta name="description" content="Prensado en frío, multiusos para piel y cabello. Envíos a todo el país desde Uruguay.">
+<title>Nuestra historia — DORILA, plantas medicinales y herbolaria en Uruguay</title>
+<meta name="description" content="La historia de DORILA: cómo nació una herbolaria artesanal uruguaya, por qué trabajamos con plantas medicinales y qué nos guía para acercarte su esencia.">
 <meta name="author" content="DORILA">
-<meta name="robots" content="index, follow">
 <meta name="theme-color" content="#33230F">
-<meta name="geo.region" content="UY">
-<meta name="geo.placename" content="Uruguay">
-<link rel="canonical" href="https://dorila.netlify.app/productos/aceite-de-coco-virgen.html">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/png" sizes="512x512" href="img/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
 
-<meta property="og:type" content="product">
+<meta property="og:type" content="website">
 <meta property="og:site_name" content="DORILA">
-<meta property="og:title" content="Aceite de coco virgen — Aceites | DORILA Uruguay">
-<meta property="og:description" content="Prensado en frío, multiusos para piel y cabello. Envíos a todo el país desde Uruguay.">
-<meta property="og:image" content="https://dorila.netlify.app/img/aceite_coco.webp">
-<meta property="og:url" content="https://dorila.netlify.app/productos/aceite-de-coco-virgen.html">
-<meta property="og:locale" content="es_UY">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Aceite de coco virgen — Aceites | DORILA Uruguay">
-<meta name="twitter:description" content="Prensado en frío, multiusos para piel y cabello. Envíos a todo el país desde Uruguay.">
-<meta name="twitter:image" content="https://dorila.netlify.app/img/aceite_coco.webp">
-
-<link rel="icon" type="image/png" sizes="512x512" href="../img/favicon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
+<meta property="og:title" content="Nuestra historia — DORILA">
+<meta property="og:description" content="Hay historias que nacen mucho antes de tener un nombre. Así comenzó DORILA.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Rye&display=swap" rel="stylesheet">
 
-<script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "Aceite de coco virgen",
-  "image": "https://dorila.netlify.app/img/aceite_coco.webp",
-  "description": "Prensado en frío, multiusos para piel y cabello. Envíos a todo el país desde Uruguay.",
-  "sku": "cons-018",
-  "brand": {
-    "@type": "Brand",
-    "name": "DORILA"
-  },
-  "category": "aceites",
-  "offers": {
-    "@type": "Offer",
-    "url": "https://dorila.netlify.app/productos/aceite-de-coco-virgen.html",
-    "priceCurrency": "UYU",
-    "price": "420",
-    "availability": "https://schema.org/InStock",
-    "seller": {
-      "@type": "Organization",
-      "name": "DORILA"
-    }
-  }
-}</script>
-<script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Inicio",
-      "item": "https://dorila.netlify.app/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Productos",
-      "item": "https://dorila.netlify.app/#productos"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Aceite de coco virgen",
-      "item": "https://dorila.netlify.app/productos/aceite-de-coco-virgen.html"
-    }
-  ]
-}</script>
+<link rel="stylesheet" href="asset/base.css">
+<style>
+/* Botones primarios con la terracota de esta página */
+.btn-primary{ background: var(--color-terracotta); box-shadow: 0 8px 18px -8px rgba(122,52,25,0.65); }
+.btn-primary:hover{ background: var(--color-terracotta-deep); }
 
-<link rel="stylesheet" href="../asset/base.css">
-<link rel="stylesheet" href="../asset/ficha.css">
+/* ===========================================================
+   HERO
+   =========================================================== */
+.page-hero{ position:relative; padding-block: clamp(4rem, 10vw, 7rem) var(--space-5); text-align:center; background-image:url('img/montes_bg.webp'); background-size:cover; background-position:center; overflow:hidden; }
+.page-hero::before{ content:""; position:absolute; inset:0; z-index:0; background: linear-gradient(100deg, rgba(28,19,10,0.72) 0%, rgba(28,19,10,0.5) 55%, rgba(28,19,10,0.35) 100%); }
+.page-hero > *{ position:relative; z-index:1; }
+.page-hero h1{ font-family: var(--font-display); font-size: var(--fs-h1); line-height: var(--lh-display); color: var(--color-parchment-soft); text-wrap:balance; text-shadow: 1px 1px 0 rgba(0,0,0,0.35); }
+.page-hero h1 span{ color: var(--color-gold); }
+.page-hero .eyebrow-mark{ color: var(--color-gold); }
+.page-hero .hero-lead{ margin-top: var(--space-2); color: rgba(250,243,227,0.92); font-size: var(--fs-lead); max-width: 56ch; margin-inline:auto; }
+
+/* ===========================================================
+   HISTORIA
+   =========================================================== */
+.story-page{ padding-block: var(--space-5); background: var(--color-parchment); }
+.story-article{ max-width: 720px; margin-inline:auto; }
+.story-article p{ color: var(--color-black); font-size: var(--fs-body); line-height: 1.7; }
+.story-article p + p{ margin-top: var(--space-3); }
+.story-signature{ margin-top: var(--space-4); font-family: var(--font-display); font-size: var(--fs-mid); color: var(--color-black); }
+.story-signature em{ display:block; margin-top:0.6rem; font-family: var(--font-body); font-size: var(--fs-small); color: var(--color-body-soft); }
+
+/* CTA */
+.cta-fold{ padding-block: var(--space-4) var(--space-5); text-align:center; }
+.cta-fold h2{ font-family: var(--font-display); font-size: var(--fs-h2); color: var(--color-ink); text-wrap:balance; }
+.cta-fold p{ margin-top: var(--space-2); color: var(--color-body-soft); max-width: 46ch; margin-inline:auto; }
+.cta-fold .cta-actions{ margin-top: var(--space-3); display:flex; gap: var(--space-2); justify-content:center; flex-wrap:wrap; }
+</style>
 </head>
 <body>
 
 <a class="skip-link" href="#main">Saltar al contenido</a>
 
-
 <!-- ===================== HEADER ===================== -->
 <header class="site-header" id="siteHeader">
   <div class="wrap header-inner">
     <a class="brand" href="/" aria-label="DORILA, inicio">
-      <img class="brand-logo" src="../img/logo_dorila.webp" alt="Logotipo de DORILA" width="256" height="256" fetchpriority="high">
+      <img class="brand-logo" src="img/logo_dorila.webp" alt="Logotipo de DORILA" width="256" height="256" fetchpriority="high">
       <span class="brand-name">DORILA</span>
     </a>
 
     <nav class="nav-desktop" aria-label="Navegación principal">
       <ul>
-        <li><a href="../index.html#productos" class="is-current">Productos</a></li>
-        <li><a href="../recetas.html">Recetas</a></li>
+        <li><a href="index.html#productos">Productos</a></li>
+        <li><a href="recetas.html">Recetas</a></li>
         <li class="has-menu">
           <a href="#" aria-haspopup="true" aria-expanded="false">
             Sobre nosotros
             <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
           </a>
           <ul class="dropdown">
-            <li><a href="../historia.html">Nuestra historia</a></li>
-            <li><a href="../saber.html">Cosas que deberías saber</a></li>
-            <li><a href="../testimonios.html">Testimonios</a></li>
-            <li><a href="../gracias.html">Agradecimientos</a></li>
+            <li><a href="historia.html" class="is-current">Nuestra historia</a></li>
+            <li><a href="saber.html">Cosas que deberías saber</a></li>
+            <li><a href="testimonios.html">Testimonios</a></li>
+            <li><a href="gracias.html">Agradecimientos</a></li>
           </ul>
         </li>
       </ul>
@@ -124,8 +93,8 @@
         <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
         Envío gratis desde $1.000
       </span>
-      <a class="cart-btn" href="../index.html#productos" aria-label="Ver carrito de compras">
-        <img class="cart-icon-img" src="../img/cart22.webp" alt="Carrito de compras" width="1234" height="1234">
+      <a class="cart-btn" href="index.html#productos" aria-label="Ver carrito de compras">
+        <img class="cart-icon-img" src="img/cart22.webp" alt="Carrito de compras" width="1234" height="1234">
         <span class="cart-count" aria-hidden="true">0</span>
       </a>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMobile">
@@ -158,8 +127,8 @@
     <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
   <ul>
-    <li><a href="../index.html#productos" class="is-current">Productos</a></li>
-    <li><a href="../recetas.html">Recetas</a></li>
+    <li><a href="index.html#productos">Productos</a></li>
+    <li><a href="recetas.html">Recetas</a></li>
     <li class="nav-acc-parent">
       <button class="nav-acc" type="button" id="mobileSobreToggle" aria-expanded="false" aria-controls="mobileSobreList">
         Sobre nosotros
@@ -167,10 +136,10 @@
       </button>
       <div class="nav-sublist" id="mobileSobreList">
         <div class="nav-sublist-inner">
-          <a href="../historia.html">Nuestra historia</a>
-          <a href="../saber.html">Cosas que deberías saber</a>
-          <a href="../testimonios.html">Testimonios</a>
-          <a href="../gracias.html">Agradecimientos</a>
+          <a href="historia.html" class="is-current">Nuestra historia</a>
+          <a href="saber.html">Cosas que deberías saber</a>
+          <a href="testimonios.html">Testimonios</a>
+          <a href="gracias.html">Agradecimientos</a>
         </div>
       </div>
     </li>
@@ -183,55 +152,52 @@
     <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
     Instagram
   </a>
-</nav>
+</nav><main id="main">
 
-<main id="main">
-  <div class="wrap">
-    <nav class="crumbs" aria-label="Migas de pan">
-      <a href="https://dorila.netlify.app/">Inicio</a>
-      <span aria-hidden="true">/</span>
-      <a href="https://dorila.netlify.app/#productos">Productos</a>
-      <span aria-hidden="true">/</span>
-      <span>Aceite de coco virgen</span>
-    </nav>
+  <!-- ===================== HERO ===================== -->
+  <section class="page-hero wrap">
+    <span class="eyebrow-mark">
+      Nuestra historia
+    </span>
+    <h1>Hay historias que nacen mucho <span>antes de tener un nombre</span></h1>
+    <p class="hero-lead">Así comenzó DORILA: una historia de vueltas, ciclos y plantas que siempre encuentran el camino de regreso.</p>
+  </section>
 
-    <article class="ficha" aria-labelledby="ficha-title">
-      <div class="ficha-media">
-        <div class="ficha-gallery">
-          <img class="ficha-main" src="../img/aceite_coco.webp" alt="Aceite de coco virgen, producto de herboristería artesanal de DORILA" fetchpriority="high">
-          <div class="ficha-thumbs"><button type="button" class="ficha-thumb is-active" data-img="../img/aceite_coco.webp" aria-label="Imagen principal de Aceite de coco virgen"><img src="../img/aceite_coco-thumb.webp" alt="" loading="lazy"></button><button type="button" class="ficha-thumb" data-img="../img/huyenxu94-coconut-oil-4497386_1920.webp" aria-label="Segunda imagen de Aceite de coco virgen"><img src="../img/huyenxu94-coconut-oil-4497386_1920-thumb.webp" alt="" loading="lazy"></button></div>
-        </div>
-      </div>
-      <div class="ficha-info">
-        <span class="ficha-cat">aceites</span>
-        <h1 id="ficha-title">Aceite de coco virgen</h1>
-        <p class="ficha-scientific"><strong>Nombre científico:</strong> Cocos nucifera</p>
-        <p class="ficha-desc">Prensado en frío, multiusos para piel y cabello.</p>
-        <div class="ficha-props">
-          <h2>Beneficios y propiedades</h2>
-          <ul>
-            <li>Hidratante profundo para piel seca.</li>
-<li>Acondiciona el cabello y doma el frizz.</li>
-<li>Base ideal para masajes corporales.</li>
-          </ul>
-        </div>
-        <p class="ficha-price">$420</p>
-        <div class="ficha-ctas">
-          <a class="btn btn-primary" href="https://wa.me/59894872605?text=Hola%20DORILA%2C%20quiero%20pedir%20Aceite%20de%20coco%20virgen%20(cons-018)" target="_blank" rel="noopener">Pedir por WhatsApp</a>
-          <a class="btn btn-ghost" href="https://dorila.netlify.app/#productos">Ver todos los productos</a>
-        </div>
-        <p class="ficha-note">La información de esta ficha es orientativa y no reemplaza la consulta médica. Consultá siempre con un profesional de la salud.</p>
-        <p class="ficha-by">Elaborado por <a href="https://dorila.netlify.app/">DORILA &mdash; Herbolaria artesanal en Uruguay</a>.</p>
-      </div>
+  <!-- ===================== HISTORIA COMPLETA ===================== -->
+  <section class="story-page wrap">
+    <article class="story-article">
+      <p>A veces, lo que comienza casi sin darnos cuenta encuentra con los años su verdadero significado.</p>
+
+      <p>Y entonces, de repente, algo nos hace comprender que ciertas cosas siempre estuvieron destinadas a encontrar su lugar, incluso cuando todo parece haber cambiado.</p>
+
+      <p>Y quizás por eso, una noche, bajo el mismo cielo que había sido testigo de tantas cosas,
+         algo volvió a unir aquello que el tiempo había separado. <br>
+         No hubo grandes explicaciones. Solo una mirada. Un instante. Y unas palabras que parecían haber estado esperando durante años:
+         "Acá estoy, de vuelta."</p>
+
+      <p>Así comenzó DORILA, y desde entonces lleva consigo algo de aquella noche. <br>
+        Una planta puede volver a crecer. Un aroma puede traer un recuerdo. Una emoción puede despertar un sueño.
+        Y una historia puede comenzar otra vez. <br>Porque no existe el olvido cuando algo realmente dejó huella.</p>
+
+      <p>Por eso comenzamos a trabajar con plantas. A secarlas. A macerarlas.
+        A preparar aceites, cremas y tinturas. <br>
+        Quizás porque las plantas también saben de ciclos. Saben esperar. Saben transformarse.
+        Y, a su manera, por más tiempo que pase, siempre pueden encontrar el camino de regreso.</p>
+
+      <p>DORILA nació de lo que permanece. De lo que el tiempo transforma sin borrar.
+        De la capacidad de la naturaleza para transformarse y encontrar siempre nuevas formas de existir.</p>
+
+      <p class="story-signature">— 🌻<br><em>Donde la tierra guarda recuerdos y las historias vuelven a florecer.</em></p>
     </article>
-  </div>
+  </section>
 
-  <section class="related wrap" aria-label="Productos relacionados">
-    <h2>También te puede interesar</h2>
-    <div class="related-grid">
-      <a class="related-card" href="aceite-para-masajes.html"><img src="../img/aceite1.webp" alt="Aceite para masajes, producto de herboristería artesanal de DORILA" loading="lazy"><span class="related-name">Aceite para masajes</span><span class="related-price">$380</span></a>
-<a class="related-card" href="aceite-de-oliva-macerado.html"><img src="../img/pau_noia0-olive-850336_1920.webp" alt="Aceite de oliva macerado, producto de herboristería artesanal de DORILA" loading="lazy"><span class="related-name">Aceite de oliva macerado</span><span class="related-price">$350</span></a>
-<a class="related-card" href="aceite-corporal-nutriz.html"><img src="../img/silviarita-oil-4262839_1920.webp" alt="Aceite corporal nutriz, producto de herboristería artesanal de DORILA" loading="lazy"><span class="related-name">Aceite corporal nutriz</span><span class="related-price">$400</span></a>
+  <!-- ===================== CTA ===================== -->
+  <section class="cta-fold wrap">
+    <h2>¿Querés descubrir nuestras hierbas?</h2>
+    <p>Explorá el catálogo y encontrá la planta que acompaña tu bienestar, o escribinos y te asesoramos.</p>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="index.html#productos">Ver el catálogo</a>
+      <a class="btn btn-outline" href="https://wa.me/59894872605" target="_blank" rel="noopener">Escribir por WhatsApp</a>
     </div>
   </section>
 </main>
@@ -240,15 +206,15 @@
 <footer class="site-footer">
   <div class="wrap footer-inner">
     <div class="footer-brand">
-      <img class="footer-logo" src="../img/logo_dorila.webp" alt="Logotipo de DORILA" width="256" height="256" loading="lazy">
+      <img class="footer-logo" src="img/logo_dorila.webp" alt="Logotipo de DORILA" width="256" height="256" loading="lazy">
       <span>DORILA</span>
     </div>
     <nav class="footer-links" aria-label="Enlaces del pie de página">
       <a href="/">Inicio</a>
-      <a href="../index.html#productos">Productos</a>
-      <a href="../recetas.html">Recetas y remedios</a>
-      <a href="../saber.html">Cosas que deberías saber</a>
-      <a href="../index.html#contacto">Contacto</a>
+      <a href="index.html#productos">Productos</a>
+      <a href="recetas.html">Recetas y remedios</a>
+      <a href="saber.html">Cosas que deberías saber</a>
+      <a href="index.html#contacto">Contacto</a>
     </nav>
     <div class="footer-social">
       <a href="https://instagram.com/dorilanatural" target="_blank" rel="noopener" aria-label="Instagram"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
@@ -269,13 +235,7 @@
   </div>
 </footer>
 
-<a class="wa-float" href="https://wa.me/59894872605" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
-  <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-2-1.23-.73-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.14.17-.24.25-.41.08-.16.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.39 1.01 2.56.13.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.29Z"/></svg>
-</a>
-
-<button class="to-top" type="button" id="toTop" aria-label="Volver arriba">
-  <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-</button>
+<script src="js/shell.js"></script>
 
 <!-- ===================== MODAL PRIVACIDAD ===================== -->
 <div class="modal modal-legal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" aria-hidden="true">
@@ -314,13 +274,7 @@
     </div>
   </div>
 </div>
-
-<script src="../js/productos.js"></script>
-<script src="../js/cart.js"></script>
-<script>
-window.DORILA_SEARCH_TARGET = "../index.html#productos";
-</script>
-<script src="../js/shell.js"></script>
-<script src="../js/ficha.js"></script>
+<script src="js/productos.js"></script>
+<script src="js/cart.js"></script>
 </body>
 </html>
