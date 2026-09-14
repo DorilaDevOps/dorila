@@ -213,7 +213,7 @@ img.img-toned,
 }
 .btn:active{ transform: translateY(1px); }
 .btn-primary{
-  background: var(--color-salvia);
+  background: var(--color-terracotta);
   color: var(--color-parchment-soft);
   box-shadow: 0 8px 18px -8px rgba(122, 52, 25, 0.65);
 }
@@ -321,6 +321,8 @@ img.img-toned,
 .nav-desktop .dropdown-indicator svg{ width:14px; height:14px; }
 
 .header-actions{ display:flex; align-items:center; gap: var(--space-1); flex-shrink:0; }
+.ship-note{ display:none; align-items:center; gap:0.4em; font-size:var(--fs-tiny); font-weight:700; color:var(--color-forest-deep); background:var(--color-parchment-soft); border:1px solid rgba(51,35,15,0.18); border-radius:999px; padding:0.5em 0.9em; white-space:nowrap; }
+.ship-note svg{ width:15px; height:15px; flex-shrink:0; color:var(--color-terracotta); }
 
 .search-btn{
   display:inline-flex; align-items:center; justify-content:center;
@@ -620,6 +622,12 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
 }
 .modal-legal .modal-body strong{ color: var(--color-ink); }
 
+/* --- Modal de solicitar información (formulario → WhatsApp) --- */
+.modal-contact .modal-dialog{ max-width: 720px; }
+.modal-contact .modal-body{ padding-top: var(--space-3); }
+.modal-contact .modal-body h3{ font-family: var(--font-display); font-size: var(--fs-h3); color: var(--color-ink); margin-bottom: var(--space-2); }
+.modal-contact .modal-body > p{ margin-top: var(--space-2); color: var(--color-body-soft); max-width: 46ch; font-size: var(--fs-small); }
+
 /* ===========================================================
    FOOTER — verde bosque de fondo, crema de letra, salvia en detalles
    =========================================================== */
@@ -683,6 +691,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   .wrap{ padding-inline: var(--space-3); }
   .brand-logo{ width:40px; height:40px; }
   .header-actions{ gap: var(--space-2); }
+  .ship-note{ display:inline-flex; }
   .cart-btn, .menu-toggle{ width: 42px; height: 42px; }
   .cart-btn .cart-icon-img{ width: 26px; height: 26px; }
   .cart-btn svg, .menu-toggle svg{ width: 24px; height: 24px; }
