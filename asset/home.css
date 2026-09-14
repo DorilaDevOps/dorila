@@ -146,15 +146,6 @@
    TESTIMONIOS (home)
    =========================================================== */
 .home-testimonials{ padding-block:var(--space-5); }
-.home-testimonial-grid{ display:grid; gap:var(--space-3); grid-template-columns:1fr; }
-.home-testimonial-card{ display:flex; flex-direction:column; gap:var(--space-2); padding:clamp(1.5rem,7vw,2rem); border:var(--border-frame); border-radius:22px; background:var(--color-parchment-soft); box-shadow:var(--shadow-card); }
-.home-testimonial-card .carousel-stars{ display:inline-flex; gap:2px; }
-.home-testimonial-card .carousel-stars svg{ width:18px; height:18px; fill:var(--color-gold); color:var(--color-gold); }
-.home-testimonial-card blockquote{ margin:0; font-family:var(--font-display); font-size:clamp(1.1rem,0.5vw + 1rem,1.25rem); line-height:1.45; color:var(--color-ink); }
-.home-testimonial-author{ margin-top:auto; display:flex; align-items:center; gap:0.7rem; padding-top:var(--space-2); border-top:1px solid var(--color-line); }
-.home-testimonial-avatar{ display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; background:var(--color-forest); color:var(--color-parchment-soft); font-family:var(--font-display); font-weight:700; flex-shrink:0; }
-.home-testimonial-name{ font-weight:700; font-size:var(--fs-mid); color:var(--color-ink); }
-.home-testimonial-meta{ font-size:var(--fs-tiny); color:var(--color-body-soft); }
 .home-testimonials-more{ margin-top:var(--space-3); text-align:center; }
 .home-testimonials-more .btn{ display:inline-flex; }
 
@@ -228,25 +219,6 @@
 .benefit-item img{ width:34px; height:34px; object-fit:contain; flex-shrink:0; margin-top:2px; }
 .benefit-item h3{ font-family:var(--font-display); font-size:clamp(1.05rem,0.5vw + 0.95rem,1.15rem); color:var(--color-parchment-soft); margin-bottom:0.2rem; }
 .benefit-item p{ font-size:var(--fs-small); color:rgba(244,233,211,0.75); }
-
-/* ===========================================================
-   TESTIMONIOS (carrusel en homepage)
-   =========================================================== */
-.testimonials{ padding-block:var(--space-5); }
-.testimonial-carousel{ max-width:560px; margin-inline:auto; border:var(--border-frame); border-radius:20px; background:var(--color-parchment-soft); overflow:hidden; }
-.testimonial-carousel:focus-visible{ outline-offset:-4px; }
-.testimonial-track{ display:flex; touch-action:pan-y; transition:transform var(--transition-med); }
-.testimonial-slide{ flex:0 0 100%; margin:0; padding:var(--space-3) var(--space-3); text-align:center; }
-.testimonial-quote{ font-family:var(--font-display); font-size:clamp(0.95rem,2.4vw + 0.4rem,1.2rem); color:var(--color-ink); line-height:1.4; }
-.testimonial-slide footer{ margin-top:var(--space-2); }
-.testimonial-slide cite{ font-style:normal; color:var(--color-forest-deep); font-weight:700; font-size:var(--fs-small); }
-.testimonial-controls{ display:flex; align-items:center; justify-content:center; gap:var(--space-3); padding:0 var(--space-3) var(--space-3); }
-.testimonial-controls button{ width:38px; height:38px; border-radius:50%; border:2px solid var(--color-ink); background:transparent; color:var(--color-ink); display:inline-flex; align-items:center; justify-content:center; transition:background var(--transition-fast), color var(--transition-fast); flex-shrink:0; }
-.testimonial-controls button:hover{ background:var(--color-ink); color:var(--color-parchment-soft); }
-.testimonial-controls svg{ width:16px; height:16px; }
-.testimonial-dots{ display:flex; gap:8px; }
-.testimonial-dots button{ width:9px; height:9px; padding:0; border:none; border-radius:50%; background:var(--color-line); transition:background var(--transition-fast), transform var(--transition-fast); }
-.testimonial-dots button[aria-selected="true"]{ background:var(--color-terracotta); transform:scale(1.2); }
 
 /* ===========================================================
    CONTACTO
@@ -375,7 +347,6 @@
   .category-card p{ font-size:var(--fs-small); }
   .category-links{ width:36px; height:36px; margin-top:var(--space-1); }
   .benefit-grid{ grid-template-columns:repeat(2,1fr); }
-  .home-testimonial-grid{ grid-template-columns:repeat(3,1fr); }
   .product-grid{ grid-template-columns:repeat(3,1fr); }
   .product-media{ max-height:180px; }
   .product-body{ padding:var(--space-2); }

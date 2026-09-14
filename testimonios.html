@@ -21,6 +21,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Rye&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="asset/base.css">
+<link rel="stylesheet" href="asset/carousel.css">
 <style>
 /* Botones primarios con la terracota de esta página */
 .btn-primary{ background: var(--color-terracotta); box-shadow: 0 8px 18px -8px rgba(122,52,25,0.65); }
@@ -41,33 +42,8 @@
 .page-hero .hero-lead{ margin-top: var(--space-2); color: rgba(250,243,227,0.92); font-size: var(--fs-lead); max-width: 52ch; margin-inline:auto; }
 
 /* ===========================================================
-   CARRUSEL DESTACADO
+   HERO (testimonios)
    =========================================================== */
-.carousel{ position:relative; padding-block: var(--space-2) var(--space-4); }
-.carousel-viewport{ overflow:hidden; border: var(--border-frame); border-radius: var(--radius-card); background: var(--color-parchment-soft); }
-.carousel-track{ display:flex; transition: transform var(--transition-med); }
-.carousel-slide{ flex:0 0 100%; min-width:0; padding: clamp(1.4rem, 5vw, 2.6rem) clamp(1.2rem, 6vw, 3rem); display:flex; flex-direction:column; gap: var(--space-2); align-items:center; text-align:center; }
-.carousel-slide blockquote{ margin:0; }
-.carousel-stars{ display:flex; gap:0.2rem; color: var(--color-gold); }
-.carousel-stars svg{ width:20px; height:20px; fill: currentColor; }
-.carousel-quote{ font-family: var(--font-display); font-size: var(--fs-h3); color: var(--color-ink); line-height: var(--lh-display); text-wrap:balance; }
-.carousel-text{ font-size: var(--fs-body); color: var(--color-body); max-width: 52ch; }
-.carousel-author{ display:flex; align-items:center; gap:0.8rem; margin-top: var(--space-2); }
-.carousel-avatar{ width:48px; height:48px; border-radius:50%; background: var(--color-forest); color: var(--color-parchment-soft); display:flex; align-items:center; justify-content:center; font-family: var(--font-display); font-size:1.1rem; flex-shrink:0; }
-.carousel-author-name{ font-weight:700; color: var(--color-ink); }
-.carousel-author-meta{ font-size: var(--fs-tiny); color: var(--color-body-soft); }
-.carousel-nav{ display:flex; align-items:center; justify-content:center; gap: var(--space-2); margin-top: var(--space-3); }
-.carousel-btn{ width:44px; height:44px; border-radius:50%; border:2px solid var(--color-terracotta); background:var(--color-parchment-soft); color: var(--color-terracotta); display:inline-flex; align-items:center; justify-content:center; transition: background var(--transition-fast), color var(--transition-fast); }
-.carousel-btn:hover{ background: var(--color-terracotta); color: var(--color-parchment-soft); }
-.carousel-btn svg{ width:18px; height:18px; }
-.carousel-dots{ display:flex; gap:0.4rem; }
-.carousel-dot{ width:10px; height:10px; border-radius:50%; border:1px solid var(--color-terracotta); background:transparent; padding:0; transition: background var(--transition-fast); }
-.carousel-dot.is-active{ background: var(--color-terracotta); }
-
-/* Etiqueta de categoría dentro de un slide del carrusel */
-.carousel-slide .card-tag{ font-size: var(--fs-tiny); font-weight:700; text-transform:uppercase; letter-spacing:0.05em; color: var(--color-salvia); border:1px solid var(--color-line); padding:0.25rem 0.75rem; border-radius:999px; }
-
-/* CTA siguiente paso */
 .cta-fold{ padding-block: var(--space-4) var(--space-5); text-align:center; }
 .cta-fold h2{ font-family: var(--font-display); font-size: var(--fs-h2); color: var(--color-ink); text-wrap:balance; }
 .cta-fold p{ margin-top: var(--space-2); color: var(--color-body-soft); max-width: 46ch; margin-inline:auto; }
@@ -194,13 +170,13 @@
   </section>
 
   <!-- ===================== CARRUSEL DESTACADO ===================== -->
-  <section class="carousel wrap" aria-labelledby="gal-heading">
+  <section class="carousel wrap" data-carousel aria-labelledby="gal-heading">
     <div class="section-head" style="margin-top: var(--space-2);">
       <h2 id="gal-heading">Más voces de la comunidad</h2>
       <p>Infusiones, aceites, tinturas y remedios que ya eligieron en todo Uruguay.</p>
     </div>
     <div class="carousel-viewport">
-      <div class="carousel-track" id="carouselTrack">
+      <div class="carousel-track">
         <div class="carousel-slide">
           <div class="carousel-stars"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 6.8H21l-5.5 4.2 2 7L12 16 6.5 20l2-7L3 8.8h6.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.4 6.8H21l-5.5 4.2 2 7L12 16 6.5 20l2-7L3 8.8h6.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.4 6.8H21l-5.5 4.2 2 7L12 16 6.5 20l2-7L3 8.8h6.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.4 6.8H21l-5.5 4.2 2 7L12 16 6.5 20l2-7L3 8.8h6.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l2.4 6.8H21l-5.5 4.2 2 7L12 16 6.5 20l2-7L3 8.8h6.6z"/></svg></div>
           <blockquote class="carousel-quote">“Volver a las hierbas fue volver a casa.”</blockquote>
@@ -312,9 +288,9 @@
       </div>
     </div>
     <div class="carousel-nav">
-      <button class="carousel-btn" type="button" id="carouselPrev" aria-label="Testimonio anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
-      <div class="carousel-dots" id="carouselDots"></div>
-      <button class="carousel-btn" type="button" id="carouselNext" aria-label="Testimonio siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+      <button class="carousel-btn carousel-prev" type="button" aria-label="Testimonio anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <div class="carousel-dots"></div>
+      <button class="carousel-btn carousel-next" type="button" aria-label="Testimonio siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
     </div>
   </section>
 
@@ -358,6 +334,7 @@
 </footer>
 
 <script src="js/shell.js"></script>
+<script src="js/testimonios.js"></script>
 
 <!-- ===================== MODAL PRIVACIDAD ===================== -->
 <div class="modal modal-legal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" aria-hidden="true">
