@@ -88,10 +88,19 @@
   var grid         = document.getElementById("productGrid");
   var cartCountEl  = document.getElementById("cartCount");
   var cartBtn      = document.getElementById("cartBtn");
-  var CATEGORIES   = [];
-  PRODUCTS.forEach(function(p){
-    if (CATEGORIES.indexOf(p.category) === -1) CATEGORIES.push(p.category);
+
+  /* Grupos de categorías: "Todas" + 2 agrupaciones */
+  var GROUP_DEFS = [
+    { key: "herbolaria", label: "Herbolaria", cats: ["descanso","digestivo","tratamientos","aromaterapia","aceites","masajes","unguentos","tinturas"] },
+    { key: "cosmetica",  label: "Cosm\u00E9tica",  cats: ["belleza","cremas","jabones","locion"] }
+  ];
+  var GROUP_CATS = {};
+  var GROUP_LOOKUP = {};
+  GROUP_DEFS.forEach(function(g){
+    GROUP_CATS[g.key] = g.cats;
+    g.cats.forEach(function(c){ GROUP_LOOKUP[c] = g.key; });
   });
+  function groupFor(cat){ return cat ? (GROUP_LOOKUP[cat] || cat) : ""; }
 
   function slugify(text){
     return String(text).toLowerCase().normalize("NFD")
@@ -177,9 +186,10 @@
     var q  = (document.getElementById("searchInput").value || "").trim().toLowerCase();
     var activeCat = document.querySelector(".filter-btn.is-active");
     var cat = activeCat ? activeCat.dataset.category : "";
+    var groupCats = cat ? GROUP_CATS[cat] : null;
 
     var list = PRODUCTS.filter(function(p){
-      var matchesCat = !cat || p.category === cat;
+      var matchesCat = !cat || (groupCats ? groupCats.indexOf(p.category) !== -1 : p.category === cat);
       var haystack   = (p.name + " " + p.scientific + " " + p.category + " " + p.desc + " " + p.props.join(" ")).toLowerCase();
       var matchesQ   = !q || haystack.indexOf(q) !== -1;
       return matchesCat && matchesQ;
@@ -192,7 +202,7 @@
     initLazyLoading();
   }
 
-  /* Filtros por categoría */
+  /* Filtros por grupo */
   var filtersWrap = document.getElementById("productFilters");
   var allBtn = document.createElement("button");
   allBtn.type = "button";
@@ -206,12 +216,12 @@
   });
   filtersWrap.appendChild(allBtn);
 
-  CATEGORIES.forEach(function(c){
+  GROUP_DEFS.forEach(function(g){
     var btn = document.createElement("button");
     btn.type = "button";
     btn.className = "filter-btn";
-    btn.dataset.category = c;
-    btn.textContent = c;
+    btn.dataset.category = g.key;
+    btn.textContent = g.label;
     btn.addEventListener("click", function(){
       filtersWrap.querySelectorAll(".filter-btn").forEach(function(b){ b.classList.remove("is-active"); });
       btn.classList.add("is-active");
@@ -223,9 +233,9 @@
   /* Tarjetas de categoría en el hero */
   document.querySelectorAll(".category-card[data-category]").forEach(function(card){
     card.addEventListener("click", function(){
-      var cat = card.dataset.category;
+      var g = groupFor(card.dataset.category);
       filtersWrap.querySelectorAll(".filter-btn").forEach(function(b){
-        b.classList.toggle("is-active", b.dataset.category === cat);
+        b.classList.toggle("is-active", b.dataset.category === g);
       });
       render();
       document.getElementById("productos").scrollIntoView({ behavior: "smooth" });
@@ -405,7 +415,8 @@
   /* --- 6. FILTROS DESDE NAV --- */
   function applyCategoryFilter(cat){
     if (!filtersWrap) return;
-    filtersWrap.querySelectorAll(".filter-btn").forEach(function(b){ b.classList.toggle("is-active", b.dataset.category === cat); });
+    var g = groupFor(cat);
+    filtersWrap.querySelectorAll(".filter-btn").forEach(function(b){ b.classList.toggle("is-active", b.dataset.category === g); });
     render();
     var prods = document.getElementById("productos");
     if (prods) prods.scrollIntoView({ behavior: "smooth" });

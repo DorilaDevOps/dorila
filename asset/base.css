@@ -33,6 +33,11 @@
   --color-crema:               #F4EBDD;   /* crema — letra del footer */
   --color-terracotta-cta:      #B96F52;   /* terracota — promociones/llamadas */
 
+  /* --- color: logo --- */
+  --color-logo-brown:          #42230C;   /* marrón oscuro — borde/marca del logo */
+  --color-logo-tan:            #A17947;   /* sienna/tan — letras del logo */
+  --color-logo-parchment:      #D7B993;   /* pergamino claro — detalle del logo */
+
   /* --- tipografía --- */
   --font-display: "Rye", serif;
   --font-body: "Montserrat", Georgia, serif;
@@ -251,12 +256,12 @@ img.img-toned,
   padding-block: var(--space-2);
 }
 .brand{ display:flex; align-items:center; gap: 0.6rem; flex-shrink:0; }
-.brand svg{ width: 34px; height: 34px; color: var(--color-forest); flex-shrink:0; }
-.brand-logo{ width:34px; height:34px; object-fit:cover; border-radius:50%; flex-shrink:0; }
+.brand svg{ width: 34px; height: 34px; color: var(--color-logo-brown); flex-shrink:0; }
+.brand-logo{ width:34px; height:34px; object-fit:cover; border-radius:50%; flex-shrink:0; border:2px solid var(--color-logo-brown); }
 .brand-name{
   font-family: var(--font-display);
   font-size: clamp(1.2rem, 1.2vw + 0.9rem, 1.5rem);
-  color: var(--color-ink);
+  color: var(--color-logo-brown);
   letter-spacing: 0.01em;
 }
 
@@ -624,9 +629,9 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   padding-top: var(--space-3);
 }
 .footer-brand{ display:flex; align-items:center; gap:0.6rem; }
-.footer-brand svg{ width:26px; height:26px; color: var(--color-salvia); }
-.footer-brand img{ width:30px; height:30px; object-fit:cover; border-radius:50%; }
-.footer-brand span{ font-family: var(--font-body); font-size: clamp(1.1rem, 0.4vw + 1rem, 1.2rem); color: var(--color-crema); }
+.footer-brand svg{ width:26px; height:26px; color: var(--color-logo-tan); }
+.footer-brand img{ width:30px; height:30px; object-fit:cover; border-radius:50%; border:2px solid var(--color-logo-tan); }
+.footer-brand span{ font-family: var(--font-body); font-size: clamp(1.1rem, 0.4vw + 1rem, 1.2rem); color: var(--color-logo-parchment); }
 .footer-links{ display:flex; flex-wrap:wrap; gap: var(--space-3); }
 .footer-links a{ font-size: var(--fs-small); color: rgba(244,235,221,0.85); }
 .footer-links a:hover{ color: var(--color-crema); }
