@@ -431,20 +431,6 @@
       document.body.style.overflow = "";
     }
   }
-  document.querySelectorAll(".nav-desktop .dropdown a[data-cat]").forEach(function(a){
-    a.addEventListener("click", function(e){
-      e.preventDefault();
-      applyCategoryFilter(a.dataset.cat);
-      var parent = a.closest("li.has-menu");
-      if (parent) parent.classList.remove("is-open");
-    });
-  });
-  var mobileCatList = document.getElementById("mobileCatList");
-  if (mobileCatList){
-    mobileCatList.querySelectorAll("a[data-cat]").forEach(function(a){
-      a.addEventListener("click", function(e){ e.preventDefault(); applyCategoryFilter(a.dataset.cat); });
-    });
-  }
 
   /* --- 7. SEMILLERÍA DESDE BUSCADOR OVERLAY (sessionStorage) --- */
   var storedQ = sessionStorage.getItem("dorila-search");

@@ -65,7 +65,7 @@
     });
   }
 
-  /* --- Mobile accordions (Categorías / Explorar) --- */
+  /* --- Mobile accordions --- */
   document.querySelectorAll(".nav-acc-parent > .nav-acc").forEach(function(btn){
     btn.addEventListener("click", function(){
       var isOpen = btn.closest(".nav-acc-parent").classList.toggle("is-open");
