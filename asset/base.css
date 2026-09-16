@@ -21,11 +21,11 @@
   --color-forest-deep:        #2C3F24;
   --color-terracotta:         #9C4626;   /* bordes, acentos, botón principal */
   --color-terracotta-deep:    #7A3419;
-  --color-gold:                #B0793B;   /* divisores, detalles */
-  --color-line:                 rgba(51, 35, 15, 0.18);
-  --color-black:               #000000;
-  --glass:                     rgba(255, 255, 255, 0.15);
-  --lime:                      #C8FF57;
+  --color-gold:               #B0793B;   /* divisores, detalles */
+  --color-line:               rgba(51, 35, 15, 0.18);
+  --color-black:              #000000;
+  --glass:                    rgb(255 255 255 / 59%);
+  --lime:                     #C8FF57;
 
   /* --- color: identidad renovada --- */
   --color-forest-bosque:       #29483A;   /* verde bosque — footer */
@@ -58,7 +58,7 @@
 
   /* --- espaciado --- */
   --space-1: 0.5rem;
-  --space-2: 0.9rem;
+  --space-2: 0.8rem;
   --space-3: 1.5rem;
   --space-4: 2.5rem;
   --space-5: 4rem;
@@ -219,11 +219,11 @@ img.img-toned,
 }
 .btn:active{ transform: translateY(1px); }
 .btn-primary{
-  background: var(--color-terracotta);
-  color: var(--color-parchment-soft);
+  background: var(--color-salvia);
+  color: var(--color-link);
   box-shadow: 0 8px 18px -8px rgba(122, 52, 25, 0.65);
 }
-.btn-primary:hover{ background: var(--color-terracotta-deep); }
+.btn-primary:hover{ background: var(--color-crema); color: var(--color-black);}
 .btn-outline{
   background: transparent;
   border-color: var(--color-ink);
@@ -258,15 +258,15 @@ img.img-toned,
 .site-header.is-hidden{ transform: translateY(-100%); }
 
 .header-inner{
-  display:flex; align-items:center; justify-content:space-between;
+  display:grid; grid-template-columns:auto 1fr auto; align-items:center;
   padding-block: var(--space-2);
 }
-.brand{ display:flex; align-items:center; gap: 0.6rem; flex-shrink:0; }
-.brand svg{ width: 34px; height: 34px; color: var(--color-logo-brown); flex-shrink:0; }
-.brand-logo{ width:34px; height:34px; object-fit:cover; border-radius:50%; flex-shrink:0; border:2px solid var(--color-logo-brown); }
+.brand{ display:flex; align-items:center; gap: 0.9rem; justify-self:center; }
+.brand svg{ width: 56px; height: 56px; color: var(--color-logo-brown); flex-shrink:0; }
+.brand-logo{ width:56px; height:56px; object-fit:cover; border-radius:50%; flex-shrink:0; }
 .brand-name{
   font-family: var(--font-display);
-  font-size: clamp(1.2rem, 1.2vw + 0.9rem, 1.5rem);
+  font-size: clamp(1.4rem, 1.2vw + 1rem, 1.8rem);
   color: var(--color-logo-brown);
   letter-spacing: 0.01em;
 }
@@ -381,15 +381,15 @@ img.img-toned,
 .menu-toggle[aria-expanded="true"] .icon-close{ display:block; }
 
 .nav-mobile{
-  position: fixed; inset: 0 0 0 auto;
+  position: fixed; inset: 0 auto 0 0;
   width: min(84vw, 340px);
   height: 100vh;
   background: var(--glass);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-left: var(--border-frame);
+  border-right: var(--border-frame);
   padding: var(--space-5) var(--space-3) var(--space-3);
-  transform: translateX(100%);
+  transform: translateX(-100%);
   transition: transform var(--transition-med), background var(--transition-med);
   z-index: 150;
   display:flex; flex-direction:column; gap: var(--space-4);
@@ -447,7 +447,7 @@ a.nav-mobile-cta{
 a.nav-mobile-cta svg{ width:18px; height:18px; flex-shrink:0; }
 a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(-1px); }
 .nav-close{
-  position:absolute; top:12px; right:14px;
+  position:absolute; top:12px; left:14px;
   width:38px; height:38px; border-radius:50%;
   border:2px solid var(--lime);
   background: transparent;
@@ -514,7 +514,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
 /* --- botón flotante de WhatsApp --- */
 .wa-float{
   position: fixed;
-  right: 16px; bottom: 16px;
+  right: 16px; bottom: 76px;
   width: 46px; height: 46px;
   z-index: 120;
   display:flex; align-items:center; justify-content:center;
@@ -544,7 +544,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   z-index: 120;
   display:flex; align-items:center; justify-content:center;
   color: var(--lime);
-  background: transparent;
+  background: var(--glass);
   border: 2px solid var(--lime);
   border-radius: 12px;
   opacity: 0; pointer-events: none;
@@ -676,7 +676,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   align-items:center; justify-content:space-between;
 }
 .footer-legal-copy{ font-size: var(--fs-tiny); color: rgba(244,235,221,0.7); }
-.footer-legal-links{ display:flex; flex-wrap:wrap; gap: var(--space-3); }
+.footer-legal-links{ display:flex; flex-wrap:wrap; gap: var(--space-2); }
 .footer-legal-links a,
 .footer-legal-links button{
   background:none; border:none; padding:0; cursor:pointer;
@@ -698,16 +698,20 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
    =========================================================== */
 @media (min-width: 640px){
   .wrap{ padding-inline: var(--space-3); }
-  .brand-logo{ width:40px; height:40px; }
+  .brand-logo{ width:60px; height:60px; }
+  .brand svg{ width: 60px; height: 60px; }
   .header-actions{ gap: var(--space-2); }
   .ship-note{ display:inline-flex; }
-  .cart-btn, .menu-toggle{ width: 42px; height: 42px; }
+  .cart-btn{ width: 42px; height: 42px; }
   .cart-btn .cart-icon-img{ width: 26px; height: 26px; }
-  .cart-btn svg, .menu-toggle svg{ width: 24px; height: 24px; }
+  .cart-btn svg{ width: 24px; height: 24px; }
 }
 
 @media (min-width: 1000px){
-  .nav-desktop{ display:block; }
+  .header-inner{ display:flex; justify-content:space-between; }
+  .brand{ justify-self:auto; }
+  .nav-desktop{ display:block; flex:1; }
+  .nav-desktop ul{ justify-content:center; }
   .menu-toggle{ display:none; }
   .footer-inner{ flex-direction:row; align-items:center; justify-content:space-between; }
   .footer-bottom{ flex-wrap:nowrap; }

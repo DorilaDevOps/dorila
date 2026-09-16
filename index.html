@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -74,6 +74,11 @@
 <!-- ===================== HEADER ===================== -->
 <header class="site-header" id="siteHeader">
   <div class="wrap header-inner">
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMobile">
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+
     <a class="brand" href="/" aria-label="DORILA, inicio">
       <img class="brand-logo" src="img/logo_dorila.webp" alt="Logotipo de DORILA" width="256" height="256" fetchpriority="high">
       <span class="brand-name">DORILA</span>
@@ -104,15 +109,11 @@
       </button>
       <span class="ship-note">
         <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-        Envío gratis desde $1.000
+        Envío gratis desde $1.500
       </span>
       <button class="cart-btn" type="button" id="cartBtn" aria-label="Carrito, 0 productos">
         <img class="cart-icon-img" src="img/cart22.webp" alt="Carrito de compras" width="1234" height="1234">
         <span class="cart-count" id="cartCount" aria-hidden="true">0</span>
-      </button>
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMobile">
-        <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-        <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
     </div>
   </div>
@@ -174,7 +175,7 @@
     <div class="hero-content">
       <div class="hero-media">
         <img
-          src="img/montes_bg.webp"
+          src="img/bg_flowers.webp"
           alt="Montes y cerros de Uruguay, donde crecen nuestras hierbas"
           class="hero-image"
           fetchpriority="high"
@@ -193,7 +194,6 @@
         </div>
         <div class="hero-tags">
           <span class="hero-tag"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>100% natural</span>
-          <span class="hero-tag"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Cosecha responsable</span>
           <span class="hero-tag"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Envíos a todo el país</span>
         </div>
       </div>
@@ -418,16 +418,20 @@
       </div>
       <ul class="benefit-grid">
         <li class="benefit-item">
-          <img src="img/icons/icons8-trust-100.png" alt="" loading="lazy" width="100" height="100">
-          <div><h3>Origen conocido</h3><p>Supervisamos con rigor cada etapa: desde la siembra responsable hasta que el producto herbal llega a ti.</p></div>
+          <img src="img/icons/icons8-leaf-100.png" alt="" loading="lazy" width="100" height="100">
+          <div><h3>Sabiduría y experiencia</h3><p>El conocimiento construido a lo largo de los años guía nuestro trabajo, uniendo herbolaria, experiencia y cuidado en cada detalle.</p></div>
         </li>
         <li class="benefit-item">
-          <img src="img/icons/icons8-leaf-100.png" alt="" loading="lazy" width="100" height="100">
-          <div><h3>Envasado en tandas chicas</h3><p>Preparamos poco por vez para que recibas la máxima potencia botánica.</p></div>
+          <img src="img/icons/icons8-trust-100.png" alt="" loading="lazy" width="100" height="100">
+          <div><h3>Selección consciente</h3><p>Seleccionamos cada planta con atención, respetando sus características y el momento adecuado para incorporarla a cada preparación.</p></div>
         </li>
         <li class="benefit-item">
           <img src="img/icons/icons8-mortar-and-pestle-100.png" alt="" loading="lazy" width="100" height="100">
-          <div><h3>Procesos Respetuosos:</h3><p>Extraemos la esencia de cada planta de forma delicada para entregarte un producto verdaderamente activo.</p></div>
+          <div><h3>Procesos Respetuosos:</h3><p>Extraemos la esencia de cada planta de forma delicada, procurando conservar sus cualidades y respetar sus propios tiempos.</p></div>
+        </li>
+        <li class="benefit-item">
+          <img src="img/icons/icons8-leaf-100.png" alt="" loading="lazy" width="100" height="100">
+          <div><h3>Pequeñas tandas</h3><p>Elaboramos en cantidades reducidas, con el tiempo y atención necesaria para mantener un proceso artesanal y entregarte la máxima potencia botánica.</p></div>
         </li>
       </ul>
     </div>
@@ -524,26 +528,12 @@
     </p>
   </section>
 
-  <!-- ===================== CONTACTO ===================== -->
+  <!-- ===================== CONTACTO Y PAGOS ===================== -->
   <section class="contact" id="contacto" aria-labelledby="contact-order-heading">
     <div class="wrap contact-stack">
       <article class="contact-card reveal" aria-labelledby="contact-order-heading">
-        <h2 id="contact-order-heading">Hacé tu pedido</h2>
-        <p>Contanos qué te interesa y te respondemos por WhatsApp con todo el detalle.</p>
-        <p class="info-form-note"><strong>Nota: Se abrirá WhatsApp con tu mensaje armado; solo tenés que confirmar el envío.</strong></p>
-        <div class="contact-actions">
-          <button class="btn btn-primary" type="button" data-contact-open>Enviar consulta por WhatsApp</button>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- ===================== PAGO Y ENVÍOS ===================== -->
-  <section class="contact" id="pagos" aria-labelledby="contact-meta-heading">
-    <div class="wrap contact-stack">
-      <article class="contact-card reveal" aria-labelledby="contact-meta-heading">
-        <h2 id="contact-meta-heading" style="font-size: var(--fs-h3);">Pago y envíos</h2>
-        <p>Trabajamos por WhatsApp y coordinamos la entrega según tu punto del país.</p>
+        <h2 id="contact-order-heading">Pedir nunca fue tan fácil</h2>
+        <p>Trabajamos por WhatsApp, nos contás, te asesoramos y coordinamos el método de entrega.</p>
         <div class="contact-meta">
           <div class="contact-meta-list">
             <div class="contact-meta-item">
@@ -552,9 +542,12 @@
             </div>
             <div class="contact-meta-item">
               <h3>Envíos</h3>
-              <p>Envio gratis desde <strong>$1.000</strong> &middot; Montevideo: <strong>$200</strong> &middot; Interior: por agencias</p>
+              <p>Envío gratis desde <strong>$1.500</strong><br>Montevideo: <strong>$200</strong><br>Interior: por agencias</p>
             </div>
           </div>
+        </div>
+        <div class="contact-actions">
+          <button class="btn btn-primary" type="button" data-contact-open>Escribinos</button>
         </div>
       </article>
     </div>
@@ -645,15 +638,50 @@
     <button class="modal-close" type="button" id="disclaimerClose" aria-label="Cerrar">
       <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
+
     <div class="modal-body">
-      <span class="m-tag">Legal</span>
-      <h2 id="disclaimerTitle">Aviso legal — Descargo de responsabilidad</h2>
-      <p>Esta política de Descargo de responsabilidad limita nuestra responsabilidad e informa a los visitantes de este sitio sobre las limitaciones de sus contenidos, productos o servicios. En esencia, es una forma de protegernos legalmente y, al mismo tiempo, ser transparentes con nuestro público.</p>
-      <p>Aunque nos esforzamos por asegurar que la información de este sitio sea correcta, no garantizamos que sea completa o exacta; tampoco nos comprometemos a asegurar que el sitio web siga estando disponible o que el material del sitio web se mantenga actualizado.</p>
-      <p>La información proporcionada por DORILA en este sitio tiene únicamente fines informativos generales. Toda la información contenida en dicho sitio se facilita de buena fe.</p>
-      <p>Si tiene alguna pregunta sobre este Descargo de responsabilidad, póngase en contacto con nosotros.</p>
-      <p>El sitio puede contener enlaces a sitios web afiliados. Si hace clic en uno de estos enlaces y realiza una compra, es posible que recibamos una comisión sin coste adicional para usted.</p>
-      <p>DORILA se reserva el derecho a cambiar o modificar este Descargo de responsabilidad en cualquier momento para mejorar el servicio y usted acepta quedar vinculado por dichas modificaciones o revisiones.</p>
+      <span class="m-tag">Aviso Legal</span>
+      <h2 id="disclaimerTitle">Descargo de responsabilidad</h2>
+      <p>
+        La información y los contenidos publicados por <strong>DORILA</strong> en este sitio web
+        tienen carácter exclusivamente informativo y general. Procuramos brindar información clara,
+        responsable y actualizada, aunque algunos contenidos pueden estar sujetos a cambios.
+      </p>
+      <p>
+        Los productos elaborados por DORILA a partir de plantas y otros ingredientes naturales forman
+        parte de una propuesta de bienestar y cuidado personal. La información sobre plantas,
+        preparados, ingredientes o usos tradicionales no debe interpretarse como una recomendación médica.
+      </p>
+      <p>
+        La información disponible en este sitio no tiene como finalidad diagnosticar, tratar, curar
+        ni prevenir enfermedades.
+      </p>
+      <p>
+        <strong>Los productos y contenidos ofrecidos por DORILA no sustituyen la consulta,
+        el diagnóstico ni el tratamiento indicado por un profesional de la salud.</strong>
+        Ante cualquier condición de salud o duda sobre el uso de un producto, consultá siempre
+        con un profesional calificado.
+      </p>
+      <p>
+        Si estás embarazada, en período de lactancia, tenés alergias, utilizás medicamentos o
+        atravesás alguna situación de salud particular, recomendamos consultar previamente con
+        un profesional de la salud antes de utilizar cualquier producto.
+      </p>
+      <p>
+        Cada persona puede responder de manera diferente a los productos naturales. Antes de utilizar
+        un preparado, leé atentamente la información correspondiente y respetá las indicaciones de uso.
+      </p>
+      <p>
+        DORILA procura que la información publicada sea correcta y útil, pero no garantiza que todos
+        los contenidos estén completos o actualizados en todo momento, ni que el sitio web permanezca
+        disponible de forma ininterrumpida.
+      </p>
+      <p>
+        DORILA podrá actualizar o modificar este Descargo de responsabilidad cuando resulte necesario.
+        Los cambios entrarán en vigencia desde el momento de su publicación en este sitio. 
+      </p>
+      <p> Si tenés alguna consulta sobre este Descargo de responsabilidad o sobre nuestros productos, podés ponerte en contacto con nosotros.     
+      </p> 
     </div>
   </div>
 </div>

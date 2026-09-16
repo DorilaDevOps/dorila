@@ -131,7 +131,7 @@
 /* ===========================================================
    HISTORIA
    =========================================================== */
-.story{ padding-block:var(--space-5); background-color:var(--color-parchment); }
+.story{ padding-block:var(--space-3); background-color:var(--color-parchment); }
 .story-text.reveal.is-visible p,
 .story-text.reveal.is-visible .story-signature{ text-shadow:0 1px 1px rgb(104 103 101 / 85%), 0 0 14px rgba(250,243,227,0.9); }
 .story-grid{ display:grid; gap:var(--space-4); align-items:center; }
@@ -145,14 +145,14 @@
 /* ===========================================================
    TESTIMONIOS (home)
    =========================================================== */
-.home-testimonials{ padding-block:var(--space-5); }
-.home-testimonials-more{ margin-top:var(--space-3); text-align:center; }
+.home-testimonials{ padding-block:var(--space-4); }
+.home-testimonials-more{ margin-top:0px; text-align:center; }
 .home-testimonials-more .btn{ display:inline-flex; }
 
 /* ===========================================================
    PRODUCTOS
    =========================================================== */
-.products{ padding-block:var(--space-5); }
+.products{ padding-block:var(--space-3); }
 .product-grid{ display:grid; gap:var(--space-2); grid-template-columns:repeat(2,1fr); grid-auto-rows:min-content; }
 .product-card{ background:var(--color-parchment-soft); border-radius:14px; overflow:hidden; border:1px solid var(--color-line); box-shadow:var(--shadow-card); display:flex; flex-direction:column; width:100%; cursor:pointer; transition:transform var(--transition-fast), box-shadow var(--transition-fast); }
 .product-card:hover{ transform:translateY(-3px); box-shadow:0 14px 28px -16px rgba(51,35,15,0.55); }
@@ -210,20 +210,20 @@
 /* ===========================================================
    BENEFICIOS
    =========================================================== */
-.benefits{ padding-block:var(--space-5); background:var(--color-forest-bosque); color:var(--color-parchment-soft); }
-.benefits .section-head h2{ color:var(--color-parchment-soft); }
+.benefits{ padding-block:var(--space-5); background:var(--color-parchment-deep); color:var(--color-forest-deep); }
+.benefits .section-head h2{ color:var(--color-forest-deep); }
 .benefits .section-head p{ color:rgba(244,233,211,0.7); }
 .benefit-grid{ display:grid; gap:var(--space-3); grid-template-columns:1fr; }
 .benefit-item{ display:flex; gap:var(--space-2); align-items:flex-start; }
 .benefit-item svg{ width:30px; height:30px; color:var(--color-gold); flex-shrink:0; margin-top:2px; }
 .benefit-item img{ width:34px; height:34px; object-fit:contain; flex-shrink:0; margin-top:2px; }
-.benefit-item h3{ font-family:var(--font-display); font-size:clamp(1.05rem,0.5vw + 0.95rem,1.15rem); color:var(--color-parchment-soft); margin-bottom:0.2rem; }
-.benefit-item p{ font-size:var(--fs-small); color:rgba(244,233,211,0.75); }
+.benefit-item h3{ font-family:var(--font-display); font-size:clamp(1.05rem,0.5vw + 0.95rem,1.15rem); color:var(--color-forest-deep); margin-bottom:0.2rem; }
+.benefit-item p{ font-size:var(--fs-small); color:var(--color-black); }
 
 /* ===========================================================
    CONTACTO
    =========================================================== */
-.contact{ padding-block:var(--space-5); background:var(--color-parchment-deep); }
+.contact{ padding-block:var(--space-3); background:var(--color-parchment-deep); }
 .contact-grid{ display:grid; gap:var(--space-4); }
 .contact-stack{ display:grid; gap:var(--space-4); }
 .contact-stack .contact-card{ max-width:640px; margin-inline:auto; width:100%; }
@@ -237,7 +237,7 @@
 .contact-actions .btn{ flex:1 1 auto; }
 .contact-meta{ margin-top:var(--space-3); }
 .contact-meta-list{ display:flex; flex-direction:column; gap:var(--space-3); }
-.contact-meta-item{ display:flex; flex-direction:column; gap:0.25rem; padding:var(--space-2); border:1px solid var(--color-line); border-radius:16px; background:var(--color-parchment-soft); }
+.contact-meta-item{ display:flex; flex-direction:column; gap:0.25rem; }
 .contact-meta-item h3{ font-family:var(--font-display); font-size:var(--fs-mid); color:var(--color-ink); }
 .contact-meta-item p{ font-size:var(--fs-small); color:var(--color-body-soft); }
 .contact-meta-item p strong{ color:var(--color-ink); }
@@ -261,7 +261,7 @@
 .info-form textarea:focus{ outline:none; border-color:var(--color-terracotta); box-shadow:0 0 0 3px rgba(156,70,38,0.15); }
 .info-form textarea{ resize:vertical; min-height:110px; }
 .info-form .btn{ align-self:flex-start; }
-.info-form-note{ font-size:var(--fs-tiny); color:var(--color-body-soft); }
+.info-form-note{ font-size:var(--fs-small); color:var(--color-body-soft); }
 .info-success{ display:none; margin-top:0.6rem; color:var(--color-forest-deep); font-weight:700; font-size:var(--fs-small); }
 .info-success.is-visible{ display:block; }
 
@@ -369,6 +369,8 @@
   .hero-content{ min-height:92vh; padding:clamp(4rem,12vw,8rem) var(--space-4) var(--space-6); }
   .category-grid{ grid-template-columns:repeat(3,1fr); }
   .benefit-grid{ grid-template-columns:repeat(3,1fr); }
+  .home-testimonials { padding-block: var(--space-5);}
+  .contact {padding-block: var(--space-5);}
 }
 @media (min-width:1180px){
   .product-grid{ grid-template-columns:repeat(5,1fr); }
