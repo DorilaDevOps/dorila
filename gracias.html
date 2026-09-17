@@ -8,74 +8,20 @@
 <meta name="author" content="DORILA">
 <meta name="theme-color" content="#33230F">
 <meta name="robots" content="index, follow">
-<link rel="icon" type="image/png" sizes="512x512" href="img/favicon.png">
+<link rel="icon" type="image/png" sizes="256x256" href="img/favicon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="DORILA">
 <meta property="og:title" content="Agradecimientos — DORILA">
 <meta property="og:description" content="Gracias a nuestra comunidad y a quienes hacen posible DORILA.">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Rye&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,400&family=Rye&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="asset/base.css">
-<style>
-/* Botones primarios con la terracota de esta página */
-.btn-primary{ background: var(--color-terracotta); box-shadow: 0 8px 18px -8px rgba(122,52,25,0.65); }
-.btn-primary:hover{ background: var(--color-terracotta-deep); }
-
-/* ===========================================================
-   HERO / CONTENIDO DE AGRADECIMIENTO
-   =========================================================== */
-.page-hero{ position:relative; padding-block: clamp(4rem, 10vw, 7rem) var(--space-5); text-align:center; background-image:url('img/montes_bg.webp'); background-size:cover; background-position:center; overflow:hidden; }
-.page-hero::before{ content:""; position:absolute; inset:0; z-index:0; background: linear-gradient(100deg, rgba(28,19,10,0.72) 0%, rgba(28,19,10,0.5) 55%, rgba(28,19,10,0.35) 100%); }
-.page-hero > *{ position:relative; z-index:1; }
-.page-hero h1{ font-family: var(--font-display); font-size: var(--fs-h1); line-height: var(--lh-display); color: var(--color-parchment-soft); text-wrap:balance; text-shadow: 1px 1px 0 rgba(0,0,0,0.35); }
-.page-hero h1 span{ color: var(--color-gold); }
-.page-hero .eyebrow-mark{ color: var(--color-gold); }
-.page-hero .hero-lead{ margin-top: var(--space-2); color: rgba(250,243,227,0.92); font-size: var(--fs-lead); max-width: 52ch; margin-inline:auto; }
-
-.thanks-fold{ padding-block: var(--space-2) var(--space-5); }
-.thanks-grid{ display:grid; gap: var(--space-3); grid-template-columns: 1fr; }
-.thanks-card{ border: var(--border-frame); border-radius: var(--radius-card); background: var(--color-parchment-soft); padding: clamp(1.4rem, 4vw, 1.8rem); }
-.thanks-card h2{ font-family: var(--font-display); font-size: var(--fs-h3); color: var(--color-ink); margin-bottom:0.5rem; }
-.thanks-card p{ font-size: var(--fs-body); color: var(--color-body); }
-.thanks-card ul{ margin-top: var(--space-2); display:flex; flex-direction:column; gap:0.5rem; }
-.thanks-card li{ position:relative; padding-left:1.4em; color: var(--color-body); }
-.thanks-card li::before{ content:""; position:absolute; left:0; top:0.5em; width:0.5em; height:0.5em; border-radius:50%; background: var(--color-forest); }
-
-.credits-note{ padding-block: var(--space-4) var(--space-5); }
-.credits-note .credits-card{ border: var(--border-frame); border-radius: var(--radius-card); background: var(--color-parchment-soft); padding: clamp(1.4rem, 4vw, 1.8rem); }
-.credits-note h2{ font-family: var(--font-display); font-size: var(--fs-h3); color: var(--color-ink); margin-bottom:0.5rem; }
-.credits-note p{ color: var(--color-body); font-size: var(--fs-body); }
-
-/* Créditos de iconos — estilos exactos solicitados */
-.creditos-iconos{
-  margin-top: var(--space-2);
-  font-size: 12px;
-  color: #8c8c8c;
-}
-.creditos-iconos a{
-  color: #8c8c8c;
-}
-.creditos-iconos a:hover{
-  color: #4a90e2;
-}
-
-/* ===========================================================
-   BREAKPOINTS
-   =========================================================== */
-@media (min-width: 640px){
-  .thanks-grid{ grid-template-columns: 1fr 1fr; }
-}
-</style>
+<link rel="stylesheet" href="asset/pages.css">
 </head>
 <body>
-
 <a class="skip-link" href="#main">Saltar al contenido</a>
-
 <!-- ===================== HEADER ===================== -->
 <header class="site-header" id="siteHeader">
   <div class="wrap header-inner">
@@ -83,12 +29,10 @@
       <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
-
     <a class="brand" href="/" aria-label="DORILA, inicio">
       <img class="brand-logo" src="img/logo_dorila.webp" alt="Logotipo de DORILA" width="256" height="256" fetchpriority="high">
       <span class="brand-name">DORILA</span>
     </a>
-
     <nav class="nav-desktop" aria-label="Navegación principal">
       <ul>
         <li><a href="index.html#productos">Productos</a></li>
@@ -101,13 +45,11 @@
           <ul class="dropdown">
             <li><a href="historia.html">Nuestra historia</a></li>
             <li><a href="saber.html">Cosas que deberías saber</a></li>
-            <li><a href="testimonios.html">Testimonios</a></li>
             <li><a href="gracias.html" class="is-current">Agradecimientos</a></li>
           </ul>
         </li>
       </ul>
     </nav>
-
     <div class="header-actions">
       <button class="search-btn" type="button" id="searchOpen" aria-label="Buscar en el catálogo">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
@@ -117,13 +59,12 @@
         Envío gratis desde $1.500
       </span>
       <a class="cart-btn" href="index.html#productos" aria-label="Ver carrito de compras">
-        <img class="cart-icon-img" src="img/cart22.webp" alt="Carrito de compras" width="1234" height="1234">
+        <img class="cart-icon-img" src="img/cart-icon.webp" alt="Carrito de compras" width="1234" height="1234">
         <span class="cart-count" aria-hidden="true">0</span>
       </a>
     </div>
   </div>
 </header>
-
 <!-- ===================== BUSCADOR OVERLAY ===================== -->
 <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Buscar productos">
   <button class="search-overlay-close" type="button" id="searchOverlayClose" aria-label="Cerrar búsqueda">
@@ -139,7 +80,6 @@
     <p class="search-overlay-hint">Escribí y se filtrarán los productos en la galería de abajo.</p>
   </div>
 </div>
-
 <div class="scrim" id="scrim"></div>
 <nav class="nav-mobile" id="navMobile" aria-label="Navegación móvil">
   <button class="nav-close" type="button" id="navClose" aria-label="Cerrar menú">
@@ -157,7 +97,6 @@
         <div class="nav-sublist-inner">
           <a href="historia.html">Nuestra historia</a>
           <a href="saber.html">Cosas que deberías saber</a>
-          <a href="testimonios.html">Testimonios</a>
           <a href="gracias.html" class="is-current">Agradecimientos</a>
         </div>
       </div>
@@ -172,7 +111,6 @@
     Instagram
   </a>
 </nav><main id="main">
-
   <!-- ===================== MIGAS DE PAN ===================== -->
   <div class="wrap">
     <nav class="crumbs" aria-label="Migas de pan">
@@ -181,7 +119,6 @@
       <span aria-current="page">Agradecimientos</span>
     </nav>
   </div>
-
   <!-- ===================== HERO ===================== -->
   <section class="page-hero wrap">
     <span class="eyebrow-mark">
@@ -190,7 +127,6 @@
     <h1>Gracias por elegir DORILA</h1>
     <p class="hero-lead">Cada pedido que llega a una casa es para nosotros una semilla plantada: la de volver a lo natural, a lo simple y a lo bien hecho.</p>
   </section>
-
   <!-- ===================== AGRADECIMIENTOS ===================== -->
   <section class="thanks-fold wrap">
     <div class="thanks-grid">
@@ -203,7 +139,6 @@
           <li>A quienes recomiendan nuestro trabajo a familiares y amistades.</li>
         </ul>
       </article>
-
       <article class="thanks-card">
         <h2>A los artesanos del saber</h2>
         <p>A las abuelas y a los herbolarios que mantuvieron viva la tradición de las plantas medicinales, y a los profesionales que nos enseñan a usarlas con respeto y medida.</p>
@@ -213,14 +148,12 @@
           <li>A quienes cuidan y respetan la tierra de donde vienen nuestras hierbas.</li>
         </ul>
       </article>
-
       <article class="thanks-card">
         <h2>A los creadores de este sitio</h2>
         <p>Detrás de cada página, imagen e ícono hay trabajo y generosidad. Agradecemos especialmente a quienes comparten recursos libres, gracias a los cuales DORILA puede existir y crecer.</p>
       </article>
     </div>
   </section>
-
   <!-- ===================== CRÉDITOS DE ICONOS ===================== -->
   <section class="credits-note wrap">
     <div class="credits-card">
@@ -230,7 +163,6 @@
     </div>
   </section>
 </main>
-
 <!-- ===================== FOOTER ===================== -->
 <footer class="site-footer">
   <div class="wrap footer-inner footer-inner-slim">
@@ -257,9 +189,7 @@
     <span>Plantas medicinales, recetas naturales y herbolaria artesanal — no reemplaza indicación médica.</span>
   </div>
 </footer>
-
-<script src="js/shell.js"></script>
-
+<script src="js/shell.js" defer></script>
 <!-- ===================== MODAL PRIVACIDAD ===================== -->
 <div class="modal modal-legal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" aria-hidden="true">
   <div class="modal-scrim" data-close-modal></div>
@@ -277,7 +207,6 @@
     </div>
   </div>
 </div>
-
 <!-- ===================== MODAL AVISO LEGAL ===================== -->
 <div class="modal modal-legal" id="disclaimerModal" role="dialog" aria-modal="true" aria-labelledby="disclaimerTitle" aria-hidden="true">
   <div class="modal-scrim" data-close-modal></div>
@@ -297,7 +226,7 @@
     </div>
   </div>
 </div>
-<script src="js/productos.js"></script>
-<script src="js/cart.js"></script>
+<script src="js/productos.js" defer></script>
+<script src="js/cart.js" defer></script>
 </body>
 </html>

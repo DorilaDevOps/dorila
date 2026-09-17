@@ -22,7 +22,7 @@ const SRC_DIR = path.join(ROOT, "img");
 const MAX_WIDTH = 1200;
 const THUMB_WIDTH = 32;
 const QUALITY = 80;
-const SKIP = new Set(["favicon.png", "og-dorila.png"]);
+const SKIP = new Set(["favicon.png", "og-dorila.png", "cart22.png"]);
 
 function loadSiteText() {
   let text = "";

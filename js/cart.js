@@ -66,20 +66,6 @@
     btn.setAttribute("aria-label", "Ver carrito de compras, " + count + " producto" + (count === 1 ? "" : "s"));
   }
 
-  function injectStyleIfNeeded(){
-    var hasRule = Array.prototype.some.call(document.querySelectorAll("style"), function(s){
-      return /\bcart-count\b/.test(s.textContent);
-    });
-    if (hasRule) return;
-    var style = document.createElement("style");
-    style.textContent =
-      ".cart-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;}" +
-      ".cart-count{position:absolute;top:-6px;right:-8px;min-width:18px;height:18px;padding:0 4px;" +
-      "border-radius:999px;background:#7A3419;color:#fff;font-size:11px;font-weight:800;" +
-      "line-height:18px;text-align:center;}";
-    document.head.appendChild(style);
-  }
-
   function wire(){
     var btn = document.querySelector(".cart-btn");
     if (!btn) return;
@@ -88,7 +74,6 @@
     }
   }
 
-  injectStyleIfNeeded();
   updateBadge();
   wire();
 

@@ -15,7 +15,8 @@
     var y = window.scrollY;
     if (header){
       header.classList.toggle("is-scrolled", y > 8);
-      header.classList.toggle("is-hidden",  y > 200 && y > lastY && y - lastY < 300);
+      var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      header.classList.toggle("is-hidden", y > 200 && y >= maxScroll * 0.9);
     }
     if (toTop) toTop.classList.toggle("is-visible", y > 600);
     lastY = y;
@@ -63,6 +64,13 @@
     document.addEventListener("keydown", function(e){
       if (e.key === "Escape") closeMenu();
     });
+  }
+
+  /* --- Ship-note dentro del menú móvil --- */
+  var shipNote = document.querySelector(".header-actions .ship-note");
+  var navMob   = document.getElementById("navMobile");
+  if (shipNote && navMob && !navMob.querySelector(".ship-note")){
+    navMob.appendChild(shipNote.cloneNode(true));
   }
 
   /* --- Mobile accordions --- */
