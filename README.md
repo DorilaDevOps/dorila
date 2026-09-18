@@ -45,7 +45,7 @@ de **recetas y remedios caseros**, educación herbolaria y agradecimientos.
 | 🙏 **Agradecimientos** | Página de agradecimiento posterior al envío del formulario |
 | ♿ **Accesible** | `aria-*`, skip-link, focus visible, `prefers-reduced-motion`, carrusel con teclado/swipe |
 | 🔍 **SEO** | Meta tags optimizados, Open Graph, Twitter Cards, JSON-LD (`LocalBusiness` + `WebSite`) |
-| ⚡ **Velocidad** | Imágenes WebP + thumbs, fuentes recortadas, `defer`, caché inmutable por tipo de asset |
+| ⚡ **Velocidad** | Imágenes WebP + thumbs, fuentes recortadas, `defer`, revalidación por ETag tras cada deploy |
 
 ---
 

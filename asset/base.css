@@ -241,13 +241,6 @@ img.img-toned,
 .btn.is-success{ background: var(--color-terracotta); color: #fff; }
 .btn.is-disabled,
 .btn.is-disabled:hover{ opacity: 0.6; cursor: default; transform: none; box-shadow: none; pointer-events: none; }
-.btn-wa{
-  background: #25D366;
-  color: #fff;
-  box-shadow: 0 8px 18px -8px rgba(37,211,102,0.7);
-}
-.btn-wa:hover{ background: #1eab52; color: #fff; }
-
 /* ===========================================================
    HEADER
    =========================================================== */
