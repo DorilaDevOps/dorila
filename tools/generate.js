@@ -62,7 +62,6 @@ products.forEach(function(p){
   }
   var title = p.name + " — " + label(cat) + " | DORILA Uruguay";
   var desc = (p.desc || p.name) + " Envíos a todo el país desde Uruguay.";
-  var waLink = "https://wa.me/59894872605?text=" + encodeURIComponent("Hola DORILA, quiero pedir " + p.name + " (" + p.id + ")");
   var props = (p.props || []).map(function(x){ return "<li>" + esc(x) + "</li>"; }).join("\n");
 
   var jsonldProduct = JSON.stringify({
@@ -117,7 +116,7 @@ products.forEach(function(p){
     .replace(/\{\{IMAGE\}\}/g, imgLocal)
     .replace(/\{\{IMAGE_2\}\}/g, img2Local)
     .replace(/\{\{IMAGE_2_GALLERY\}\}/g, gallery2)
-    .replace(/\{\{WA_LINK\}\}/g, waLink)
+    .replace(/\{\{ID\}\}/g, p.id)
     .replace(/\{\{NAME\}\}/g, p.name)
     .replace(/\{\{SCIENTIFIC\}\}/g, p.scientific)
     .replace(/\{\{CATEGORY\}\}/g, cat)

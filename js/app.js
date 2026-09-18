@@ -165,8 +165,12 @@
       });
       var moreLink = document.getElementById("modalMoreLink");
       if (moreLink) moreLink.href = "productos/" + slugify(p.name) + ".html";
-      var waLink = document.getElementById("modalWaLink");
-      if (waLink) waLink.href = "https://wa.me/59894872605?text=" + encodeURIComponent("Hola DORILA, quiero pedir " + p.name + " (" + p.id + ")");
+      var addBtn = document.getElementById("modalAddBtn");
+      if (addBtn){
+        addBtn.dataset.id = p.id;
+        addBtn.classList.remove("is-success");
+        addBtn.textContent = "Agregar al carrito";
+      }
       modal.classList.add("is-open");
       modal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
@@ -298,6 +302,20 @@
     saveCart(); updateBadge(); renderCart();
   }
 
+  /* Agregar al carrito desde el modal de planta */
+  var modalAddBtn = document.getElementById("modalAddBtn");
+  if (modalAddBtn) modalAddBtn.addEventListener("click", function(){
+    if (this.classList.contains("is-success")) return;
+    addToCart(this.dataset.id);
+    this.classList.add("is-success");
+    this.textContent = "\u00A1Agregado! \u2713";
+    var self = this;
+    setTimeout(function(){
+      self.classList.remove("is-success");
+      self.textContent = "Agregar al carrito";
+    }, 1400);
+  });
+
   var cartPage     = document.getElementById("cartPage");
   var cartList     = document.getElementById("cartList");
   var cartEmpty    = document.getElementById("cartEmpty");
@@ -390,12 +408,29 @@
       lines.push(p.name+" x"+qty+" ($"+line+")");
     });
     document.getElementById("orderTotal").textContent = "$"+total;
-    document.getElementById("orderWa").href = "https://wa.me/59894872605?text=" + encodeURIComponent("Hola DORILA, quiero confirmar mi orden "+num+".\n"+lines.join("\n")+"\nTotal: $"+total);
+    var orderWa = document.getElementById("orderWa");
+    orderWa.href = "https://wa.me/59894872605?text=" + encodeURIComponent("Hola DORILA, quiero confirmar mi orden "+num+".\n"+lines.join("\n")+"\nTotal: $"+total);
+    orderWa.classList.remove("is-disabled");
+    orderWa.textContent = "Enviar por WhatsApp";
+    var orderNote = document.querySelector(".order-note");
+    if (orderNote) orderNote.textContent = "Envi\u00E1 esta orden por WhatsApp y coordinamos env\u00EDo y pago. Pod\u00E9s guardarla en PDF para tu comprobante.";
     closeVerify(); orderModal.classList.add("is-open"); orderModal.setAttribute("aria-hidden","false");
   }
   function closeOrder(){ orderModal.classList.remove("is-open"); orderModal.setAttribute("aria-hidden","true"); }
   function finishOrder(){ closeOrder(); cart={}; saveCart(); updateBadge(); renderCart(); closeCart(); }
   document.getElementById("verifyConfirm").addEventListener("click", generateOrder);
+  var orderWa = document.getElementById("orderWa");
+  orderWa.addEventListener("click", function(){
+    if (orderWa.classList.contains("is-disabled")) return;
+    cart = {};
+    saveCart();
+    updateBadge();
+    renderCart();
+    orderWa.classList.add("is-disabled");
+    orderWa.textContent = "Orden enviada \u2713";
+    var orderNote = document.querySelector(".order-note");
+    if (orderNote) orderNote.textContent = "Tu carrito se vaci\u00F3 al enviar la orden. Pod\u00E9s imprimirla o guardarla en PDF como comprobante.";
+  });
   document.getElementById("orderPrint").addEventListener("click", function(){ window.print(); });
   document.getElementById("orderDone").addEventListener("click", finishOrder);
   orderModal.querySelectorAll("[data-order-close]").forEach(function(el){ el.addEventListener("click", closeOrder); });

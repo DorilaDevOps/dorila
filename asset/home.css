@@ -66,7 +66,7 @@
   display:flex;
   flex-direction:column;
   align-items:center;
-  max-width: 46ch;
+  max-width: 66ch;
 }
 .hero-text .eyebrow-mark{ color: var(--color-forest); text-shadow: 1px 1px 0 rgba(255,253,245,0.5); }
 
@@ -114,7 +114,7 @@
 }
 .hero-tag{
   display:flex; align-items:center; gap:0.4em;
-  font-size: var(--fs-small); color: var(--color-body); font-weight:600;
+  font-size: var(--fs-small); color: var(--color-ink); font-weight:600;
 }
 .hero-tag svg{ width:16px; height:16px; }
 
@@ -331,6 +331,26 @@
 .order-items li .item-name{ color:var(--color-ink); font-weight:600; }
 .order-total{ margin-top:var(--space-2); padding-top:var(--space-2); border-top:1px dashed var(--color-line); display:flex; justify-content:space-between; font-weight:700; font-size:clamp(1rem,0.5vw + 0.9rem,1.15rem); color:var(--color-forest-deep); }
 .order-note{ margin-top:var(--space-3); font-size:var(--fs-tiny); color:var(--color-body-soft); }
+
+/* Paso de verificación / orden */
+.step-note{
+  display:inline-flex; align-items:center; gap:0.4em;
+  margin-top:var(--space-1);
+  font-size:var(--fs-tiny); font-weight:700; letter-spacing:0.05em;
+  text-transform:uppercase;
+  color:var(--color-terracotta-deep);
+  background:color-mix(in srgb, var(--color-gold) 14%, transparent);
+  border:1px solid color-mix(in srgb, var(--color-gold) 40%, transparent);
+  border-radius:999px;
+  padding:0.35em 0.9em;
+  width:fit-content;
+}
+
+/* Acciones de la orden: WhatsApp destacado, imprimir/volver iguales */
+.order-actions{ flex-direction:column; }
+.order-actions > .btn{ flex:none; width:100%; }
+.order-actions-secondary{ display:flex; flex-wrap:wrap; gap:var(--space-2); width:100%; }
+.order-actions-secondary .btn{ flex:1 1 auto; }
 
 @media print{
   body *{ visibility:hidden; }

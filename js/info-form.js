@@ -26,15 +26,12 @@
         '</button>' +
         '<div class="modal-body">' +
           '<h3>Solicitá información</h3>' +
-          '<p>Contanos qué te interesa y te respondemos por WhatsApp con todo el detalle.</p>' +
+          '<p>Contanos qué te interesa y te respondemos con todo el detalle.</p>' +
+           '<p class="info-form-note">Al completar el formulario, se abrirá WhatsApp con tu mensaje armado; solo tenés que confirmar el envío.</p>' +
           '<form class="info-form" id="infoForm" novalidate>' +
             '<div class="field">' +
               '<label for="infoName">Nombre <em>(obligatorio)</em></label>' +
               '<input type="text" id="infoName" name="nombre" autocomplete="name" required placeholder="Tu nombre">' +
-            '</div>' +
-            '<div class="field">' +
-              '<label for="infoEmail">Correo electrónico <em>(opcional)</em></label>' +
-              '<input type="email" id="infoEmail" name="email" autocomplete="email" placeholder="nombre@correo.com">' +
             '</div>' +
             '<div class="field">' +
               '<label for="infoPhone">Teléfono <em>(obligatorio)</em></label>' +
@@ -43,9 +40,8 @@
             '<div class="field">' +
               '<label for="infoTopic">Tema</label>' +
               '<select id="infoTopic" name="tema">' +
-                '<option value="Pedir hierbas">Pedir hierbas</option>' +
-                '<option value="Pedir el catálogo completo">Pedir el catálogo completo</option>' +
                 '<option value="Consulta general">Consulta general</option>' +
+                '<option value="Pedir hierbas">Pedir hierbas</option>' +
                 '<option value="Envíos">Envíos</option>' +
                 '<option value="Otro">Otro</option>' +
               '</select>' +
@@ -55,7 +51,6 @@
               '<textarea id="infoMsg" name="mensaje" required placeholder="Escribinos tu consulta…"></textarea>' +
             '</div>' +
             '<button class="btn btn-primary" type="submit">Enviar por WhatsApp</button>' +
-            '<p class="info-form-note">Al enviar se abrirá WhatsApp con tu mensaje armado; solo tenés que confirmar el envío.</p>' +
             '<p class="info-success" id="infoSuccess" role="status">¡Gracias! Se abrió WhatsApp con tu consulta.</p>' +
           '</form>' +
         '</div>' +
@@ -90,12 +85,10 @@
     e.preventDefault();
     if (!infoForm.checkValidity()){ infoForm.reportValidity(); return; }
     var name  = document.getElementById("infoName").value.trim();
-    var email = document.getElementById("infoEmail").value.trim();
     var phone = document.getElementById("infoPhone").value.trim();
     var topic = document.getElementById("infoTopic").value;
     var msg   = document.getElementById("infoMsg").value.trim();
     var text  = "Hola DORILA, quiero solicitar información.\nNombre: "+name+"\nTeléfono: "+phone+"\n";
-    if (email) text += "Correo: "+email+"\n";
     text += "Tema: "+topic+"\nMensaje: "+msg;
     if (infoSuccess) infoSuccess.classList.add("is-visible");
     window.open("https://wa.me/59894872605?text="+encodeURIComponent(text),"_blank","noopener");

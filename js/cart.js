@@ -77,6 +77,23 @@
   updateBadge();
   wire();
 
+  document.addEventListener("click", function(e){
+    var btn = e.target && e.target.closest ? e.target.closest("[data-add-cart]") : null;
+    if (!btn) return;
+    var id = btn.getAttribute("data-add-cart");
+    if (!id) return;
+    var products = window.DORILA_PRODUCTS;
+    var valid = products && products.some(function(p){ return p.id === id; });
+    if (!valid) return;
+    cart[id] = (cart[id] || 0) + 1;
+    try { window.localStorage.setItem("dorila-cart", JSON.stringify(cart)); } catch (err) {}
+    updateBadge();
+    var label = btn.textContent;
+    btn.classList.add("is-success");
+    btn.textContent = "\u00A1Agregado! \u2713";
+    setTimeout(function(){ btn.classList.remove("is-success"); btn.textContent = label; }, 1400);
+  });
+
   window.addEventListener("storage", function(e){
     if (e.key && e.key !== "dorila-cart") return;
     cart = sanitize(readCart());

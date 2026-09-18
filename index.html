@@ -680,8 +680,8 @@
       </div>
       <p class="modal-note">La información de esta ficha es orientativa y no reemplaza la consulta médica. Consultá siempre con un profesional de la salud.</p>
       <div class="modal-more">
-        <a class="btn btn-primary" id="modalMoreLink" href="#">Ver ficha completa</a>
-        <a class="btn btn-ghost" id="modalWaLink" href="https://wa.me/59894872605" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+        <button class="btn btn-primary" id="modalAddBtn" type="button">Agregar al carrito</button>
+        <a class="btn btn-ghost" id="modalMoreLink" href="#">Ver ficha completa</a>
       </div>
     </div>
   </div>
@@ -796,13 +796,14 @@
 <div class="cart-modal" id="verifyModal" role="dialog" aria-modal="true" aria-labelledby="verifyTitle" aria-hidden="true">
   <div class="cart-modal-scrim" data-verify-close></div>
   <div class="cart-modal-card">
-    <h3 id="verifyTitle">¿Querés verificar tu compra?</h3>
-    <p>Revisá los productos y las cantidades antes de confirmar la orden.</p>
+    <h3 id="verifyTitle">¿Confirmás tu compra?</h3>
+    <p class="step-note">Paso 1 de 2 · Revisá tu pedido</p>
+    <p>Revisá los productos y las cantidades. Podés volver al carrito si querés modificar algo.</p>
     <ul id="verifyList" class="verify-list"></ul>
     <div class="verify-total"><span>Total</span> <strong id="verifyTotal">$0</strong></div>
     <div class="cart-actions">
-      <button class="btn btn-ghost" type="button" data-verify-close>No, seguir editando</button>
-      <button class="btn btn-primary" type="button" id="verifyConfirm">Sí, generar orden de compra</button>
+      <button class="btn btn-outline" type="button" data-verify-close>Seguir editando</button>
+      <button class="btn btn-primary" type="button" id="verifyConfirm">Generar orden de compra</button>
     </div>
   </div>
 </div>
@@ -815,6 +816,7 @@
       <img class="order-logo" src="img/logo_dorila.webp" alt="Logotipo de DORILA" width="256" height="256" loading="lazy">
       <div>
         <h3 id="orderTitle">Orden de compra</h3>
+        <p class="step-note">Paso 2 de 2 · Tu orden está lista</p>
         <p class="order-number">N.º <span id="orderNumber"></span></p>
         <p class="order-date" id="orderDate"></p>
       </div>
@@ -823,11 +825,13 @@
       <ul id="orderItems" class="order-items"></ul>
       <div class="order-total"><span>Total</span> <strong id="orderTotal">$0</strong></div>
     </div>
-    <p class="order-note">Enviá esta orden por WhatsApp y coordinamos envío y pago. Guardala en PDF para tu comprobante.</p>
-    <div class="cart-actions">
-      <a class="btn btn-primary" id="orderWa" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
-      <button class="btn btn-outline" type="button" id="orderPrint">Imprimir / Guardar PDF</button>
-      <button class="btn btn-ghost" type="button" id="orderDone">Volver a la tienda</button>
+    <p class="order-note">Enviá esta orden por WhatsApp y coordinamos envío y pago. Podés guardarla en PDF para tu comprobante.</p>
+    <div class="cart-actions order-actions">
+      <a class="btn btn-wa" id="orderWa" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+      <div class="order-actions-secondary">
+        <button class="btn btn-outline" type="button" id="orderPrint">Imprimir / Guardar PDF</button>
+        <button class="btn btn-outline" type="button" id="orderDone">Volver a la tienda</button>
+      </div>
     </div>
   </div>
 </div>

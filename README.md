@@ -33,8 +33,8 @@ de **recetas y remedios caseros**, educación herbolaria y agradecimientos.
 
 | Funcionalidad | Detalle |
 |---|---|
-| 🛒 **Carrito persistente** | Se guarda en `localStorage`, con cantidades, subtotal y badges |
-| 📄 **Orden de compra** | Verificación previa, número de orden, PDF/imprimir y envío por WhatsApp |
+| 🛒 **Carrito persistente** | Se guarda en `localStorage`, con cantidades, subtotal y badges; se agrega desde la grilla, el modal de planta y cada ficha de producto |
+| 📄 **Orden de compra** | Verificación en dos pasos (revisión → orden), número de orden, envío por WhatsApp (vacía el carrito) y PDF/imprimir |
 | 🔎 **Catálogo buscable** | Búsqueda por nombre, uso o nombre científico + filtros por categoría |
 | 🔁 **Buscar desde cualquier página** | El buscador del header guarda el término en `sessionStorage` (`dorila-search`) y lo prellena al llegar a la tienda |
 | 🖼️ **Lazy loading** | Carga progresiva de imágenes con placeholder difuminado (`IntersectionObserver`) |
