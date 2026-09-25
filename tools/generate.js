@@ -10,10 +10,27 @@
 
 var fs = require("fs");
 var path = require("path");
+var crypto = require("crypto");
 
 var ROOT = path.resolve(__dirname, "..");
 var BASE = "https://dorila.netlify.app";
 var products = require("../js/productos.js");
+
+/* Los ?v= de los <script> evitan que el navegador sirva un JS viejo.
+   Se derivan del contenido de todo js/, así que nunca quedan desactualizados
+   a mano y las fichas y las páginas raíz comparten la misma versión. */
+var JS_VERSION;
+try {
+  var h = crypto.createHash("sha1");
+  fs.readdirSync(path.join(ROOT, "js"))
+    .filter(function(f){ return /\.js$/.test(f); })
+    .sort()
+    .forEach(function(f){ h.update(fs.readFileSync(path.join(ROOT, "js", f))); });
+  JS_VERSION = h.digest("hex").slice(0, 8);
+} catch (e) {
+  console.error("Falta js/ para calcular la versión de los scripts");
+  process.exit(1);
+}
 
 function slugify(text){
   return String(text)
@@ -107,6 +124,7 @@ products.forEach(function(p){
     .join("\n");
 
   var html = template
+    .replace(/\{\{JS_VERSION\}\}/g, JS_VERSION)
     .replace(/\{\{PAGE_TITLE\}\}/g, title)
     .replace(/\{\{PAGE_DESC\}\}/g, desc)
     .replace(/\{\{PAGE_URL\}\}/g, url)
@@ -127,6 +145,12 @@ products.forEach(function(p){
     .replace(/\{\{JSONLD_PRODUCT\}\}/g, jsonldProduct)
     .replace(/\{\{JSONLD_BREADCRUMB\}\}/g, jsonldBreadcrumb);
 
+  var leftovers = html.match(/\{\{[A-Z0-9_]+\}\}/g);
+  if (leftovers){
+    console.error("Token sin reemplazar en productos/" + slug + ".html: " + leftovers.join(", "));
+    process.exit(1);
+  }
+
   var dir = path.join(ROOT, "productos");
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, slug + ".html"), html);
@@ -143,5 +167,22 @@ pages.forEach(function(pg){ sitemap.push("  <url><loc>" + pg.page + "</loc></url
 sitemap.push("</urlset>");
 fs.writeFileSync(path.join(ROOT, "sitemap.xml"), sitemap.join("\n") + "\n");
 
+/* Las páginas raíz son editadas a mano, pero el ?v= de sus <script> se
+   reescribe acá para que nunca queden con la versión vieja de un JS. */
+var ROOT_PAGES = ["index.html", "historia.html", "saber.html", "recetas.html", "gracias.html"];
+var stamped = 0;
+ROOT_PAGES.forEach(function(file){
+  var p = path.join(ROOT, file);
+  if (!fs.existsSync(p)) return;
+  var before = fs.readFileSync(p, "utf8");
+  var after = before.replace(/(<script src="js\/[^"?]+)(?:\?v=[^"]*)?(")/g, "$1?v=" + JS_VERSION + "$2");
+  if (after !== before){
+    fs.writeFileSync(p, after);
+    stamped++;
+    console.log("OK  " + file + "  (?v=" + JS_VERSION + ")");
+  }
+});
+
 console.log("\nGeneradas " + pages.length + " fichas.");
 console.log("Sitemap: " + pages.length + " productos + " + mainPages.length + " páginas.");
+console.log("JS ?v=" + JS_VERSION + " | páginas raíz reescritas: " + stamped);

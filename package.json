@@ -6,7 +6,8 @@
   "scripts": {
     "images": "node tools/images.js",
     "generate": "node tools/generate.js",
-    "build": "npm run images && npm run generate"
+    "test": "node tools/check-cart.js",
+    "build": "npm run images && npm run generate && npm test"
   },
   "devDependencies": {
     "sharp": "^0.33.5"

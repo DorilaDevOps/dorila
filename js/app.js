@@ -302,6 +302,23 @@
     saveCart(); updateBadge(); renderCart();
   }
 
+  /* Re-lee el carrito desde localStorage, descarta ids huérfanos y cantidades
+     no positivas. cart.js y app.js mantienen copias propias del mismo localStorage:
+     sin esto, volver con atrás/adelante (bfcache) o agregar desde otra pestaña
+     dejaba el badge, el carrito y el checkout desfasados. */
+  function syncCart(){
+    var fresh = {};
+    try { fresh = JSON.parse(localStorage.getItem("dorila-cart") || "{}") || {}; } catch (err) { fresh = {}; }
+    cart = {};
+    Object.keys(fresh).forEach(function(id){
+      var n = parseInt(fresh[id], 10);
+      if (n > 0 && findProduct(id)) cart[id] = n;
+    });
+    saveCart();
+    updateBadge();
+    if (cartPage && cartPage.classList.contains("is-open")) renderCart();
+  }
+
   /* Agregar al carrito desde el modal de planta */
   var modalAddBtn = document.getElementById("modalAddBtn");
   if (modalAddBtn) modalAddBtn.addEventListener("click", function(){
@@ -322,7 +339,7 @@
   var cartItemCountEl = document.getElementById("cartItemCount");
   var cartSubtotalEl  = document.getElementById("cartSubtotal");
 
-  function openCart(){ renderCart(); cartPage.classList.add("is-open"); cartPage.setAttribute("aria-hidden","false"); document.body.style.overflow = "hidden"; }
+  function openCart(){ syncCart(); renderCart(); cartPage.classList.add("is-open"); cartPage.setAttribute("aria-hidden","false"); document.body.style.overflow = "hidden"; }
   function closeCart(){ cartPage.classList.remove("is-open"); cartPage.setAttribute("aria-hidden","true"); document.body.style.overflow = ""; }
 
   cartBtn.addEventListener("click", openCart);
@@ -331,6 +348,16 @@
     el.addEventListener("click", function(){ closeCart(); document.getElementById("productos").scrollIntoView({ behavior: "smooth" }); });
   });
   cartPage.addEventListener("click", function(e){ if (e.target === cartPage) closeCart(); });
+
+  /* Resincronización: bfcache (atrás/adelante), otra pestaña y volver al tab. */
+  window.addEventListener("pageshow", syncCart);
+  window.addEventListener("storage", function(e){
+    if (e.key && e.key !== "dorila-cart") return;
+    syncCart();
+  });
+  document.addEventListener("visibilitychange", function(){
+    if (!document.hidden) syncCart();
+  });
 
   function renderCart(){
     var ids = Object.keys(cart);
@@ -442,8 +469,8 @@
     else if (cartPage.classList.contains("is-open")) closeCart();
   });
 
-  Object.keys(cart).forEach(function(id){ if (!findProduct(id)) delete cart[id]; });
-  saveCart(); updateBadge(); renderCart();
+  syncCart();
+  renderCart();
   if (new URLSearchParams(window.location.search).get("open-cart") === "1") openCart();
   render();
 

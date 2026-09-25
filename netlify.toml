@@ -2,17 +2,22 @@
   command = "npm run build"
   publish = "."
 
+# El JS y el CSS no llevan hash en el nombre del archivo, así que una
+# caché del navegador puede servir una versión vieja (el botón "Agregar al
+# carrito" de las fichas dejó de funcionar por eso). no-store obliga a
+# revalidar siempre; el sitio es chico y pesa menos que el riesgo.
+
 [[headers]]
-  for = "/img/*"
+  for = "/js/*"
   [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
+    Cache-Control = "public, no-store, must-revalidate"
 
 [[headers]]
   for = "/asset/*"
   [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
+    Cache-Control = "public, no-store, must-revalidate"
 
 [[headers]]
-  for = "/js/*"
+  for = "/img/*"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"

@@ -4,18 +4,20 @@
    y desde páginas que no son el index redirige al carrito abierto.
 
    Cargar antes de </body>, DESPUÉS de js/productos.js:
-     <script src="js/productos.js"></script>
-     <script src="js/cart.js"></script>
+     <script src="js/productos.js?v=1"></script>
+     <script src="js/cart.js?v=1"></script>
    En fichas (subcarpeta productos/):
-     <script src="../js/productos.js"></script>
-     <script src="../js/cart.js"></script>
-   La ruta raíz se deduce del propio src de este script.
+     <script src="../js/productos.js?v=1"></script>
+     <script src="../js/cart.js?v=1"></script>
+   El ?v= lo escribe tools/generate.js; la ruta raíz se deduce del propio
+   src de este script.
    ===================================================================== */
 (function(){
   "use strict";
 
   var src = "";
   if (document.currentScript){ src = document.currentScript.getAttribute("src") || ""; }
+  src = src.split("?")[0].split("#")[0];
   var segments = src.split("/");
   segments.pop();
   var jsDir = segments.join("/") + "/";
@@ -48,8 +50,15 @@
     return clean;
   }
 
+  var ADD_LABEL = "Agregar al carrito";
   var cart = sanitize(readCart());
+  var feedbackTimer = null;
+  var feedbackBtn = null;
   try { window.localStorage.setItem("dorila-cart", JSON.stringify(cart)); } catch (err) {}
+
+  function cartAriaLabel(count){
+    return "Carrito, " + count + " producto" + (count === 1 ? "" : "s");
+  }
 
   function updateBadge(){
     var count = totalUnits(cart);
@@ -63,7 +72,7 @@
       btn.appendChild(badge);
     }
     badge.textContent = count;
-    btn.setAttribute("aria-label", "Ver carrito de compras, " + count + " producto" + (count === 1 ? "" : "s"));
+    btn.setAttribute("aria-label", cartAriaLabel(count));
   }
 
   function wire(){
@@ -77,21 +86,39 @@
   updateBadge();
   wire();
 
+  function resetFeedback(){
+    if (!feedbackBtn) return;
+    feedbackBtn.classList.remove("is-success");
+    feedbackBtn.textContent = ADD_LABEL;
+    feedbackBtn = null;
+  }
+
+  function showFeedback(btn){
+    if (feedbackTimer){ clearTimeout(feedbackTimer); feedbackTimer = null; }
+    if (feedbackBtn && feedbackBtn !== btn) resetFeedback();
+    feedbackBtn = btn;
+    btn.classList.add("is-success");
+    btn.textContent = "¡Agregado! ✓";
+    feedbackTimer = setTimeout(function(){
+      feedbackTimer = null;
+      resetFeedback();
+    }, 1400);
+  }
+
   document.addEventListener("click", function(e){
     var btn = e.target && e.target.closest ? e.target.closest("[data-add-cart]") : null;
     if (!btn) return;
     var id = btn.getAttribute("data-add-cart");
     if (!id) return;
+    /* El id lo emite tools/generate.js desde js/productos.js, la misma fuente de
+       verdad. Si DORILA_PRODUCTS aún no cargó se acepta igual: abortar en silencio
+       dejaba el botón sin ningún feedback. */
     var products = window.DORILA_PRODUCTS;
-    var valid = products && products.some(function(p){ return p.id === id; });
-    if (!valid) return;
+    if (products && products.length && !products.some(function(p){ return p.id === id; })) return;
     cart[id] = (cart[id] || 0) + 1;
     try { window.localStorage.setItem("dorila-cart", JSON.stringify(cart)); } catch (err) {}
     updateBadge();
-    var label = btn.textContent;
-    btn.classList.add("is-success");
-    btn.textContent = "\u00A1Agregado! \u2713";
-    setTimeout(function(){ btn.classList.remove("is-success"); btn.textContent = label; }, 1400);
+    showFeedback(btn);
   });
 
   window.addEventListener("storage", function(e){
