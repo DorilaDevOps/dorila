@@ -184,9 +184,12 @@ npm run generate  # reestampa ?v= y regenera fichas/sitemap
 ### Accesibilidad visual
 
 Los paneles público y de administración centralizan sus colores en tokens de
-`asset/comunidad.css` y `asset/admin-recetas.css`. `tools/check-contraste.js`
-verifica automáticamente texto normal (mínimo 4.5:1), bordes y foco de
-controles (mínimo 3:1), placeholders, campos deshabilitados y mensajes de error.
+`asset/comunidad.css` y `asset/admin-recetas.css`. Los tokens `--cr-*` viven en
+`:root` para que también los reciban los diálogos del formulario.
+`tools/check-contraste.js` verifica automáticamente texto normal (mínimo 4.5:1),
+bordes y foco de controles (mínimo 3:1), placeholders, campos deshabilitados,
+mensajes de error, referencias de tokens y ausencia de colores literales en los
+diálogos.
 
 > Esta primera versión no acepta fotografías: solo texto. El modelo de datos
 > ya contempla una futura ampliación sin cambiar los contratos públicos.
