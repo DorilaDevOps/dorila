@@ -6,8 +6,11 @@
   "scripts": {
     "images": "node tools/images.js",
     "generate": "node tools/generate.js",
-    "test": "node tools/check-cart.js",
+    "test": "node tools/check-cart.js && node tools/check-recetas.js",
     "build": "npm run images && npm run generate && npm test"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^8.2.0"
   },
   "devDependencies": {
     "sharp": "^0.33.5"

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moderación de recetas · DORILA</title>
+<meta name="description" content="Panel privado de moderación de recetas de la comunidad de DORILA.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#34483B">
+<link rel="icon" type="image/png" sizes="256x256" href="img/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,400&family=Rye&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="asset/base.css">
+<link rel="stylesheet" href="asset/comunidad.css">
+<link rel="stylesheet" href="asset/admin-recetas.css">
+</head>
+<body class="admin-page">
+<a class="skip-link" href="#adminMain">Saltar al contenido</a>
+<header class="admin-header">
+  <a class="admin-brand" href="index.html" aria-label="DORILA, volver al inicio">DORILA</a>
+  <a class="admin-header-link" href="index.html">Volver al sitio</a>
+</header>
+<main class="admin-main" id="adminMain">
+  <section class="admin-gate" id="adminGate" aria-labelledby="adminGateTitle">
+    <div class="admin-gate-card">
+      <p class="admin-kicker">Acceso privado</p>
+      <h1 id="adminGateTitle">Moderación de recetas</h1>
+      <p class="admin-gate-copy">Este espacio es solo para el equipo editorial de DORILA. Ingresá el token de administración para revisar, aprobar y publicar recetas de la comunidad.</p>
+      <form class="admin-token-form" id="adminTokenForm">
+        <label for="adminToken">Token de administración
+          <input type="password" id="adminToken" name="token" autocomplete="current-password" spellcheck="false" required>
+        </label>
+        <button class="admin-btn admin-btn-primary" type="submit">Ingresar al panel</button>
+      </form>
+      <p class="admin-gate-error" id="adminGateError" role="alert" hidden></p>
+      <p class="admin-gate-note">El token se guarda únicamente en la sesión de este navegador. No se incluye en el sitio ni en las recetas.</p>
+    </div>
+  </section>
+
+  <section class="admin-panel" id="adminPanel" aria-labelledby="adminPanelTitle" hidden>
+    <header class="admin-panel-head">
+      <div>
+        <p class="admin-kicker">Panel privado</p>
+        <h1 id="adminPanelTitle">Recetas de la comunidad</h1>
+        <p id="adminSessionNote">Sesión activa en este navegador.</p>
+      </div>
+      <div class="admin-head-actions">
+        <button class="admin-btn admin-btn-secondary" type="button" id="adminRefresh">Actualizar</button>
+        <button class="admin-btn admin-btn-secondary" type="button" id="adminExport">Descargar recetas_.js</button>
+        <button class="admin-btn" type="button" id="adminLogout">Cerrar sesión</button>
+      </div>
+    </header>
+
+    <div class="admin-stats" id="adminStats" aria-label="Resumen por estado"></div>
+
+    <div class="admin-tools">
+      <label for="adminSearch">Buscar por nombre, categoría o ciudad
+        <input type="search" id="adminSearch" placeholder="Ej.: manzanilla, Ana, Salto" autocomplete="off">
+      </label>
+      <label for="adminStatusFilter">Filtrar por estado
+        <select id="adminStatusFilter">
+          <option value="all">Todos los estados</option>
+        </select>
+      </label>
+    </div>
+
+    <p class="admin-feedback" id="adminFeedback" role="status" hidden></p>
+    <div class="admin-list" id="adminList" aria-live="polite"></div>
+    <p class="admin-empty" id="adminEmpty" hidden>No hay recetas que coincidan con el filtro.</p>
+  </section>
+</main>
+
+<dialog class="admin-dialog" id="adminDetailDialog" aria-labelledby="adminDetailTitle">
+  <div class="admin-dialog-card">
+    <button class="admin-dialog-close" type="button" id="adminDetailClose" aria-label="Cerrar detalle">×</button>
+    <div id="adminDetailBody"></div>
+  </div>
+</dialog>
+
+<script src="js/admin-recetas.js?v=bd893eeb" defer></script>
+</body>
+</html>

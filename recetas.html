@@ -44,6 +44,7 @@
 </script>
 <link rel="stylesheet" href="asset/base.css">
 <link rel="stylesheet" href="asset/pages.css">
+<link rel="stylesheet" href="asset/comunidad.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -538,6 +539,215 @@
       </article>
     </div>
   </section>
+
+  <!-- ===================== RECETAS DE LA COMUNIDAD ===================== -->
+  <section class="community" id="recetas-comunidad" aria-labelledby="community-heading">
+    <div class="wrap community-inner">
+      <div class="community-intro reveal">
+        <span class="eyebrow-mark">Comunidad</span>
+        <h2 id="community-heading"><span aria-hidden="true">🌿</span> Recetas de persona a persona</h2>
+        <p class="community-lead">Un espacio para encontrarnos a través de lo que preparamos en casa. Compartí tu receta, contá para qué la usás y sumá tu experiencia a la memoria colectiva de las plantas.</p>
+        <p class="community-quote">“Ninguna receta reemplaza a otra: cada mano, cada casa y cada historia le dan su propio tiempo.”</p>
+        <div class="community-actions">
+          <a class="community-btn-primary" href="#communityList">Explorar recetas</a>
+          <button class="community-btn-outline" type="button" data-share-open>Compartir mi receta</button>
+        </div>
+        <p class="community-safety"><strong>Antes de preparar:</strong> las recetas son compartidas por la comunidad y revisadas editorialmente. No reemplazan la indicación de un profesional de la salud. Consultá siempre si estás embarazada, en lactancia, tomás medicación o tenés una condición de salud.</p>
+      </div>
+
+      <div class="community-toolbar reveal">
+        <div>
+          <div class="community-filters" id="communityFilters" role="group" aria-label="Filtrar recetas por categoría de uso"></div>
+        </div>
+        <p class="community-count" id="communityCount" role="status" aria-live="polite">Cargando recetas…</p>
+      </div>
+
+      <p class="community-loading" id="communityLoading" role="status">Cargando recetas de la comunidad…</p>
+      <div class="community-grid" id="communityList" aria-label="Recetas compartidas por la comunidad"></div>
+      <div class="community-empty" id="communityEmpty" hidden>
+        <h3>Sé la primera persona en compartir</h3>
+        <p>Todavía no hay recetas publicadas. Si tenés una preparación casera para compartir, enviala para revisión.</p>
+      </div>
+
+      <div class="community-cta reveal">
+        <div>
+          <h3>Tu receta puede acompañar a otra persona</h3>
+          <p>Contanos qué preparás, cómo lo hacés y qué precauciones conocés. Revisamos cada envío con cuidado antes de publicarlo.</p>
+        </div>
+        <div class="community-actions">
+          <button class="community-btn-primary" type="button" data-share-open>Compartir mi receta</button>
+        </div>
+      </div>
+
+      <noscript>
+        <p class="community-noscript">Para enviar una receta necesitás activar JavaScript. Mientras tanto, podés escribirnos por WhatsApp y la revisamos con el equipo.</p>
+      </noscript>
+    </div>
+  </section>
+
+  <!-- ===================== DIÁLOGOS DE LA COMUNIDAD ===================== -->
+  <dialog class="community-dialog" id="shareDialog" aria-labelledby="shareTitle" aria-describedby="shareIntro">
+    <div class="community-dialog-card">
+      <button class="community-dialog-close" type="button" data-dialog-close aria-label="Cerrar formulario">×</button>
+      <form id="shareForm" novalidate>
+        <div class="community-form-head">
+          <h2 id="shareTitle">Compartir mi receta</h2>
+          <p id="shareIntro">Completá tus datos y la preparación. Antes de publicar, el equipo de DORILA revisa ingredientes, proporciones, precauciones y consentimientos.</p>
+          <span class="community-progress" id="shareProgress">Paso 1 de 2 · Tus datos</span>
+        </div>
+
+        <div class="community-step" id="shareStep1">
+          <p class="community-form-error" id="shareStep1Error" role="alert" hidden></p>
+          <div class="community-field-row">
+            <div class="community-field">
+              <label for="shareFirstName">Nombre <em>(obligatorio)</em></label>
+              <input type="text" id="shareFirstName" name="firstName" autocomplete="given-name" maxlength="80" required>
+            </div>
+            <div class="community-field">
+              <label for="shareLastName">Apellido <em>(obligatorio)</em></label>
+              <input type="text" id="shareLastName" name="lastName" autocomplete="family-name" maxlength="80" required>
+            </div>
+          </div>
+          <div class="community-field-row">
+            <div class="community-field">
+              <label for="shareNationality">Nacionalidad <em>(obligatorio)</em></label>
+              <input type="text" id="shareNationality" name="nationality" autocomplete="country-name" maxlength="60" required>
+            </div>
+            <div class="community-field">
+              <label for="shareCity">Ciudad <em>(opcional)</em></label>
+              <input type="text" id="shareCity" name="city" autocomplete="address-level2" maxlength="80">
+            </div>
+          </div>
+          <p class="community-hint">Tu nombre y ciudad se muestran junto a la receta si se publica. No pedimos correo ni teléfono.</p>
+        </div>
+
+        <div class="community-step" id="shareStep2" hidden>
+          <p class="community-form-error" id="shareStep2Error" role="alert" hidden></p>
+          <div class="community-field">
+            <label for="shareCategory">Categoría de uso <em>(obligatorio)</em></label>
+            <select id="shareCategory" name="category" required>
+              <option value="">Elegí una categoría</option>
+              <option value="Descanso y relajación">Descanso y relajación</option>
+              <option value="Digestivo">Digestivo</option>
+              <option value="Circulación">Circulación</option>
+              <option value="Defensas">Defensas</option>
+              <option value="Articular y muscular">Articular y muscular</option>
+              <option value="Urinario y renal">Urinario y renal</option>
+              <option value="Hepático">Hepático</option>
+              <option value="Respiratorio">Respiratorio</option>
+              <option value="Energía y vitalidad">Energía y vitalidad</option>
+              <option value="Aromaterapia y bienestar sensorial">Aromaterapia y bienestar sensorial</option>
+              <option value="Bienestar femenino">Bienestar femenino</option>
+              <option value="Equilibrio emocional">Equilibrio emocional</option>
+              <option value="Bienestar integral y autocuidado">Bienestar integral y autocuidado</option>
+              <option value="Otros tratamientos">Otros tratamientos</option>
+            </select>
+          </div>
+
+          <div class="community-builder">
+            <label for="ingredientInput">Ingredientes y cantidades <em>(obligatorio)</em></label>
+            <div class="community-builder-row">
+              <input type="text" id="ingredientInput" autocomplete="off" maxlength="160" placeholder="Ej.: 1 cucharada de manzanilla seca" aria-describedby="ingredientHelp">
+              <button class="community-add" type="button" id="addIngredient">Agregar</button>
+            </div>
+            <p class="community-hint" id="ingredientHelp">Escribí un ingrediente y presioná Enter o «Agregar». Sumá al menos dos.</p>
+            <ul class="community-rows" id="ingredientList" aria-live="polite"></ul>
+            <p class="community-error" id="ingredientError" role="alert" hidden></p>
+          </div>
+
+          <div class="community-builder">
+            <label for="stepInput">Preparación paso a paso <em>(obligatorio)</em></label>
+            <div class="community-builder-row">
+              <input type="text" id="stepInput" autocomplete="off" maxlength="400" placeholder="Ej.: Verter el agua caliente y tapar la taza" aria-describedby="stepHelp">
+              <button class="community-add" type="button" id="addStep">Agregar</button>
+            </div>
+            <p class="community-hint" id="stepHelp">Escribí un paso y presioná Enter o «Agregar». Sumá al menos dos.</p>
+            <ul class="community-rows" id="stepList" aria-live="polite"></ul>
+            <p class="community-error" id="stepError" role="alert" hidden></p>
+          </div>
+
+          <div class="community-field">
+            <label for="shareStory">Tu experiencia <em>(opcional)</em></label>
+            <textarea id="shareStory" name="story" maxlength="1000" placeholder="¿De dónde viene esta receta? ¿Para qué momento la preparás?"></textarea>
+          </div>
+
+          <div class="community-field">
+            <label for="sharePrecautions">Precauciones y contraindicaciones <em>(obligatorio o marcá la opción)</em></label>
+            <textarea id="sharePrecautions" name="precautions" maxlength="600" placeholder="Alergias, embarazo, lactancia, medicación, edad, uso externo o cualquier cuidado importante."></textarea>
+          </div>
+          <div class="community-consents">
+            <label><input type="checkbox" id="shareNoPrecautions" name="noKnownPrecautions"> No conozco precauciones específicas para esta preparación.</label>
+          </div>
+
+          <div class="community-consents">
+            <label><input type="checkbox" id="shareConsentAuthorship" name="consentAuthorship" required> Confirmo que esta receta es mía o que tengo permiso para compartirla.</label>
+            <label><input type="checkbox" id="shareConsentReview" name="consentReview" required> Acepto que DORILA revise, edite y decida si publica la receta.</label>
+            <label><input type="checkbox" id="shareConsentPrivacy" name="consentPrivacy" required> Acepto que mi nombre y ciudad se muestren públicamente si la receta se publica.</label>
+          </div>
+
+          <div class="community-hp" aria-hidden="true">
+            <label for="shareWebsite">No completar este campo</label>
+            <input type="text" id="shareWebsite" name="website" tabindex="-1" autocomplete="off">
+          </div>
+          <input type="hidden" id="shareStartedAt" name="startedAt" value="">
+        </div>
+
+        <div class="community-form-actions">
+          <button class="community-btn-outline" type="button" id="shareBack" hidden>Volver</button>
+          <button class="community-btn-primary" type="button" id="shareNext">Continuar</button>
+          <button class="community-btn-primary" type="submit" id="shareSubmit" hidden>Enviar receta para revisión</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <dialog class="community-dialog" id="shareConfirmDialog" aria-labelledby="shareConfirmTitle">
+    <div class="community-dialog-card">
+      <button class="community-dialog-close" type="button" data-dialog-close aria-label="Cerrar confirmación">×</button>
+      <h2 class="community-dialog-title" id="shareConfirmTitle">¿Enviar tu receta para revisión?</h2>
+      <p class="community-dialog-copy">La receta no se publica automáticamente. El equipo editorial revisará la información y podrá contactarte si necesita ajustes.</p>
+      <p class="community-confirm-summary" id="shareConfirmSummary"></p>
+      <div class="community-dialog-actions">
+        <button class="community-btn-outline" type="button" id="shareConfirmNo">No, volver</button>
+        <button class="community-btn-primary" type="button" id="shareConfirmYes">Sí, enviar receta</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="community-dialog is-warning" id="shareCancelDialog" aria-labelledby="shareCancelTitle">
+    <div class="community-dialog-card">
+      <button class="community-dialog-close" type="button" data-dialog-close aria-label="Cerrar aviso">×</button>
+      <h2 class="community-dialog-title" id="shareCancelTitle">No se envió la receta</h2>
+      <p class="community-dialog-copy">No pasa nada: podés volver cuando quieras. ¡Gracias igual por querer compartir lo que preparás!</p>
+      <div class="community-dialog-actions">
+        <button class="community-btn-primary" type="button" data-dialog-close>Volver a las recetas</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="community-dialog" id="shareSuccessDialog" aria-labelledby="shareSuccessTitle">
+    <div class="community-dialog-card">
+      <button class="community-dialog-close" type="button" data-dialog-close aria-label="Cerrar aviso">×</button>
+      <h2 class="community-dialog-title" id="shareSuccessTitle">Receta recibida</h2>
+      <p class="community-dialog-copy">Gracias por compartir. La revisaremos con cuidado antes de publicarla. Si necesitamos ajustar algún dato, nos pondremos en contacto.</p>
+      <div class="community-dialog-actions">
+        <button class="community-btn-primary" type="button" data-dialog-close>Volver a las recetas</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog class="community-dialog is-error" id="shareErrorDialog" aria-labelledby="shareErrorTitle">
+    <div class="community-dialog-card">
+      <button class="community-dialog-close" type="button" data-dialog-close aria-label="Cerrar aviso">×</button>
+      <h2 class="community-dialog-title" id="shareErrorTitle">No pudimos enviar la receta</h2>
+      <p class="community-dialog-copy" id="shareErrorText">Revisá tu conexión e intentá nuevamente.</p>
+      <div class="community-dialog-actions">
+        <button class="community-btn-outline" type="button" data-dialog-close>Volver al formulario</button>
+        <button class="community-btn-primary" type="button" id="shareErrorRetry">Intentar de nuevo</button>
+      </div>
+    </div>
+  </dialog>
+
   <!-- ===================== CONSERVACIÓN ===================== -->
   <section class="conservation" id="conservacion" aria-labelledby="conservacion-heading">
     <div class="wrap">
@@ -643,8 +853,10 @@
 <button class="to-top" type="button" id="toTop" aria-label="Volver arriba">
   <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
-<script src="js/shell.js?v=1dfc38e9" defer></script>
-  <script src="js/info-form.js?v=1dfc38e9" defer></script>
+<script src="js/shell.js?v=bd893eeb" defer></script>
+  <script src="js/info-form.js?v=bd893eeb" defer></script>
+  <script src="js/recetas_.js?v=bd893eeb" defer></script>
+  <script src="js/recetas-comunidad.js?v=bd893eeb" defer></script>
 <!-- ===================== MODAL PRIVACIDAD ===================== -->
 <div class="modal modal-legal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" aria-hidden="true">
   <div class="modal-scrim" data-close-modal></div>
@@ -655,7 +867,7 @@
     <div class="modal-body">
       <span class="m-tag">Legal</span>
       <h2 id="privacyTitle">Política de privacidad</h2>
-      <p><strong>Qué datos recopilamos.</strong> Cuando completás el formulario de cotización, solo usamos tu nombre, lo que solicitás, el departamento, el barrio y las notas o dirección que nos escribís. Estos datos se envían directamente a nuestro WhatsApp; el sitio no los guarda ni los almacena en ningún servidor propio.</p>
+      <p><strong>Qué datos recopilamos.</strong> Cuando completás el formulario de cotización, solo usamos tu nombre, lo que solicitás, el departamento, el barrio y las notas o dirección que nos escribís. Estos datos se envían directamente a nuestro WhatsApp. Si compartís una receta en «Recetas de persona a persona», guardamos tu nombre, apellido, nacionalidad, ciudad (opcional), categoría, ingredientes, preparación, experiencia y precauciones en Netlify Blobs para su revisión editorial y eventual publicación. No usamos esos datos para publicidad ni los compartimos con terceros.</p>
       <p><strong>Para qué los usamos.</strong> Únicamente para coordinar tu presupuesto, visita o consulta. No compartimos tus datos con terceros ni los usamos con fines publicitarios.</p>
       <p><strong>Cookies.</strong> Este sitio no utiliza cookies de seguimiento ni analíticas de terceros.</p>
       <p><strong>Contacto.</strong> Ante cualquier duda sobre esta política, escribinos al 094 872 605.</p>
@@ -681,7 +893,7 @@
     </div>
   </div>
 </div>
-<script src="js/productos.js?v=1dfc38e9" defer></script>
-  <script src="js/cart.js?v=1dfc38e9" defer></script>
+<script src="js/productos.js?v=bd893eeb" defer></script>
+  <script src="js/cart.js?v=bd893eeb" defer></script>
 </body>
 </html>

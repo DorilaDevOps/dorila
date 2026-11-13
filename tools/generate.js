@@ -169,7 +169,7 @@ fs.writeFileSync(path.join(ROOT, "sitemap.xml"), sitemap.join("\n") + "\n");
 
 /* Las páginas raíz son editadas a mano, pero el ?v= de sus <script> se
    reescribe acá para que nunca queden con la versión vieja de un JS. */
-var ROOT_PAGES = ["index.html", "historia.html", "saber.html", "recetas.html", "gracias.html"];
+var ROOT_PAGES = ["index.html", "historia.html", "saber.html", "recetas.html", "gracias.html", "admin-recetas.html"];
 var stamped = 0;
 ROOT_PAGES.forEach(function(file){
   var p = path.join(ROOT, file);

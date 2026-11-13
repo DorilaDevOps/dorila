@@ -41,6 +41,7 @@ de **recetas y remedios caseros**, educación herbolaria y agradecimientos.
 | 🖼️ **Lazy loading** | Carga progresiva de imágenes con placeholder difuminado (`IntersectionObserver`) |
 | 📱 **Mobile-first** | CSS con `min-width` progresivo y `clamp()`; la grilla de categorías se mantiene en 2 columnas en móvil y pasa a 3 desde 640px |
 | 🍵 **Recetas y remedios** | Página con técnicas de preparación, recetas paso a paso y consejos de conservación |
+| 🌿 **Recetas de persona a persona** | Envío en dos pasos, moderación privada con checklist, publicación solo tras aprobación y sin exponer datos personales |
 | 🎓 **Educación herbolaria** | Página informativa sobre plantas y su uso seguro |
 | 💬 **Testimonios** | Carrusel de experiencias reales en la página principal |
 | 🙏 **Agradecimientos** | Página de agradecimiento posterior al envío del formulario |
@@ -118,3 +119,65 @@ npm run build        # images + generate
 <div align="center">
   <sub>© 2026 DORILA · Uruguay · Hecho con 🌿 y mucho té.</sub>
 </div>
+
+---
+
+## 🌿 Recetas de persona a persona
+
+La sección pública vive en `recetas.html#recetas-comunidad` y también tiene
+un teaser en `index.html`. Las recetas se envían desde un formulario en dos
+pasos, pasan por moderación editorial y solo se publican después de aprobar
+el checklist de seguridad.
+
+### Arquitectura
+
+- **Netlify Functions** en `netlify/functions/`:
+  - `recetas-submit.js` — recibe envíos y valida en el servidor.
+  - `recetas-public.js` — devuelve únicamente recetas publicadas.
+  - `recetas-admin.js` — listado y cambios de moderación con token.
+- **Netlify Blobs** (store `dorila-recetas`) para persistencia compartida.
+- **Datos semilla** en `js/recetas_.js`: permiten que la sección tenga
+  contenido inicial y sirven como respaldo si la API no responde.
+- **Panel privado** en `admin-recetas.html` (noindex, no enlazado desde el
+  sitio): checklist de 5 puntos, notas internas, historial y descarga de una
+  copia estática `recetas_.js`.
+
+### Variables de entorno
+
+```bash
+# En Netlify: Site configuration → Environment variables
+ADMIN_TOKEN="un-token-largo-y-secreto"
+```
+
+El token se guarda solo en `sessionStorage` del navegador y se envía como
+`Authorization: Bearer`. Nunca se incluye en el repositorio.
+
+### Desarrollo local
+
+```bash
+npm install
+npx netlify dev
+```
+
+`netlify dev` levanta el sitio y las Functions con Blobs local. Abrí
+`http://localhost:8888`; el panel está en `/admin-recetas.html`.
+
+### Flujo de moderación
+
+`pending → review → approved → published`
+
+- `review → changes` o `approved/review/pending → rejected` requieren un
+  motivo en las notas internas.
+- `published → changes` despublica la receta.
+- `rejected → review` permite reabrir el caso.
+- Para publicar, los 5 puntos del checklist deben estar completos.
+
+### Verificación
+
+```bash
+npm test          # smoke test del carrito + pruebas de recetas
+npm run generate  # reestampa ?v= y regenera fichas/sitemap
+```
+
+> Esta primera versión no acepta fotografías: solo texto. El modelo de datos
+> ya contempla una futura ampliación sin cambiar los contratos públicos.
