@@ -22,7 +22,7 @@ exports.handler = async function(event){
   }
 
   try {
-    var store = storeLib.recipeStore();
+    var store = storeLib.recipeStore(event);
     var record = core.createRecipe(validation.data, { now: Date.now() });
     await storeLib.saveRecipe(store, record);
     return http.json(201, {

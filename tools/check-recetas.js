@@ -58,7 +58,8 @@ function event(token, method, body){
   return {
     httpMethod: method || "GET",
     headers: headers,
-    body: body ? JSON.stringify(body) : ""
+    body: body ? JSON.stringify(body) : "",
+    blobs: "contexto"
   };
 }
 
@@ -264,6 +265,7 @@ var integrationPromise = (async function(){
   var Module = require("module");
   var originalLoad = Module._load;
   var memory = {};
+  var connected = [];
   var fakeStore = {
     setJSON: async function(key, value){ memory[key] = JSON.parse(JSON.stringify(value)); },
     get: async function(key, options){
@@ -276,7 +278,10 @@ var integrationPromise = (async function(){
     }
   };
   Module._load = function(request){
-    if (request === "@netlify/blobs") return { getStore: function(){ return fakeStore; } };
+    if (request === "@netlify/blobs") return {
+      connectLambda: function(event){ connected.push(event); },
+      getStore: function(){ return fakeStore; }
+    };
     return originalLoad.apply(this, arguments);
   };
   var submit = require("../netlify/functions/recetas-submit");
@@ -292,7 +297,7 @@ var integrationPromise = (async function(){
     var submitted = JSON.parse(submitRes.body);
     ok("submit devuelve id", /^rc-[a-z0-9-]{4,90}$/.test(submitted.id));
 
-    var publicBefore = await publicFn.handler({ httpMethod: "GET", headers: {} });
+    var publicBefore = await publicFn.handler(event("", "GET"));
     check("público no muestra pendientes", JSON.parse(publicBefore.body).recipes.length, 0);
 
     var unauth = await adminFn.handler(event("malo", "GET"));
@@ -310,11 +315,12 @@ var integrationPromise = (async function(){
     check("admin publica con checklist", patchPublished.statusCode, 200);
     ok("flujo review/aprobado/publicado", patchInReview.statusCode === 200 && patchApproved.statusCode === 200);
 
-    var publicAfter = await publicFn.handler({ httpMethod: "GET", headers: {} });
+    var publicAfter = await publicFn.handler(event("", "GET"));
     var publicData = JSON.parse(publicAfter.body);
     check("público devuelve la publicada", publicData.recipes.length, 1);
     check("público no filtra consentimientos", "consents" in publicData.recipes[0], false);
     check("público conserva categoría", publicData.recipes[0].category, "Digestivo");
+    ok("Blobs recibe el contexto de Lambda", connected.length >= 8 && connected.every(function(item){ return item && item.blobs === "contexto"; }));
 
     var spam = validPayload(); spam.website = "spam";
     var spamRes = await submit.handler(event("", "POST", spam));

@@ -1,11 +1,16 @@
 "use strict";
 
-var getStore = require("@netlify/blobs").getStore;
+var blobs = require("@netlify/blobs");
+var connectLambda = blobs.connectLambda;
+var getStore = blobs.getStore;
 
 var STORE_NAME = "dorila-recetas";
 var PREFIX = "recetas/";
 
-function recipeStore(){
+function recipeStore(event){
+  if (event && event.blobs && typeof connectLambda === "function"){
+    connectLambda(event);
+  }
   return getStore(STORE_NAME);
 }
 

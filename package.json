@@ -6,7 +6,7 @@
   "scripts": {
     "images": "node tools/images.js",
     "generate": "node tools/generate.js",
-    "test": "node tools/check-cart.js && node tools/check-recetas.js",
+    "test": "node tools/check-cart.js && node tools/check-recetas.js && node tools/check-contraste.js",
     "build": "npm run images && npm run generate && npm test"
   },
   "dependencies": {

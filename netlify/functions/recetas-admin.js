@@ -19,7 +19,7 @@ exports.handler = async function(event){
 
   if (event.httpMethod === "GET"){
     try {
-      var store = storeLib.recipeStore();
+      var store = storeLib.recipeStore(event);
       var recipes = (await storeLib.listRecipes(store)).sort(function(a, b){
         return String(b.createdAt || "").localeCompare(String(a.createdAt || ""));
       });
@@ -45,7 +45,7 @@ exports.handler = async function(event){
     if (!ID_PATTERN.test(id)) return http.json(400, { ok: false, error: "Identificador de receta inválido." });
 
     try {
-      var store = storeLib.recipeStore();
+      var store = storeLib.recipeStore(event);
       var record = await storeLib.getRecipe(store, id);
       if (!record) return http.json(404, { ok: false, error: "La receta no existe." });
 

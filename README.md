@@ -136,6 +136,8 @@ el checklist de seguridad.
   - `recetas-public.js` — devuelve únicamente recetas publicadas.
   - `recetas-admin.js` — listado y cambios de moderación con token.
 - **Netlify Blobs** (store `dorila-recetas`) para persistencia compartida.
+  Las Functions usan compatibilidad Lambda, así que `_lib/recetas-store.js`
+  llama `connectLambda(event)` antes de `getStore()`.
 - **Datos semilla** en `js/recetas_.js`: permiten que la sección tenga
   contenido inicial y sirven como respaldo si la API no responde.
 - **Panel privado** en `admin-recetas.html` (noindex, no enlazado desde el
@@ -175,9 +177,16 @@ npx netlify dev
 ### Verificación
 
 ```bash
-npm test          # smoke test del carrito + pruebas de recetas
+npm test          # carrito + recetas + contraste WCAG AA
 npm run generate  # reestampa ?v= y regenera fichas/sitemap
 ```
+
+### Accesibilidad visual
+
+Los paneles público y de administración centralizan sus colores en tokens de
+`asset/comunidad.css` y `asset/admin-recetas.css`. `tools/check-contraste.js`
+verifica automáticamente texto normal (mínimo 4.5:1), bordes y foco de
+controles (mínimo 3:1), placeholders, campos deshabilitados y mensajes de error.
 
 > Esta primera versión no acepta fotografías: solo texto. El modelo de datos
 > ya contempla una futura ampliación sin cambiar los contratos públicos.

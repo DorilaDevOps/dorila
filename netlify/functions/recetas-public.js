@@ -10,7 +10,7 @@ exports.handler = async function(event){
   }
 
   try {
-    var store = storeLib.recipeStore();
+    var store = storeLib.recipeStore(event);
     var records = await storeLib.listRecipes(store);
     var recipes = records
       .map(core.toPublic)
