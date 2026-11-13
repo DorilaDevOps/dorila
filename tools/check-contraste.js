@@ -107,17 +107,18 @@ var admin = tokens(adminCss, ".admin-page");
 
 console.log("1. Tokens de contraste");
 [
-  "--cr-deep", "--cr-muted", "--cr-border", "--cr-field-bg", "--cr-focus",
-  "--cr-sage-strong", "--cr-sand-hover", "--cr-progress-bg", "--cr-progress-text",
-  "--cr-disabled-bg", "--cr-disabled-text", "--cr-error", "--cr-error-strong",
-  "--cr-error-bg", "--cr-error-border", "--cr-warning-bg", "--cr-warning-border",
-  "--cr-invalid-bg", "--cr-invalid-border", "--cr-summary-bg", "--cr-close-bg",
-  "--cr-sage-soft", "--cr-on-dark"
+  "--cr-green", "--cr-ivory", "--cr-sand", "--cr-sand-hover", "--cr-deep",
+  "--cr-muted", "--cr-border", "--cr-field-bg", "--cr-focus", "--cr-on-dark",
+  "--cr-progress-bg", "--cr-error", "--cr-error-bg", "--cr-error-border",
+  "--cr-warning-bg", "--cr-warning-border"
 ].forEach(function(name){
   ok("público define " + name, Boolean(community[name]));
 });
+ok("público define --cr-backdrop", communityTokenNames.indexOf("--cr-backdrop") !== -1);
+ok("público define --cr-shadow", communityTokenNames.indexOf("--cr-shadow") !== -1);
 ok("público declara todos los tokens en :root",
   communityTokenNames.indexOf("--cr-deep") !== -1 && communityTokenNames.indexOf("--cr-backdrop") !== -1);
+ok("público mantiene una paleta reducida", communityTokenNames.length === 18);
 ok("público resuelve todas las referencias --cr-*",
   missingCommunityTokens.length === 0);
 if (missingCommunityTokens.length){
@@ -140,13 +141,13 @@ pair("texto principal sobre campo", community["--cr-deep"], community["--cr-fiel
 pair("texto secundario sobre tarjeta", community["--cr-muted"], CR_IVORY, 4.5);
 pair("texto secundario sobre campo", community["--cr-muted"], community["--cr-field-bg"], 4.5);
 pair("texto secundario sobre fondo verde", community["--cr-muted"], CR_GREEN, 4.5);
-pair("acento verde sobre fondo verde", community["--cr-sage-strong"], CR_GREEN, 4.5);
-pair("acento verde sobre tarjeta", community["--cr-sage-strong"], CR_IVORY, 4.5);
+pair("acento sobre fondo verde", community["--cr-muted"], CR_GREEN, 4.5);
+pair("acento sobre tarjeta", community["--cr-muted"], CR_IVORY, 4.5);
 pair("botón CTA en hover", community["--cr-deep"], community["--cr-sand-hover"], 4.5);
-pair("texto del progreso", community["--cr-progress-text"], community["--cr-progress-bg"], 4.5);
-pair("texto deshabilitado", community["--cr-disabled-text"], community["--cr-disabled-bg"], 4.5);
+pair("texto del progreso", community["--cr-deep"], community["--cr-progress-bg"], 4.5);
+pair("texto deshabilitado", community["--cr-muted"], community["--cr-progress-bg"], 4.5);
 pair("error sobre tarjeta", community["--cr-error"], CR_IVORY, 4.5);
-pair("error fuerte sobre aviso", community["--cr-error-strong"], community["--cr-error-bg"], 4.5);
+pair("error sobre aviso", community["--cr-error"], community["--cr-error-bg"], 4.5);
 pair("borde de campo sobre tarjeta", community["--cr-border"], CR_IVORY, 3);
 pair("borde de campo sobre campo", community["--cr-border"], community["--cr-field-bg"], 3);
 pair("borde de filtro sobre fondo verde", community["--cr-border"], CR_GREEN, 3);
@@ -154,17 +155,19 @@ pair("foco sobre tarjeta", community["--cr-focus"], CR_IVORY, 3);
 pair("foco sobre fondo verde", community["--cr-focus"], CR_GREEN, 3);
 pair("texto secundario sobre aviso", community["--cr-muted"], community["--cr-warning-bg"], 4.5);
 pair("texto secundario sobre error", community["--cr-muted"], community["--cr-error-bg"], 4.5);
-pair("texto secundario sobre resumen", community["--cr-muted"], community["--cr-summary-bg"], 4.5);
-pair("texto principal sobre resumen", community["--cr-deep"], community["--cr-summary-bg"], 4.5);
-pair("texto principal sobre campo inválido", community["--cr-deep"], community["--cr-invalid-bg"], 4.5);
-pair("error sobre campo inválido", community["--cr-error"], community["--cr-invalid-bg"], 4.5);
-pair("texto sobre botón agregar", community["--cr-deep"], community["--cr-sage-soft"], 4.5);
-pair("texto claro sobre acento", community["--cr-on-dark"], community["--cr-sage"], 4.5);
-pair("texto claro sobre peligro", community["--cr-on-dark"], community["--cr-error-strong"], 4.5);
-pair("borde inválido sobre campo inválido", community["--cr-invalid-border"], community["--cr-invalid-bg"], 3);
-pair("borde de cierre sobre fondo de cierre", community["--cr-border"], community["--cr-close-bg"], 3);
+pair("texto secundario sobre resumen", community["--cr-muted"], community["--cr-progress-bg"], 4.5);
+pair("texto principal sobre resumen", community["--cr-deep"], community["--cr-progress-bg"], 4.5);
+pair("texto principal sobre campo inválido", community["--cr-deep"], community["--cr-error-bg"], 4.5);
+pair("error sobre campo inválido", community["--cr-error"], community["--cr-error-bg"], 4.5);
+pair("texto sobre botón agregar", community["--cr-deep"], community["--cr-green"], 4.5);
+pair("texto claro sobre acento", community["--cr-on-dark"], community["--cr-focus"], 4.5);
+pair("texto claro sobre peligro", community["--cr-on-dark"], community["--cr-error"], 4.5);
+pair("borde inválido sobre campo inválido", community["--cr-error-border"], community["--cr-error-bg"], 3);
+pair("borde de cierre sobre fondo de cierre", community["--cr-border"], community["--cr-ivory"], 3);
 pair("borde de aviso sobre fondo de aviso", community["--cr-warning-border"], community["--cr-warning-bg"], 3);
 pair("borde de error sobre fondo de error", community["--cr-error-border"], community["--cr-error-bg"], 3);
+pair("texto del CTA sobre fondo de foco", community["--cr-ivory"], community["--cr-focus"], 4.5);
+pair("texto del botón del CTA", community["--cr-deep"], community["--cr-ivory"], 4.5);
 
 console.log("\n3. Contraste del panel de administración");
 var AD_PAGE = "#E9F0E7";
@@ -188,17 +191,21 @@ console.log("\n4. Reglas de accesibilidad en CSS");
 ok("público declara placeholders con color propio",
   /\.community-field input::placeholder[\s\S]*?color:\s*var\(--cr-muted\)/.test(communityCss));
 ok("público declara textos deshabilitados",
-  /\.community-field input:disabled[\s\S]*?color:\s*var\(--cr-disabled-text\)/.test(communityCss));
+  /\.community-field input:disabled[\s\S]*?color:\s*var\(--cr-muted\)/.test(communityCss));
 ok("público usa tokens en campos inválidos",
-  /aria-invalid="true"\][\s\S]*?border-color:\s*var\(--cr-invalid-border\)[\s\S]*?background:\s*var\(--cr-invalid-bg\)/.test(communityCss));
+  /aria-invalid="true"\][\s\S]*?border-color:\s*var\(--cr-error-border\)[\s\S]*?background:\s*var\(--cr-error-bg\)/.test(communityCss));
 ok("público usa tokens en diálogo de aviso",
   /\.community-dialog\.is-warning \.community-dialog-card\{[^}]*background:\s*var\(--cr-warning-bg\)[^}]*border-color:\s*var\(--cr-warning-border\)/.test(communityCss));
 ok("público usa tokens en diálogo de error",
   /\.community-dialog\.is-error \.community-dialog-card\{[^}]*background:\s*var\(--cr-error-bg\)[^}]*border-color:\s*var\(--cr-error-border\)/.test(communityCss));
 ok("público usa token en botón de cierre",
-  /\.community-dialog-close\{[^}]*background:\s*var\(--cr-close-bg\)/.test(communityCss));
+  /\.community-dialog-close\{[^}]*background:\s*var\(--cr-ivory\)/.test(communityCss));
 ok("público usa token en resumen de confirmación",
-  /\.community-confirm-summary\{[^}]*background:\s*var\(--cr-summary-bg\)/.test(communityCss));
+  /\.community-confirm-summary\{[^}]*background:\s*var\(--cr-progress-bg\)/.test(communityCss));
+ok("público usa foco como fondo del CTA",
+  /\.community-cta\{[^}]*background:\s*var\(--cr-focus\)/.test(communityCss));
+ok("público usa ivory pleno en el texto del CTA",
+  /\.community-cta p\{[^}]*color:\s*var\(--cr-ivory\)/.test(communityCss));
 ok("diálogos y formulario no usan colores literales",
   !/#[0-9a-f]{3,8}\b|rgba?\(/i.test(communityLiteralDialogCss));
 ok("admin declara placeholders con color propio",

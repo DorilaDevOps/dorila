@@ -201,6 +201,18 @@ console.log("\n5. Integración en las páginas y configuración");
   var netlify = fs.readFileSync(path.join(ROOT, "netlify.toml"), "utf8");
   var generate = fs.readFileSync(path.join(ROOT, "tools", "generate.js"), "utf8");
   var pagesCss = fs.readFileSync(path.join(ROOT, "asset", "pages.css"), "utf8");
+  var baseCss = fs.readFileSync(path.join(ROOT, "asset", "base.css"), "utf8");
+  var homeCss = fs.readFileSync(path.join(ROOT, "asset", "home.css"), "utf8");
+
+  ok("parchment-deep usa el nuevo color",
+    /--color-parchment-deep:\s*#edece9/.test(baseCss));
+  ok("conservación usa parchment-deep de fondo",
+    /\.conservation\{[^}]*background:\s*var\(--color-parchment-deep\)/.test(pagesCss));
+  ok("conservación usa textos oscuros legibles",
+    /\.conservation-item h3\{[^}]*color:\s*var\(--color-ink\)/.test(pagesCss) &&
+    /\.conservation-item p\{[^}]*color:\s*var\(--color-body\)/.test(pagesCss));
+  ok("beneficios usa texto legible sobre parchment-deep",
+    /\.benefits \.section-head p\{[^}]*color:\s*var\(--color-body\)/.test(homeCss));
 
   var heroStart = recetas.indexOf('<section class="recipes-hero"');
   var heroEnd = recetas.indexOf("</section>", heroStart);
