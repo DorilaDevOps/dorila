@@ -113,7 +113,6 @@
    =========================================================== */
 .categories{ padding-block: var(--space-3); }
 .category-grid{ display:grid; gap:0.5rem; grid-template-columns:repeat(2,1fr); }
-@media (max-width:379px){ .category-grid{ grid-template-columns:1fr; } }
 .category-card{ position:relative; border:1px solid var(--color-line); border-radius:16px; background:linear-gradient(160deg, var(--color-parchment-soft), color-mix(in srgb, var(--color-parchment-deep) 35%, var(--color-parchment-soft))); cursor:pointer; overflow:hidden; transition:transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast); }
 .category-card:hover{ transform:translateY(-3px); box-shadow:var(--shadow-card); border-color:var(--color-terracotta); }
 .category-card:focus-visible{ outline:3px solid color-mix(in srgb, var(--color-terracotta) 55%, transparent); outline-offset:2px; }
@@ -393,7 +392,6 @@
 }
 @media (min-width:1000px){
   .hero-content{ min-height:92vh; padding:clamp(4rem,12vw,8rem) var(--space-4) var(--space-6); }
-  .category-grid{ grid-template-columns:repeat(3,1fr); }
   .benefit-grid{ grid-template-columns:repeat(3,1fr); }
   .home-testimonials { padding-block: var(--space-4);}
   .categories { padding-block: var(--space-4);}

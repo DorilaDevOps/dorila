@@ -36,14 +36,15 @@ de **recetas y remedios caseros**, educación herbolaria y agradecimientos.
 | 🛒 **Carrito persistente** | Se guarda en `localStorage`, con cantidades, subtotal y badges; se agrega desde la grilla, el modal de planta y cada ficha de producto |
 | 📄 **Orden de compra** | Verificación en dos pasos (revisión → orden), número de orden, envío por WhatsApp (vacía el carrito) y PDF/imprimir |
 | 🔎 **Catálogo buscable** | Búsqueda por nombre, uso o nombre científico + filtros por categoría |
+| 🧩 **Categorías** | Tarjetas con filtro directo, iconos y badge destacado; 2 columnas en móvil y 3 desde 640px |
 | 🔁 **Buscar desde cualquier página** | El buscador del header guarda el término en `sessionStorage` (`dorila-search`) y lo prellena al llegar a la tienda |
 | 🖼️ **Lazy loading** | Carga progresiva de imágenes con placeholder difuminado (`IntersectionObserver`) |
-| 📱 **Mobile-first** | CSS reorganizado `min-width` progresivo con `clamp()` para tipografías fluidas |
+| 📱 **Mobile-first** | CSS con `min-width` progresivo y `clamp()`; la grilla de categorías se mantiene en 2 columnas en móvil y pasa a 3 desde 640px |
 | 🍵 **Recetas y remedios** | Página con técnicas de preparación, recetas paso a paso y consejos de conservación |
 | 🎓 **Educación herbolaria** | Página informativa sobre plantas y su uso seguro |
 | 💬 **Testimonios** | Carrusel de experiencias reales en la página principal |
 | 🙏 **Agradecimientos** | Página de agradecimiento posterior al envío del formulario |
-| ♿ **Accesible** | `aria-*`, skip-link, focus visible, `prefers-reduced-motion`, carrusel con teclado/swipe |
+| ♿ **Accesible** | `aria-*`, skip-link, focus visible, `prefers-reduced-motion`, carrusel con teclado/swipe y tarjetas de categoría operables con Enter/Espacio |
 | 🔍 **SEO** | Meta tags optimizados, Open Graph, Twitter Cards, JSON-LD (`LocalBusiness` + `WebSite`) |
 | ⚡ **Velocidad** | Imágenes WebP + thumbs, fuentes recortadas, `defer`, revalidación por ETag tras cada deploy |
 
