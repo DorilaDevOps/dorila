@@ -236,13 +236,31 @@
 
   /* Tarjetas de categoría en el hero */
   document.querySelectorAll(".category-card[data-category]").forEach(function(card){
-    card.addEventListener("click", function(){
+    var title = card.querySelector("h3");
+    if (!card.hasAttribute("aria-label")){
+      card.setAttribute("aria-label", "Filtrar productos por " + (title ? title.textContent.trim() : card.dataset.category));
+    }
+    var arrow = card.querySelector(".category-links");
+    if (arrow){
+      arrow.removeAttribute("aria-label");
+      arrow.setAttribute("aria-hidden", "true");
+    }
+
+    function selectCategory(){
       var g = groupFor(card.dataset.category);
       filtersWrap.querySelectorAll(".filter-btn").forEach(function(b){
         b.classList.toggle("is-active", b.dataset.category === g);
       });
       render();
       document.getElementById("productos").scrollIntoView({ behavior: "smooth" });
+    }
+
+    card.addEventListener("click", selectCategory);
+    card.addEventListener("keydown", function(e){
+      if (e.key === "Enter" || e.key === " "){
+        e.preventDefault();
+        selectCategory();
+      }
     });
   });
 
