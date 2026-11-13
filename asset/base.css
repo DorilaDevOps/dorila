@@ -231,6 +231,16 @@ img.img-toned,
   color: var(--color-ink);
 }
 .btn-outline:hover{ background: var(--color-ink); color: var(--color-parchment-soft); }
+.btn-look{
+  background: transparent;
+  color: var(--color-forest-deep);
+  border: 1px solid transparent;
+  box-shadow: 0 8px 18px -8px rgba(122, 52, 25, 0.65);
+  transition: background-color var(--transition-fast), color var(--transition-fast),
+              box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+.btn-look:hover{ background: var(--color-crema); color: var(--color-black); }
+.btn-look:active{ transform: translateY(1px); }
 .btn-ghost{
   background: transparent;
   color: var(--color-forest-deep);
