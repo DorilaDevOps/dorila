@@ -156,10 +156,12 @@
   padding: calc(var(--space-5) + 2rem) var(--space-2) var(--space-5);
   text-align:center; color: var(--color-parchment-soft);
 }
-.recipes-hero .hero-text{ display:flex; flex-direction:column; align-items:center; max-width: 48ch; }
+.recipes-hero .hero-text{ display:flex; flex-direction:column; align-items:center; width:100%; max-width: 48ch; }
 .recipes-hero .eyebrow-mark{ color: var(--color-gold); }
 .recipes-hero h1{ font-family: var(--font-display); font-size: var(--fs-hero); line-height: var(--lh-display); color: var(--color-parchment-soft); text-shadow: 2px 2px 0 rgba(0,0,0,0.35); text-wrap: balance; margin-top: var(--space-2); }
 .recipes-hero .lead{ margin-top: var(--space-3); font-size: var(--fs-lead); color: rgba(250,243,227,0.9); }
+.recipes-hero .hero-ctas{ width:100%; flex-wrap:nowrap; }
+.recipes-hero .hero-cta-label-short{ display:none; }
 .hero-ctas{ display:flex; flex-wrap:nowrap; justify-content:center; gap:0.5rem; margin-top:var(--space-3); }
 .hero-ctas .btn{ flex:1 1 0; min-width:0; font-size:var(--fs-small); padding:0.7em 0.8em; line-height:1.2; white-space:normal; text-align:center; }
 .recipes-hero .hero-ctas .btn-look{ color:var(--color-parchment-soft); }
@@ -288,10 +290,20 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
 .info-success{ display:none; margin-top:0.6rem; color: var(--color-forest-deep); font-weight:700; font-size: var(--fs-small); }
 .info-success.is-visible{ display:block; }
 
+@media (max-width: 639px){
+  .recipes-hero .eyebrow-mark{ display:none; }
+  .recipes-hero .hero-cta-label-full{ display:none; }
+  .recipes-hero .hero-cta-label-short{ display:inline; }
+  .recipes-hero .hero-ctas .btn{ padding:0.7em 0.6em; }
+}
 @media (min-width: 640px){
   .tech-grid{ grid-template-columns: repeat(2, 1fr); }
   .recipe-grid{ grid-template-columns: repeat(2, 1fr); }
   .conservation-grid{ grid-template-columns: repeat(2, 1fr); }
+  .recipes-hero .hero-text{ max-width: 68ch; }
+  .recipes-hero .lead{ max-width: 54ch; }
+  .recipes-hero .hero-ctas{ flex-wrap:nowrap; }
+  .recipes-hero .hero-ctas .btn{ flex:1 1 0; font-size:var(--fs-small); padding:0.8em 0.75em; white-space:nowrap; }
   .hero-ctas{ flex-wrap:wrap; }
   .hero-ctas .btn{ flex:initial; font-size:var(--fs-mid); padding:0.8em 1.4em; }
 }

@@ -200,6 +200,28 @@ console.log("\n5. Integración en las páginas y configuración");
   var robots = fs.readFileSync(path.join(ROOT, "robots.txt"), "utf8");
   var netlify = fs.readFileSync(path.join(ROOT, "netlify.toml"), "utf8");
   var generate = fs.readFileSync(path.join(ROOT, "tools", "generate.js"), "utf8");
+  var pagesCss = fs.readFileSync(path.join(ROOT, "asset", "pages.css"), "utf8");
+
+  var heroStart = recetas.indexOf('<section class="recipes-hero"');
+  var heroEnd = recetas.indexOf("</section>", heroStart);
+  var hero = recetas.slice(heroStart, heroEnd);
+  var heroCtasStart = hero.indexOf('<div class="hero-ctas">');
+  var heroCtasEnd = hero.indexOf("</div>", heroCtasStart);
+  var heroCtas = hero.slice(heroCtasStart, heroCtasEnd);
+
+  check("hero tiene 3 CTAs", (heroCtas.match(/class="btn btn-look"/g) || []).length, 3);
+  ok("hero usa etiqueta corta Ver", /class="hero-cta-label-short"[^>]*>Ver<\/span>/.test(heroCtas));
+  ok("hero usa etiqueta corta Técnicas", /class="hero-cta-label-short"[^>]*>Técnicas<\/span>/.test(heroCtas));
+  ok("hero usa etiqueta corta Mi receta", /class="hero-cta-label-short"[^>]*>Mi receta<\/span>/.test(heroCtas));
+  ok("hero comparte receta desde el tercer CTA",
+    /<button[^>]*data-share-open[^>]*aria-label="Compartir mi receta"/.test(heroCtas));
+  ok("hero oculta el eyebrow en mobile",
+    /@media \(max-width: 639px\)\{[\s\S]*?\.recipes-hero \.eyebrow-mark\{ display:none; \}/.test(pagesCss));
+  ok("hero cambia a etiquetas cortas en mobile",
+    /@media \(max-width: 639px\)\{[\s\S]*?\.recipes-hero \.hero-cta-label-full\{ display:none; \}[\s\S]*?\.recipes-hero \.hero-cta-label-short\{ display:inline; \}/.test(pagesCss));
+  ok("hero mantiene los CTAs en una fila",
+    /\.recipes-hero \.hero-ctas\{ width:100%; flex-wrap:nowrap; \}/.test(pagesCss) &&
+    /@media \(min-width: 640px\)\{[\s\S]*?\.recipes-hero \.hero-ctas\{ flex-wrap:nowrap; \}/.test(pagesCss));
 
   ok("recetas tiene la sección comunidad", /id="recetas-comunidad"/.test(recetas));
   ok("recetas carga recetas_.js", /js\/recetas_\.js\?v=/.test(recetas));
