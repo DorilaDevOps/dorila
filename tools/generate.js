@@ -105,7 +105,7 @@ products.forEach(function(p){
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Inicio", "item": BASE + "/" },
-      { "@type": "ListItem", "position": 2, "name": "Productos", "item": BASE + "/#productos" },
+      { "@type": "ListItem", "position": 2, "name": "Productos", "item": BASE + "/productos.html" },
       { "@type": "ListItem", "position": 3, "name": p.name, "item": url }
     ]
   }, null, 2);
@@ -159,7 +159,7 @@ products.forEach(function(p){
   console.log("OK  productos/" + slug + ".html   <- " + p.name);
 });
 
-var mainPages = ["", "historia.html", "saber.html", "recetas.html", "gracias.html"];
+var mainPages = ["", "productos.html", "historia.html", "saber.html", "recetas.html", "gracias.html"];
 var sitemap = ['<?xml version="1.0" encoding="UTF-8"?>'];
 sitemap.push('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 mainPages.forEach(function(m){ sitemap.push("  <url><loc>" + BASE + "/" + m + "</loc></url>"); });
@@ -169,7 +169,7 @@ fs.writeFileSync(path.join(ROOT, "sitemap.xml"), sitemap.join("\n") + "\n");
 
 /* Las páginas raíz son editadas a mano, pero el ?v= de sus <script> se
    reescribe acá para que nunca queden con la versión vieja de un JS. */
-var ROOT_PAGES = ["index.html", "historia.html", "saber.html", "recetas.html", "gracias.html", "admin-recetas.html"];
+var ROOT_PAGES = ["index.html", "productos.html", "404.html", "historia.html", "saber.html", "recetas.html", "gracias.html", "admin-recetas.html"];
 var stamped = 0;
 ROOT_PAGES.forEach(function(file){
   var p = path.join(ROOT, file);

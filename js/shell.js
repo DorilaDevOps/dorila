@@ -96,7 +96,7 @@
   var searchOverlayClose = document.getElementById("searchOverlayClose");
   var searchOverlayInput = document.getElementById("searchOverlayInput");
   var searchOverlayClear = document.getElementById("searchOverlayClear");
-  var searchTarget       = window.DORILA_SEARCH_TARGET || "index.html#productos";
+  var searchTarget       = window.DORILA_SEARCH_TARGET || (/\/productos\//.test(window.location.pathname) ? "../productos.html" : "productos.html");
 
   function openSearchOverlay(){
     if (!searchOverlay || !searchOverlayInput) return;

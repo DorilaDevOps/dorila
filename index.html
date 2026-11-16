@@ -86,17 +86,26 @@
 
     <nav class="nav-desktop" aria-label="Navegación principal">
       <ul>
-        <li><a href="#productos" class="is-current">Productos</a></li>
-        <li><a href="recetas.html">Recetas</a></li>
+        <li><a href="productos.html">Productos</a></li>
         <li class="has-menu">
-          <a href="#" aria-haspopup="true" aria-expanded="false">
+          <a href="recetas.html" aria-haspopup="true" aria-expanded="false">
+            Recetas
+            <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+          </a>
+          <ul class="dropdown">
+            <li><a href="recetas.html#recetas">Ver recetas</a></li>
+            <li><a href="recetas.html#tecnicas">Técnicas de preparación</a></li>
+            <li><a href="recetas.html?compartir=1#recetas-comunidad">Compartir mi receta</a></li>
+          </ul>
+        </li>
+        <li class="has-menu">
+          <a href="historia.html" aria-haspopup="true" aria-expanded="false">
             Sobre nosotros
             <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
           </a>
           <ul class="dropdown">
             <li><a href="historia.html">Nuestra historia</a></li>
             <li><a href="saber.html">Cosas que deberías saber</a></li>
-            <li><a href="gracias.html">Agradecimientos</a></li>
           </ul>
         </li>
       </ul>
@@ -140,7 +149,7 @@
     <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
   <ul>
-    <li><a href="#productos" class="is-current">Productos</a></li>
+    <li><a href="productos.html">Productos</a></li>
     <li class="nav-acc-parent">
       <button class="nav-acc" type="button" id="mobileRecetasToggle" aria-expanded="false" aria-controls="mobileRecetasList">
         Recetas
@@ -162,8 +171,7 @@
       <div class="nav-sublist" id="mobileSobreList">
         <div class="nav-sublist-inner">
           <a href="historia.html">Nuestra historia</a>
-<a href="saber.html">Cosas que deberías saber</a>
-          <a href="gracias.html">Agradecimientos</a>
+          <a href="saber.html">Cosas que deberías saber</a>
         </div>
       </div>
     </li>
@@ -199,7 +207,7 @@
         <h1 id="hero-heading">Elegí productos naturales,<br>terapias que acompañan</h1>
         <p class="lead">Hierbas medicinales seleccionadas con amor y conciencia, honrando la sabiduría ancestral de las plantas para acercarte su esencia y acompañar tu bienestar.</p>
         <div class="hero-ctas">
-          <a class="btn btn-look" href="#productos">Descubrí nuestros productos</a>
+          <a class="btn btn-look" href="productos.html">Descubrí nuestros productos</a>
           <a class="btn btn-look" href="historia.html">Conocer la historia</a>
         </div>
         <div class="hero-tags">
@@ -386,8 +394,8 @@
       <span class="eyebrow-mark">
         El herbario
       </span>
-      <h2 id="productos-heading">Nuestras hierbas medicinales</h2>
-      <p>Explorá por categoría o buscá por nombre, usos o nombre científico.</p>
+      <h2 id="productos-heading">Hierbas destacadas</h2>
+      <p>Una selección de nuestro herbario. Buscá por nombre, usos o nombre científico y mirá la ficha completa de cada producto.</p>
     </div>
 
     <div class="product-tools">
@@ -406,14 +414,14 @@
     </div>
     <p class="product-count" id="productCount" role="status"></p>
 
-    <div class="product-grid" id="productGrid">
+    <div class="product-grid" id="productGrid" data-limit="8">
       <!-- Las tarjetas de producto se completan por JS a partir de PRODUCTS -->
     </div>
 
     <p class="product-empty" id="productEmpty" hidden>No encontramos hierbas con ese criterio. Probá con otra palabra.</p>
 
     <div class="products-more">
-      <a class="btn btn-outline" href="#contacto">Pedir el catálogo completo</a>
+      <a class="btn btn-outline" href="productos.html">Ver todos los productos</a>
     </div>
   </section>
 
@@ -645,6 +653,10 @@
               <h3>Envíos</h3>
               <p>Envío gratis desde <strong>$1.500</strong><br>Montevideo: <strong>$200</strong><br>Interior: por agencias</p>
             </div>
+            <div class="contact-meta-item">
+              <h3>Garantía de autenticidad</h3>
+              <p>Cada preparado se elabora a mano y lleva el sello de <strong>DORILA</strong>.</p>
+            </div>
           </div>
         </div>
         <div class="contact-actions">
@@ -672,7 +684,8 @@
   <div class="wrap footer-legal">
     <p class="footer-legal-copy">DORILA &middot; Herbolaria artesanal.</p>
     <nav class="footer-legal-links" aria-label="Información legal">
-      <a href="https://kikiriya-devops.netlify.app" target="_blank" rel="noopener">Garantía de autenticidad</a>
+      <a href="#contacto">Envíos y garantía</a>
+      <a href="gracias.html">Agradecimientos</a>
       <button type="button" data-open-modal="privacyModal" aria-haspopup="dialog">Política de privacidad</button>
       <button type="button" data-open-modal="disclaimerModal" aria-haspopup="dialog">Aviso legal</button>
     </nav>
@@ -695,11 +708,13 @@
       <button type="button" id="modalImg2Btn" class="modal-img2" hidden aria-label="Ver segunda imagen">
         <img id="modalImg2" src="" alt="">
       </button>
+      <span class="modal-cat" id="modalCat"></span>
       <span class="modal-id" id="modalId"></span>
     </div>
     <div class="modal-body">
       <h3 id="plantModalName">Planta</h3>
       <p class="modal-scientific"><strong>Nombre científico:</strong> <span id="modalScientific"></span></p>
+      <p class="modal-price" id="modalPrice"></p>
       <p class="modal-desc" id="modalDesc"></p>
       <div class="modal-props">
         <h4>Propiedades medicinales</h4>
@@ -708,7 +723,11 @@
       <p class="modal-note">La información de esta ficha es orientativa y no reemplaza la consulta médica. Consultá siempre con un profesional de la salud.</p>
       <div class="modal-more">
         <button class="btn btn-primary" id="modalAddBtn" type="button">Agregar al carrito</button>
-        <a class="btn btn-ghost" id="modalMoreLink" href="#">Ver ficha completa</a>
+        <a class="btn btn-ghost" id="modalMoreLink" href="productos.html">Ver todos los productos</a>
+      </div>
+      <div class="modal-related" id="modalRelatedWrap" hidden>
+        <h4>Productos relacionados</h4>
+        <div class="related-grid" id="modalRelated"></div>
       </div>
     </div>
   </div>
@@ -871,11 +890,11 @@
   <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 
-<script src="js/shell.js?v=bd893eeb" defer></script>
-  <script src="js/testimonios.js?v=bd893eeb" defer></script>
-  <script src="js/productos.js?v=bd893eeb" defer></script>
-  <script src="js/cart.js?v=bd893eeb" defer></script>
-  <script src="js/app.js?v=bd893eeb" defer></script>
-  <script src="js/info-form.js?v=bd893eeb" defer></script>
+<script src="js/shell.js?v=27241909" defer></script>
+  <script src="js/testimonios.js?v=27241909" defer></script>
+  <script src="js/productos.js?v=27241909" defer></script>
+  <script src="js/cart.js?v=27241909" defer></script>
+  <script src="js/app.js?v=27241909" defer></script>
+  <script src="js/info-form.js?v=27241909" defer></script>
 </body>
 </html>

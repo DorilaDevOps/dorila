@@ -10,6 +10,7 @@
 
   /* --- 1. DATOS --- */
   var PRODUCTS = window.DORILA_PRODUCTS || [];
+  var lastModalTrigger = null;
 
   /* --- 2. IMÁGENES lazy --- */
   function buildLazyImg(fullUrl, alt){
@@ -108,15 +109,77 @@
       .replace(/^-+|-+$/g, "");
   }
 
+  function openProductModal(p, keepTrigger, trigger){
+    var modal = document.getElementById("plantModal");
+    if (!modal) return;
+    if (!keepTrigger) lastModalTrigger = trigger || document.activeElement || null;
+    setModalMedia(p);
+    document.getElementById("modalId").textContent = p.id;
+    document.getElementById("plantModalName").textContent = p.name;
+    document.getElementById("modalCat").textContent = p.category || "";
+    document.getElementById("modalScientific").textContent = p.scientific;
+    document.getElementById("modalPrice").textContent = p.price || "";
+    document.getElementById("modalDesc").textContent = p.desc;
+    var propsList = document.getElementById("modalProps");
+    propsList.innerHTML = "";
+    p.props.forEach(function(prop){
+      var li = document.createElement("li");
+      li.innerHTML = "<svg aria-hidden=\"true\" focusable=\"false\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M20 6L9 17l-5-5\"/></svg>";
+      li.appendChild(document.createTextNode(" " + prop));
+      propsList.appendChild(li);
+    });
+    var moreLink = document.getElementById("modalMoreLink");
+    if (moreLink) moreLink.href = "productos.html";
+    var addBtn = document.getElementById("modalAddBtn");
+    if (addBtn){
+      addBtn.dataset.id = p.id;
+      addBtn.classList.remove("is-success");
+      addBtn.textContent = "Agregar al carrito";
+    }
+    renderRelated(p);
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    var close = document.getElementById("modalClose");
+    if (close) close.focus();
+  }
+
+  function renderRelated(p){
+    var wrap = document.getElementById("modalRelatedWrap");
+    var relatedGrid = document.getElementById("modalRelated");
+    if (!wrap || !relatedGrid) return;
+    relatedGrid.innerHTML = "";
+    var related = PRODUCTS.filter(function(r){
+      return r.id !== p.id && r.category === p.category;
+    }).slice(0, 4);
+    if (!related.length){
+      wrap.hidden = true;
+      return;
+    }
+    related.forEach(function(r){
+      var slug = slugify(r.name);
+      var card = document.createElement("a");
+      card.className = "related-card";
+      card.href = "productos/" + slug + ".html";
+      card.innerHTML =
+        "<img src=\"" + r.img + "\" alt=\"" + r.name + ", producto de herboristería artesanal de DORILA\" loading=\"lazy\" width=\"240\" height=\"240\">" +
+        "<span class=\"related-name\">" + r.name + "</span>" +
+        "<span class=\"related-price\">" + r.price + "</span>";
+      card.addEventListener("click", function(e){
+        e.preventDefault();
+        openProductModal(r, true);
+      });
+      relatedGrid.appendChild(card);
+    });
+    wrap.hidden = false;
+  }
+
   function cardForProduct(p){
     var slug = slugify(p.name);
     var card = document.createElement("article");
     card.className = "product-card";
     card.dataset.id = p.id;
     card.dataset.category = p.category;
-    card.setAttribute("role", "button");
-    card.setAttribute("tabindex", "0");
-    card.setAttribute("aria-label", p.name + ", más información");
 
     var media = document.createElement("div");
     media.className = "product-media";
@@ -133,7 +196,7 @@
           "<svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M12 5v14M5 12h14\"/></svg>" +
         "</button>" +
       "</div>" +
-      "<a class=\"card-link\" href=\"productos/" + slug + ".html\">Ver ficha completa</a>";
+      "<a class=\"card-link\" href=\"productos/" + slug + ".html\" aria-label=\"Ver ficha de " + p.name + "\">Ver ficha</a>";
 
     body.querySelector(".add-btn").addEventListener("click", function(e){
       e.stopPropagation();
@@ -148,38 +211,7 @@
     var cardLink = body.querySelector(".card-link");
     if (cardLink) cardLink.addEventListener("click", function(e){ e.stopPropagation(); });
 
-    function openModal(){
-      var modal = document.getElementById("plantModal");
-      setModalMedia(p);
-      document.getElementById("modalId").textContent = p.id;
-      document.getElementById("plantModalName").textContent = p.name;
-      document.getElementById("modalScientific").textContent = p.scientific;
-      document.getElementById("modalDesc").textContent = p.desc;
-      var propsList = document.getElementById("modalProps");
-      propsList.innerHTML = "";
-      p.props.forEach(function(prop){
-        var li = document.createElement("li");
-        li.innerHTML = "<svg aria-hidden=\"true\" focusable=\"false\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M20 6L9 17l-5-5\"/></svg>";
-        li.appendChild(document.createTextNode(" " + prop));
-        propsList.appendChild(li);
-      });
-      var moreLink = document.getElementById("modalMoreLink");
-      if (moreLink) moreLink.href = "productos/" + slugify(p.name) + ".html";
-      var addBtn = document.getElementById("modalAddBtn");
-      if (addBtn){
-        addBtn.dataset.id = p.id;
-        addBtn.classList.remove("is-success");
-        addBtn.textContent = "Agregar al carrito";
-      }
-      modal.classList.add("is-open");
-      modal.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-    }
-
-    card.addEventListener("click", openModal);
-    card.addEventListener("keydown", function(e){
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModal(); }
-    });
+    card.addEventListener("click", function(){ openProductModal(p, false, cardLink); });
 
     card.appendChild(media);
     card.appendChild(body);
@@ -199,10 +231,19 @@
       return matchesCat && matchesQ;
     });
 
+    var total = list.length;
+    var limit = parseInt(grid.dataset.limit || "0", 10);
+    var isDefaultView = !cat && !q;
+    if (limit > 0 && isDefaultView) list = list.slice(0, limit);
+
     grid.innerHTML = "";
     list.forEach(function(p){ grid.appendChild(cardForProduct(p)); });
-    document.getElementById("productCount").textContent = list.length + " hierba" + (list.length === 1 ? "" : "s") + " encontrada" + (list.length === 1 ? "" : "s");
-    document.getElementById("productEmpty").hidden = list.length > 0;
+    if (limit > 0 && isDefaultView && total > limit){
+      document.getElementById("productCount").textContent = "Mostrando " + list.length + " de " + total + " hierbas destacadas";
+    } else {
+      document.getElementById("productCount").textContent = total + " hierba" + (total === 1 ? "" : "s") + " encontrada" + (total === 1 ? "" : "s");
+    }
+    document.getElementById("productEmpty").hidden = total > 0;
     initLazyLoading();
   }
 
@@ -291,6 +332,10 @@
     modal.classList.remove("is-open");
     modal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
+    if (lastModalTrigger && typeof lastModalTrigger.focus === "function"){
+      lastModalTrigger.focus();
+      lastModalTrigger = null;
+    }
   }
 
   /* --- 5. CARRITO --- */
@@ -489,8 +534,18 @@
 
   syncCart();
   renderCart();
-  if (new URLSearchParams(window.location.search).get("open-cart") === "1") openCart();
+  var initialParams = new URLSearchParams(window.location.search);
+  if (initialParams.get("open-cart") === "1") openCart();
   render();
+
+  /* Deep links: ?categoria=cremas y ?p=nombre-del-producto */
+  var initialCat = initialParams.get("categoria");
+  if (initialCat) applyCategoryFilter(initialCat);
+  var initialProduct = initialParams.get("p") || initialParams.get("producto");
+  if (initialProduct){
+    var initialMatch = PRODUCTS.filter(function(p){ return slugify(p.name) === initialProduct; })[0];
+    if (initialMatch) openProductModal(initialMatch);
+  }
 
   /* --- 6. FILTROS DESDE NAV --- */
   function applyCategoryFilter(cat){

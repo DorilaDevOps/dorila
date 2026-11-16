@@ -286,7 +286,31 @@ console.log("\n5. Integración en las páginas y configuración");
   ok("robots bloquea admin", /Disallow: \/admin-recetas\.html/.test(robots));
   ok("netlify.toml protege admin", /for = "\/admin-recetas\.html"/.test(netlify) && /X-Robots-Tag/.test(netlify));
   ok("generate.js incluye admin", /ROOT_PAGES = \[[^\]]*admin-recetas\.html/.test(generate));
-  ok("admin no entra al sitemap", /mainPages = \["", "historia\.html", "saber\.html", "recetas\.html", "gracias\.html"\]/.test(generate));
+  ok("admin no entra al sitemap", /mainPages = \["", "productos\.html", "historia\.html", "saber\.html", "recetas\.html", "gracias\.html"\]/.test(generate));
+
+  var productosPage = fs.readFileSync(path.join(ROOT, "productos.html"), "utf8");
+  var notFound = fs.readFileSync(path.join(ROOT, "404.html"), "utf8");
+  var sitemap = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
+  var appJs = fs.readFileSync(path.join(ROOT, "js", "app.js"), "utf8");
+  var shellJs = fs.readFileSync(path.join(ROOT, "js", "shell.js"), "utf8");
+  var publicPages = [index, productosPage, notFound, template, recetas].join("\n");
+
+  ok("productos.html existe y es indexable", /<meta name="robots" content="index, follow">/.test(productosPage));
+  ok("productos.html tiene canonical propio", /rel="canonical" href="https:\/\/dorila\.netlify\.app\/productos\.html"/.test(productosPage));
+  ok("productos.html carga el catálogo completo", /id="productGrid"/.test(productosPage) && /js\/productos\.js\?v=/.test(productosPage) && /js\/app\.js\?v=/.test(productosPage));
+  ok("productos.html ofrece índice estático de fichas", (productosPage.match(/href="productos\/[^"]+\.html"/g) || []).length >= 36);
+  ok("productos.html no limita los resultados", !/id="productGrid"[^>]*data-limit=/.test(productosPage));
+  ok("index limita los destacados a 8", /id="productGrid" data-limit="8"/.test(index));
+  ok("modal muestra categoría y precio", /id="modalCat"/.test(index) && /id="modalPrice"/.test(index));
+  ok("modal incluye productos relacionados", /id="modalRelatedWrap"/.test(index) && /id="modalRelated"/.test(index));
+  ok("app.js renderiza relacionados y limita la home", /function renderRelated/.test(appJs) && /dataset\.limit/.test(appJs));
+  ok("app.js soporta enlaces profundos de producto y categoría", /get\("p"\)/.test(appJs) && /get\("categoria"\)/.test(appJs));
+  ok("nav desktop de Recetas es desplegable", /<a href="recetas\.html" aria-haspopup="true" aria-expanded="false">/.test(index));
+  ok("no quedan enlaces externos de kikiriya", !/kikiriya-devops/.test(publicPages) && !/kikiriya-devops/.test(fs.readFileSync(path.join(ROOT, "historia.html"), "utf8")) && !/kikiriya-devops/.test(fs.readFileSync(path.join(ROOT, "saber.html"), "utf8")) && !/kikiriya-devops/.test(fs.readFileSync(path.join(ROOT, "gracias.html"), "utf8")));
+  ok("footer enlaza Envíos y garantía", /Envíos y garantía/.test(index) && /Envíos y garantía/.test(productosPage));
+  ok("404 es noindex y vuelve al inicio", /name="robots" content="noindex, follow"/.test(notFound) && /href="index\.html"/.test(notFound));
+  ok("sitemap incluye productos.html y excluye 404/admin", /productos\.html<\/loc>/.test(sitemap) && !/404\.html<\/loc>/.test(sitemap) && !/admin-recetas\.html<\/loc>/.test(sitemap));
+  ok("buscador apunta a productos.html", /DORILA_SEARCH_TARGET \|\| .*productos\.html/.test(shellJs));
 })();
 
 console.log("\n6. Sintaxis de JavaScript nuevo");

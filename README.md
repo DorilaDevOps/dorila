@@ -23,9 +23,9 @@ medicinales, filtrarlas por categoría, armar un carrito persistente,
 generar una orden de compra y enviarla por WhatsApp. Incluye además páginas
 de **recetas y remedios caseros**, educación herbolaria y agradecimientos.
 
-> ⚙️ **Cómo se genera**: 5 páginas base escritas a mano (`index`, `historia`,
-> `saber`, `recetas`, `gracias`) + **36 fichas de producto** generadas
-> automáticamente desde `templates/ficha-producto.html` y `js/productos.js`
+> ⚙️ **Cómo se genera**: 6 páginas base escritas a mano (`index`, `productos`,
+> `historia`, `saber`, `recetas`, `gracias`) + `404.html` + **36 fichas de producto**
+> generadas automáticamente desde `templates/ficha-producto.html` y `js/productos.js`
 > con `tools/generate.js`. Las imágenes se optimizan a WebP con
 > `tools/images.js` (sharp).
 
@@ -35,7 +35,8 @@ de **recetas y remedios caseros**, educación herbolaria y agradecimientos.
 |---|---|
 | 🛒 **Carrito persistente** | Se guarda en `localStorage`, con cantidades, subtotal y badges; se agrega desde la grilla, el modal de planta y cada ficha de producto |
 | 📄 **Orden de compra** | Verificación en dos pasos (revisión → orden), número de orden, envío por WhatsApp (vacía el carrito) y PDF/imprimir |
-| 🔎 **Catálogo buscable** | Búsqueda por nombre, uso o nombre científico + filtros por categoría |
+| 🔎 **Catálogo buscable** | Página `productos.html` con los 36 productos, búsqueda por nombre, uso o nombre científico, filtros por categoría e índice estático para SEO |
+| 🪴 **Modal de producto** | Vista rápida con categoría, precio, propiedades, productos relacionados y acceso a la ficha completa |
 | 🧩 **Categorías** | Tarjetas con filtro directo, iconos y badge destacado; 2 columnas en móvil y 3 desde 640px |
 | 🔁 **Buscar desde cualquier página** | El buscador del header guarda el término en `sessionStorage` (`dorila-search`) y lo prellena al llegar a la tienda |
 | 🖼️ **Lazy loading** | Carga progresiva de imágenes con placeholder difuminado (`IntersectionObserver`) |
@@ -46,7 +47,7 @@ de **recetas y remedios caseros**, educación herbolaria y agradecimientos.
 | 💬 **Testimonios** | Carrusel de experiencias reales en la página principal |
 | 🙏 **Agradecimientos** | Página de agradecimiento posterior al envío del formulario |
 | ♿ **Accesible** | `aria-*`, skip-link, focus visible, `prefers-reduced-motion`, carrusel con teclado/swipe y tarjetas de categoría operables con Enter/Espacio |
-| 🔍 **SEO** | Meta tags optimizados, Open Graph, Twitter Cards, JSON-LD (`LocalBusiness` + `WebSite`) |
+| 🔍 **SEO** | Meta tags optimizados, Open Graph, Twitter Cards, JSON-LD (`LocalBusiness`, `WebSite`, `ItemList` y `BreadcrumbList`), sitemap con las 36 fichas y página 404 `noindex` |
 | ⚡ **Velocidad** | Imágenes WebP + thumbs, fuentes recortadas, `defer`, revalidación por ETag tras cada deploy |
 
 ---
@@ -56,10 +57,12 @@ de **recetas y remedios caseros**, educación herbolaria y agradecimientos.
 ```
 dorila/
 ├── index.html        # Tienda (página principal)
+├── productos.html    # Catálogo completo + búsqueda y filtros
 ├── historia.html     # Nuestra historia
 ├── recetas.html      # Recetas y remedios caseros
 ├── saber.html        # Cosas que deberías saber (educación herbolaria)
 ├── gracias.html      # Agradecimientos post-formulario
+├── 404.html          # Página no encontrada (noindex)
 ├── asset/            # CSS por áreas: base, home, pages, carousel, ficha
 ├── img/              # Fotografías (WebP optimizado + fuentes jpg/png)
 ├── js/               # shell, cart, app, ficha, productos, testimonios…

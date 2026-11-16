@@ -65,7 +65,7 @@
       "@type": "ListItem",
       "position": 2,
       "name": "Productos",
-      "item": "https://dorila.netlify.app/#productos"
+      "item": "https://dorila.netlify.app/productos.html"
     },
     {
       "@type": "ListItem",
@@ -93,17 +93,26 @@
     </a>
     <nav class="nav-desktop" aria-label="Navegación principal">
       <ul>
-        <li><a href="../index.html#productos" class="is-current">Productos</a></li>
-        <li><a href="../recetas.html">Recetas</a></li>
+        <li><a href="../productos.html" class="is-current">Productos</a></li>
         <li class="has-menu">
-          <a href="#" aria-haspopup="true" aria-expanded="false">
+          <a href="../recetas.html" aria-haspopup="true" aria-expanded="false">
+            Recetas
+            <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+          </a>
+          <ul class="dropdown">
+            <li><a href="../recetas.html#recetas">Ver recetas</a></li>
+            <li><a href="../recetas.html#tecnicas">Técnicas de preparación</a></li>
+            <li><a href="../recetas.html?compartir=1#recetas-comunidad">Compartir mi receta</a></li>
+          </ul>
+        </li>
+        <li class="has-menu">
+          <a href="../historia.html" aria-haspopup="true" aria-expanded="false">
             Sobre nosotros
             <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
           </a>
           <ul class="dropdown">
             <li><a href="../historia.html">Nuestra historia</a></li>
             <li><a href="../saber.html">Cosas que deberías saber</a></li>
-            <li><a href="../gracias.html">Agradecimientos</a></li>
           </ul>
         </li>
       </ul>
@@ -116,7 +125,7 @@
         <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
         Envío gratis desde $1.500
       </span>
-      <a class="cart-btn" href="../index.html#productos" aria-label="Ver carrito de compras">
+      <a class="cart-btn" href="../index.html?open-cart=1" aria-label="Ver carrito de compras">
         <img class="cart-icon-img" src="../img/cart-icon.webp" alt="Carrito de compras" width="1234" height="1234">
         <span class="cart-count" aria-hidden="true">0</span>
       </a>
@@ -144,7 +153,7 @@
     <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
   <ul>
-    <li><a href="../index.html#productos" class="is-current">Productos</a></li>
+    <li><a href="../productos.html" class="is-current">Productos</a></li>
     <li class="nav-acc-parent">
       <button class="nav-acc" type="button" id="mobileRecetasToggle" aria-expanded="false" aria-controls="mobileRecetasList">
         Recetas
@@ -167,7 +176,6 @@
         <div class="nav-sublist-inner">
           <a href="../historia.html">Nuestra historia</a>
           <a href="../saber.html">Cosas que deberías saber</a>
-          <a href="../gracias.html">Agradecimientos</a>
         </div>
       </div>
     </li>
@@ -186,7 +194,7 @@
     <nav class="crumbs" aria-label="Migas de pan">
       <a href="https://dorila.netlify.app/">Inicio</a>
       <span aria-hidden="true">/</span>
-      <a href="https://dorila.netlify.app/#productos">Productos</a>
+      <a href="../productos.html">Productos</a>
       <span aria-hidden="true">/</span>
       <span>Cedrón</span>
     </nav>
@@ -213,7 +221,7 @@
         <p class="ficha-price">$190</p>
         <div class="ficha-ctas">
           <button class="btn btn-primary" type="button" data-add-cart="cons-026">Agregar al carrito</button>
-          <a class="btn btn-ghost" href="https://dorila.netlify.app/#productos">Ver todos los productos</a>
+          <a class="btn btn-ghost" href="../productos.html">Ver todos los productos</a>
         </div>
         <p class="ficha-note">La información de esta ficha es orientativa y no reemplaza la consulta médica. Consultá siempre con un profesional de la salud.</p>
         <p class="ficha-by">Elaborado por <a href="https://dorila.netlify.app/">DORILA &mdash; Herbolaria artesanal en Uruguay</a>.</p>
@@ -246,7 +254,8 @@
   <div class="wrap footer-legal">
     <p class="footer-legal-copy">DORILA &middot; Herbolaria artesanal.</p>
     <nav class="footer-legal-links" aria-label="Información legal">
-      <a href="https://kikiriya-devops.netlify.app" target="_blank" rel="noopener">Garantía de autenticidad</a>
+      <a href="../index.html#contacto">Envíos y garantía</a>
+      <a href="../gracias.html">Agradecimientos</a>
       <button type="button" data-open-modal="privacyModal" aria-haspopup="dialog">Política de privacidad</button>
       <button type="button" data-open-modal="disclaimerModal" aria-haspopup="dialog">Aviso legal</button>
     </nav>
@@ -298,12 +307,12 @@
     </div>
   </div>
 </div>
-<script src="../js/productos.js?v=bd893eeb" defer></script>
-<script src="../js/cart.js?v=bd893eeb" defer></script>
+<script src="../js/productos.js?v=27241909" defer></script>
+<script src="../js/cart.js?v=27241909" defer></script>
 <script>
-window.DORILA_SEARCH_TARGET = "../index.html#productos";
+window.DORILA_SEARCH_TARGET = "../productos.html";
 </script>
-<script src="../js/shell.js?v=bd893eeb" defer></script>
-<script src="../js/ficha.js?v=bd893eeb" defer></script>
+<script src="../js/shell.js?v=27241909" defer></script>
+<script src="../js/ficha.js?v=27241909" defer></script>
 </body>
 </html>

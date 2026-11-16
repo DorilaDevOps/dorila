@@ -191,19 +191,6 @@ img.img-toned,
   max-width: 48ch;
 }
 
-.divider-sprig{
-  display:flex; align-items:center; gap: 0.6rem;
-  margin-block: var(--space-2);
-  color: var(--color-gold);
-}
-.divider-sprig::before,
-.divider-sprig::after{
-  content:"";
-  flex:1;
-  height:1px;
-  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
-}
-.divider-sprig svg{ width:16px; height:16px; }
 
 /* botones */
 .btn{

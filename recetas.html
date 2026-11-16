@@ -61,17 +61,26 @@
     </a>
     <nav class="nav-desktop" aria-label="Navegación principal">
       <ul>
-        <li><a href="index.html#productos">Productos</a></li>
-        <li><a href="recetas.html" class="is-current">Recetas</a></li>
+        <li><a href="productos.html">Productos</a></li>
         <li class="has-menu">
-          <a href="#" aria-haspopup="true" aria-expanded="false">
+          <a href="recetas.html" class="is-current" aria-haspopup="true" aria-expanded="false">
+            Recetas
+            <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+          </a>
+          <ul class="dropdown">
+            <li><a href="recetas.html#recetas">Ver recetas</a></li>
+            <li><a href="recetas.html#tecnicas">Técnicas de preparación</a></li>
+            <li><a href="recetas.html?compartir=1#recetas-comunidad">Compartir mi receta</a></li>
+          </ul>
+        </li>
+        <li class="has-menu">
+          <a href="historia.html" aria-haspopup="true" aria-expanded="false">
             Sobre nosotros
             <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
           </a>
           <ul class="dropdown">
             <li><a href="historia.html">Nuestra historia</a></li>
             <li><a href="saber.html">Cosas que deberías saber</a></li>
-            <li><a href="gracias.html">Agradecimientos</a></li>
           </ul>
         </li>
       </ul>
@@ -112,7 +121,7 @@
     <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
   </button>
   <ul>
-    <li><a href="index.html#productos">Productos</a></li>
+    <li><a href="productos.html">Productos</a></li>
     <li class="nav-acc-parent">
       <button class="nav-acc is-current" type="button" id="mobileRecetasToggle" aria-expanded="false" aria-controls="mobileRecetasList">
         Recetas
@@ -135,7 +144,6 @@
         <div class="nav-sublist-inner">
           <a href="historia.html">Nuestra historia</a>
           <a href="saber.html">Cosas que deberías saber</a>
-          <a href="gracias.html">Agradecimientos</a>
         </div>
       </div>
     </li>
@@ -308,7 +316,7 @@
             </ol>
             <p class="recipe-tip">Tip: no dejés la manzanilla más de 10 minutos: empieza a amargar. Los vapores también cuentan: respirá la taza antes del primer sorbo.</p>
           </details>
-          <div class="recipe-cta"><a class="btn btn-outline" href="index.html#productos">Conseguir manzanilla</a></div>
+          <div class="recipe-cta"><a class="btn btn-outline" href="productos/manzanilla.html">Conseguir manzanilla</a></div>
         </div>
       </article>
       <!-- RECETA 2 -->
@@ -341,7 +349,7 @@
             </ol>
             <p class="recipe-tip">Tip: si la toman chicxs o personas con estómago sensible, usá hierbabuena sola: es la más suave de las dos.</p>
           </details>
-          <div class="recipe-cta"><a class="btn btn-outline" href="index.html#productos">Conseguir mentas</a></div>
+          <div class="recipe-cta"><a class="btn btn-outline" href="productos/menta-piperita.html">Conseguir mentas</a></div>
         </div>
       </article>
       <!-- RECETA 3 -->
@@ -377,7 +385,7 @@
             </ol>
             <p class="recipe-tip">Tip: las hierbas siempre secas. El agua que queda en la planta fresca es la puerta de entrada de las bacterias.</p>
           </details>
-          <div class="recipe-cta"><a class="btn btn-outline" href="index.html#productos">Conseguir caléndula</a></div>
+          <div class="recipe-cta"><a class="btn btn-outline" href="productos/calendula.html">Conseguir caléndula</a></div>
         </div>
       </article>
       <!-- RECETA 4 -->
@@ -411,7 +419,7 @@
             </ol>
             <p class="recipe-tip">Tip: para nudos en el cuello o la espalda, funciona muy bien en masajes combinado con el aceite de masaje de DORILA.</p>
           </details>
-          <div class="recipe-cta"><a class="btn btn-outline" href="index.html#productos">Conseguir romero</a></div>
+          <div class="recipe-cta"><a class="btn btn-outline" href="productos/romero.html">Conseguir romero</a></div>
         </div>
       </article>
       <!-- RECETA 5 -->
@@ -449,7 +457,7 @@
             </ol>
             <p class="recipe-tip">Tip: probá siempre una poca cantidad en la muñeca antes del primer uso. Si hay irritación, no lo uses.</p>
           </details>
-          <div class="recipe-cta"><a class="btn btn-outline" href="index.html#productos">Conseguir caléndula y sábila</a></div>
+          <div class="recipe-cta"><a class="btn btn-outline" href="productos/calendula.html">Conseguir caléndula y sábila</a></div>
         </div>
       </article>
       <!-- RECETA 6 -->
@@ -485,7 +493,7 @@
             </ol>
             <p class="recipe-tip">Tip: los cítricos son fotosensibles: si sumás unas gotas, hacelo de noche y usá protector solar de día.</p>
           </details>
-          <div class="recipe-cta"><a class="btn btn-outline" href="index.html#productos">Ver aceites de DORILA</a></div>
+          <div class="recipe-cta"><a class="btn btn-outline" href="productos.html">Ver aceites de DORILA</a></div>
         </div>
       </article>
       <!-- RECETA 7 -->
@@ -519,7 +527,7 @@
             </ol>
             <p class="recipe-tip">Tip: estrujá el saquito suavemente antes de dormir: despierta los aceites volátiles de la flor.</p>
           </details>
-          <div class="recipe-cta"><a class="btn btn-outline" href="index.html#productos">Conseguir lavanda</a></div>
+          <div class="recipe-cta"><a class="btn btn-outline" href="productos/lavanda.html">Conseguir lavanda</a></div>
         </div>
       </article>
       <!-- RECETA 8 -->
@@ -556,7 +564,7 @@
             </ol>
             <p class="recipe-tip">Tip: este aceite es para comer, no para la piel. No dejes el ajo sumergido más de una semana.</p>
           </details>
-          <div class="recipe-cta"><a class="btn btn-outline" href="index.html#productos">Conseguir hierbas</a></div>
+          <div class="recipe-cta"><a class="btn btn-outline" href="productos.html">Conseguir hierbas</a></div>
         </div>
       </article>
     </div>
@@ -823,7 +831,7 @@
       <h2>¿La probaste o te quedó alguna duda?</h2>
       <p>Contanos cómo te fue con tu remedio casero, o pedinos las hierbas para arrancar con estas recetas.</p>
       <div class="hero-ctas">
-        <a class="btn btn-look" href="index.html#productos">Ver el catálogo</a>
+        <a class="btn btn-look" href="productos.html">Ver el catálogo</a>
         <a class="btn btn-look" href="https://wa.me/59894872605" target="_blank" rel="noopener">Escribir por WhatsApp</a>
       </div>
     </div>
@@ -859,7 +867,8 @@
   <div class="wrap footer-legal">
     <p class="footer-legal-copy">DORILA &middot; Herbolaria artesanal.</p>
     <nav class="footer-legal-links" aria-label="Información legal">
-      <a href="https://kikiriya-devops.netlify.app" target="_blank" rel="noopener">Garantía de autenticidad</a>
+      <a href="index.html#contacto">Envíos y garantía</a>
+      <a href="gracias.html">Agradecimientos</a>
       <button type="button" data-open-modal="privacyModal" aria-haspopup="dialog">Política de privacidad</button>
       <button type="button" data-open-modal="disclaimerModal" aria-haspopup="dialog">Aviso legal</button>
     </nav>
@@ -875,10 +884,10 @@
 <button class="to-top" type="button" id="toTop" aria-label="Volver arriba">
   <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
-<script src="js/shell.js?v=bd893eeb" defer></script>
-  <script src="js/info-form.js?v=bd893eeb" defer></script>
-  <script src="js/recetas_.js?v=bd893eeb" defer></script>
-  <script src="js/recetas-comunidad.js?v=bd893eeb" defer></script>
+<script src="js/shell.js?v=27241909" defer></script>
+  <script src="js/info-form.js?v=27241909" defer></script>
+  <script src="js/recetas_.js?v=27241909" defer></script>
+  <script src="js/recetas-comunidad.js?v=27241909" defer></script>
 <!-- ===================== MODAL PRIVACIDAD ===================== -->
 <div class="modal modal-legal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" aria-hidden="true">
   <div class="modal-scrim" data-close-modal></div>
@@ -915,7 +924,7 @@
     </div>
   </div>
 </div>
-<script src="js/productos.js?v=bd893eeb" defer></script>
-  <script src="js/cart.js?v=bd893eeb" defer></script>
+<script src="js/productos.js?v=27241909" defer></script>
+  <script src="js/cart.js?v=27241909" defer></script>
 </body>
 </html>

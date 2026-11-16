@@ -32,21 +32,11 @@
 }
 
 /* ==================== saber.html ==================== */
-.saber-hero img,
 .plant-media img{ filter: saturate(0.92) contrast(1.03) sepia(0.06) brightness(1.02); }
 
-.btn-primary{ background: var(--color-terracotta); box-shadow: 0 8px 18px -8px rgba(122,52,25,0.65); }
-.btn-primary:hover{ background: var(--color-terracotta-deep); }
 
 .section-head h2{ font-size: var(--fs-h2); }
 
-.page-hero{ position:relative; padding-block: clamp(4rem, 10vw, 7rem) var(--space-5); text-align:center; background-image:url('../img/montes_bg.webp'); background-size:cover; background-position:center; overflow:hidden; }
-.page-hero::before{ content:""; position:absolute; inset:0; z-index:0; background: linear-gradient(100deg, rgba(28,19,10,0.72) 0%, rgba(28,19,10,0.5) 55%, rgba(28,19,10,0.35) 100%); }
-.page-hero > *{ position:relative; z-index:1; }
-.page-hero h1{ font-family: var(--font-display); font-size: var(--fs-h1); line-height: var(--lh-display); color: var(--color-parchment-soft); text-wrap:balance; text-shadow: 1px 1px 0 rgba(0,0,0,0.35); }
-.page-hero h1 span{ color: var(--color-gold); }
-.page-hero .eyebrow-mark{ color: var(--color-gold); }
-.page-hero .hero-lead{ margin-top: var(--space-2); color: rgba(250,243,227,0.92); font-size: var(--fs-lead); max-width: 56ch; margin-inline:auto; }
 
 .saber-section{ padding-block: var(--space-2) var(--space-5); }
 .stats-row{ display:grid; gap: var(--space-3); grid-template-columns: 1fr 1fr; margin-bottom: var(--space-4); }
@@ -80,14 +70,6 @@
 .plant-card .plant-use{ font-weight:700; color: var(--color-terracotta); font-size: var(--fs-small); text-transform:uppercase; letter-spacing:0.04em; }
 .plant-card p{ font-size: var(--fs-body); color: var(--color-body); }
 
-.cta-fold{ padding-block: var(--space-3) var(--space-4); text-align:center; }
-.cta-fold h2{ font-family: var(--font-display); font-size: clamp(1.25rem, 2.5vw + 0.8rem, var(--fs-h2)); color: var(--color-ink); text-wrap:balance; }
-.cta-fold p{ margin-top: var(--space-1); color: var(--color-body-soft); max-width: 46ch; margin-inline:auto; font-size: var(--fs-small); }
-.cta-fold .cta-actions{ margin-top: var(--space-2); display:flex; gap: var(--space-2); justify-content:center; flex-wrap:nowrap; }
-.cta-fold .cta-actions .btn{ flex:1 1 0; min-width:0; padding:0.7em 1em; font-size: var(--fs-small); }
-@media (min-width:640px){
-  .cta-fold .cta-actions .btn{ flex:0 1 auto; padding:0.85em 1.6em; font-size: var(--fs-mid); }
-}
 
 @media (min-width: 560px){
   .seasonal-grid{ grid-template-columns: 1fr 1fr; }
@@ -100,16 +82,7 @@
 }
 
 /* ==================== gracias.html ==================== */
-.btn-primary{ background: var(--color-terracotta); box-shadow: 0 8px 18px -8px rgba(122,52,25,0.65); }
-.btn-primary:hover{ background: var(--color-terracotta-deep); }
 
-.page-hero{ position:relative; padding-block: clamp(4rem, 10vw, 7rem) var(--space-5); text-align:center; background-image:url('../img/montes_bg.webp'); background-size:cover; background-position:center; overflow:hidden; }
-.page-hero::before{ content:""; position:absolute; inset:0; z-index:0; background: linear-gradient(100deg, rgba(28,19,10,0.72) 0%, rgba(28,19,10,0.5) 55%, rgba(28,19,10,0.35) 100%); }
-.page-hero > *{ position:relative; z-index:1; }
-.page-hero h1{ font-family: var(--font-display); font-size: var(--fs-h1); line-height: var(--lh-display); color: var(--color-parchment-soft); text-wrap:balance; text-shadow: 1px 1px 0 rgba(0,0,0,0.35); }
-.page-hero h1 span{ color: var(--color-gold); }
-.page-hero .eyebrow-mark{ color: var(--color-gold); }
-.page-hero .hero-lead{ margin-top: var(--space-2); color: rgba(250,243,227,0.92); font-size: var(--fs-lead); max-width: 56ch; margin-inline:auto; }
 .thanks-fold{ padding-block: var(--space-2) var(--space-5); }
 .thanks-grid{ display:grid; gap: var(--space-3); grid-template-columns: 1fr; }
 .thanks-card{ border: var(--border-frame); border-radius: var(--radius-card); background: var(--color-parchment-soft); padding: clamp(1.4rem, 4vw, 1.8rem); }
@@ -140,10 +113,7 @@
 }
 
 /* ==================== recetas.html ==================== */
-.btn-primary{ background: var(--color-terracotta); box-shadow: 0 8px 18px -8px rgba(122,52,25,0.65); }
-.btn-primary:hover{ background: var(--color-terracotta-deep); }
 
-.section-head h2{ font-size: var(--fs-h2); }
 
 .recipes-hero{ position:relative; }
 .recipes-hero .hero-media{ position:absolute; inset:0; z-index:0; background: var(--color-parchment-deep); }
@@ -318,3 +288,15 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
 @media (min-width: 1180px){
   .recipe-grid{ grid-template-columns: repeat(3, 1fr); }
 }
+
+
+/* ?ndice est?tico del cat?logo (SEO y sin JS) */
+.catalog-index{ margin-top:var(--space-5); padding-top:var(--space-3); border-top:1px solid var(--color-line); }
+.catalog-index h2{ font-family:var(--font-display); font-size:var(--fs-h3); color:var(--color-ink); }
+.catalog-index p{ margin-top:var(--space-1); font-size:var(--fs-small); color:var(--color-body-soft); }
+.catalog-index-list{ margin-top:var(--space-3); columns:1; column-gap:var(--space-3); }
+.catalog-index-list li{ break-inside:avoid; margin-bottom:0.55rem; }
+.catalog-index-list a{ font-size:var(--fs-small); color:var(--color-terracotta); text-decoration:underline; text-underline-offset:2px; }
+.catalog-index-list a:hover{ color:var(--color-ink); }
+@media (min-width:640px){ .catalog-index-list{ columns:2; } }
+@media (min-width:960px){ .catalog-index-list{ columns:4; } }
