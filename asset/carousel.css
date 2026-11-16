@@ -19,7 +19,7 @@
 .carousel-stars svg{ width:16px; height:16px; fill: currentColor; }
 .carousel-quote,
 .carousel-text{ font-size: var(--fs-small); color: var(--color-body); }
-.carousel-quote{ font-family: var(--font-display); line-height: var(--lh-display); text-wrap:balance; }
+.carousel-quote{ line-height: var(--lh-display); text-wrap:balance; }
 .carousel-text{ max-width: 52ch; }
 .carousel-author{ display:flex; align-items:center; gap:0.6rem; margin-top:auto; padding-top: var(--space-1); }
 .carousel-avatar{ width:36px; height:36px; border-radius:50%; background: var(--color-forest); color: var(--color-parchment-soft); display:flex; align-items:center; justify-content:center; font-family: var(--font-display); font-size:0.95rem; flex-shrink:0; }

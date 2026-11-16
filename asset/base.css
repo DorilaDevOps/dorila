@@ -208,15 +208,18 @@ img.img-toned,
 /* botones */
 .btn{
   display:inline-flex; align-items:center; justify-content:center; gap:0.55em;
-  padding: 0.9em 1.7em;
+  padding: 0.3em 1.1em;
   border-radius: 999px;
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: var(--fs-mid);
+  font-size: var(--fs-small);
   letter-spacing: 0.02em;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
   white-space: nowrap;
+}
+@media (min-width: 640px){
+  .btn{ padding: 0.9em 1.7em; font-size: var(--fs-mid); border-width: 2px; }
 }
 .btn:active{ transform: translateY(1px); }
 .btn-primary{
@@ -475,7 +478,8 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
 }
 .nav-close:hover{ background: var(--color-forest); color: var(--color-parchment-soft); }
 .nav-close svg{ width:18px; height:18px; }
-.nav-mobile a.is-current{ text-decoration:underline; text-underline-offset:6px; text-decoration-color:var(--color-forest); }
+.nav-mobile a.is-current,
+.nav-mobile .nav-acc.is-current{ text-decoration:underline; text-underline-offset:6px; text-decoration-color:var(--color-forest); }
 .nav-sublist .nav-sublist-inner a.is-current{ text-decoration:none; color:var(--color-forest); }
 
 /* --- Buscador overlay (header) --- */

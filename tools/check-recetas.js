@@ -203,6 +203,9 @@ console.log("\n5. Integración en las páginas y configuración");
   var pagesCss = fs.readFileSync(path.join(ROOT, "asset", "pages.css"), "utf8");
   var baseCss = fs.readFileSync(path.join(ROOT, "asset", "base.css"), "utf8");
   var homeCss = fs.readFileSync(path.join(ROOT, "asset", "home.css"), "utf8");
+  var carouselCss = fs.readFileSync(path.join(ROOT, "asset", "carousel.css"), "utf8");
+  var recetasNav = recetas.slice(recetas.indexOf('<nav class="nav-mobile"'), recetas.indexOf("</nav>", recetas.indexOf('<nav class="nav-mobile"')) + 6);
+  var templateNav = template.slice(template.indexOf('<nav class="nav-mobile"'), template.indexOf("</nav>", template.indexOf('<nav class="nav-mobile"')) + 6);
 
   ok("parchment-deep usa el nuevo color",
     /--color-parchment-deep:\s*#edece9/.test(baseCss));
@@ -213,6 +216,20 @@ console.log("\n5. Integración en las páginas y configuración");
     /\.conservation-item p\{[^}]*color:\s*var\(--color-body\)/.test(pagesCss));
   ok("beneficios usa texto legible sobre parchment-deep",
     /\.benefits \.section-head p\{[^}]*color:\s*var\(--color-body\)/.test(homeCss));
+  ok("carrusel no impone tipografía al quote",
+    !/\.carousel-quote\{[^}]*font-family/.test(carouselCss));
+  ok("nav móvil agrupa Recetas en un acordeón",
+    /id="mobileRecetasToggle"[^>]*aria-controls="mobileRecetasList"/.test(recetasNav));
+  ok("nav móvil incluye Ver recetas",
+    /href="recetas\.html#recetas"[^>]*>Ver recetas</.test(recetasNav));
+  ok("nav móvil incluye Técnicas de preparación",
+    /href="recetas\.html#tecnicas"[^>]*>Técnicas de preparación</.test(recetasNav));
+  ok("nav móvil incluye Compartir mi receta",
+    /href="recetas\.html\?compartir=1#recetas-comunidad"[^>]*>Compartir mi receta</.test(recetasNav));
+  ok("nav móvil de fichas usa rutas relativas",
+    /href="\.\.\/recetas\.html#recetas"[^>]*>Ver recetas</.test(templateNav) &&
+    /href="\.\.\/recetas\.html#tecnicas"[^>]*>Técnicas de preparación</.test(templateNav) &&
+    /href="\.\.\/recetas\.html\?compartir=1#recetas-comunidad"[^>]*>Compartir mi receta</.test(templateNav));
 
   var heroStart = recetas.indexOf('<section class="recipes-hero"');
   var heroEnd = recetas.indexOf("</section>", heroStart);

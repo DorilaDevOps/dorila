@@ -141,7 +141,19 @@
   </button>
   <ul>
     <li><a href="#productos" class="is-current">Productos</a></li>
-    <li><a href="recetas.html">Recetas</a></li>
+    <li class="nav-acc-parent">
+      <button class="nav-acc" type="button" id="mobileRecetasToggle" aria-expanded="false" aria-controls="mobileRecetasList">
+        Recetas
+        <span class="acc-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button>
+      <div class="nav-sublist" id="mobileRecetasList">
+        <div class="nav-sublist-inner">
+          <a href="recetas.html#recetas">Ver recetas</a>
+          <a href="recetas.html#tecnicas">Técnicas de preparación</a>
+          <a href="recetas.html?compartir=1#recetas-comunidad">Compartir mi receta</a>
+        </div>
+      </div>
+    </li>
     <li class="nav-acc-parent">
       <button class="nav-acc" type="button" id="mobileSobreToggle" aria-expanded="false" aria-controls="mobileSobreList">
         Sobre nosotros
@@ -611,8 +623,8 @@
         <p>Un espacio para compartir lo que preparamos en casa: ingredientes, pasos, precauciones y la historia de cada preparación. Las recetas se revisan antes de publicarse.</p>
       </div>
       <div class="community-teaser-actions">
-        <a class="btn btn-primary" href="recetas.html#recetas-comunidad">Explorar recetas</a>
-        <a class="btn btn-outline" href="recetas.html?compartir=1#recetas-comunidad">Compartir mi receta</a>
+        <a class="btn btn-look" href="recetas.html#recetas-comunidad">Explorar recetas</a>
+        <a class="btn btn-look" href="recetas.html?compartir=1#recetas-comunidad">Compartir mi receta</a>
       </div>
     </div>
   </section>

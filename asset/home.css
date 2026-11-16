@@ -439,12 +439,21 @@
   line-height: 1.7;
   color: rgba(244,235,221,0.82);
 }
-.community-teaser-actions{ display: flex; flex-wrap: wrap; gap: 0.6rem; }
-.community-teaser .btn-primary{ background: var(--color-crema); color: var(--color-forest-deep); }
-.community-teaser .btn-primary:hover{ background: var(--color-parchment-deep); color: var(--color-ink); }
-.community-teaser .btn-outline{ border-color: rgba(244,235,221,0.6); color: var(--color-crema); }
-.community-teaser .btn-outline:hover{ background: var(--color-crema); border-color: var(--color-crema); color: var(--color-forest-deep); }
+.community-teaser-actions{ display: flex; flex-wrap: nowrap; gap: 0.5rem; }
+.community-teaser-actions .btn{
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0.3em 1.1em;
+  font-size: var(--fs-small);
+  border: 1px solid transparent;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.2;
+}
+.community-teaser .btn-look{ color: var(--color-crema); border-color: rgba(244,235,221,0.55); }
+.community-teaser .btn-look:hover{ background: var(--color-crema); color: var(--color-forest-deep); border-color: var(--color-crema); }
 @media (min-width: 760px){
   .community-teaser-card{ grid-template-columns: 1fr auto; }
   .community-teaser-actions{ justify-content: flex-end; }
+  .community-teaser-actions .btn{ flex: 0 1 auto; padding: 0.7em 1.2em; }
 }
