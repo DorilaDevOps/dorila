@@ -382,9 +382,9 @@
       </button>
       <div class="nav-sublist" id="mobileRecetasList">
         <div class="nav-sublist-inner">
-          <a href="/recetas">Todas las recetas</a>
-          <a href="recetas.html#recetas-caseras">Ver recetas</a>
+          <a href="/recetas">Descubrir recetas</a>
           <a href="recetas.html#tecnicas">Técnicas de preparación</a>
+          <a href="recetas.html#recetas-caseras">Recetas caseras</a>
           <a href="recetas.html?compartir=1#recetas-comunidad">Compartir mi receta</a>
         </div>
       </div>
@@ -416,29 +416,42 @@
 
 <main id="main">
 
-  <section class="page-hero catalog-hero" id="top" aria-labelledby="catalog-heading">
-    <div class="wrap">
-      <span class="eyebrow-mark">Herbario completo</span>
-      <h1 id="catalog-heading">Todos nuestros <span>productos</span></h1>
-      <p class="hero-lead">Hierbas medicinales, infusiones, tinturas, aceites, cremas y jabones seleccionados a mano. Buscá por nombre, uso o nombre científico y abrí la ficha de cada producto.</p>
-      <div class="hero-ctas">
-        <a class="btn btn-look" href="#productos" aria-label="Explorar el herbario">
-          <span class="hero-cta-label-full" aria-hidden="true">Explorar el herbario</span>
-          <span class="hero-cta-label-short" aria-hidden="true">Herbario</span>
-        </a>
-        <a class="btn btn-look" href="#catalog-index-heading" aria-label="Catálogo completo">
-          <span class="hero-cta-label-full" aria-hidden="true">Catálogo completo</span>
-          <span class="hero-cta-label-short" aria-hidden="true">Catálogo</span>
-        </a>
+  <div class="wrap">
+    <nav class="crumbs crumbs-hero" aria-label="Migas de pan">
+      <a href="index.html">Inicio</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">Productos</span>
+    </nav>
+  </div>
+
+  <section class="page-hero catalog-hero feature-hero" id="top" aria-labelledby="catalog-heading">
+    <div class="hero-media">
+      <img
+        class="hero-image"
+        src="img/montes_bg.webp"
+        alt="Montes y cerros de Uruguay, donde crecen nuestras hierbas"
+        fetchpriority="high"
+        decoding="async">
+    </div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <span class="eyebrow-mark">Herbario completo</span>
+        <h1 id="catalog-heading">Todos nuestros productos</h1>
+        <p class="hero-lead">Hierbas medicinales, infusiones, tinturas, aceites, cremas y jabones seleccionados a mano. Buscá por nombre, uso o nombre científico y abrí la ficha de cada producto.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-look" href="#productos" aria-label="Explorar el herbario">
+            <span class="hero-cta-label-full" aria-hidden="true">Explorar el herbario</span>
+            <span class="hero-cta-label-short" aria-hidden="true">Herbario</span>
+          </a>
+          <a class="btn btn-look" href="#catalog-index-heading" aria-label="Catálogo completo">
+            <span class="hero-cta-label-full" aria-hidden="true">Catálogo completo</span>
+            <span class="hero-cta-label-short" aria-hidden="true">Catálogo</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>
-
-  <nav class="crumbs wrap" aria-label="Ruta de navegación">
-    <a href="index.html">Inicio</a>
-    <span aria-hidden="true">/</span>
-    <span aria-current="page">Productos</span>
-  </nav>
 
   <section class="products wrap" id="productos" aria-labelledby="productos-heading">
     <div class="section-head">

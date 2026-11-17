@@ -223,23 +223,31 @@ console.log("\n5. Integración en las páginas y configuración");
   ok("nav móvil no duplica la entrada Recetas",
     (recetasNav.match(/>\s*Recetas\s*</g) || []).length === 1);
   ok("submenú móvil enlaza a /recetas",
-    /<a href="\/recetas"[^>]*>Todas las recetas<\/a>/.test(recetasNav));
-  ok("nav móvil incluye Ver recetas",
-    /href="recetas\.html#recetas-caseras"[^>]*>Ver recetas</.test(recetasNav));
+    /<a href="\/recetas"[^>]*>Descubrir recetas<\/a>/.test(recetasNav));
   ok("nav móvil incluye Técnicas de preparación",
     /href="recetas\.html#tecnicas"[^>]*>Técnicas de preparación</.test(recetasNav));
+  ok("nav móvil incluye Recetas caseras",
+    /href="recetas\.html#recetas-caseras"[^>]*>Recetas caseras</.test(recetasNav));
   ok("nav móvil incluye Compartir mi receta",
     /href="recetas\.html\?compartir=1#recetas-comunidad"[^>]*>Compartir mi receta</.test(recetasNav));
+  ok("submenú móvil respeta el orden solicitado",
+    recetasNav.indexOf(">Descubrir recetas<") < recetasNav.indexOf(">Técnicas de preparación<") &&
+    recetasNav.indexOf(">Técnicas de preparación<") < recetasNav.indexOf(">Recetas caseras<") &&
+    recetasNav.indexOf(">Recetas caseras<") < recetasNav.indexOf(">Compartir mi receta<"));
   ok("nav móvil de fichas no duplica la entrada Recetas",
     (templateNav.match(/>\s*Recetas\s*</g) || []).length === 1);
   ok("submenú móvil de fichas enlaza a /recetas",
-    /<a href="\/recetas"[^>]*>Todas las recetas<\/a>/.test(templateNav));
+    /<a href="\/recetas"[^>]*>Descubrir recetas<\/a>/.test(templateNav));
   ok("nav móvil de fichas usa rutas relativas",
-    /href="\.\.\/recetas\.html#recetas-caseras"[^>]*>Ver recetas</.test(templateNav) &&
     /href="\.\.\/recetas\.html#tecnicas"[^>]*>Técnicas de preparación</.test(templateNav) &&
+    /href="\.\.\/recetas\.html#recetas-caseras"[^>]*>Recetas caseras</.test(templateNav) &&
     /href="\.\.\/recetas\.html\?compartir=1#recetas-comunidad"[^>]*>Compartir mi receta</.test(templateNav));
+  ok("submenú móvil de fichas respeta el orden solicitado",
+    templateNav.indexOf(">Descubrir recetas<") < templateNav.indexOf(">Técnicas de preparación<") &&
+    templateNav.indexOf(">Técnicas de preparación<") < templateNav.indexOf(">Recetas caseras<") &&
+    templateNav.indexOf(">Recetas caseras<") < templateNav.indexOf(">Compartir mi receta<"));
 
-  var heroStart = recetas.indexOf('<section class="recipes-hero"');
+  var heroStart = recetas.indexOf('<section class="recipes-hero feature-hero"');
   var heroEnd = recetas.indexOf("</section>", heroStart);
   var hero = recetas.slice(heroStart, heroEnd);
   var heroCtasStart = hero.indexOf('<div class="hero-ctas">');
@@ -253,12 +261,36 @@ console.log("\n5. Integración en las páginas y configuración");
   ok("hero comparte receta desde el tercer CTA",
     /<button[^>]*data-share-open[^>]*aria-label="Compartir mi receta"/.test(heroCtas));
   ok("hero oculta el eyebrow en mobile",
-    /@media \(max-width: 639px\)\{[\s\S]*?\.recipes-hero \.eyebrow-mark\{ display:none; \}/.test(pagesCss));
+    /@media \(max-width: 639px\)\{[\s\S]*?\.feature-hero \.eyebrow-mark\{ display:none; \}/.test(pagesCss));
   ok("hero cambia a etiquetas cortas en mobile",
-    /@media \(max-width: 639px\)\{[\s\S]*?\.recipes-hero \.hero-cta-label-full\{ display:none; \}[\s\S]*?\.recipes-hero \.hero-cta-label-short\{ display:inline; \}/.test(pagesCss));
-  ok("hero mantiene los CTAs en una fila",
-    /\.recipes-hero \.hero-ctas\{ width:100%; flex-wrap:nowrap; \}/.test(pagesCss) &&
-    /@media \(min-width: 640px\)\{[\s\S]*?\.recipes-hero \.hero-ctas\{ flex-wrap:nowrap; \}/.test(pagesCss));
+    /@media \(max-width: 639px\)\{[\s\S]*?\.feature-hero \.hero-cta-label-full\{ display:none; \}[\s\S]*?\.feature-hero \.hero-cta-label-short\{ display:inline; \}/.test(pagesCss));
+  ok("hero mantiene los CTAs en una fila y con el color claro",
+    /\.feature-hero \.hero-ctas\{[\s\S]*?color:var\(--color-parchment-soft\);[\s\S]*?display:flex;[\s\S]*?flex-wrap:nowrap;[\s\S]*?justify-content:center;[\s\S]*?gap:0\.5rem;[\s\S]*?margin-top:var\(--space-3\);/.test(pagesCss));
+  ok("hero comparte el hover del btn-look",
+    /\.feature-hero \.hero-ctas \.btn-look\{ color:var\(--color-parchment-soft\); \}/.test(pagesCss) &&
+    /\.feature-hero \.hero-ctas \.btn-look:hover\{ color:var\(--color-black\); \}/.test(pagesCss));
+  ok("hero usa la misma tipografía y el mismo lead",
+    /\.feature-hero \.hero-content h1\{[\s\S]*?font-size:var\(--fs-hero\);[\s\S]*?margin-top:var\(--space-2\);/.test(pagesCss) &&
+    /\.page-hero \.hero-lead,\s*\.feature-hero \.lead\{[\s\S]*?margin-top: var\(--space-2\);[\s\S]*?color: rgba\(250, 243, 227, 0\.92\);[\s\S]*?font-size: var\(--fs-lead\);[\s\S]*?max-width: 56ch;[\s\S]*?margin-inline:auto;/.test(pagesCss));
+  ok("hero usa el mismo overlay, imagen y padding",
+    /\.feature-hero \.hero-overlay\{[\s\S]*?rgba\(28,19,10,0\.86\)/.test(pagesCss) &&
+    /\.feature-hero \.hero-content\{[\s\S]*?min-height:66vh;[\s\S]*?padding: calc\(var\(--space-5\) \+ 2rem\) var\(--space-2\) var\(--space-5\);/.test(pagesCss) &&
+    /@media \(min-width: 1000px\)\{[\s\S]*?\.feature-hero \.hero-content\{ min-height:74vh;/.test(pagesCss));
+  ok("catálogo hereda el hero compartido sin fondo duplicado",
+    /\.catalog-hero\.page-hero\{ padding-block:0; background-image:none; \}/.test(pagesCss) &&
+    /\.catalog-hero\.page-hero::before\{ display:none; \}/.test(pagesCss));
+  ok("eyebrow compartido no hereda la sombra de home.css",
+    /\.feature-hero \.hero-text \.eyebrow-mark\{ color:var\(--color-gold\); text-shadow:none; \}/.test(pagesCss));
+  ok("no quedan reglas duplicadas de heroes",
+    !/\.recipes-hero /.test(pagesCss) && !/\.catalog-hero \.hero-ctas \.btn-look/.test(pagesCss));
+  ok("las migas del hero son solo de escritorio",
+    /\.crumbs-hero\{ display:none; \}/.test(pagesCss) &&
+    /@media \(min-width: 640px\)\{[\s\S]*?\.crumbs-hero\{ display:flex; \}/.test(pagesCss));
+  ok("los CTAs del hero son iguales en escritorio",
+    /@media \(min-width: 640px\)\{[\s\S]*?\.feature-hero \.hero-ctas \.btn\{ flex:1 1 0; font-size:var\(--fs-small\); padding:0\.8em 0\.75em; white-space:nowrap; \}/.test(pagesCss));
+  ok("recetas usa el hero compartido y migas de escritorio",
+    /<section class="recipes-hero feature-hero"/.test(recetas) &&
+    /<nav class="crumbs crumbs-hero" aria-label="Migas de pan"/.test(recetas));
 
   ok("recetas tiene la sección comunidad", /id="recetas-comunidad"/.test(recetas));
   ok("recetas carga recetas_.js", /js\/recetas_\.js\?v=/.test(recetas));
@@ -306,6 +338,16 @@ console.log("\n5. Integración en las páginas y configuración");
   ok("productos.html existe y es indexable", /<meta name="robots" content="index, follow">/.test(productosPage));
   ok("productos.html tiene canonical propio", /rel="canonical" href="https:\/\/dorila\.netlify\.app\/productos\.html"/.test(productosPage));
   ok("productos.html carga el catálogo completo", /id="productGrid"/.test(productosPage) && /js\/productos\.js\?v=/.test(productosPage) && /js\/app\.js\?v=/.test(productosPage));
+  ok("hero de productos usa el hero compartido",
+    /<section class="page-hero catalog-hero feature-hero"/.test(productosPage) &&
+    /<div class="hero-media">[\s\S]*?<img[\s\S]*?src="img\/montes_bg\.webp"[\s\S]*?fetchpriority="high"/.test(productosPage) &&
+    /<p class="hero-lead">/.test(productosPage) &&
+    /<div class="hero-ctas">[\s\S]*?class="btn btn-look"/.test(productosPage));
+  ok("catálogo quitó el span del h1",
+    /<h1 id="catalog-heading">Todos nuestros productos<\/h1>/.test(productosPage));
+  ok("migas de productos van antes del hero y son compartidas",
+    /<nav class="crumbs crumbs-hero" aria-label="Migas de pan">/.test(productosPage) &&
+    productosPage.indexOf('class="crumbs crumbs-hero"') < productosPage.indexOf('class="page-hero catalog-hero feature-hero"'));
   ok("productos.html ofrece índice estático de fichas", (productosPage.match(/href="productos\/[^"]+\.html"/g) || []).length >= 36);
   ok("productos.html no limita los resultados", !/id="productGrid"[^>]*data-limit=/.test(productosPage));
   ok("index limita los destacados a 8", /id="productGrid" data-limit="8"/.test(index));
@@ -359,7 +401,7 @@ console.log("\n7. Orden, enlaces y navegación del sitio");
   var baseCss = fs.readFileSync(path.join(ROOT, "asset", "base.css"), "utf8");
   var homeCss = fs.readFileSync(path.join(ROOT, "asset", "home.css"), "utf8");
   var markers = [
-    'class="recipes-hero" id="top"',
+    'class="recipes-hero feature-hero" id="top"',
     'class="intro wrap" id="intro"',
     'class="techniques" id="tecnicas"',
     'class="conservation" id="conservacion"',
@@ -404,6 +446,20 @@ console.log("\n7. Orden, enlaces y navegación del sitio");
   });
   ok("una sola entrada Recetas por nav móvil", duplicated.length === 0);
   if (duplicated.length) console.log("         duplicados: " + duplicated.join(", "));
+  var submenuDrift = allPages.filter(function(file){
+    var html = fs.readFileSync(path.join(ROOT, file), "utf8");
+    var mobileStart = html.indexOf('<nav class="nav-mobile"');
+    var mobile = html.slice(mobileStart, html.indexOf("</nav>", mobileStart));
+    var discover = mobile.indexOf(">Descubrir recetas<");
+    var techniques = mobile.indexOf(">Técnicas de preparación<");
+    var caseras = mobile.indexOf(">Recetas caseras<");
+    var compartir = mobile.indexOf(">Compartir mi receta<");
+    return discover < 0 || techniques < 0 || caseras < 0 || compartir < 0 ||
+      !(discover < techniques && techniques < caseras && caseras < compartir) ||
+      />Todas las recetas</.test(mobile) || />Ver recetas</.test(mobile);
+  });
+  ok("todas las páginas usan el mismo submenú móvil", submenuDrift.length === 0);
+  if (submenuDrift.length) console.log("         desincronizadas: " + submenuDrift.join(", "));
   var stale = allPages.filter(function(file){
     return /href="(?:\.\.\/)?recetas\.html#recetas"/.test(fs.readFileSync(path.join(ROOT, file), "utf8"));
   });
