@@ -238,7 +238,9 @@
 
     var authorBlock = section("Datos de la persona");
     var authorList = node("dl", "admin-detail-dl");
-    [["Nombre", author.fullName], ["Nacionalidad", author.nationality], ["Ciudad", author.city || "No indicada"]].forEach(function(pair){
+    var authorPairs = [["Nombre", author.fullName], ["Nacionalidad", author.nationality], ["Ciudad", author.city || "No indicada"]];
+    if (author.contact) authorPairs.push(["Medio de contacto (interno)", author.contact]);
+    authorPairs.forEach(function(pair){
       append(authorList, node("dt", "", pair[0]));
       append(authorList, node("dd", "", pair[1] || "—"));
     });

@@ -14,7 +14,6 @@
   var state = { recipes: [], filter: "Todas", loading: true };
   var ingredients = [];
   var steps = [];
-  var step = 1;
   var el = {};
 
   function byId(id){ return document.getElementById(id); }
@@ -28,6 +27,14 @@
 
   function setHidden(item, hidden){
     if (item) item.hidden = !!hidden;
+  }
+
+  function isValidContact(value){
+    var text = String(value || "").replace(/^whatsapp\s*[:\-]?\s*/i, "").trim();
+    if (!text) return true;
+    var email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text);
+    var phone = /^\+?[\d\s().-]{6,24}$/.test(text) && (text.match(/\d/g) || []).length >= 6;
+    return email || phone;
   }
 
   function normalize(item){
@@ -220,91 +227,61 @@
   }
 
   function clearErrors(){
-    setError("shareStep1Error", "");
-    setError("shareStep2Error", "");
+    setError("shareFormError", "");
     setError("ingredientError", "");
     setError("stepError", "");
-    ["shareFirstName", "shareLastName", "shareNationality", "shareCity", "shareCategory", "shareStory", "sharePrecautions"].forEach(function(id){
+    ["shareFirstName", "shareLastName", "shareNationality", "shareCity", "shareContact", "shareCategory", "shareStory", "sharePrecautions"].forEach(function(id){
       markInvalid(byId(id), false);
     });
   }
 
-  function validateStep1(){
+  function validateForm(){
     var errors = [];
     var firstName = byId("shareFirstName");
     var lastName = byId("shareLastName");
     var nationality = byId("shareNationality");
     var city = byId("shareCity");
+    var contact = byId("shareContact");
+    var category = byId("shareCategory");
+    var story = byId("shareStory");
+    var precautions = byId("sharePrecautions");
+    var noKnown = byId("shareNoPrecautions");
+    var consentReview = byId("shareConsentReview");
+    var consentPrivacy = byId("shareConsentPrivacy");
     clearErrors();
 
     if (!firstName || firstName.value.trim().length < 2){ errors.push("Ingresá tu nombre."); markInvalid(firstName, true); }
     if (!lastName || lastName.value.trim().length < 2){ errors.push("Ingresá tu apellido."); markInvalid(lastName, true); }
     if (!nationality || nationality.value.trim().length < 2){ errors.push("Ingresá tu nacionalidad."); markInvalid(nationality, true); }
     if (city && city.value.trim().length > 80){ errors.push("La ciudad es demasiado larga."); markInvalid(city, true); }
-
-    if (errors.length){
-      setError("shareStep1Error", errors[0]);
-      var firstInvalid = [firstName, lastName, nationality, city].find(function(input){
-        return input && input.getAttribute("aria-invalid") === "true";
-      });
-      if (firstInvalid) firstInvalid.focus();
-      return false;
-    }
-    return true;
-  }
-
-  function validateStep2(){
-    var errors = [];
-    var category = byId("shareCategory");
-    var story = byId("shareStory");
-    var precautions = byId("sharePrecautions");
-    var noKnown = byId("shareNoPrecautions");
-    var consentAuthorship = byId("shareConsentAuthorship");
-    var consentReview = byId("shareConsentReview");
-    var consentPrivacy = byId("shareConsentPrivacy");
-    clearErrors();
+    if (contact && contact.value.trim().length > 160){ errors.push("El medio de contacto es demasiado largo."); markInvalid(contact, true); }
+    else if (contact && contact.value.trim() && !isValidContact(contact.value.trim())){ errors.push("Ingresá un WhatsApp o un correo electrónico válido."); markInvalid(contact, true); }
 
     if (!category || CATEGORIES.indexOf(category.value) === -1){ errors.push("Elegí una categoría de uso."); markInvalid(category, true); }
     if (ingredients.length < 2){ errors.push("Agregá al menos dos ingredientes con sus cantidades."); setError("ingredientError", "Agregá al menos dos ingredientes."); }
     if (steps.length < 2){ errors.push("Agregá al menos dos pasos de preparación."); setError("stepError", "Agregá al menos dos pasos."); }
     if (story && story.value.trim().length > 1000){ errors.push("La experiencia es demasiado larga."); markInvalid(story, true); }
-    if (precautions && !noKnown.checked && !precautions.value.trim()){
+    if (precautions && (!noKnown || !noKnown.checked) && !precautions.value.trim()){
       errors.push("Escribí las precauciones o marcá que no conocés ninguna.");
       markInvalid(precautions, true);
     }
     if (precautions && precautions.value.trim().length > 600){ errors.push("Las precauciones son demasiado largas."); markInvalid(precautions, true); }
-    if (!consentAuthorship || !consentAuthorship.checked) errors.push("Confirmá que la receta es tuya o que tenés permiso para compartirla.");
     if (!consentReview || !consentReview.checked) errors.push("Aceptá la revisión editorial.");
     if (!consentPrivacy || !consentPrivacy.checked) errors.push("Aceptá que tu nombre y ciudad se muestren si se publica.");
 
     if (errors.length){
-      setError("shareStep2Error", errors[0]);
-      var firstInvalid = [category, story, precautions].find(function(input){
+      setError("shareFormError", errors[0]);
+      var firstInvalid = [firstName, lastName, nationality, city, contact, category, story, precautions].find(function(input){
         return input && input.getAttribute("aria-invalid") === "true";
       });
       if (firstInvalid) firstInvalid.focus();
       else if (ingredients.length < 2) byId("ingredientInput").focus();
       else if (steps.length < 2) byId("stepInput").focus();
-      else if (consentAuthorship && !consentAuthorship.checked) consentAuthorship.focus();
       else if (consentReview && !consentReview.checked) consentReview.focus();
       else if (consentPrivacy && !consentPrivacy.checked) consentPrivacy.focus();
       return false;
     }
     return true;
-  }
-
-  function showStep(nextStep){
-    step = nextStep;
-    setHidden(byId("shareStep1"), step !== 1);
-    setHidden(byId("shareStep2"), step !== 2);
-    setHidden(byId("shareNext"), step !== 1);
-    setHidden(byId("shareBack"), step !== 2);
-    setHidden(byId("shareSubmit"), step !== 2);
-    if (byId("shareProgress")) byId("shareProgress").textContent = step === 1 ? "Paso 1 de 2 · Tus datos" : "Paso 2 de 2 · Tu receta";
-    if (step === 1){
-      var first = byId("shareFirstName");
-      if (first) first.focus();
-    }
   }
 
   function renderRows(kind){
@@ -372,8 +349,6 @@
     if (byId("sharePrecautions")) byId("sharePrecautions").disabled = false;
     if (byId("shareStartedAt")) byId("shareStartedAt").value = String(Date.now());
     clearErrors();
-    showStep(1);
-    setHidden(byId("shareSubmit"), true);
     if (byId("shareSubmit")){
       byId("shareSubmit").disabled = false;
       byId("shareSubmit").textContent = "Enviar receta para revisión";
@@ -391,7 +366,8 @@
         firstName: byId("shareFirstName").value.trim(),
         lastName: byId("shareLastName").value.trim(),
         nationality: byId("shareNationality").value.trim(),
-        city: byId("shareCity").value.trim()
+        city: byId("shareCity").value.trim(),
+        contact: (byId("shareContact") ? byId("shareContact").value.trim() : "")
       },
       recipe: {
         category: byId("shareCategory").value,
@@ -402,7 +378,7 @@
         noKnownPrecautions: byId("shareNoPrecautions").checked
       },
       consents: {
-        authorship: byId("shareConsentAuthorship").checked,
+        authorship: true,
         review: byId("shareConsentReview").checked,
         privacy: byId("shareConsentPrivacy").checked
       },
@@ -463,8 +439,6 @@
       });
     });
 
-    if (byId("shareNext")) byId("shareNext").addEventListener("click", function(){ if (validateStep1()) showStep(2); });
-    if (byId("shareBack")) byId("shareBack").addEventListener("click", function(){ showStep(1); });
     if (byId("addIngredient")) byId("addIngredient").addEventListener("click", function(){ addRow("ingredient"); });
     if (byId("addStep")) byId("addStep").addEventListener("click", function(){ addRow("step"); });
 
@@ -488,7 +462,7 @@
     if (el.form){
       el.form.addEventListener("submit", function(event){
         event.preventDefault();
-        if (!validateStep2()) return;
+        if (!validateForm()) return;
         var summary = byId("shareConfirmSummary");
         if (summary){
           summary.textContent = "Vas a enviar la receta de " + byId("shareCategory").value.toLowerCase() + " a nombre de " +

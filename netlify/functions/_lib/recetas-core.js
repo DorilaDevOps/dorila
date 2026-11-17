@@ -51,6 +51,7 @@ var LIMITS = {
   lastName: 80,
   nationality: 60,
   city: 80,
+  contact: 160,
   ingredientsMin: 2,
   ingredientsMax: 30,
   ingredient: 160,
@@ -76,6 +77,14 @@ function cleanText(value){
 
 function cleanLine(value){
   return cleanText(value).replace(/[ \t]+/g, " ").replace(/\n+/g, " ").trim();
+}
+
+function validContact(value){
+  var text = cleanLine(value).replace(/^whatsapp\s*[:\-]?\s*/i, "");
+  if (!text) return true;
+  var email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text);
+  var phone = /^\+?[\d\s().-]{6,24}$/.test(text) && (text.match(/\d/g) || []).length >= 6;
+  return email || phone;
 }
 
 function cleanBlock(value){
@@ -128,6 +137,7 @@ function validateSubmission(payload, options){
   var lastName = cleanLine(author.lastName);
   var nationality = cleanLine(author.nationality);
   var city = cleanLine(author.city);
+  var contact = cleanLine(author.contact);
 
   if (firstName.length < 2) addError(errors, "firstName", "Ingresá tu nombre.");
   if (firstName.length > LIMITS.firstName) addError(errors, "firstName", "El nombre es demasiado largo.");
@@ -136,6 +146,8 @@ function validateSubmission(payload, options){
   if (nationality.length < 2) addError(errors, "nationality", "Ingresá tu nacionalidad.");
   if (nationality.length > LIMITS.nationality) addError(errors, "nationality", "La nacionalidad es demasiado larga.");
   if (city.length > LIMITS.city) addError(errors, "city", "La ciudad es demasiado larga.");
+  if (contact.length > LIMITS.contact) addError(errors, "contact", "El medio de contacto es demasiado largo.");
+  if (!validContact(contact)) addError(errors, "contact", "Ingresá un WhatsApp o un correo electrónico válido.");
 
   var recipe = isObject(payload.recipe) ? payload.recipe : {};
   var category = cleanLine(recipe.category);
@@ -178,7 +190,8 @@ function validateSubmission(payload, options){
         lastName: lastName,
         fullName: firstName + " " + lastName,
         nationality: nationality,
-        city: city
+        city: city,
+        contact: contact
       },
       recipe: {
         category: category,

@@ -126,12 +126,31 @@ console.log("\n2. Validación del envío");
   var longStory = validPayload(); longStory.recipe.story = "x".repeat(1001);
   var r10 = core.validateSubmission(longStory, { now: NOW });
   ok("rechaza experiencia demasiado larga", !r10.ok && !!r10.errors.story);
+
+  var emailContact = validPayload(); emailContact.author.contact = "ana@example.com";
+  var r11 = core.validateSubmission(emailContact, { now: NOW });
+  ok("acepta correo de contacto opcional", r11.ok && r11.data.author.contact === "ana@example.com");
+
+  var whatsappContact = validPayload(); whatsappContact.author.contact = "WhatsApp: +598 94 872 605";
+  var r12 = core.validateSubmission(whatsappContact, { now: NOW });
+  ok("acepta WhatsApp de contacto opcional", r12.ok && /\+598/.test(r12.data.author.contact));
+
+  var badContact = validPayload(); badContact.author.contact = "consultas";
+  var r13 = core.validateSubmission(badContact, { now: NOW });
+  ok("rechaza contacto que no es email ni WhatsApp", !r13.ok && !!r13.errors.contact);
+
+  var longContact = validPayload(); longContact.author.contact = "a".repeat(161);
+  var r14 = core.validateSubmission(longContact, { now: NOW });
+  ok("rechaza contacto demasiado largo", !r14.ok && !!r14.errors.contact);
 })();
 
 console.log("\n3. Creación y transiciones de estado");
 (function(){
-  var valid = core.validateSubmission(validPayload(), { now: NOW });
+  var payloadWithContact = validPayload();
+  payloadWithContact.author.contact = "ana@example.com";
+  var valid = core.validateSubmission(payloadWithContact, { now: NOW });
   var recipe = core.createRecipe(valid.data, { now: NOW });
+  check("contacto guardado en registro interno", recipe.author.contact, "ana@example.com");
   ok("id con formato esperado", /^rc-[a-z0-9-]{4,90}$/.test(recipe.id));
   check("nace pendiente", recipe.status, "pending");
   check("checklist inicia incompleto", core.checklistComplete(recipe.review), false);
@@ -175,6 +194,8 @@ console.log("\n3. Creación y transiciones de estado");
   ok("toPublic devuelve receta publicada", !!publicRecipe);
   check("toPublic no expone consentimientos", "consents" in publicRecipe, false);
   check("toPublic no expone notas internas", "moderation" in publicRecipe, false);
+  check("toPublic no expone contacto", "contact" in publicRecipe.author, false);
+  check("toPublic no filtra el email de contacto", JSON.stringify(publicRecipe).indexOf("ana@example.com") === -1, true);
   check("toPublic conserva autor", publicRecipe.author.name, "Ana Pereyra");
 
   var afterChanges = core.applyAdminPatch(published.record, { status: "changes", note: "Revisar precauciones." }, { now: NOW });
@@ -198,6 +219,8 @@ console.log("\n5. Integración en las páginas y configuración");
   var historia = fs.readFileSync(path.join(ROOT, "historia.html"), "utf8");
   var saber = fs.readFileSync(path.join(ROOT, "saber.html"), "utf8");
   var gracias = fs.readFileSync(path.join(ROOT, "gracias.html"), "utf8");
+  var productos = fs.readFileSync(path.join(ROOT, "productos.html"), "utf8");
+  var notFound = fs.readFileSync(path.join(ROOT, "404.html"), "utf8");
   var admin = fs.readFileSync(path.join(ROOT, "admin-recetas.html"), "utf8");
   var template = fs.readFileSync(path.join(ROOT, "templates", "ficha-producto.html"), "utf8");
   var robots = fs.readFileSync(path.join(ROOT, "robots.txt"), "utf8");
@@ -207,6 +230,8 @@ console.log("\n5. Integración en las páginas y configuración");
   var baseCss = fs.readFileSync(path.join(ROOT, "asset", "base.css"), "utf8");
   var homeCss = fs.readFileSync(path.join(ROOT, "asset", "home.css"), "utf8");
   var communityCss = fs.readFileSync(path.join(ROOT, "asset", "comunidad.css"), "utf8");
+  var communityJs = fs.readFileSync(path.join(ROOT, "js", "recetas-comunidad.js"), "utf8");
+  var adminJs = fs.readFileSync(path.join(ROOT, "js", "admin-recetas.js"), "utf8");
   var carouselCss = fs.readFileSync(path.join(ROOT, "asset", "carousel.css"), "utf8");
   var recetasNav = recetas.slice(recetas.indexOf('<nav class="nav-mobile"'), recetas.indexOf("</nav>", recetas.indexOf('<nav class="nav-mobile"')) + 6);
   var templateNav = template.slice(template.indexOf('<nav class="nav-mobile"'), template.indexOf("</nav>", template.indexOf('<nav class="nav-mobile"')) + 6);
@@ -377,7 +402,35 @@ console.log("\n5. Integración en las páginas y configuración");
   ["shareDialog", "shareConfirmDialog", "shareCancelDialog", "shareSuccessDialog", "shareErrorDialog"].forEach(function(id){
     ok("diálogo presente: " + id, new RegExp('id="' + id + '"').test(recetas));
   });
-  ok("formulario con paso 1 y 2", /id="shareStep1"/.test(recetas) && /id="shareStep2"/.test(recetas));
+  ok("formulario único con secciones y error unificado",
+    /id="shareForm"/.test(recetas) &&
+    /id="shareFormError"/.test(recetas) &&
+    (recetas.match(/class="community-form-section"/g) || []).length === 2 &&
+    /class="community-section-title"/.test(recetas));
+  ok("sin navegación por pasos ni checkbox de autoría",
+    !/shareStep1|shareStep2|shareProgress|shareNext|shareBack|shareConsentAuthorship/.test(recetas) &&
+    !/id="shareSubmit"[^>]*hidden/.test(recetas));
+  ok("ayudas de ingredientes y pasos antes de los inputs",
+    recetas.indexOf('id="ingredientHelp"') < recetas.indexOf('id="ingredientInput"') &&
+    recetas.indexOf('id="stepHelp"') < recetas.indexOf('id="stepInput"'));
+  ok("contacto opcional con aviso interno",
+    /id="shareContact"/.test(recetas) &&
+    /Medio de contacto <em>\(opcional\)<\/em>/.test(recetas) &&
+    /No será publicado ni compartido\./.test(recetas));
+  ok("consentimientos visibles: revisión y privacidad",
+    /shareConsentReview/.test(recetas) && /shareConsentPrivacy/.test(recetas) && !/shareConsentAuthorship/.test(recetas));
+  ok("autoría implícita al enviar", /Al enviar, confirmás que la receta es tuya/.test(recetas) && /authorship: true/.test(communityJs));
+  ok("JS usa una sola validación", /function validateForm\(\)/.test(communityJs) && !/validateStep|showStep|shareConsentAuthorship/.test(communityJs));
+  ok("bloque de revisión y contacto en comunidad", /Revisión y contacto con colaboradores/.test(recetas) && /Todas las recetas compartidas/.test(recetas));
+  ok("confirmación resume el contacto opcional", /si dejaste un medio de contacto/.test(recetas) && /shareConfirmSummary/.test(recetas));
+  ok("éxito ofrece modificación y baja por email", /mailto:dorilanatural@gmail\.com/.test(recetas) && /bajar tu receta publicada/.test(recetas));
+  ok("admin muestra contacto como interno", /Medio de contacto \(interno\)/.test(adminJs));
+  var exportBlock = adminJs.slice(adminJs.indexOf("function exportPublished"), adminJs.indexOf("function exportPublished") + 1400);
+  ok("export estático no incluye contacto", !/\bcontact\b/.test(exportBlock));
+  ok("modal ancho con secciones y aviso de autoría",
+    /width: min\(860px/.test(communityCss) &&
+    /\.community-form-section\{[^}]*border-top/.test(communityCss) &&
+    /\.community-consent-note\{/.test(communityCss));
 
   var selectStart = recetas.indexOf('id="shareCategory"');
   var selectEnd = recetas.indexOf("</select>", selectStart);
@@ -395,10 +448,15 @@ console.log("\n5. Integración en las páginas y configuración");
   ok("admin carga su JS", /js\/admin-recetas\.js\?v=/.test(admin));
   ok("admin tiene puerta de token", /id="adminTokenForm"/.test(admin) && /id="adminToken"/.test(admin));
 
-  var privacyFiles = ["index.html", "historia.html", "saber.html", "recetas.html", "gracias.html", "templates/ficha-producto.html"];
+  var privacyFiles = ["index.html", "productos.html", "historia.html", "saber.html", "recetas.html", "gracias.html", "404.html", "templates/ficha-producto.html"];
   privacyFiles.forEach(function(file){
     var html = fs.readFileSync(path.join(ROOT, file), "utf8");
-    ok("privacidad actualizada: " + file, /Netlify Blobs/.test(html) && !/no los guarda ni los almacena en ningún servidor propio/.test(html));
+    ok("privacidad actualizada: " + file,
+      /Netlify Blobs/.test(html) &&
+      /Datos de contacto opcionales/.test(html) &&
+      /No se publica ni se comparte/.test(html) &&
+      /dorilanatural@gmail\.com/.test(html) &&
+      !/no los guarda ni los almacena en ningún servidor propio/.test(html));
   });
 
   ok("robots bloquea admin", /Disallow: \/admin-recetas\.html/.test(robots));
@@ -406,8 +464,7 @@ console.log("\n5. Integración en las páginas y configuración");
   ok("generate.js incluye admin", /ROOT_PAGES = \[[^\]]*admin-recetas\.html/.test(generate));
   ok("admin no entra al sitemap", /mainPages = \["", "productos\.html", "historia\.html", "saber\.html", "recetas\.html", "gracias\.html"\]/.test(generate));
 
-  var productosPage = fs.readFileSync(path.join(ROOT, "productos.html"), "utf8");
-  var notFound = fs.readFileSync(path.join(ROOT, "404.html"), "utf8");
+  var productosPage = productos;
   var sitemap = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
   var appJs = fs.readFileSync(path.join(ROOT, "js", "app.js"), "utf8");
   var shellJs = fs.readFileSync(path.join(ROOT, "js", "shell.js"), "utf8");

@@ -637,6 +637,12 @@
           <button class="btn btn-look" type="button" data-share-open>Compartir mi receta</button>
         </div>
         <p class="community-safety"><strong>Antes de preparar:</strong> las recetas son compartidas por la comunidad y revisadas editorialmente. No reemplazan la indicación de un profesional de la salud. Consultá siempre si estás embarazada, en lactancia, tomás medicación o tenés una condición de salud.</p>
+        <details class="community-review-note reveal">
+          <summary>Revisión y contacto con colaboradores</summary>
+          <p>Todas las recetas compartidas por la comunidad son revisadas por DORILA antes de su publicación, procurando que la información sea clara, responsable y adecuada para este espacio.</p>
+          <p>En ocasiones, si durante la revisión surge alguna duda, necesitamos aclarar un dato o consideramos que sería útil ampliar cierta información, podremos contactar directamente a la persona que compartió la receta, únicamente si dejó un medio de contacto. Este intercambio nos permite comprender mejor su preparación, conocer detalles de su experiencia y, cuando corresponda, solicitar información adicional antes de publicarla.</p>
+          <p>El contacto se realizará únicamente con fines relacionados con la revisión y mejora del contenido compartido.</p>
+        </details>
       </div>
 
       <div class="community-toolbar reveal">
@@ -677,11 +683,11 @@
         <div class="community-form-head">
           <h2 id="shareTitle">Compartir mi receta</h2>
           <p id="shareIntro">Completá tus datos y la preparación. Antes de publicar, el equipo de DORILA revisa ingredientes, proporciones, precauciones y consentimientos.</p>
-          <span class="community-progress" id="shareProgress">Paso 1 de 2 · Tus datos</span>
         </div>
+        <p class="community-form-error" id="shareFormError" role="alert" hidden></p>
 
-        <div class="community-step" id="shareStep1">
-          <p class="community-form-error" id="shareStep1Error" role="alert" hidden></p>
+        <div class="community-form-section">
+          <h3 class="community-section-title">Tus datos</h3>
           <div class="community-field-row">
             <div class="community-field">
               <label for="shareFirstName">Nombre <em>(obligatorio)</em></label>
@@ -702,11 +708,16 @@
               <input type="text" id="shareCity" name="city" autocomplete="address-level2" maxlength="80">
             </div>
           </div>
-          <p class="community-hint">Tu nombre y ciudad se muestran junto a la receta si se publica. No pedimos correo ni teléfono.</p>
+          <div class="community-field">
+            <label for="shareContact">Medio de contacto <em>(opcional)</em></label>
+            <input type="text" id="shareContact" name="contact" autocomplete="off" maxlength="160" placeholder="WhatsApp (+598…) o correo electrónico" aria-describedby="contactHelp">
+            <p class="community-hint" id="contactHelp">Este dato será utilizado únicamente por DORILA para consultas relacionadas con la revisión de tu receta. No será publicado ni compartido.</p>
+          </div>
+          <p class="community-hint">Tu nombre y ciudad se muestran junto a la receta si se publica. El medio de contacto queda solo en nuestra revisión interna.</p>
         </div>
 
-        <div class="community-step" id="shareStep2" hidden>
-          <p class="community-form-error" id="shareStep2Error" role="alert" hidden></p>
+        <div class="community-form-section">
+          <h3 class="community-section-title">Tu receta</h3>
           <div class="community-field">
             <label for="shareCategory">Categoría de uso <em>(obligatorio)</em></label>
             <select id="shareCategory" name="category" required>
@@ -730,22 +741,22 @@
 
           <div class="community-builder">
             <label for="ingredientInput">Ingredientes y cantidades <em>(obligatorio)</em></label>
+            <p class="community-hint" id="ingredientHelp">Escribí un ingrediente y presioná Enter o «Agregar». Sumá al menos dos.</p>
             <div class="community-builder-row">
               <input type="text" id="ingredientInput" autocomplete="off" maxlength="160" placeholder="Ej.: 1 cucharada de manzanilla seca" aria-describedby="ingredientHelp">
               <button class="community-add" type="button" id="addIngredient">Agregar</button>
             </div>
-            <p class="community-hint" id="ingredientHelp">Escribí un ingrediente y presioná Enter o «Agregar». Sumá al menos dos.</p>
             <ul class="community-rows" id="ingredientList" aria-live="polite"></ul>
             <p class="community-error" id="ingredientError" role="alert" hidden></p>
           </div>
 
           <div class="community-builder">
             <label for="stepInput">Preparación paso a paso <em>(obligatorio)</em></label>
+            <p class="community-hint" id="stepHelp">Escribí un paso y presioná Enter o «Agregar». Sumá al menos dos.</p>
             <div class="community-builder-row">
               <input type="text" id="stepInput" autocomplete="off" maxlength="400" placeholder="Ej.: Verter el agua caliente y tapar la taza" aria-describedby="stepHelp">
               <button class="community-add" type="button" id="addStep">Agregar</button>
             </div>
-            <p class="community-hint" id="stepHelp">Escribí un paso y presioná Enter o «Agregar». Sumá al menos dos.</p>
             <ul class="community-rows" id="stepList" aria-live="polite"></ul>
             <p class="community-error" id="stepError" role="alert" hidden></p>
           </div>
@@ -764,7 +775,7 @@
           </div>
 
           <div class="community-consents">
-            <label><input type="checkbox" id="shareConsentAuthorship" name="consentAuthorship" required> Confirmo que esta receta es mía o que tengo permiso para compartirla.</label>
+            <p class="community-consent-note">Al enviar, confirmás que la receta es tuya o que tenés permiso para compartirla.</p>
             <label><input type="checkbox" id="shareConsentReview" name="consentReview" required> Acepto que DORILA revise, edite y decida si publica la receta.</label>
             <label><input type="checkbox" id="shareConsentPrivacy" name="consentPrivacy" required> Acepto que mi nombre y ciudad se muestren públicamente si la receta se publica.</label>
           </div>
@@ -777,9 +788,7 @@
         </div>
 
         <div class="community-form-actions">
-          <button class="community-btn-outline" type="button" id="shareBack" hidden>Volver</button>
-          <button class="community-btn-primary" type="button" id="shareNext">Continuar</button>
-          <button class="community-btn-primary" type="submit" id="shareSubmit" hidden>Enviar receta para revisión</button>
+          <button class="community-btn-primary" type="submit" id="shareSubmit">Enviar receta para revisión</button>
         </div>
       </form>
     </div>
@@ -789,7 +798,7 @@
     <div class="community-dialog-card">
       <button class="community-dialog-close" type="button" data-dialog-close aria-label="Cerrar confirmación">×</button>
       <h2 class="community-dialog-title" id="shareConfirmTitle">¿Enviar tu receta para revisión?</h2>
-      <p class="community-dialog-copy">La receta no se publica automáticamente. El equipo editorial revisará la información y podrá contactarte si necesita ajustes.</p>
+      <p class="community-dialog-copy">La receta no se publica automáticamente. El equipo editorial revisará la información y, si dejaste un medio de contacto, podrá escribirte solo para consultas de revisión.</p>
       <p class="community-confirm-summary" id="shareConfirmSummary"></p>
       <div class="community-dialog-actions">
         <button class="community-btn-outline" type="button" id="shareConfirmNo">No, volver</button>
@@ -813,7 +822,8 @@
     <div class="community-dialog-card">
       <button class="community-dialog-close" type="button" data-dialog-close aria-label="Cerrar aviso">×</button>
       <h2 class="community-dialog-title" id="shareSuccessTitle">Receta recibida</h2>
-      <p class="community-dialog-copy">Gracias por compartir. La revisaremos con cuidado antes de publicarla. Si necesitamos ajustar algún dato, nos pondremos en contacto.</p>
+      <p class="community-dialog-copy">Gracias por compartir. La revisaremos con cuidado antes de publicarla. Si necesitamos ajustar algún dato y dejaste tu medio de contacto, te escribiremos.</p>
+      <p class="community-dialog-copy">Si más adelante querés pedir una modificación o bajar tu receta publicada, escribinos a <a href="mailto:dorilanatural@gmail.com">dorilanatural@gmail.com</a>.</p>
       <div class="community-dialog-actions">
         <button class="community-btn-primary" type="button" data-dialog-close>Volver a las recetas</button>
       </div>
@@ -916,10 +926,10 @@
 <button class="to-top" type="button" id="toTop" aria-label="Volver arriba">
   <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
-<script src="js/shell.js?v=a40d9dee" defer></script>
-  <script src="js/info-form.js?v=a40d9dee" defer></script>
-  <script src="js/recetas_.js?v=a40d9dee" defer></script>
-  <script src="js/recetas-comunidad.js?v=a40d9dee" defer></script>
+<script src="js/shell.js?v=04344252" defer></script>
+  <script src="js/info-form.js?v=04344252" defer></script>
+  <script src="js/recetas_.js?v=04344252" defer></script>
+  <script src="js/recetas-comunidad.js?v=04344252" defer></script>
 <!-- ===================== MODAL PRIVACIDAD ===================== -->
 <div class="modal modal-legal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" aria-hidden="true">
   <div class="modal-scrim" data-close-modal></div>
@@ -930,10 +940,11 @@
     <div class="modal-body">
       <span class="m-tag">Legal</span>
       <h2 id="privacyTitle">Política de privacidad</h2>
-      <p><strong>Qué datos recopilamos.</strong> Cuando completás el formulario de cotización, solo usamos tu nombre, lo que solicitás, el departamento, el barrio y las notas o dirección que nos escribís. Estos datos se envían directamente a nuestro WhatsApp. Si compartís una receta en «Recetas de persona a persona», guardamos tu nombre, apellido, nacionalidad, ciudad (opcional), categoría, ingredientes, preparación, experiencia y precauciones en Netlify Blobs para su revisión editorial y eventual publicación. No usamos esos datos para publicidad ni los compartimos con terceros.</p>
-      <p><strong>Para qué los usamos.</strong> Únicamente para coordinar tu presupuesto, visita o consulta. No compartimos tus datos con terceros ni los usamos con fines publicitarios.</p>
+      <p><strong>Qué datos recopilamos.</strong> Cuando completás el formulario de cotización, solo usamos tu nombre, lo que solicitás, el departamento, el barrio y las notas o dirección que nos escribís. Estos datos se envían directamente a nuestro WhatsApp. Si compartís una receta en «Recetas de persona a persona», guardamos tu nombre, apellido, nacionalidad, ciudad (opcional), categoría, ingredientes, preparación, experiencia, precauciones y, si lo indicás, tu medio de contacto (WhatsApp o correo electrónico) en Netlify Blobs para su revisión editorial y eventual publicación. No usamos esos datos para publicidad ni los compartimos con terceros.</p>
+      <p><strong>Datos de contacto opcionales.</strong> El medio de contacto que nos dejes se usa únicamente para consultas relacionadas con la revisión de tu receta. No se publica ni se comparte. Podés pedir una modificación o la baja de tu receta escribiendo a dorilanatural@gmail.com.</p>
+      <p><strong>Para qué los usamos.</strong> Para coordinar tu presupuesto, visita o consulta y para revisar, mejorar y decidir la publicación de las recetas compartidas. El medio de contacto opcional se usa solo para consultas editoriales; nunca para publicidad ni para compartirlo con terceros.</p>
       <p><strong>Cookies.</strong> Este sitio no utiliza cookies de seguimiento ni analíticas de terceros.</p>
-      <p><strong>Contacto.</strong> Ante cualquier duda sobre esta política, escribinos al 094 872 605.</p>
+      <p><strong>Contacto.</strong> Ante cualquier duda sobre esta política, escribinos al 094 872 605 o a dorilanatural@gmail.com.</p>
     </div>
   </div>
 </div>
@@ -956,7 +967,7 @@
     </div>
   </div>
 </div>
-<script src="js/productos.js?v=a40d9dee" defer></script>
-  <script src="js/cart.js?v=a40d9dee" defer></script>
+<script src="js/productos.js?v=04344252" defer></script>
+  <script src="js/cart.js?v=04344252" defer></script>
 </body>
 </html>

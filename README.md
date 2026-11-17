@@ -43,7 +43,7 @@ de **recetas y remedios caseros**, educación herbolaria y agradecimientos.
 | 📱 **Mobile-first** | CSS con `min-width` progresivo y `clamp()`; la grilla de categorías se mantiene en 2 columnas en móvil y pasa a 3 desde 640px |
 | 🧭 **Footer editorial** | Cuatro bloques con namespace propio, 2/2/4 columnas compactas, disclaimer destacado, modales legales y crédito a Kikiriya-DevOps |
 | 🍵 **Recetas y remedios** | Página con técnicas de preparación, recetas paso a paso y consejos de conservación |
-| 🌿 **Recetas de persona a persona** | Envío en dos pasos, moderación privada con checklist, publicación solo tras aprobación y sin exponer datos personales |
+| 🌿 **Recetas de persona a persona** | Formulario único con contacto opcional interno, moderación privada con checklist, publicación solo tras aprobación y sin exponer datos personales |
 | 🎓 **Educación herbolaria** | Página informativa sobre plantas y su uso seguro |
 | 💬 **Testimonios** | Carrusel de experiencias reales en la página principal |
 | 🙏 **Agradecimientos** | Página de agradecimiento posterior al envío del formulario |
@@ -149,9 +149,11 @@ en los tres anchos.
 ## 🌿 Recetas de persona a persona
 
 La sección pública vive en `recetas.html#recetas-comunidad` y también tiene
-un teaser en `index.html`. Las recetas se envían desde un formulario en dos
-pasos, pasan por moderación editorial y solo se publican después de aprobar
-el checklist de seguridad.
+un teaser en `index.html`. Las recetas se envían desde un formulario único con
+secciones, pasan por moderación editorial y solo se publican después de aprobar
+el checklist de seguridad. El medio de contacto es opcional: se guarda solo en
+el registro interno, se muestra únicamente en el panel y nunca se expone en la
+API pública ni en la descarga estática.
 
 ### Arquitectura
 
