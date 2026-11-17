@@ -61,7 +61,7 @@
 .community h2{
   margin-top: 0.8rem;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5.2vw, 3.3rem);
+  font-size: var(--fs-h2);
   line-height: 1.02;
   color: var(--cr-deep);
   text-wrap: balance;
@@ -78,7 +78,19 @@
   line-height: 1.5;
   color: var(--cr-sage-strong);
 }
-.community-actions{ display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.5rem; }
+.community-actions{ display: flex; flex-wrap: nowrap; gap: 0.5rem; margin-top: 1.5rem; }
+.community-actions .btn{
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0.3em 1.1em;
+  font-size: var(--fs-small);
+  border: 1px solid transparent;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.2;
+}
+.community-actions .btn-look{ color: var(--color-crema); border-color: rgba(244,235,221,0.55); }
+.community-actions .btn-look:hover{ background: var(--color-crema); color: var(--color-forest-deep); border-color: var(--color-crema); }
 .community-btn-primary,
 .community-btn-outline{
   display: inline-flex;
@@ -237,8 +249,8 @@
 }
 .community-cta h3{ font-family: var(--font-display); font-size: clamp(1.4rem, 3.5vw, 2rem); line-height: 1.1; }
 .community-cta p{ margin-top: 0.5rem; max-width: 58ch; font-size: var(--fs-small); color: var(--cr-ivory); }
-.community-cta .community-btn-primary{ background: var(--cr-ivory); border-color: var(--cr-ivory); color: var(--cr-deep); }
-.community-cta .community-btn-primary:hover{ background: var(--cr-sand-hover); border-color: var(--cr-sand-hover); }
+.community-cta .btn-look{ background: var(--cr-ivory); border-color: var(--cr-ivory); color: var(--cr-deep); }
+.community-cta .btn-look:hover{ background: var(--cr-sand-hover); color: var(--cr-deep); border-color: var(--cr-sand-hover); }
 .community-noscript{ padding: 1rem; border-radius: 12px; background: var(--cr-ivory); font-size: var(--fs-small); }
 
 /* ---------- Diálogos ---------- */
@@ -417,6 +429,11 @@
   .community-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .community-toolbar{ grid-template-columns: 1fr auto; align-items: end; }
   .community-count{ text-align: right; }
+}
+
+@media (min-width: 760px){
+  .community-actions{ justify-content: flex-end; }
+  .community-actions .btn{ flex: 0 1 auto; padding: 0.7em 1.2em; }
 }
 
 @media (min-width: 1024px){

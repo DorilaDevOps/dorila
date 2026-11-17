@@ -203,6 +203,7 @@ console.log("\n5. Integración en las páginas y configuración");
   var pagesCss = fs.readFileSync(path.join(ROOT, "asset", "pages.css"), "utf8");
   var baseCss = fs.readFileSync(path.join(ROOT, "asset", "base.css"), "utf8");
   var homeCss = fs.readFileSync(path.join(ROOT, "asset", "home.css"), "utf8");
+  var communityCss = fs.readFileSync(path.join(ROOT, "asset", "comunidad.css"), "utf8");
   var carouselCss = fs.readFileSync(path.join(ROOT, "asset", "carousel.css"), "utf8");
   var recetasNav = recetas.slice(recetas.indexOf('<nav class="nav-mobile"'), recetas.indexOf("</nav>", recetas.indexOf('<nav class="nav-mobile"')) + 6);
   var templateNav = template.slice(template.indexOf('<nav class="nav-mobile"'), template.indexOf("</nav>", template.indexOf('<nav class="nav-mobile"')) + 6);
@@ -296,6 +297,34 @@ console.log("\n5. Integración en las páginas y configuración");
   ok("recetas carga recetas_.js", /js\/recetas_\.js\?v=/.test(recetas));
   ok("recetas carga recetas-comunidad.js", /js\/recetas-comunidad\.js\?v=/.test(recetas));
   ok("recetas carga comunidad.css", /asset\/comunidad\.css/.test(recetas));
+  ok("tokens CSS sin referencias rotas",
+    !/var\(----/.test(baseCss + pagesCss + communityCss) &&
+    /--border-frame2:\s*3px solid var\(--color-forest\)/.test(baseCss) &&
+    /--bg-global-celeste:[\s\S]*?var\(--cr-green, #E9F0E7\)/.test(baseCss) &&
+    /background:\s*var\(--bg-global-celeste\)/.test(pagesCss));
+  ok("disclaimer es franja completa con salvia",
+    /<section class="disclaimer" aria-labelledby="disclaimer-heading">/.test(recetas) &&
+    !/class="disclaimer wrap"/.test(recetas) &&
+    /\.disclaimer\{[^}]*background:\s*var\(--color-salvia\)/.test(pagesCss));
+  var disclaimerStart = recetas.indexOf('<section class="disclaimer"');
+  var disclaimerSection = recetas.slice(disclaimerStart, recetas.indexOf("</section>", disclaimerStart));
+  ok("disclaimer mantiene el contenido dentro de wrap",
+    /<div class="wrap">\s*<div class="disclaimer-card/.test(disclaimerSection));
+  ok("CTA e info-request usan padding compacto",
+    /\.cta-recipes\{ padding-block: var\(--space-3\); \}/.test(pagesCss) &&
+    /\.info-request\{ padding-block: var\(--space-3\); \}/.test(pagesCss));
+  ok("comunidad usa la tipografía h2 compartida",
+    /\.community h2\{[\s\S]*?font-size: var\(--fs-h2\);/.test(communityCss));
+  var communityActions = (recetas.match(/<div class="community-actions">[\s\S]*?<\/div>/g) || []).join("\n");
+  ok("acciones de comunidad usan btn-look",
+    (communityActions.match(/class="btn btn-look"/g) || []).length === 3 &&
+    !/community-btn-(primary|outline)/.test(communityActions));
+  ok("acciones de comunidad replican al teaser del index",
+    /\.community-actions\{ display: flex; flex-wrap: nowrap; gap: 0\.5rem; margin-top: 1\.5rem; \}/.test(communityCss) &&
+    /\.community-actions \.btn\{[\s\S]*?flex: 1 1 0;[\s\S]*?min-width: 0;[\s\S]*?padding: 0\.3em 1\.1em;[\s\S]*?font-size: var\(--fs-small\);[\s\S]*?white-space: normal;[\s\S]*?text-align: center;[\s\S]*?line-height: 1\.2;/.test(communityCss) &&
+    /\.community-actions \.btn-look\{ color: var\(--color-crema\); border-color: rgba\(244,235,221,0\.55\); \}/.test(communityCss) &&
+    /@media \(min-width: 760px\)\{[\s\S]*?\.community-actions\{ justify-content: flex-end; \}[\s\S]*?\.community-actions \.btn\{ flex: 0 1 auto; padding: 0\.7em 1\.2em; \}/.test(communityCss) &&
+    /\.community-cta \.btn-look\{ background: var\(--cr-ivory\); border-color: var\(--cr-ivory\); color: var\(--cr-deep\); \}/.test(communityCss));
   ["shareDialog", "shareConfirmDialog", "shareCancelDialog", "shareSuccessDialog", "shareErrorDialog"].forEach(function(id){
     ok("diálogo presente: " + id, new RegExp('id="' + id + '"').test(recetas));
   });
@@ -405,7 +434,7 @@ console.log("\n7. Orden, enlaces y navegación del sitio");
     'class="intro wrap" id="intro"',
     'class="techniques" id="tecnicas"',
     'class="conservation" id="conservacion"',
-    'class="disclaimer wrap"',
+    'class="disclaimer"',
     'class="recipes wrap" id="recetas-caseras"',
     'class="community" id="recetas-comunidad"',
     'class="info-request wrap" id="solicitar-info"'
