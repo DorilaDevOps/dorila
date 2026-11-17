@@ -195,6 +195,8 @@ console.log("\n5. Integración en las páginas y configuración");
 (function(){
   var recetas = fs.readFileSync(path.join(ROOT, "recetas.html"), "utf8");
   var index = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+  var historia = fs.readFileSync(path.join(ROOT, "historia.html"), "utf8");
+  var saber = fs.readFileSync(path.join(ROOT, "saber.html"), "utf8");
   var admin = fs.readFileSync(path.join(ROOT, "admin-recetas.html"), "utf8");
   var template = fs.readFileSync(path.join(ROOT, "templates", "ficha-producto.html"), "utf8");
   var robots = fs.readFileSync(path.join(ROOT, "robots.txt"), "utf8");
@@ -317,6 +319,32 @@ console.log("\n5. Integración en las páginas y configuración");
     /\.products\{[^}]*background:\s*var\(--bg-global-celeste\)/.test(homeCss) &&
     /\.techniques\{[^}]*background:\s*var\(--bg-global-celeste\)/.test(pagesCss) &&
     /\.recipes\{[^}]*background:\s*var\(--bg-global-celeste\)/.test(pagesCss));
+  ok("historia y saber comparten hero y color de acento",
+    /<section class="page-hero wrap">\s*<div class="hero-content">/.test(historia) &&
+    /<section class="page-hero wrap">\s*<div class="hero-content">/.test(saber) &&
+    /\.hero-content h1\{ font-size: var\(--fs-hero\); \}/.test(pagesCss) &&
+    /\.page-hero h1 span\{ color: var\(--color-parchment-soft\); \}/.test(pagesCss));
+  ok("eyebrow de page-hero se oculta en mobile",
+    /@media \(max-width: 639px\)\{[\s\S]*?\.page-hero \.eyebrow-mark\{ display:none; \}/.test(pagesCss));
+  ok("CTA de historia y saber usa hero-ctas y btn-primary",
+    [historia, saber].every(function(page){
+      var foldStart = page.indexOf('<section class="cta-fold wrap">');
+      var fold = page.slice(foldStart, page.indexOf("</section>", foldStart));
+      return /<div class="hero-ctas">/.test(fold) &&
+             (fold.match(/class="btn btn-primary"/g) || []).length === 2 &&
+             !/btn-outline/.test(fold);
+    }) &&
+    /\.cta-fold \.hero-ctas\{/.test(pagesCss) &&
+    /\.cta-fold \.hero-ctas \.btn\{/.test(pagesCss) &&
+    /\.btn-primary:hover\{ background: var\(--color-crema\); color: var\(--color-black\);\}/.test(baseCss));
+  ok("acordeón de saber usa tokens compartidos",
+    /--border-frame3:\s*3px solid #75b599/.test(baseCss) &&
+    /\.stat-card\{ border: var\(--border-frame3\)/.test(pagesCss) &&
+    /\.acc-item\{ border: var\(--border-frame3\)[^}]*background: var\(--bg-global-celeste\)/.test(pagesCss) &&
+    /--fs-acc-trigger:\s*clamp\(/.test(baseCss) &&
+    /\.acc-trigger\{[^}]*font-size: var\(--fs-acc-trigger\)/.test(pagesCss));
+  ok("temporada vuelve al pergamino base",
+    /\.seasonal-wrap\{[^}]*background: var\(--color-parchment\); \}/.test(pagesCss));
   ok("disclaimer mantiene franja completa y borde verde",
     /<section class="disclaimer" aria-labelledby="disclaimer-heading">/.test(recetas) &&
     !/class="disclaimer wrap"/.test(recetas) &&
@@ -325,9 +353,12 @@ console.log("\n5. Integración en las páginas y configuración");
   var disclaimerSection = recetas.slice(disclaimerStart, recetas.indexOf("</section>", disclaimerStart));
   ok("disclaimer mantiene el contenido dentro de wrap",
     /<div class="wrap">\s*<div class="disclaimer-card/.test(disclaimerSection));
-  ok("CTA e info-request conservan padding amplio",
-    /\.cta-recipes\{ padding-block: var\(--space-5\); \}/.test(pagesCss) &&
-    /\.info-request\{ padding-block: var\(--space-5\); \}/.test(pagesCss));
+  ok("CTA e info-request vuelven al padding compacto",
+    /\.cta-recipes\{ padding-block: var\(--space-3\); \}/.test(pagesCss) &&
+    /\.info-request\{ padding-block: var\(--space-3\); \}/.test(pagesCss));
+  ok("CTA e info-request sin bordes",
+    !/\.cta-card\{[^}]*border:/.test(pagesCss) &&
+    !/\.info-request-card\{[^}]*border:/.test(pagesCss));
   ok("contacto usa tipografía h3",
     /#contact-order-heading\{ font-size:var\(--fs-h3\); \}/.test(homeCss));
   ok("comunidad usa la tipografía h2 compartida",
