@@ -39,7 +39,7 @@
   --color-logo-tan:            #A17947;   /* sienna/tan — letras del logo */
   --color-logo-parchment:      #D7B993;   /* pergamino claro — detalle del logo */
 
-  --bg-global-celeste: radial-gradient(ellipse at 8% 0%, rgba(85, 116, 91, 0.18), transparent 48%), radial-gradient(ellipse at 92% 100%, rgba(185, 165, 138, 0.22), transparent 52%), var(--cr-green, #E9F0E7);
+  --bg-global-celeste: radial-gradient(ellipse at 8% 0%, rgba(85, 116, 91, 0.18), transparent 48%), radial-gradient(ellipse at 92% 100%, rgba(185, 165, 138, 0.22), transparent 52%), #E9F0E7;
 
   /* --- tipografía --- */
   --font-display: "Rye", serif;

@@ -297,22 +297,39 @@ console.log("\n5. Integración en las páginas y configuración");
   ok("recetas carga recetas_.js", /js\/recetas_\.js\?v=/.test(recetas));
   ok("recetas carga recetas-comunidad.js", /js\/recetas-comunidad\.js\?v=/.test(recetas));
   ok("recetas carga comunidad.css", /asset\/comunidad\.css/.test(recetas));
+  var allCss = [baseCss, homeCss, pagesCss, communityCss, carouselCss].join("\n");
+  var definedTokens = {};
+  (allCss.match(/(--[A-Za-z0-9_-]+)\s*:/g) || []).forEach(function(token){
+    definedTokens[token.split(":")[0].trim()] = true;
+  });
+  var missingTokens = [];
+  (allCss.match(/var\((--[A-Za-z0-9_-]+)/g) || []).forEach(function(token){
+    var name = token.slice(4);
+    if (!definedTokens[name]) missingTokens.push(name);
+  });
   ok("tokens CSS sin referencias rotas",
-    !/var\(----/.test(baseCss + pagesCss + communityCss) &&
+    missingTokens.length === 0 &&
+    !/var\(----/.test(allCss) &&
+    !/--bg_global-celeste/.test(allCss) &&
     /--border-frame2:\s*3px solid var\(--color-forest\)/.test(baseCss) &&
-    /--bg-global-celeste:[\s\S]*?var\(--cr-green, #E9F0E7\)/.test(baseCss) &&
-    /background:\s*var\(--bg-global-celeste\)/.test(pagesCss));
-  ok("disclaimer es franja completa con salvia",
+    /--bg-global-celeste:\s*[^;]*#E9F0E7/.test(baseCss));
+  ok("fondos alternados usan el token correcto",
+    /\.products\{[^}]*background:\s*var\(--bg-global-celeste\)/.test(homeCss) &&
+    /\.techniques\{[^}]*background:\s*var\(--bg-global-celeste\)/.test(pagesCss) &&
+    /\.recipes\{[^}]*background:\s*var\(--bg-global-celeste\)/.test(pagesCss));
+  ok("disclaimer mantiene franja completa y borde verde",
     /<section class="disclaimer" aria-labelledby="disclaimer-heading">/.test(recetas) &&
     !/class="disclaimer wrap"/.test(recetas) &&
-    /\.disclaimer\{[^}]*background:\s*var\(--color-salvia\)/.test(pagesCss));
+    /\.disclaimer-card\{ border: var\(--border-frame2\)/.test(pagesCss));
   var disclaimerStart = recetas.indexOf('<section class="disclaimer"');
   var disclaimerSection = recetas.slice(disclaimerStart, recetas.indexOf("</section>", disclaimerStart));
   ok("disclaimer mantiene el contenido dentro de wrap",
     /<div class="wrap">\s*<div class="disclaimer-card/.test(disclaimerSection));
-  ok("CTA e info-request usan padding compacto",
-    /\.cta-recipes\{ padding-block: var\(--space-3\); \}/.test(pagesCss) &&
-    /\.info-request\{ padding-block: var\(--space-3\); \}/.test(pagesCss));
+  ok("CTA e info-request conservan padding amplio",
+    /\.cta-recipes\{ padding-block: var\(--space-5\); \}/.test(pagesCss) &&
+    /\.info-request\{ padding-block: var\(--space-5\); \}/.test(pagesCss));
+  ok("contacto usa tipografía h3",
+    /#contact-order-heading\{ font-size:var\(--fs-h3\); \}/.test(homeCss));
   ok("comunidad usa la tipografía h2 compartida",
     /\.community h2\{[\s\S]*?font-size: var\(--fs-h2\);/.test(communityCss));
   var communityActions = (recetas.match(/<div class="community-actions">[\s\S]*?<\/div>/g) || []).join("\n");

@@ -157,7 +157,7 @@
 /* ===========================================================
    PRODUCTOS
    =========================================================== */
-.products{ padding-block:var(--space-3); }
+.products{ padding-block:var(--space-3); background:var(--bg-global-celeste); }
 .product-grid{ display:grid; gap:var(--space-2); grid-template-columns:repeat(2,1fr); grid-auto-rows:min-content; }
 .product-card{ background:var(--color-parchment-soft); border-radius:14px; overflow:hidden; border:1px solid var(--color-line); box-shadow:var(--shadow-card); display:flex; flex-direction:column; width:100%; cursor:pointer; transition:transform var(--transition-fast), box-shadow var(--transition-fast); }
 .product-card:hover{ transform:translateY(-3px); box-shadow:0 14px 28px -16px rgba(51,35,15,0.55); }
@@ -242,6 +242,7 @@
 .contact-stack .contact-card{ max-width:640px; margin-inline:auto; width:100%; }
 .contact-card{ border:var(--border-frame); border-radius:24px; background:var(--color-parchment-soft); padding:clamp(1.5rem,7vw,2.5rem) clamp(1.1rem,6vw,1.5rem); min-width:0; }
 .contact-card h2{ font-family:var(--font-display); font-size:var(--fs-h2); color:var(--color-ink); overflow-wrap:break-word; }
+#contact-order-heading{ font-size:var(--fs-h3); }
 .contact-card p{ margin-top:var(--space-2); color:var(--color-body-soft); max-width:40ch; }
 .contact-actions{ margin-top:var(--space-3); display:flex; flex-wrap:wrap; gap:var(--space-2); }
 .contact-actions .btn{ flex:1 1 auto; }
