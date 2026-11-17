@@ -220,16 +220,20 @@ console.log("\n5. Integración en las páginas y configuración");
     !/\.carousel-quote\{[^}]*font-family/.test(carouselCss));
   ok("nav móvil agrupa Recetas en un acordeón",
     /id="mobileRecetasToggle"[^>]*aria-controls="mobileRecetasList"/.test(recetasNav));
-  ok("nav móvil incluye enlace directo a /recetas",
-    /<li><a href="\/recetas"[^>]*>Recetas<\/a><\/li>/.test(recetasNav));
+  ok("nav móvil no duplica la entrada Recetas",
+    (recetasNav.match(/>\s*Recetas\s*</g) || []).length === 1);
+  ok("submenú móvil enlaza a /recetas",
+    /<a href="\/recetas"[^>]*>Todas las recetas<\/a>/.test(recetasNav));
   ok("nav móvil incluye Ver recetas",
     /href="recetas\.html#recetas-caseras"[^>]*>Ver recetas</.test(recetasNav));
   ok("nav móvil incluye Técnicas de preparación",
     /href="recetas\.html#tecnicas"[^>]*>Técnicas de preparación</.test(recetasNav));
   ok("nav móvil incluye Compartir mi receta",
     /href="recetas\.html\?compartir=1#recetas-comunidad"[^>]*>Compartir mi receta</.test(recetasNav));
-  ok("nav móvil de fichas incluye enlace directo a /recetas",
-    /<li><a href="\/recetas"[^>]*>Recetas<\/a><\/li>/.test(templateNav));
+  ok("nav móvil de fichas no duplica la entrada Recetas",
+    (templateNav.match(/>\s*Recetas\s*</g) || []).length === 1);
+  ok("submenú móvil de fichas enlaza a /recetas",
+    /<a href="\/recetas"[^>]*>Todas las recetas<\/a>/.test(templateNav));
   ok("nav móvil de fichas usa rutas relativas",
     /href="\.\.\/recetas\.html#recetas-caseras"[^>]*>Ver recetas</.test(templateNav) &&
     /href="\.\.\/recetas\.html#tecnicas"[^>]*>Técnicas de preparación</.test(templateNav) &&
@@ -392,12 +396,28 @@ console.log("\n7. Orden, enlaces y navegación del sitio");
   });
   ok("todas las páginas llevan /recetas en ambos navs", missing.length === 0);
   if (missing.length) console.log("         faltan: " + missing.join(", "));
+  var duplicated = allPages.filter(function(file){
+    var html = fs.readFileSync(path.join(ROOT, file), "utf8");
+    var mobileStart = html.indexOf('<nav class="nav-mobile"');
+    var mobile = html.slice(mobileStart, html.indexOf("</nav>", mobileStart));
+    return (mobile.match(/>\s*Recetas\s*</g) || []).length !== 1;
+  });
+  ok("una sola entrada Recetas por nav móvil", duplicated.length === 0);
+  if (duplicated.length) console.log("         duplicados: " + duplicated.join(", "));
   var stale = allPages.filter(function(file){
     return /href="(?:\.\.\/)?recetas\.html#recetas"/.test(fs.readFileSync(path.join(ROOT, file), "utf8"));
   });
   ok("sin anclas obsoletas #recetas", stale.length === 0);
   ok("home.css usa la ruta correcta de girasol_bg.webp", /url\('\.\.\/img\/girasol_bg\.webp'\)/.test(homeCss));
   ok("base.css define --color-link", /--color-link:\s*#/.test(baseCss));
+  ok("nav móvil replica el subrayado animado de desktop",
+    /\.nav-mobile ul > li > a::after[\s\S]{0,200}right:\s*100%[\s\S]{0,120}background:\s*var\(--color-terracotta\)/.test(baseCss) &&
+    /\.nav-mobile ul > li > a:hover::after[\s\S]{0,180}right:\s*0/.test(baseCss));
+  ok("acordeón y submenú comparten el subrayado",
+    /\.nav-mobile \.nav-acc::after/.test(baseCss) &&
+    /\.nav-sublist \.nav-sublist-inner a::after/.test(baseCss) &&
+    /\.nav-acc\.is-current::after[\s\S]{0,180}right:\s*0/.test(baseCss));
+  ok("CTA móvil queda fuera del subrayado", !/\.nav-mobile a::after/.test(baseCss));
   ["gracias.html", "historia.html", "saber.html"].forEach(function(file){
     var html = fs.readFileSync(path.join(ROOT, file), "utf8");
     ok("canonical y og:url en " + file,
