@@ -95,22 +95,26 @@
       <ul>
         <li><a href="../productos.html" class="is-current">Productos</a></li>
         <li class="has-menu">
-          <a href="../recetas.html" aria-haspopup="true" aria-expanded="false">
-            Recetas
-            <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
-          </a>
-          <ul class="dropdown">
-            <li><a href="../recetas.html#recetas">Ver recetas</a></li>
+          <div class="has-menu-row">
+            <a href="/recetas">Recetas</a>
+            <button class="dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="desktopRecetasMenu" aria-label="Desplegar submenú de Recetas">
+              <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+          </div>
+          <ul class="dropdown" id="desktopRecetasMenu">
+            <li><a href="../recetas.html#recetas-caseras">Ver recetas</a></li>
             <li><a href="../recetas.html#tecnicas">Técnicas de preparación</a></li>
             <li><a href="../recetas.html?compartir=1#recetas-comunidad">Compartir mi receta</a></li>
           </ul>
         </li>
         <li class="has-menu">
-          <a href="../historia.html" aria-haspopup="true" aria-expanded="false">
-            Sobre nosotros
-            <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
-          </a>
-          <ul class="dropdown">
+          <div class="has-menu-row">
+            <a href="../historia.html">Sobre nosotros</a>
+            <button class="dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="desktopSobreMenu" aria-label="Desplegar submenú de Sobre nosotros">
+              <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+          </div>
+          <ul class="dropdown" id="desktopSobreMenu">
             <li><a href="../historia.html">Nuestra historia</a></li>
             <li><a href="../saber.html">Cosas que deberías saber</a></li>
           </ul>
@@ -154,6 +158,7 @@
   </button>
   <ul>
     <li><a href="../productos.html" class="is-current">Productos</a></li>
+    <li><a href="/recetas">Recetas</a></li>
     <li class="nav-acc-parent">
       <button class="nav-acc" type="button" id="mobileRecetasToggle" aria-expanded="false" aria-controls="mobileRecetasList">
         Recetas
@@ -161,7 +166,7 @@
       </button>
       <div class="nav-sublist" id="mobileRecetasList">
         <div class="nav-sublist-inner">
-          <a href="../recetas.html#recetas">Ver recetas</a>
+          <a href="../recetas.html#recetas-caseras">Ver recetas</a>
           <a href="../recetas.html#tecnicas">Técnicas de preparación</a>
           <a href="../recetas.html?compartir=1#recetas-comunidad">Compartir mi receta</a>
         </div>
@@ -304,12 +309,12 @@
     </div>
   </div>
 </div>
-<script src="../js/productos.js?v=27241909" defer></script>
-<script src="../js/cart.js?v=27241909" defer></script>
+<script src="../js/productos.js?v=df230b88" defer></script>
+<script src="../js/cart.js?v=df230b88" defer></script>
 <script>
 window.DORILA_SEARCH_TARGET = "../productos.html";
 </script>
-<script src="../js/shell.js?v=27241909" defer></script>
-<script src="../js/ficha.js?v=27241909" defer></script>
+<script src="../js/shell.js?v=df230b88" defer></script>
+<script src="../js/ficha.js?v=df230b88" defer></script>
 </body>
 </html>

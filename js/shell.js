@@ -64,6 +64,7 @@
     document.addEventListener("keydown", function(e){
       if (e.key === "Escape") closeMenu();
     });
+    window.DORILA_CLOSE_MOBILE_MENU = closeMenu;
   }
 
   /* --- Ship-note dentro del menú móvil --- */
@@ -81,13 +82,58 @@
     });
   });
 
-  /* --- Desktop dropdowns (hover + focus) --- */
+  /* --- Desktop dropdowns (clic + hover con cierre diferido) --- */
+  var desktopMenus = [];
   document.querySelectorAll(".nav-desktop li.has-menu").forEach(function(li){
-    var link = li.querySelector(":scope > a");
-    li.addEventListener("mouseenter", function(){ li.classList.add("is-open"); if (link) link.setAttribute("aria-expanded", "true"); });
-    li.addEventListener("mouseleave", function(){ li.classList.remove("is-open"); if (link) link.setAttribute("aria-expanded", "false"); });
-    li.addEventListener("focusin",    function(){ li.classList.add("is-open"); if (link) link.setAttribute("aria-expanded", "true"); });
-    li.addEventListener("focusout",   function(){ li.classList.remove("is-open"); if (link) link.setAttribute("aria-expanded", "false"); });
+    var toggle = li.querySelector(":scope > .has-menu-row > .dropdown-toggle");
+    var closeTimer = null;
+    var pointerDown = false;
+
+    function setOpen(open){
+      li.classList.toggle("is-open", open);
+      if (toggle) toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    function cancelClose(){
+      if (closeTimer){ clearTimeout(closeTimer); closeTimer = null; }
+    }
+    function scheduleClose(){
+      cancelClose();
+      closeTimer = setTimeout(function(){ setOpen(false); closeTimer = null; }, 180);
+    }
+
+    li.addEventListener("mouseenter", function(){ cancelClose(); setOpen(true); });
+    li.addEventListener("mouseleave", scheduleClose);
+    li.addEventListener("focusin", function(){
+      if (pointerDown) return;
+      cancelClose();
+      setOpen(true);
+    });
+    li.addEventListener("focusout", function(e){
+      if (!li.contains(e.relatedTarget)) scheduleClose();
+    });
+    if (toggle){
+      toggle.addEventListener("mousedown", function(){ pointerDown = true; });
+      document.addEventListener("mouseup", function(){ pointerDown = false; });
+      toggle.addEventListener("click", function(){
+        cancelClose();
+        setOpen(!li.classList.contains("is-open"));
+      });
+    }
+    desktopMenus.push({ li: li, toggle: toggle, close: function(){ cancelClose(); setOpen(false); } });
+  });
+  document.addEventListener("click", function(e){
+    desktopMenus.forEach(function(menu){
+      if (!menu.li.contains(e.target)) menu.close();
+    });
+  });
+  document.addEventListener("keydown", function(e){
+    if (e.key !== "Escape") return;
+    desktopMenus.forEach(function(menu){
+      if (menu.li.classList.contains("is-open")){
+        menu.close();
+        if (menu.toggle) menu.toggle.focus();
+      }
+    });
   });
 
   /* --- Search overlay --- */

@@ -63,22 +63,26 @@
       <ul>
         <li><a href="productos.html">Productos</a></li>
         <li class="has-menu">
-          <a href="recetas.html" class="is-current" aria-haspopup="true" aria-expanded="false">
-            Recetas
-            <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
-          </a>
-          <ul class="dropdown">
-            <li><a href="recetas.html#recetas">Ver recetas</a></li>
+          <div class="has-menu-row">
+            <a href="/recetas" class="is-current" aria-current="page">Recetas</a>
+            <button class="dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="desktopRecetasMenu" aria-label="Desplegar submenú de Recetas">
+              <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+          </div>
+          <ul class="dropdown" id="desktopRecetasMenu">
+            <li><a href="recetas.html#recetas-caseras">Ver recetas</a></li>
             <li><a href="recetas.html#tecnicas">Técnicas de preparación</a></li>
             <li><a href="recetas.html?compartir=1#recetas-comunidad">Compartir mi receta</a></li>
           </ul>
         </li>
         <li class="has-menu">
-          <a href="historia.html" aria-haspopup="true" aria-expanded="false">
-            Sobre nosotros
-            <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
-          </a>
-          <ul class="dropdown">
+          <div class="has-menu-row">
+            <a href="historia.html">Sobre nosotros</a>
+            <button class="dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="desktopSobreMenu" aria-label="Desplegar submenú de Sobre nosotros">
+              <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+          </div>
+          <ul class="dropdown" id="desktopSobreMenu">
             <li><a href="historia.html">Nuestra historia</a></li>
             <li><a href="saber.html">Cosas que deberías saber</a></li>
           </ul>
@@ -122,14 +126,15 @@
   </button>
   <ul>
     <li><a href="productos.html">Productos</a></li>
+    <li><a href="/recetas" class="is-current" aria-current="page">Recetas</a></li>
     <li class="nav-acc-parent">
-      <button class="nav-acc is-current" type="button" id="mobileRecetasToggle" aria-expanded="false" aria-controls="mobileRecetasList">
+      <button class="nav-acc" type="button" id="mobileRecetasToggle" aria-expanded="false" aria-controls="mobileRecetasList">
         Recetas
         <span class="acc-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
       </button>
       <div class="nav-sublist" id="mobileRecetasList">
         <div class="nav-sublist-inner">
-          <a href="recetas.html#recetas">Ver recetas</a>
+          <a href="recetas.html#recetas-caseras">Ver recetas</a>
           <a href="recetas.html#tecnicas">Técnicas de preparación</a>
           <a href="recetas.html?compartir=1#recetas-comunidad">Compartir mi receta</a>
         </div>
@@ -184,9 +189,9 @@
         <h1 id="hero-heading">Recetas y remedios<br>caseros con plantas</h1>
         <p class="lead">Del herbario a tu hogar, nos dedicamos a ofrecer hierbas medicinales, aceites, cremas, ungüentos, lociones y cosméticos naturales.</p>
         <div class="hero-ctas">
-          <a class="btn btn-look" href="#recetas" aria-label="Ver las recetas">
+          <a class="btn btn-look" href="#recetas-caseras" aria-label="Ver las recetas">
             <span class="hero-cta-label-full" aria-hidden="true">Ver las recetas</span>
-            <span class="hero-cta-label-short" aria-hidden="true">Ver</span>
+            <span class="hero-cta-label-short" aria-hidden="true">Ver recetas</span>
           </a>
           <a class="btn btn-look" href="#tecnicas" aria-label="Técnicas de preparación">
             <span class="hero-cta-label-full" aria-hidden="true">Técnicas de preparación</span>
@@ -275,8 +280,55 @@
       </div>
     </div>
   </section>
+  <!-- ===================== CONSERVACIÓN ===================== -->
+  <section class="conservation" id="conservacion" aria-labelledby="conservacion-heading">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow-mark" style="color:var(--color-gold);">
+          Conservación
+        </span>
+        <h2 id="conservacion-heading">Que dure en el tiempo</h2>
+        <p>Los remedios caseros duran lo que sus cuidados. Estas son las reglas que respetamos de verdad en la botica.</p>
+      </div>
+      <ul class="conservation-grid reveal">
+        <li class="conservation-item">
+          <img src="img/icons/icons8-leaf-100.png" alt="" loading="lazy" width="100" height="100">
+          <div><h3>Plantas siempre secas</h3><p>La humedad es la enemiga: seca bien antes de macerar o infusionar cualquier planta.</p></div>
+        </li>
+        <li class="conservation-item">
+          <img src="img/icons/icons8-stones-100.png" alt="" loading="lazy" width="100" height="100">
+          <div><h3>Vidrio oscuro y fresco</h3><p>Guardá aceites y cremas en frasco oscuro, lejos del sol y el calor.</p></div>
+        </li>
+        <li class="conservation-item">
+          <img src="img/icons/icons8-plant-100.png" alt="" loading="lazy" width="100" height="100">
+          <div><h3>Etiquetá todo</h3><p>Anotá planta, fecha de preparación y fecha de vencimiento estimada.</p></div>
+        </li>
+        <li class="conservation-item">
+          <img src="img/icons/icons8-trust-100.png" alt="" loading="lazy" width="100" height="100">
+          <div><h3>Vitamina E, tu aliada</h3><p>Una gotita de aceite de vitamina E ayuda a prevenir la oxidación y a prolongar la vida útil.</p></div>
+        </li>
+        <li class="conservation-item">
+          <img src="img/icons/icons8-mortar-and-pestle-100.png" alt="" loading="lazy" width="100" height="100">
+          <div><h3>Problemas con agua</h3><p>Si un aceite se ve turbio o huele raro, desechalo. Su salud no vale un frasco.</p></div>
+        </li>
+        <li class="conservation-item">
+          <img src="img/icons/icons8-olive-oil-100.png" alt="" loading="lazy" width="100" height="100">
+          <div><h3>Poca dosis</h3><p>Sobre todo en tinturas y aceites esenciales: unas gotas alcanzan y sobran.</p></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <!-- ===================== DESCARGO ===================== -->
+  <section class="disclaimer wrap" aria-labelledby="disclaimer-heading">
+    <div class="disclaimer-card reveal">
+      <div>
+        <h2 id="disclaimer-heading">Leé esto antes de preparar</h2>
+        <p>Estas recetas tienen fines informativos y de uso cotidiano. No sustituyen el consejo de profesionales de la salud. Embarazadas, personas en tratamiento médico o con enfermedades crónicas: consulten siempre antes de usar plantas medicinales. Ante cualquier reacción, suspendé el uso y consultá.</p>
+      </div>
+    </div>
+  </section>
   <!-- ===================== RECETAS ===================== -->
-  <section class="recipes wrap" id="recetas" aria-labelledby="recetas-heading">
+  <section class="recipes wrap" id="recetas-caseras" aria-labelledby="recetas-heading">
     <div class="section-head reveal">
       <span class="eyebrow-mark">
         Paso a paso
@@ -778,53 +830,6 @@
     </div>
   </dialog>
 
-  <!-- ===================== CONSERVACIÓN ===================== -->
-  <section class="conservation" id="conservacion" aria-labelledby="conservacion-heading">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow-mark" style="color:var(--color-gold);">
-          Conservación
-        </span>
-        <h2 id="conservacion-heading">Que dure en el tiempo</h2>
-        <p>Los remedios caseros duran lo que sus cuidados. Estas son las reglas que respetamos de verdad en la botica.</p>
-      </div>
-      <ul class="conservation-grid reveal">
-        <li class="conservation-item">
-          <img src="img/icons/icons8-leaf-100.png" alt="" loading="lazy" width="100" height="100">
-          <div><h3>Plantas siempre secas</h3><p>La humedad es la enemiga: seca bien antes de macerar o infusionar cualquier planta.</p></div>
-        </li>
-        <li class="conservation-item">
-          <img src="img/icons/icons8-stones-100.png" alt="" loading="lazy" width="100" height="100">
-          <div><h3>Vidrio oscuro y fresco</h3><p>Guardá aceites y cremas en frasco oscuro, lejos del sol y el calor.</p></div>
-        </li>
-        <li class="conservation-item">
-          <img src="img/icons/icons8-plant-100.png" alt="" loading="lazy" width="100" height="100">
-          <div><h3>Etiquetá todo</h3><p>Anotá planta, fecha de preparación y fecha de vencimiento estimada.</p></div>
-        </li>
-        <li class="conservation-item">
-          <img src="img/icons/icons8-trust-100.png" alt="" loading="lazy" width="100" height="100">
-          <div><h3>Vitamina E, tu aliada</h3><p>Una gotita de aceite de vitamina E ayuda a prevenir la oxidación y a prolongar la vida útil.</p></div>
-        </li>
-        <li class="conservation-item">
-          <img src="img/icons/icons8-mortar-and-pestle-100.png" alt="" loading="lazy" width="100" height="100">
-          <div><h3>Problemas con agua</h3><p>Si un aceite se ve turbio o huele raro, desechalo. Su salud no vale un frasco.</p></div>
-        </li>
-        <li class="conservation-item">
-          <img src="img/icons/icons8-olive-oil-100.png" alt="" loading="lazy" width="100" height="100">
-          <div><h3>Poca dosis</h3><p>Sobre todo en tinturas y aceites esenciales: unas gotas alcanzan y sobran.</p></div>
-        </li>
-      </ul>
-    </div>
-  </section>
-  <!-- ===================== DESCARGO ===================== -->
-  <section class="disclaimer wrap" aria-labelledby="disclaimer-heading">
-    <div class="disclaimer-card reveal">
-      <div>
-        <h2 id="disclaimer-heading">Leé esto antes de preparar</h2>
-        <p>Estas recetas tienen fines informativos y de uso cotidiano. No sustituyen el consejo de profesionales de la salud. Embarazadas, personas en tratamiento médico o con enfermedades crónicas: consulten siempre antes de usar plantas medicinales. Ante cualquier reacción, suspendé el uso y consultá.</p>
-      </div>
-    </div>
-  </section>
   <!-- ===================== CTA / CONTACTO ===================== -->
   <section class="cta-recipes wrap reveal">
     <div class="cta-card">
@@ -884,10 +889,10 @@
 <button class="to-top" type="button" id="toTop" aria-label="Volver arriba">
   <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
-<script src="js/shell.js?v=27241909" defer></script>
-  <script src="js/info-form.js?v=27241909" defer></script>
-  <script src="js/recetas_.js?v=27241909" defer></script>
-  <script src="js/recetas-comunidad.js?v=27241909" defer></script>
+<script src="js/shell.js?v=df230b88" defer></script>
+  <script src="js/info-form.js?v=df230b88" defer></script>
+  <script src="js/recetas_.js?v=df230b88" defer></script>
+  <script src="js/recetas-comunidad.js?v=df230b88" defer></script>
 <!-- ===================== MODAL PRIVACIDAD ===================== -->
 <div class="modal modal-legal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" aria-hidden="true">
   <div class="modal-scrim" data-close-modal></div>
@@ -924,7 +929,7 @@
     </div>
   </div>
 </div>
-<script src="js/productos.js?v=27241909" defer></script>
-  <script src="js/cart.js?v=27241909" defer></script>
+<script src="js/productos.js?v=df230b88" defer></script>
+  <script src="js/cart.js?v=df230b88" defer></script>
 </body>
 </html>

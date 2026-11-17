@@ -32,6 +32,7 @@
   --color-salvia:              #879F82;   /* verde salvia — detalles/franjas */
   --color-crema:               #F4EBDD;   /* crema — letra del footer */
   --color-terracotta-cta:      #B96F52;   /* terracota — promociones/llamadas */
+  --color-link:                #33230F;   /* texto sobre botones salvia */
 
   /* --- color: logo --- */
   --color-logo-brown:          #42230C;   /* marrón oscuro — borde/marca del logo */
@@ -298,21 +299,27 @@ img.img-toned,
 
 /* Dropdown de categorías (desktop) */
 .nav-desktop ul > li.has-menu{ position:relative; }
+.nav-desktop .has-menu-row{ display:flex; align-items:center; gap:0.15rem; }
+.nav-desktop .dropdown-toggle{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:0 0.1rem; border:0; background:transparent; color:inherit; cursor:pointer;
+}
+.nav-desktop .dropdown-toggle:focus-visible{ outline:2px solid var(--color-terracotta); outline-offset:2px; border-radius:6px; }
 .nav-desktop .dropdown{
-  position:absolute; top:calc(100% + 8px); left:50%;
+  position:absolute; top:100%; left:50%;
   transform: translate(-50%, 8px);
   min-width: 210px;
   background: var(--color-parchment-soft);
   border: 1px solid var(--color-line);
   border-radius: 14px;
   box-shadow: var(--shadow-card);
-  padding: var(--space-1);
+  padding: 8px var(--space-1) var(--space-1);
   opacity:0; visibility:hidden; pointer-events:none;
   transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
   z-index: 60;
 }
 .nav-desktop .dropdown::before{
-  content:""; position:absolute; top:-8px; left:50%; transform:translateX(-50%);
+  content:""; position:absolute; top:0; left:50%; transform:translateX(-50%);
   border:6px solid transparent; border-bottom-color: var(--color-parchment-soft);
 }
 .nav-desktop .dropdown a{
@@ -421,7 +428,7 @@ img.img-toned,
   background:transparent; border:none; padding:0;
 }
 .nav-acc .acc-indicator{ display:inline-flex; transition: transform var(--transition-fast); }
-.nav-acc.is-open .acc-indicator{ transform: rotate(180deg); }
+.nav-acc-parent.is-open .acc-indicator{ transform: rotate(180deg); }
 .nav-acc .acc-indicator svg{ width:20px; height:20px; }
 .nav-sublist{
   display:grid; grid-template-rows: 0fr; opacity:0;

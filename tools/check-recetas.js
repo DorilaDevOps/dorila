@@ -220,14 +220,18 @@ console.log("\n5. Integración en las páginas y configuración");
     !/\.carousel-quote\{[^}]*font-family/.test(carouselCss));
   ok("nav móvil agrupa Recetas en un acordeón",
     /id="mobileRecetasToggle"[^>]*aria-controls="mobileRecetasList"/.test(recetasNav));
+  ok("nav móvil incluye enlace directo a /recetas",
+    /<li><a href="\/recetas"[^>]*>Recetas<\/a><\/li>/.test(recetasNav));
   ok("nav móvil incluye Ver recetas",
-    /href="recetas\.html#recetas"[^>]*>Ver recetas</.test(recetasNav));
+    /href="recetas\.html#recetas-caseras"[^>]*>Ver recetas</.test(recetasNav));
   ok("nav móvil incluye Técnicas de preparación",
     /href="recetas\.html#tecnicas"[^>]*>Técnicas de preparación</.test(recetasNav));
   ok("nav móvil incluye Compartir mi receta",
     /href="recetas\.html\?compartir=1#recetas-comunidad"[^>]*>Compartir mi receta</.test(recetasNav));
+  ok("nav móvil de fichas incluye enlace directo a /recetas",
+    /<li><a href="\/recetas"[^>]*>Recetas<\/a><\/li>/.test(templateNav));
   ok("nav móvil de fichas usa rutas relativas",
-    /href="\.\.\/recetas\.html#recetas"[^>]*>Ver recetas</.test(templateNav) &&
+    /href="\.\.\/recetas\.html#recetas-caseras"[^>]*>Ver recetas</.test(templateNav) &&
     /href="\.\.\/recetas\.html#tecnicas"[^>]*>Técnicas de preparación</.test(templateNav) &&
     /href="\.\.\/recetas\.html\?compartir=1#recetas-comunidad"[^>]*>Compartir mi receta</.test(templateNav));
 
@@ -239,7 +243,7 @@ console.log("\n5. Integración en las páginas y configuración");
   var heroCtas = hero.slice(heroCtasStart, heroCtasEnd);
 
   check("hero tiene 3 CTAs", (heroCtas.match(/class="btn btn-look"/g) || []).length, 3);
-  ok("hero usa etiqueta corta Ver", /class="hero-cta-label-short"[^>]*>Ver<\/span>/.test(heroCtas));
+  ok("hero usa etiqueta corta Ver recetas", /class="hero-cta-label-short"[^>]*>Ver recetas<\/span>/.test(heroCtas));
   ok("hero usa etiqueta corta Técnicas", /class="hero-cta-label-short"[^>]*>Técnicas<\/span>/.test(heroCtas));
   ok("hero usa etiqueta corta Mi receta", /class="hero-cta-label-short"[^>]*>Mi receta<\/span>/.test(heroCtas));
   ok("hero comparte receta desde el tercer CTA",
@@ -305,7 +309,15 @@ console.log("\n5. Integración en las páginas y configuración");
   ok("modal incluye productos relacionados", /id="modalRelatedWrap"/.test(index) && /id="modalRelated"/.test(index));
   ok("app.js renderiza relacionados y limita la home", /function renderRelated/.test(appJs) && /dataset\.limit/.test(appJs));
   ok("app.js soporta enlaces profundos de producto y categoría", /get\("p"\)/.test(appJs) && /get\("categoria"\)/.test(appJs));
-  ok("nav desktop de Recetas es desplegable", /<a href="recetas\.html" aria-haspopup="true" aria-expanded="false">/.test(index));
+  ok("nav desktop incluye enlace directo a /recetas y trigger accesible",
+    /<a href="\/recetas">Recetas<\/a>/.test(index) &&
+    /<button class="dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="desktopRecetasMenu"/.test(index));
+  ok("netlify.toml redirige /recetas a /recetas.html",
+    /\[\[redirects\]\][\s\S]*?from = "\/recetas"[\s\S]*?to = "\/recetas\.html"[\s\S]*?status = 301/.test(netlify));
+  ok("shell.js alterna el dropdown con clic, aria-expanded y cierre diferido",
+    /dropdown-toggle/.test(shellJs) &&
+    /setOpen\(!li\.classList\.contains\("is-open"\)\)/.test(shellJs) &&
+    /setTimeout\(function\(\)\{ setOpen\(false\)/.test(shellJs));
   ok("no quedan enlaces externos de kikiriya", !/kikiriya-devops/.test(publicPages) && !/kikiriya-devops/.test(fs.readFileSync(path.join(ROOT, "historia.html"), "utf8")) && !/kikiriya-devops/.test(fs.readFileSync(path.join(ROOT, "saber.html"), "utf8")) && !/kikiriya-devops/.test(fs.readFileSync(path.join(ROOT, "gracias.html"), "utf8")));
   ok("footer enlaza Envíos y garantía", /Envíos y garantía/.test(index) && /Envíos y garantía/.test(productosPage));
   ok("404 es noindex y vuelve al inicio", /name="robots" content="noindex, follow"/.test(notFound) && /href="index\.html"/.test(notFound));
@@ -335,7 +347,65 @@ console.log("\n6. Sintaxis de JavaScript nuevo");
   });
 })();
 
-console.log("\n7. Functions con Blobs en memoria");
+console.log("\n7. Orden, enlaces y navegación del sitio");
+(function(){
+  var recetasPage = fs.readFileSync(path.join(ROOT, "recetas.html"), "utf8");
+  var indexPage = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+  var pagesCss = fs.readFileSync(path.join(ROOT, "asset", "pages.css"), "utf8");
+  var baseCss = fs.readFileSync(path.join(ROOT, "asset", "base.css"), "utf8");
+  var homeCss = fs.readFileSync(path.join(ROOT, "asset", "home.css"), "utf8");
+  var markers = [
+    'class="recipes-hero" id="top"',
+    'class="intro wrap" id="intro"',
+    'class="techniques" id="tecnicas"',
+    'class="conservation" id="conservacion"',
+    'class="disclaimer wrap"',
+    'class="recipes wrap" id="recetas-caseras"',
+    'class="community" id="recetas-comunidad"',
+    'class="info-request wrap" id="solicitar-info"'
+  ];
+  var last = -1;
+  var ordered = markers.every(function(marker){
+    var at = recetasPage.indexOf(marker);
+    if (at <= last) return false;
+    last = at;
+    return true;
+  });
+  ok("recetas.html respeta el orden solicitado", ordered);
+  ok("recetas.html usa el id específico recetas-caseras",
+    /id="recetas-caseras"/.test(recetasPage) && !/id="recetas"/.test(recetasPage));
+  ok("solicitar-info usa el mismo btn-primary que contacto",
+    /id="solicitar-info"[\s\S]*?<button class="btn btn-primary" type="button" data-contact-open>/.test(recetasPage) &&
+    /id="contacto"[\s\S]*?<button class="btn btn-primary" type="button" data-contact-open>/.test(indexPage));
+  ok("pages.css no redefine btn-primary", !/\.btn-primary\s*\{/.test(pagesCss));
+
+  var sourcePages = ["index.html", "productos.html", "historia.html", "saber.html", "recetas.html", "gracias.html", "404.html", "templates/ficha-producto.html"];
+  var productFiles = fs.readdirSync(path.join(ROOT, "productos")).filter(function(file){ return /\.html$/.test(file); });
+  var allPages = sourcePages.concat(productFiles.map(function(file){ return "productos/" + file; }));
+  var missing = allPages.filter(function(file){
+    var html = fs.readFileSync(path.join(ROOT, file), "utf8");
+    var desktopStart = html.indexOf('<nav class="nav-desktop"');
+    var mobileStart = html.indexOf('<nav class="nav-mobile"');
+    var desktop = html.slice(desktopStart, html.indexOf("</nav>", desktopStart));
+    var mobile = html.slice(mobileStart, html.indexOf("</nav>", mobileStart));
+    return !/<a href="\/recetas"/.test(desktop) || !/<a href="\/recetas"/.test(mobile);
+  });
+  ok("todas las páginas llevan /recetas en ambos navs", missing.length === 0);
+  if (missing.length) console.log("         faltan: " + missing.join(", "));
+  var stale = allPages.filter(function(file){
+    return /href="(?:\.\.\/)?recetas\.html#recetas"/.test(fs.readFileSync(path.join(ROOT, file), "utf8"));
+  });
+  ok("sin anclas obsoletas #recetas", stale.length === 0);
+  ok("home.css usa la ruta correcta de girasol_bg.webp", /url\('\.\.\/img\/girasol_bg\.webp'\)/.test(homeCss));
+  ok("base.css define --color-link", /--color-link:\s*#/.test(baseCss));
+  ["gracias.html", "historia.html", "saber.html"].forEach(function(file){
+    var html = fs.readFileSync(path.join(ROOT, file), "utf8");
+    ok("canonical y og:url en " + file,
+      /rel="canonical" href="https:\/\/dorila\.netlify\.app\//.test(html) && /property="og:url"/.test(html));
+  });
+})();
+
+console.log("\n8. Functions con Blobs en memoria");
 var integrationPromise = (async function(){
   var Module = require("module");
   var originalLoad = Module._load;

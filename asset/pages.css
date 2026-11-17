@@ -4,9 +4,6 @@
    ========================================================== */
 
 /* ==================== historia.html ==================== */
-.btn-primary{ background: var(--color-terracotta); box-shadow: 0 8px 18px -8px rgba(122,52,25,0.65); }
-.btn-primary:hover{ background: var(--color-terracotta-deep); }
-
 .page-hero{ position:relative; padding-block: clamp(4rem, 10vw, 7rem) var(--space-5); text-align:center; background-image:url('../img/montes_bg.webp'); background-size:cover; background-position:center; overflow:hidden; }
 .page-hero::before{ content:""; position:absolute; inset:0; z-index:0; background: linear-gradient(100deg, rgba(28,19,10,0.72) 0%, rgba(28,19,10,0.5) 55%, rgba(28,19,10,0.35) 100%); }
 .page-hero > *{ position:relative; z-index:1; }

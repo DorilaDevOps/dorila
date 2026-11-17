@@ -309,22 +309,26 @@
       <ul>
         <li><a href="productos.html" class="is-current" aria-current="page">Productos</a></li>
         <li class="has-menu">
-          <a href="recetas.html" aria-haspopup="true" aria-expanded="false">
-            Recetas
-            <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
-          </a>
-          <ul class="dropdown">
-            <li><a href="recetas.html#recetas">Ver recetas</a></li>
+          <div class="has-menu-row">
+            <a href="/recetas">Recetas</a>
+            <button class="dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="desktopRecetasMenu" aria-label="Desplegar submenú de Recetas">
+              <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+          </div>
+          <ul class="dropdown" id="desktopRecetasMenu">
+            <li><a href="recetas.html#recetas-caseras">Ver recetas</a></li>
             <li><a href="recetas.html#tecnicas">Técnicas de preparación</a></li>
             <li><a href="recetas.html?compartir=1#recetas-comunidad">Compartir mi receta</a></li>
           </ul>
         </li>
         <li class="has-menu">
-          <a href="historia.html" aria-haspopup="true" aria-expanded="false">
-            Sobre nosotros
-            <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
-          </a>
-          <ul class="dropdown">
+          <div class="has-menu-row">
+            <a href="historia.html">Sobre nosotros</a>
+            <button class="dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="desktopSobreMenu" aria-label="Desplegar submenú de Sobre nosotros">
+              <span class="dropdown-indicator" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+          </div>
+          <ul class="dropdown" id="desktopSobreMenu">
             <li><a href="historia.html">Nuestra historia</a></li>
             <li><a href="saber.html">Cosas que deberías saber</a></li>
           </ul>
@@ -371,6 +375,7 @@
   </button>
   <ul>
     <li><a href="productos.html" class="is-current" aria-current="page">Productos</a></li>
+    <li><a href="/recetas">Recetas</a></li>
     <li class="nav-acc-parent">
       <button class="nav-acc" type="button" id="mobileRecetasToggle" aria-expanded="false" aria-controls="mobileRecetasList">
         Recetas
@@ -378,7 +383,7 @@
       </button>
       <div class="nav-sublist" id="mobileRecetasList">
         <div class="nav-sublist-inner">
-          <a href="recetas.html#recetas">Ver recetas</a>
+          <a href="recetas.html#recetas-caseras">Ver recetas</a>
           <a href="recetas.html#tecnicas">Técnicas de preparación</a>
           <a href="recetas.html?compartir=1#recetas-comunidad">Compartir mi receta</a>
         </div>
@@ -417,8 +422,14 @@
       <h1 id="catalog-heading">Todos nuestros <span>productos</span></h1>
       <p class="hero-lead">Hierbas medicinales, infusiones, tinturas, aceites, cremas y jabones seleccionados a mano. Buscá por nombre, uso o nombre científico y abrí la ficha de cada producto.</p>
       <div class="hero-ctas">
-        <a class="btn btn-look" href="#productos">Explorar el herbario</a>
-        <a class="btn btn-look" href="recetas.html">Ver recetas</a>
+        <a class="btn btn-look" href="#productos" aria-label="Explorar el herbario">
+          <span class="hero-cta-label-full" aria-hidden="true">Explorar el herbario</span>
+          <span class="hero-cta-label-short" aria-hidden="true">Herbario</span>
+        </a>
+        <a class="btn btn-look" href="#catalog-index-heading" aria-label="Catálogo completo">
+          <span class="hero-cta-label-full" aria-hidden="true">Catálogo completo</span>
+          <span class="hero-cta-label-short" aria-hidden="true">Catálogo</span>
+        </a>
       </div>
     </div>
   </section>
@@ -727,9 +738,9 @@
 
 
 
-<script src="js/shell.js?v=27241909" defer></script>
-<script src="js/productos.js?v=27241909" defer></script>
-<script src="js/cart.js?v=27241909" defer></script>
-<script src="js/app.js?v=27241909" defer></script>
+<script src="js/shell.js?v=df230b88" defer></script>
+<script src="js/productos.js?v=df230b88" defer></script>
+<script src="js/cart.js?v=df230b88" defer></script>
+<script src="js/app.js?v=df230b88" defer></script>
 </body>
 </html>

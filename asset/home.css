@@ -365,7 +365,7 @@
    BREAKPOINTS
    =========================================================== */
 @media (min-width:480px){
-  .story{ background-image:linear-gradient(to bottom, color-mix(in srgb, var(--color-parchment-soft) 16%, transparent) 0%, color-mix(in srgb, var(--color-parchment-soft) 60%, transparent) 100%), url(img/girasol_bg.webp); background-color:var(--color-parchment-deep); background-size:cover; background-position:center; }
+  .story{ background-image:linear-gradient(to bottom, color-mix(in srgb, var(--color-parchment-soft) 16%, transparent) 0%, color-mix(in srgb, var(--color-parchment-soft) 60%, transparent) 100%), url('../img/girasol_bg.webp'); background-color:var(--color-parchment-deep); background-size:cover; background-position:center; }
   .story-media{ display:block; }
 }
 @media (min-width:640px){

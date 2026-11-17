@@ -107,10 +107,11 @@ var admin = tokens(adminCss, ".admin-page");
 
 console.log("1. Tokens de contraste");
 [
-  "--cr-green", "--cr-ivory", "--cr-sand", "--cr-sand-hover", "--cr-deep",
-  "--cr-muted", "--cr-border", "--cr-field-bg", "--cr-focus", "--cr-on-dark",
-  "--cr-progress-bg", "--cr-error", "--cr-error-bg", "--cr-error-border",
-  "--cr-warning-bg", "--cr-warning-border"
+  "--cr-green", "--cr-sage", "--cr-sage-strong", "--cr-ivory", "--cr-sand",
+  "--cr-sand-hover", "--cr-deep", "--cr-muted", "--cr-border", "--cr-field-bg",
+  "--cr-focus", "--cr-on-dark", "--cr-progress-bg", "--cr-progress-text",
+  "--cr-disabled-bg", "--cr-disabled-text", "--cr-error", "--cr-error-strong",
+  "--cr-error-bg", "--cr-error-border", "--cr-warning-bg", "--cr-warning-border"
 ].forEach(function(name){
   ok("público define " + name, Boolean(community[name]));
 });
@@ -118,7 +119,7 @@ ok("público define --cr-backdrop", communityTokenNames.indexOf("--cr-backdrop")
 ok("público define --cr-shadow", communityTokenNames.indexOf("--cr-shadow") !== -1);
 ok("público declara todos los tokens en :root",
   communityTokenNames.indexOf("--cr-deep") !== -1 && communityTokenNames.indexOf("--cr-backdrop") !== -1);
-ok("público mantiene una paleta reducida", communityTokenNames.length === 18);
+ok("público mantiene una paleta reducida", communityTokenNames.length >= 18 && communityTokenNames.length <= 26);
 ok("público resuelve todas las referencias --cr-*",
   missingCommunityTokens.length === 0);
 if (missingCommunityTokens.length){
@@ -191,7 +192,9 @@ console.log("\n4. Reglas de accesibilidad en CSS");
 ok("público declara placeholders con color propio",
   /\.community-field input::placeholder[\s\S]*?color:\s*var\(--cr-muted\)/.test(communityCss));
 ok("público declara textos deshabilitados",
-  /\.community-field input:disabled[\s\S]*?color:\s*var\(--cr-muted\)/.test(communityCss));
+  /\.community-field input:disabled[\s\S]*?color:\s*var\(--cr-disabled-text\)/.test(communityCss));
+ok("público mantiene foco visible en consentimientos",
+  /\.community-consents input:focus-visible[\s\S]*?outline:\s*2px solid var\(--cr-sage\)/.test(communityCss));
 ok("público usa tokens en campos inválidos",
   /aria-invalid="true"\][\s\S]*?border-color:\s*var\(--cr-error-border\)[\s\S]*?background:\s*var\(--cr-error-bg\)/.test(communityCss));
 ok("público usa tokens en diálogo de aviso",

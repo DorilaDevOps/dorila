@@ -556,15 +556,7 @@
     var prods = document.getElementById("productos");
     if (prods) prods.scrollIntoView({ behavior: "smooth" });
     /* cerrar menú móvil si está abierto */
-    var nm = document.getElementById("navMobile");
-    if (nm && nm.classList.contains("is-open")){
-      nm.classList.remove("is-open");
-      var sc = document.getElementById("scrim");
-      var mt = document.getElementById("menuToggle");
-      if (sc) sc.classList.remove("is-open");
-      if (mt){ mt.setAttribute("aria-expanded","false"); mt.setAttribute("aria-label","Abrir men\u00fa"); }
-      document.body.style.overflow = "";
-    }
+    if (typeof window.DORILA_CLOSE_MOBILE_MENU === "function") window.DORILA_CLOSE_MOBILE_MENU();
   }
 
   /* --- 7. SEMILLERÍA DESDE BUSCADOR OVERLAY (sessionStorage) --- */

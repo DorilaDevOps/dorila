@@ -29,3 +29,8 @@
     X-Robots-Tag = "noindex, nofollow, noarchive"
     X-Frame-Options = "DENY"
     Referrer-Policy = "no-referrer"
+
+[[redirects]]
+  from = "/recetas"
+  to = "/recetas.html"
+  status = 301
