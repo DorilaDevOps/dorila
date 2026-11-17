@@ -579,6 +579,14 @@ console.log("\n7. Orden, enlaces y navegación del sitio");
     /@media \(min-width: 640px\)\{[\s\S]*?\.dorila-footer__grid\{\s*grid-template-columns:repeat\(2, minmax\(0, 1fr\)\);/.test(baseCss) &&
     /@media \(min-width: 1000px\)\{[\s\S]*?\.dorila-footer__grid\{\s*grid-template-columns:minmax\(0, 1\.35fr\) repeat\(3, minmax\(0, 1fr\)\);/.test(baseCss) &&
     !/\.site-footer\s*\{/.test(baseCss));
+  ok("el tagline del footer usa tipografía de cuerpo",
+    /\.dorila-footer__tagline\{[^}]*color:\s*var\(--color-crema\)/.test(baseCss) &&
+    !/\.dorila-footer__tagline\{[^}]*font-family:\s*var\(--font-display\)/.test(baseCss));
+  ok("el footer compacta navs y espacios por debajo de 1000px",
+    /@media \(min-width: 360px\)\{[\s\S]*?\.dorila-footer__grid\{\s*grid-template-columns:repeat\(2, minmax\(0, 1fr\)\);/.test(baseCss) &&
+    /@media \(max-width: 999px\)\{[\s\S]*?\.dorila-footer__brand\{\s*display:grid;[\s\S]{0,220}grid-template-columns:max-content minmax\(0, 1fr\)/.test(baseCss) &&
+    /@media \(max-width: 999px\)[\s\S]*?\.dorila-footer__eyebrow\{\s*margin-bottom:0/.test(baseCss) &&
+    /@media \(max-width: 999px\)[\s\S]*?\.dorila-footer__inner,\s*\.dorila-footer__grid\{\s*gap:clamp\(/.test(baseCss));
   ok("home.css usa la ruta correcta de girasol_bg.webp", /url\('\.\.\/img\/girasol_bg\.webp'\)/.test(homeCss));
   ok("base.css define --color-link", /--color-link:\s*#/.test(baseCss));
   ok("nav móvil replica el subrayado animado de desktop",

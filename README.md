@@ -41,7 +41,7 @@ de **recetas y remedios caseros**, educación herbolaria y agradecimientos.
 | 🔁 **Buscar desde cualquier página** | El buscador del header guarda el término en `sessionStorage` (`dorila-search`) y lo prellena al llegar a la tienda |
 | 🖼️ **Lazy loading** | Carga progresiva de imágenes con placeholder difuminado (`IntersectionObserver`) |
 | 📱 **Mobile-first** | CSS con `min-width` progresivo y `clamp()`; la grilla de categorías se mantiene en 2 columnas en móvil y pasa a 3 desde 640px |
-| 🧭 **Footer editorial** | Cuatro bloques con namespace propio, 1/2/4 columnas, disclaimer destacado, modales legales y crédito a Kikiriya-DevOps |
+| 🧭 **Footer editorial** | Cuatro bloques con namespace propio, 2/2/4 columnas compactas, disclaimer destacado, modales legales y crédito a Kikiriya-DevOps |
 | 🍵 **Recetas y remedios** | Página con técnicas de preparación, recetas paso a paso y consejos de conservación |
 | 🌿 **Recetas de persona a persona** | Envío en dos pasos, moderación privada con checklist, publicación solo tras aprobación y sin exponer datos personales |
 | 🎓 **Educación herbolaria** | Página informativa sobre plantas y su uso seguro |
@@ -125,8 +125,9 @@ tratamiento sutil de borde y sombra. El crédito a
 
 Además de `npm test` (carrito, recetas, contraste WCAG AA y consistencia del
 footer), el footer se validó con Chrome headless en 360px, 768px y 1280px:
-sin scroll horizontal, 1/2/4 columnas, 3 iconos, 6 enlaces de navegación y
-disclaimer + crédito visibles en los tres anchos.
+sin scroll horizontal, 2/2/4 columnas, eyebrow y wordmark en la misma fila en
+mobile/tablet, 3 iconos, 6 enlaces de navegación y disclaimer + crédito visibles
+en los tres anchos.
 
 ---
 

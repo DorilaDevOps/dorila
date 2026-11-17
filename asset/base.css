@@ -704,7 +704,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   max-width:38ch; margin-top:0.9rem;
   font-size:var(--fs-small); line-height:1.65; color:var(--color-salvia-claro);
 }
-.dorila-footer__tagline{ font-family:var(--font-display); color:var(--color-crema); }
+.dorila-footer__tagline{ color:var(--color-crema); }
 .dorila-footer__title{
   margin-bottom:1rem;
   font-family:var(--font-body); font-size:var(--fs-label); font-weight:700;
@@ -792,6 +792,11 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   transition: color var(--transition-fast);
 }
 .dorila-footer__credit a:hover{ color:var(--color-salvia-claro); }
+@media (min-width: 360px){
+  .dorila-footer__grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+  .dorila-footer__brand,
+  .dorila-footer__community{ grid-column:1 / -1; }
+}
 @media (min-width: 640px){
   .dorila-footer__grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
   .dorila-footer__brand,
@@ -804,6 +809,27 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
   .dorila-footer__community{ grid-column:auto; }
   .dorila-footer__bottom{ grid-template-columns:minmax(0, 1fr) auto; align-items:center; }
   .dorila-footer__credit{ text-align:right; }
+}
+@media (max-width: 999px){
+  .dorila-footer{ padding-block:clamp(1.5rem, 4vw, 2rem); }
+  .dorila-footer__inner,
+  .dorila-footer__grid{ gap:clamp(0.75rem, 2vw, 1rem); }
+  .dorila-footer__brand{
+    display:grid; grid-template-columns:max-content minmax(0, 1fr);
+    align-items:baseline; column-gap:0.6rem;
+  }
+  .dorila-footer__eyebrow{ margin-bottom:0; }
+  .dorila-footer__wordmark{ font-size:clamp(1.75rem, 7vw, 2.25rem); }
+  .dorila-footer__description,
+  .dorila-footer__tagline{ grid-column:1 / -1; margin-top:0.55rem; line-height:1.5; }
+  .dorila-footer__title{ margin-bottom:0.55rem; }
+  .dorila-footer__links{ gap:0.5rem; }
+  .dorila-footer__community-copy{ margin-bottom:0.6rem; line-height:1.45; }
+  .dorila-footer__social{ gap:0.5rem; margin-top:0.8rem; }
+  .dorila-footer__legal{ gap:0.6rem; padding-top:0.9rem; }
+  .dorila-footer__legal-links{ gap:0.45rem 0.9rem; }
+  .dorila-footer__bottom{ gap:0.6rem; margin-top:0.7rem; padding-top:0.7rem; }
+  .dorila-footer__disclaimer{ padding:0.55rem 0.7rem; line-height:1.5; }
 }
 
 /* ===========================================================
