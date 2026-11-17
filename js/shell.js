@@ -243,7 +243,7 @@
   });
 
   /* --- Footer year --- */
-  var yearEl = document.getElementById("year");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  const yearEl = document.getElementById("year");
+  yearEl?.replaceChildren(String(new Date().getFullYear()));
 
 })();

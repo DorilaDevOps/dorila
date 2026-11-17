@@ -41,6 +41,7 @@ de **recetas y remedios caseros**, educación herbolaria y agradecimientos.
 | 🔁 **Buscar desde cualquier página** | El buscador del header guarda el término en `sessionStorage` (`dorila-search`) y lo prellena al llegar a la tienda |
 | 🖼️ **Lazy loading** | Carga progresiva de imágenes con placeholder difuminado (`IntersectionObserver`) |
 | 📱 **Mobile-first** | CSS con `min-width` progresivo y `clamp()`; la grilla de categorías se mantiene en 2 columnas en móvil y pasa a 3 desde 640px |
+| 🧭 **Footer editorial** | Cuatro bloques con namespace propio, 1/2/4 columnas, disclaimer destacado, modales legales y crédito a Kikiriya-DevOps |
 | 🍵 **Recetas y remedios** | Página con técnicas de preparación, recetas paso a paso y consejos de conservación |
 | 🌿 **Recetas de persona a persona** | Envío en dos pasos, moderación privada con checklist, publicación solo tras aprobación y sin exponer datos personales |
 | 🎓 **Educación herbolaria** | Página informativa sobre plantas y su uso seguro |
@@ -93,7 +94,7 @@ Abrí <http://localhost:8000> desde tu navegador.
 npm install          # una vez: instala sharp (solo dev)
 npm run images       # regenera WebP + thumbs desde las fuentes de img/
 npm run generate     # regenera las 36 fichas de producto
-npm run build        # images + generate
+npm run build        # images + generate + tests
 ```
 
 ---
@@ -109,6 +110,24 @@ npm run build        # images + generate
 - **Fuentes**: Rye (display) + Montserrat (texto) vía Google Fonts
 - **Build ligero**: sharp (dev) para imágenes; sin bundlers en producción
 
+### 🧭 Footer editorial
+
+El footer vive bajo el namespace `.dorila-footer*` en `asset/base.css` y se replica
+en 7 páginas raíz + `templates/ficha-producto.html` (de ahí se generan las 36
+fichas). Es **mobile-first**: 1 columna en móvil, 2 desde 640px y 4 desde 1000px.
+Organiza Identidad, Explorar, DORILA y Comunidad; deja los enlaces legales en una
+franja separada con modales y mantiene siempre visible el disclaimer con un
+tratamiento sutil de borde y sombra. El crédito a
+[Kikiriya-DevOps](https://kikiriya-devops.netlify.app/) también está cubierto por
+`npm test`.
+
+### ✅ Verificación responsive
+
+Además de `npm test` (carrito, recetas, contraste WCAG AA y consistencia del
+footer), el footer se validó con Chrome headless en 360px, 768px y 1280px:
+sin scroll horizontal, 1/2/4 columnas, 3 iconos, 6 enlaces de navegación y
+disclaimer + crédito visibles en los tres anchos.
+
 ---
 
 ## 📷 Contacto
@@ -120,7 +139,8 @@ npm run build        # images + generate
 ---
 
 <div align="center">
-  <sub>© 2026 DORILA · Uruguay · Hecho con 🌿 y mucho té.</sub>
+  <sub>© 2026 DORILA · Uruguay · Hecho con 🌿 y mucho té.</sub><br>
+  <sub>Un proyecto desarrollado con dedicación por <a href="https://kikiriya-devops.netlify.app/">Kikiriya-DevOps</a>.</sub>
 </div>
 
 ---

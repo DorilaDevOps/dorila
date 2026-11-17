@@ -89,6 +89,8 @@ function pair(name, foreground, background, minimum){
 
 var communityCss = fs.readFileSync(path.join(ROOT, "asset", "comunidad.css"), "utf8");
 var adminCss = fs.readFileSync(path.join(ROOT, "asset", "admin-recetas.css"), "utf8");
+var baseCss = fs.readFileSync(path.join(ROOT, "asset", "base.css"), "utf8");
+var base = tokens(baseCss, ":root");
 var community = tokens(communityCss, ":root");
 var communityTokenNames = tokenNames(communityCss, ":root");
 var communityReferences = (communityCss.match(/var\(--cr-[a-z0-9-]+/gi) || []).map(function(reference){
@@ -188,7 +190,12 @@ pair("texto deshabilitado", admin["--admin-disabled-text"], admin["--admin-disab
 pair("error fuerte sobre aviso", admin["--admin-error-strong"], admin["--admin-error-bg"], 4.5);
 pair("blanco sobre botón peligro", "#FFFFFF", admin["--admin-error"], 4.5);
 
-console.log("\n4. Reglas de accesibilidad en CSS");
+console.log("\n4. Contraste del footer");
+pair("crema sobre bosque", base["--color-crema"], base["--color-forest-bosque"], 4.5);
+pair("salvia claro sobre bosque", base["--color-salvia-claro"], base["--color-forest-bosque"], 4.5);
+pair("borde salvia sobre bosque", base["--color-salvia"], base["--color-forest-bosque"], 3);
+
+console.log("\n5. Reglas de accesibilidad en CSS");
 ok("público declara placeholders con color propio",
   /\.community-field input::placeholder[\s\S]*?color:\s*var\(--cr-muted\)/.test(communityCss));
 ok("público declara textos deshabilitados",

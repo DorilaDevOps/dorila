@@ -197,6 +197,7 @@ console.log("\n5. Integración en las páginas y configuración");
   var index = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
   var historia = fs.readFileSync(path.join(ROOT, "historia.html"), "utf8");
   var saber = fs.readFileSync(path.join(ROOT, "saber.html"), "utf8");
+  var gracias = fs.readFileSync(path.join(ROOT, "gracias.html"), "utf8");
   var admin = fs.readFileSync(path.join(ROOT, "admin-recetas.html"), "utf8");
   var template = fs.readFileSync(path.join(ROOT, "templates", "ficha-producto.html"), "utf8");
   var robots = fs.readFileSync(path.join(ROOT, "robots.txt"), "utf8");
@@ -410,7 +411,6 @@ console.log("\n5. Integración en las páginas y configuración");
   var sitemap = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
   var appJs = fs.readFileSync(path.join(ROOT, "js", "app.js"), "utf8");
   var shellJs = fs.readFileSync(path.join(ROOT, "js", "shell.js"), "utf8");
-  var publicPages = [index, productosPage, notFound, template, recetas].join("\n");
 
   ok("productos.html existe y es indexable", /<meta name="robots" content="index, follow">/.test(productosPage));
   ok("productos.html tiene canonical propio", /rel="canonical" href="https:\/\/dorila\.netlify\.app\/productos\.html"/.test(productosPage));
@@ -441,7 +441,12 @@ console.log("\n5. Integración en las páginas y configuración");
     /dropdown-toggle/.test(shellJs) &&
     /setOpen\(!li\.classList\.contains\("is-open"\)\)/.test(shellJs) &&
     /setTimeout\(function\(\)\{ setOpen\(false\)/.test(shellJs));
-  ok("no quedan enlaces externos de kikiriya", !/kikiriya-devops/.test(publicPages) && !/kikiriya-devops/.test(fs.readFileSync(path.join(ROOT, "historia.html"), "utf8")) && !/kikiriya-devops/.test(fs.readFileSync(path.join(ROOT, "saber.html"), "utf8")) && !/kikiriya-devops/.test(fs.readFileSync(path.join(ROOT, "gracias.html"), "utf8")));
+  ok("todas las fuentes públicas acreditan a Kikiriya-DevOps",
+    [index, productosPage, historia, saber, recetas, gracias, notFound, template].every(function(html){
+      return /Un proyecto desarrollado con dedicación por/.test(html) &&
+        /href="https:\/\/kikiriya-devops\.netlify\.app\/"/.test(html) &&
+        /Kikiriya-DevOps<\/a>/.test(html);
+    }));
   ok("footer enlaza Envíos y garantía", /Envíos y garantía/.test(index) && /Envíos y garantía/.test(productosPage));
   ok("404 es noindex y vuelve al inicio", /name="robots" content="noindex, follow"/.test(notFound) && /href="index\.html"/.test(notFound));
   ok("sitemap incluye productos.html y excluye 404/admin", /productos\.html<\/loc>/.test(sitemap) && !/404\.html<\/loc>/.test(sitemap) && !/admin-recetas\.html<\/loc>/.test(sitemap));
@@ -541,6 +546,39 @@ console.log("\n7. Orden, enlaces y navegación del sitio");
     return /href="(?:\.\.\/)?recetas\.html#recetas"/.test(fs.readFileSync(path.join(ROOT, file), "utf8"));
   });
   ok("sin anclas obsoletas #recetas", stale.length === 0);
+  var footerDrift = allPages.filter(function(file){
+    var html = fs.readFileSync(path.join(ROOT, file), "utf8");
+    var start = html.indexOf('<footer class="dorila-footer">');
+    var end = html.indexOf("</footer>", start);
+    var footer = start === -1 || end === -1 ? "" : html.slice(start, end);
+    return start === -1 || end === -1 ||
+      !/dorila-footer__grid/.test(footer) ||
+      !/Donde las recetas de siempre encuentran un lugar para no perderse\./.test(footer) ||
+      !/Los saberes crecen cuando se comparten\./.test(footer) ||
+      !/La información es orientativa y no sustituye la consulta con profesionales de la salud\./.test(footer) ||
+      !/https:\/\/kikiriya-devops\.netlify\.app\//.test(footer) ||
+      /<img\b|site-footer|footer-(inner|contact|social|legal|bottom)/.test(footer);
+  });
+  ok("todas las páginas usan el footer editorial namespaced", footerDrift.length === 0);
+  if (footerDrift.length) console.log("         desincronizadas: " + footerDrift.join(", "));
+  var footerLinks = allPages.filter(function(file){
+    var html = fs.readFileSync(path.join(ROOT, file), "utf8");
+    var start = html.indexOf('<footer class="dorila-footer">');
+    var footer = start === -1 ? "" : html.slice(start, html.indexOf("</footer>", start));
+    return !/https:\/\/instagram\.com\/dorilanatural/.test(footer) ||
+      !/https:\/\/wa\.me\/59894872605/.test(footer) ||
+      !/tel:\+59894872605/.test(footer) ||
+      !/data-open-modal="privacyModal"/.test(footer) ||
+      !/data-open-modal="disclaimerModal"/.test(footer) ||
+      !/recetas\.html\?compartir=1#recetas-comunidad/.test(footer);
+  });
+  ok("el footer conserva enlaces, iconos y modales", footerLinks.length === 0);
+  if (footerLinks.length) console.log("         desincronizadas: " + footerLinks.join(", "));
+  ok("base.css reemplaza el footer legacy por estilos mobile-first",
+    /\.dorila-footer\{[\s\S]*?padding-block:\s*clamp\(/.test(baseCss) &&
+    /@media \(min-width: 640px\)\{[\s\S]*?\.dorila-footer__grid\{\s*grid-template-columns:repeat\(2, minmax\(0, 1fr\)\);/.test(baseCss) &&
+    /@media \(min-width: 1000px\)\{[\s\S]*?\.dorila-footer__grid\{\s*grid-template-columns:minmax\(0, 1\.35fr\) repeat\(3, minmax\(0, 1fr\)\);/.test(baseCss) &&
+    !/\.site-footer\s*\{/.test(baseCss));
   ok("home.css usa la ruta correcta de girasol_bg.webp", /url\('\.\.\/img\/girasol_bg\.webp'\)/.test(homeCss));
   ok("base.css define --color-link", /--color-link:\s*#/.test(baseCss));
   ok("nav móvil replica el subrayado animado de desktop",
