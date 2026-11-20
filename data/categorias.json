@@ -1,0 +1,86 @@
+[
+  {
+    "slug": "descanso",
+    "label": "Descanso",
+    "grupo": "herbolaria",
+    "prefijo": "DOR-DES",
+    "tono": "descanso"
+  },
+  {
+    "slug": "digestivo",
+    "label": "Digestivo",
+    "grupo": "herbolaria",
+    "prefijo": "DOR-DIG",
+    "tono": "digestivo"
+  },
+  {
+    "slug": "belleza",
+    "label": "Belleza",
+    "grupo": "cosmetica",
+    "prefijo": "DOR-BEL",
+    "tono": "belleza"
+  },
+  {
+    "slug": "aromaterapia",
+    "label": "Aromaterapia",
+    "grupo": "herbolaria",
+    "prefijo": "DOR-ARO",
+    "tono": "aromaterapia"
+  },
+  {
+    "slug": "masajes",
+    "label": "Masajes",
+    "grupo": "herbolaria",
+    "prefijo": "DOR-MAS",
+    "tono": "masajes"
+  },
+  {
+    "slug": "tratamientos",
+    "label": "Tratamientos",
+    "grupo": "herbolaria",
+    "prefijo": "DOR-TRA",
+    "tono": "tratamientos"
+  },
+  {
+    "slug": "aceites",
+    "label": "Aceites",
+    "grupo": "herbolaria",
+    "prefijo": "DOR-ACE",
+    "tono": "aceites"
+  },
+  {
+    "slug": "unguentos",
+    "label": "Ungüentos",
+    "grupo": "herbolaria",
+    "prefijo": "DOR-UNG",
+    "tono": "unguentos"
+  },
+  {
+    "slug": "cremas",
+    "label": "Cremas",
+    "grupo": "cosmetica",
+    "prefijo": "DOR-CRE",
+    "tono": "cremas"
+  },
+  {
+    "slug": "locion",
+    "label": "Loción",
+    "grupo": "cosmetica",
+    "prefijo": "DOR-LOC",
+    "tono": "locion"
+  },
+  {
+    "slug": "tinturas",
+    "label": "Tinturas",
+    "grupo": "herbolaria",
+    "prefijo": "DOR-TIN",
+    "tono": "tinturas"
+  },
+  {
+    "slug": "jabones",
+    "label": "Jabones",
+    "grupo": "cosmetica",
+    "prefijo": "DOR-JAB",
+    "tono": "jabones"
+  }
+]

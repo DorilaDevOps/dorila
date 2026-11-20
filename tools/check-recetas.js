@@ -15,6 +15,7 @@ var core = require("../netlify/functions/_lib/recetas-core");
 var seed = require("../js/recetas_.js");
 
 var ROOT = path.resolve(__dirname, "..");
+var PRODUCTS = require(path.join(ROOT, "js", "productos.js"));
 var passed = 0;
 var failed = 0;
 var NOW = Date.parse("2025-11-10T12:00:00.000Z");
@@ -482,12 +483,16 @@ console.log("\n5. Integración en las páginas y configuración");
   ok("migas de productos van antes del hero y son compartidas",
     /<nav class="crumbs crumbs-hero" aria-label="Migas de pan">/.test(productosPage) &&
     productosPage.indexOf('class="crumbs crumbs-hero"') < productosPage.indexOf('class="page-hero catalog-hero feature-hero"'));
-  ok("productos.html ofrece índice estático de fichas", (productosPage.match(/href="productos\/[^"]+\.html"/g) || []).length >= 36);
+  check("productos.html ofrece índice estático de todas las fichas",
+    (productosPage.match(/href="productos\/[^"]+\.html"/g) || []).length, PRODUCTS.length);
   ok("productos.html no limita los resultados", !/id="productGrid"[^>]*data-limit=/.test(productosPage));
   ok("index limita los destacados a 8", /id="productGrid" data-limit="8"/.test(index));
   ok("modal muestra categoría y precio", /id="modalCat"/.test(index) && /id="modalPrice"/.test(index));
   ok("modal incluye productos relacionados", /id="modalRelatedWrap"/.test(index) && /id="modalRelated"/.test(index));
   ok("app.js renderiza relacionados y limita la home", /function renderRelated/.test(appJs) && /dataset\.limit/.test(appJs));
+  ok("app.js oculta y deshabilita el carrito de no vendibles", /addBtn\.hidden = !p\.vendible/.test(appJs) && /addBtn\.disabled = !p\.vendible/.test(appJs));
+  ok("app.js excluye EXTREMA de relacionados", /r\.toxicidad !== "EXTREMA"/.test(appJs));
+  ok("app.js rechaza clics en productos no vendibles", /if \(!p \|\| !p\.vendible\) return/.test(appJs));
   ok("app.js soporta enlaces profundos de producto y categoría", /get\("p"\)/.test(appJs) && /get\("categoria"\)/.test(appJs));
   ok("nav desktop incluye enlace directo a /recetas y trigger accesible",
     /<a href="\/recetas">Recetas<\/a>/.test(index) &&

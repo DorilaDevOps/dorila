@@ -12,11 +12,16 @@
   var PRODUCTS = window.DORILA_PRODUCTS || [];
   var lastModalTrigger = null;
 
+  function setText(id, value){
+    var el = document.getElementById(id);
+    if (el) el.textContent = value || "";
+  }
+
   /* --- 2. IMÁGENES lazy --- */
-  function buildLazyImg(fullUrl, alt){
+  function buildLazyImg(fullUrl, alt, imageClass){
     var thumb = fullUrl.replace(/\.webp$/, "-thumb.webp");
     var img = document.createElement("img");
-    img.className = "lazy-img";
+    img.className = "lazy-img" + (imageClass ? " " + imageClass : "");
     img.src = thumb;
     img.setAttribute("data-src", fullUrl);
     img.alt = alt;
@@ -53,7 +58,7 @@
   /* --- 3. MODAL DE PLANTA --- */
   function setModalMedia(p){
     var img = document.getElementById("modalImg");
-    img.className = "lazy-img";
+    img.className = "lazy-img" + (p.imageClass ? " " + p.imageClass : "");
     img.alt = p.name;
     img.setAttribute("data-src", p.img);
     mediaLoad(img);
@@ -78,7 +83,7 @@
       var main = document.getElementById("modalImg");
       var cur  = main.getAttribute("data-src") || btn.dataset.other;
       var next = cur === btn.dataset.img ? btn.dataset.other : btn.dataset.img;
-      main.className = "";
+      main.className = main.className.replace(/\bis-loaded\b/g, "").replace(/\s+/g, " ").trim();
       main.src = next;
       main.setAttribute("data-src", next);
       main.alt = btn.dataset.other ? btn.getAttribute("aria-label") : main.alt;
@@ -116,13 +121,24 @@
     setModalMedia(p);
     document.getElementById("modalId").textContent = p.id;
     document.getElementById("plantModalName").textContent = p.name;
-    document.getElementById("modalCat").textContent = p.category || "";
+    document.getElementById("modalCat").textContent = p.categoriaLabel || p.category || "";
     document.getElementById("modalScientific").textContent = p.scientific;
-    document.getElementById("modalPrice").textContent = p.price || "";
-    document.getElementById("modalDesc").textContent = p.desc;
+    document.getElementById("modalPrice").textContent = p.price || (p.toxicidad === "EXTREMA" ? "No se comercializa" : "Ficha botánica");
+    document.getElementById("modalDesc").textContent = p.desc || p.botanicalDesc || "";
+    var alerta = document.getElementById("modalAlerta");
+    if (alerta){
+      alerta.hidden = !p.alerta;
+      alerta.textContent = p.alerta || "";
+      alerta.className = "modal-alerta " + (p.alertClass || "");
+    }
+    setText("modalToxicidad", p.toxicidadLabel ? "Toxicidad: " + p.toxicidadLabel : "");
+    setText("modalFamilia", p.familia ? "Familia: " + p.familia : "");
+    setText("modalStock", p.vendible ? "Disponible" : (p.toxicidad === "EXTREMA" ? "No disponible para venta" : "Sin stock"));
+    var propsTitle = document.querySelector(".modal-props h4");
+    if (propsTitle) propsTitle.textContent = p.toxicidad === "EXTREMA" ? "Información de seguridad" : "Propiedades medicinales";
     var propsList = document.getElementById("modalProps");
     propsList.innerHTML = "";
-    p.props.forEach(function(prop){
+    (p.props || []).forEach(function(prop){
       var li = document.createElement("li");
       li.innerHTML = "<svg aria-hidden=\"true\" focusable=\"false\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M20 6L9 17l-5-5\"/></svg>";
       li.appendChild(document.createTextNode(" " + prop));
@@ -132,9 +148,15 @@
     if (moreLink) moreLink.href = "productos.html";
     var addBtn = document.getElementById("modalAddBtn");
     if (addBtn){
-      addBtn.dataset.id = p.id;
-      addBtn.classList.remove("is-success");
-      addBtn.textContent = "Agregar al carrito";
+      addBtn.hidden = !p.vendible;
+      addBtn.disabled = !p.vendible;
+      if (p.vendible){
+        addBtn.dataset.id = p.id;
+        addBtn.classList.remove("is-success");
+        addBtn.textContent = "Agregar al carrito";
+      } else {
+        delete addBtn.dataset.id;
+      }
     }
     renderRelated(p);
     modal.classList.add("is-open");
@@ -149,20 +171,30 @@
     var relatedGrid = document.getElementById("modalRelated");
     if (!wrap || !relatedGrid) return;
     relatedGrid.innerHTML = "";
-    var related = PRODUCTS.filter(function(r){
-      return r.id !== p.id && r.category === p.category;
+    var bySlug = {};
+    PRODUCTS.forEach(function(r){ bySlug[r.slug] = r; });
+    var permitir = p.vendible
+      ? function(r){ return r.vendible; }
+      : function(r){ return r.toxicidad !== "EXTREMA"; };
+    var related = (p.related || []).map(function(slug){ return bySlug[slug]; }).filter(function(r){
+      return r && r.id !== p.id && permitir(r);
     }).slice(0, 4);
+    if (!related.length){
+      related = PRODUCTS.filter(function(r){
+        return r.id !== p.id && r.category === p.category && permitir(r);
+      }).slice(0, 4);
+    }
     if (!related.length){
       wrap.hidden = true;
       return;
     }
     related.forEach(function(r){
-      var slug = slugify(r.name);
+      var slug = r.slug || slugify(r.name);
       var card = document.createElement("a");
       card.className = "related-card";
       card.href = "productos/" + slug + ".html";
       card.innerHTML =
-        "<img src=\"" + r.img + "\" alt=\"" + r.name + ", producto de herboristería artesanal de DORILA\" loading=\"lazy\" width=\"240\" height=\"240\">" +
+        "<img class=\"" + (r.imageClass || "") + "\" src=\"" + r.img + "\" alt=\"" + r.name + ", producto de herboristería artesanal de DORILA\" loading=\"lazy\" width=\"240\" height=\"240\">" +
         "<span class=\"related-name\">" + r.name + "</span>" +
         "<span class=\"related-price\">" + r.price + "</span>";
       card.addEventListener("click", function(e){
@@ -175,30 +207,41 @@
   }
 
   function cardForProduct(p){
-    var slug = slugify(p.name);
+    var slug = p.slug || slugify(p.name);
     var card = document.createElement("article");
     card.className = "product-card";
     card.dataset.id = p.id;
     card.dataset.category = p.category;
+    card.dataset.toxicidad = p.toxicidad || "";
 
     var media = document.createElement("div");
     media.className = "product-media";
-    media.appendChild(buildLazyImg(p.img, p.name + ", hierba medicinal de DORILA"));
+    media.appendChild(buildLazyImg(p.img, p.name + ", hierba medicinal de DORILA", p.imageClass));
+
+    var badge = p.toxicidad && p.toxicidad !== "SEGURA" && p.toxicidad !== "NO_DETERMINADA"
+      ? "<span class=\"tox-badge " + (p.alertClass || "") + "\">" + p.toxicidadLabel + "</span>"
+      : "";
+    var availability = p.vendible ? "" : "<span class=\"availability-badge\">" + (p.toxicidad === "EXTREMA" ? "No disponible para venta" : "Sin stock") + "</span>";
+    var addButton = p.vendible
+      ? "<button class=\"add-btn\" type=\"button\" aria-label=\"Agregar " + p.name + " al carrito\">" +
+          "<svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M12 5v14M5 12h14\"/></svg>" +
+        "</button>"
+      : "";
 
     var body = document.createElement("div");
     body.className = "product-body";
     body.innerHTML =
       "<h3>" + p.name + "</h3>" +
-      "<p>" + p.desc + "</p>" +
+      "<p>" + (p.desc || p.botanicalDesc || "") + "</p>" +
+      badge +
       "<div class=\"product-footer\">" +
-        "<span class=\"product-price\">" + p.price + "</span>" +
-        "<button class=\"add-btn\" type=\"button\" aria-label=\"Agregar " + p.name + " al carrito\">" +
-          "<svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M12 5v14M5 12h14\"/></svg>" +
-        "</button>" +
+        "<span class=\"product-price\">" + (p.price || availability) + "</span>" +
+        addButton +
       "</div>" +
       "<a class=\"card-link\" href=\"productos/" + slug + ".html\" aria-label=\"Ver ficha de " + p.name + "\">Ver ficha</a>";
 
-    body.querySelector(".add-btn").addEventListener("click", function(e){
+    var addBtn = body.querySelector(".add-btn");
+    if (addBtn) addBtn.addEventListener("click", function(e){
       e.stopPropagation();
       addToCart(p.id);
       this.innerHTML = "<svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M20 6L9 17l-5-5\"/></svg>";
@@ -226,7 +269,7 @@
 
     var list = PRODUCTS.filter(function(p){
       var matchesCat = !cat || (groupCats ? groupCats.indexOf(p.category) !== -1 : p.category === cat);
-      var haystack   = (p.name + " " + p.scientific + " " + p.category + " " + p.desc + " " + p.props.join(" ")).toLowerCase();
+      var haystack   = (p.name + " " + p.scientific + " " + p.category + " " + (p.categoriaLabel || "") + " " + (p.familia || "") + " " + (p.toxicidadLabel || "") + " " + p.desc + " " + (p.palabrasClave || []).join(" ") + " " + (p.props || []).join(" ")).toLowerCase();
       var matchesQ   = !q || haystack.indexOf(q) !== -1;
       return matchesCat && matchesQ;
     });
@@ -346,7 +389,7 @@
     for (var i = 0; i < PRODUCTS.length; i++){ if (PRODUCTS[i].id === id) return PRODUCTS[i]; }
     return null;
   }
-  function priceOf(p){ return parseInt(p.price.replace(/[^0-9]/g, ""), 10) || 0; }
+  function priceOf(p){ return typeof p.priceNum === "number" ? p.priceNum : (parseInt(String(p.price || "").replace(/[^0-9]/g, ""), 10) || 0); }
   function cartTotalUnits(){
     var n = 0; for (var k in cart) n += cart[k]; return n;
   }
@@ -358,7 +401,12 @@
     cartCountEl.textContent = n;
     cartBtn.setAttribute("aria-label", "Carrito, " + n + " producto" + (n === 1 ? "" : "s"));
   }
-  function addToCart(id){ cart[id] = (cart[id] || 0) + 1; saveCart(); updateBadge(); renderCart(); }
+  function addToCart(id){
+    var p = findProduct(id);
+    if (!p || !p.vendible) return;
+    cart[id] = (cart[id] || 0) + 1;
+    saveCart(); updateBadge(); renderCart();
+  }
   function changeQty(id, delta){
     cart[id] = (cart[id] || 0) + delta;
     if (cart[id] <= 0) delete cart[id];
@@ -375,7 +423,8 @@
     cart = {};
     Object.keys(fresh).forEach(function(id){
       var n = parseInt(fresh[id], 10);
-      if (n > 0 && findProduct(id)) cart[id] = n;
+      var p = findProduct(id);
+      if (n > 0 && p && p.vendible) cart[id] = n;
     });
     saveCart();
     updateBadge();
@@ -543,7 +592,7 @@
   if (initialCat) applyCategoryFilter(initialCat);
   var initialProduct = initialParams.get("p") || initialParams.get("producto");
   if (initialProduct){
-    var initialMatch = PRODUCTS.filter(function(p){ return slugify(p.name) === initialProduct; })[0];
+    var initialMatch = PRODUCTS.filter(function(p){ return (p.slug || slugify(p.name)) === initialProduct || slugify(p.name) === initialProduct; })[0];
     if (initialMatch) openProductModal(initialMatch);
   }
 

@@ -15,6 +15,17 @@ var crypto = require("crypto");
 var ROOT = path.resolve(__dirname, "..");
 var BASE = "https://dorila.netlify.app";
 var products = require("../js/productos.js");
+var bySlug = {};
+products.forEach(function(p){ bySlug[p.slug] = p; });
+
+function escList(items){
+  return (items || []).map(function(x){ return "<li>" + esc(x) + "</li>"; }).join("\n");
+}
+
+function sectionBotanica(title, items){
+  if (!items || !items.length) return "";
+  return '<section class="ficha-botanica"><h2>' + esc(title) + '</h2><ul>' + escList(items) + '</ul></section>';
+}
 
 /* Los ?v= de los <script> evitan que el navegador sirva un JS viejo.
    Se derivan del contenido de todo js/, así que nunca quedan desactualizados
@@ -61,7 +72,7 @@ try {
 var pages = [];
 
 products.forEach(function(p){
-  var slug = slugify(p.name);
+  var slug = p.slug || slugify(p.name);
   var url = BASE + "/productos/" + slug + ".html";
   var absImg = BASE + "/" + p.img;
   var imgLocal = "../" + p.img.replace(/^\.?\//, "");
@@ -77,11 +88,26 @@ products.forEach(function(p){
         '<button type="button" class="ficha-thumb" data-img="' + img2Local + '" aria-label="Segunda imagen de ' + esc(p.name) + '"><img src="' + t2 + '" alt="" loading="lazy"></button>' +
       '</div>';
   }
-  var title = p.name + " — " + label(cat) + " | DORILA Uruguay";
-  var desc = (p.desc || p.name) + " Envíos a todo el país desde Uruguay.";
+  var title = p.name + " — " + (p.fichaBotanica ? "Ficha botánica" : label(p.categoriaLabel || cat)) + " | DORILA Uruguay";
+  var descBase = p.desc || p.botanicalDesc || p.name;
+  var desc = p.vendible ? descBase + " Envíos a todo el país desde Uruguay." : descBase + " Ficha informativa de DORILA.";
   var props = (p.props || []).map(function(x){ return "<li>" + esc(x) + "</li>"; }).join("\n");
+  var toxicidad = p.toxicidadLabel ? "Toxicidad: " + p.toxicidadLabel : "";
+  var familia = p.familia ? "Familia: " + p.familia : "";
+  var alerta = p.alerta ? '<p class="' + (p.alertClass || "alerta-toxica") + '">' + esc(p.alerta) + "</p>" : "";
+  var stockLabel = p.vendible ? "Disponible" : (p.toxicidad === "EXTREMA" ? "No disponible para venta" : "Sin stock");
+  var descBotanica = p.fichaBotanica && p.botanicalDesc && p.botanicalDesc !== p.desc
+    ? '<section class="ficha-botanica"><h2>Descripción botánica</h2><p>' + esc(p.botanicalDesc) + "</p></section>"
+    : "";
+  var usos = p.toxicidad === "EXTREMA" ? "" : sectionBotanica("Usos tradicionales registrados", p.usos);
+  var preparacion = p.toxicidad === "EXTREMA" ? "" : sectionBotanica("Preparación tradicional", p.preparacion);
+  var cta = p.vendible
+    ? '<button class="btn btn-primary" type="button" data-add-cart="' + esc(p.id) + '">Agregar al carrito</button>'
+    : '<button class="btn btn-disabled" type="button" disabled>' + esc(stockLabel) + "</button>";
+  var price = p.price || (p.toxicidad === "EXTREMA" ? "No se comercializa" : "Ficha botánica informativa");
+  var precauciones = p.precauciones ? "<strong>Precauciones:</strong> " + esc(p.precauciones) : "";
 
-  var jsonldProduct = JSON.stringify({
+  var jsonldProduct = {
     "@context": "https://schema.org",
     "@type": "Product",
     "name": p.name,
@@ -89,16 +115,18 @@ products.forEach(function(p){
     "description": desc,
     "sku": p.id,
     "brand": { "@type": "Brand", "name": "DORILA" },
-    "category": cat,
-    "offers": {
+    "category": cat
+  };
+  if (p.vendible){
+    jsonldProduct.offers = {
       "@type": "Offer",
       "url": url,
       "priceCurrency": "UYU",
       "price": priceNum(p),
       "availability": "https://schema.org/InStock",
       "seller": { "@type": "Organization", "name": "DORILA" }
-    }
-  }, null, 2);
+    };
+  }
 
   var jsonldBreadcrumb = JSON.stringify({
     "@context": "https://schema.org",
@@ -110,18 +138,22 @@ products.forEach(function(p){
     ]
   }, null, 2);
 
-  var related = products
-    .filter(function(r){ return r.id !== p.id && r.category === p.category; })
-    .slice(0, 4)
-    .map(function(r){
-      var s = slugify(r.name);
-      return '<a class="related-card" href="' + s + '.html">' +
-        '<img src="../' + r.img.replace(/^\.?\//, "") + '" alt="' + esc(r.name) + ', producto de herboristería artesanal de DORILA" loading="lazy">' +
-        '<span class="related-name">' + esc(r.name) + '</span>' +
-        '<span class="related-price">' + esc(r.price) + '</span>' +
-        '</a>';
-    })
-    .join("\n");
+  var related = (p.related || [])
+    .map(function(rSlug){ return bySlug[rSlug]; })
+    .filter(function(r){ return r && r.id !== p.id && r.toxicidad !== "EXTREMA" && (!p.vendible || r.vendible); })
+    .slice(0, 4);
+  if (!related.length){
+    related = products.filter(function(r){
+      return r.id !== p.id && r.category === p.category && r.toxicidad !== "EXTREMA" && (!p.vendible || r.vendible);
+    }).slice(0, 4);
+  }
+  related = related.map(function(r){
+    return '<a class="related-card" href="' + r.slug + '.html">' +
+      '<img class="' + (r.imageClass || "") + '" src="../' + r.img.replace(/^\.?\//, "") + '" alt="' + esc(r.name) + ', producto de herboristería artesanal de DORILA" loading="lazy">' +
+      '<span class="related-name">' + esc(r.name) + '</span>' +
+      '<span class="related-price">' + esc(r.price || "Ficha botánica") + '</span>' +
+      '</a>';
+  }).join("\n");
 
   var html = template
     .replace(/\{\{JS_VERSION\}\}/g, JS_VERSION)
@@ -132,18 +164,30 @@ products.forEach(function(p){
     .replace(/\{\{OG_DESC\}\}/g, desc)
     .replace(/\{\{OG_IMAGE\}\}/g, absImg)
     .replace(/\{\{IMAGE\}\}/g, imgLocal)
+    .replace(/\{\{IMAGE_CLASS\}\}/g, p.imageClass || "")
     .replace(/\{\{IMAGE_2\}\}/g, img2Local)
     .replace(/\{\{IMAGE_2_GALLERY\}\}/g, gallery2)
     .replace(/\{\{ID\}\}/g, p.id)
     .replace(/\{\{NAME\}\}/g, p.name)
     .replace(/\{\{SCIENTIFIC\}\}/g, p.scientific)
-    .replace(/\{\{CATEGORY\}\}/g, cat)
-    .replace(/\{\{DESC\}\}/g, p.desc)
+    .replace(/\{\{CATEGORY\}\}/g, p.categoriaLabel || cat)
+    .replace(/\{\{TOXICIDAD\}\}/g, toxicidad)
+    .replace(/\{\{FAMILIA\}\}/g, familia)
+    .replace(/\{\{ALERTA_BOTANICA\}\}/g, alerta)
+    .replace(/\{\{STOCK_LABEL\}\}/g, stockLabel)
+    .replace(/\{\{DESC\}\}/g, p.desc || p.botanicalDesc || "")
+    .replace(/\{\{DESC_BOTANICA\}\}/g, descBotanica)
+    .replace(/\{\{PROPS_TITLE\}\}/g, p.toxicidad === "EXTREMA" ? "Información de seguridad" : "Beneficios y propiedades")
     .replace(/\{\{PROPS\}\}/g, props)
-    .replace(/\{\{PRICE\}\}/g, p.price)
+    .replace(/\{\{USOS_BOTANICOS\}\}/g, usos)
+    .replace(/\{\{PREPARACION_BOTANICA\}\}/g, preparacion)
+    .replace(/\{\{PRICE\}\}/g, price)
+    .replace(/\{\{CTA\}\}/g, cta)
+    .replace(/\{\{PRECAUCIONES\}\}/g, precauciones)
     .replace(/\{\{RELATED\}\}/g, related)
-    .replace(/\{\{JSONLD_PRODUCT\}\}/g, jsonldProduct)
-    .replace(/\{\{JSONLD_BREADCRUMB\}\}/g, jsonldBreadcrumb);
+    .replace(/\{\{JSONLD_PRODUCT\}\}/g, JSON.stringify(jsonldProduct, null, 2))
+    .replace(/\{\{JSONLD_BREADCRUMB\}\}/g, jsonldBreadcrumb)
+    .replace(/[ \t]+$/gm, "");
 
   var leftovers = html.match(/\{\{[A-Z0-9_]+\}\}/g);
   if (leftovers){
@@ -170,12 +214,25 @@ fs.writeFileSync(path.join(ROOT, "sitemap.xml"), sitemap.join("\n") + "\n");
 /* Las páginas raíz son editadas a mano, pero el ?v= de sus <script> se
    reescribe acá para que nunca queden con la versión vieja de un JS. */
 var ROOT_PAGES = ["index.html", "productos.html", "404.html", "historia.html", "saber.html", "recetas.html", "gracias.html", "admin-recetas.html"];
+var catalogoItems = products.map(function(p, i){
+  return '    {\n      "@type": "ListItem",\n      "position": ' + (i + 1) + ',\n      "name": ' + JSON.stringify(p.name) + ',\n      "url": "' + BASE + '/productos/' + p.slug + '.html"\n    }';
+}).join(",\n");
+var catalogoIndex = products.map(function(p){
+  return '            <li><a href="productos/' + p.slug + '.html">' + esc(p.name) + "</a></li>";
+}).join("\n");
 var stamped = 0;
 ROOT_PAGES.forEach(function(file){
   var p = path.join(ROOT, file);
   if (!fs.existsSync(p)) return;
   var before = fs.readFileSync(p, "utf8");
-  var after = before.replace(/(<script src="js\/[^"?]+)(?:\?v=[^"]*)?(")/g, "$1?v=" + JS_VERSION + "$2");
+  var after = before;
+  if (file === "productos.html"){
+    after = after
+      .replace(/\{\{CATALOGO_TOTAL\}\}/g, String(products.length))
+      .replace(/\{\{CATALOGO_JSONLD_ITEMS\}\}/g, catalogoItems)
+      .replace(/\{\{CATALOGO_INDEX\}\}/g, catalogoIndex);
+  }
+  after = after.replace(/(<script src="js\/[^"?]+)(?:\?v=[^"]*)?(")/g, "$1?v=" + JS_VERSION + "$2");
   if (after !== before){
     fs.writeFileSync(p, after);
     stamped++;

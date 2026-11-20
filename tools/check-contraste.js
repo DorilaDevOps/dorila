@@ -195,6 +195,16 @@ pair("crema sobre bosque", base["--color-crema"], base["--color-forest-bosque"],
 pair("salvia claro sobre bosque", base["--color-salvia-claro"], base["--color-forest-bosque"], 4.5);
 pair("borde salvia sobre bosque", base["--color-salvia"], base["--color-forest-bosque"], 3);
 
+console.log("\n4b. Contraste de alertas botánicas");
+pair("texto de alerta EXTREMA", base["--color-alerta-ink"], base["--color-alerta-bg"], 4.5);
+pair("borde de alerta EXTREMA", base["--color-alerta-border"], base["--color-alerta-bg"], 3);
+pair("texto de alerta suave", base["--color-alerta-soft-ink"], base["--color-alerta-soft-bg"], 4.5);
+pair("borde de alerta suave", base["--color-alerta-soft-border"], base["--color-alerta-soft-bg"], 3);
+ok("alerta EXTREMA usa tokens de identidad",
+  /\.alerta-toxica-extrema[\s\S]*?background:\s*var\(--color-alerta-bg\)[\s\S]*?color:\s*var\(--color-alerta-ink\)/.test(baseCss));
+ok("alerta suave usa tokens de identidad",
+  /\.alerta-toxica,[\s\S]*?background:\s*var\(--color-alerta-soft-bg\)[\s\S]*?color:\s*var\(--color-alerta-soft-ink\)/.test(baseCss));
+
 console.log("\n5. Reglas de accesibilidad en CSS");
 ok("público declara placeholders con color propio",
   /\.community-field input::placeholder[\s\S]*?color:\s*var\(--cr-muted\)/.test(communityCss));

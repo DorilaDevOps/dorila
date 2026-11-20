@@ -5,9 +5,11 @@
   "description": "DORILA — sitio estático de herboristería artesanal",
   "scripts": {
     "images": "node tools/images.js",
+    "catalogo": "node tools/gestionar-catalogo.js validar && node tools/generar-productos.js",
+    "catalogo:importar": "node tools/gestionar-catalogo.js importar",
     "generate": "node tools/generate.js",
     "test": "node tools/check-cart.js && node tools/check-recetas.js && node tools/check-contraste.js",
-    "build": "npm run images && npm run generate && npm test"
+    "build": "npm run images && npm run catalogo && npm run generate && npm test"
   },
   "dependencies": {
     "@netlify/blobs": "^8.2.0"

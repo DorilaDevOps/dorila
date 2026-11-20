@@ -224,6 +224,35 @@ console.log("\n3. Ficha — el clic nunca se descarta en silencio");
 })();
 
 /* =====================================================================
+   3b. Regresión: EXTREMA y sin stock nunca entran al carrito
+   ===================================================================== */
+console.log("\n3b. Ficha — carrito rechaza ids no vendibles");
+(function(){
+  var env = makeEnv({
+    scriptSrc: "../js/cart.js",
+    store: (function(){
+      var s = {};
+      s[KEY] = JSON.stringify({ "DOR-TRA-018": 2, "DOR-TRA-001": 1, "cons-012": 1 });
+      return s;
+    })()
+  });
+  env.run("productos.js");
+  env.run("cart.js");
+
+  check("sanitize elimina EXTREMA y sin stock", env.read(), { "cons-012": 1 });
+
+  var extrema = makeAddBtn("DOR-TRA-018");
+  clickOn(env.doc, extrema);
+  check("clic en EXTREMA no agrega", env.read(), { "cons-012": 1 });
+  check("EXTREMA no recibe feedback de agregado", extrema.textContent, "Agregar al carrito");
+
+  var sinStock = makeAddBtn("DOR-TRA-001");
+  clickOn(env.doc, sinStock);
+  check("clic en sin stock no agrega", env.read(), { "cons-012": 1 });
+  check("sin stock no recibe feedback de agregado", sinStock.textContent, "Agregar al carrito");
+})();
+
+/* =====================================================================
    4. Ficha: la ruta raíz sobrevive al ?v= de cache-busting
    ===================================================================== */
 console.log("\n4. Ficha — la ruta raiz se deduce bien con ?v=");
@@ -281,28 +310,62 @@ console.log("\n5. index (js/app.js) — resincronizacion del carrito");
 /* =====================================================================
    6. Invariantes de las fichas generadas
    ===================================================================== */
-console.log("\n6. Fichas generadas — data-add-cart y carga de cart.js");
+console.log("\n6. Fichas generadas — catálogo, carrito y seguridad");
 (function(){
   var dir = path.join(ROOT, "productos");
   var files = fs.readdirSync(dir).filter(function(f){ return /\.html$/.test(f); });
-  var ids = {};
-  PRODUCTS.forEach(function(p){ ids[p.id] = p; });
+  var byId = {}, byFile = {};
+  PRODUCTS.forEach(function(p){ byId[p.id] = p; byFile[p.slug + ".html"] = p; });
 
-  check("generadas 36 fichas", files.length, 36);
+  check("generadas " + PRODUCTS.length + " fichas", files.length, PRODUCTS.length);
 
-  var sinBoton = [], idInvalido = [], sinCartJs = [], sinVersion = [], tokens = [];
+  var sinProducto = [], sinBoton = [], botonInvalido = [], idInvalido = [];
+  var sinCartJs = [], sinVersion = [], tokens = [], sinAlertaExtrema = [];
+  var usosExtrema = [], relatedExtrema = [], sinDisabled = [];
+
   files.forEach(function(f){
     var html = fs.readFileSync(path.join(dir, f), "utf8");
+    var p = byFile[f];
+    if (!p){ sinProducto.push(f); return; }
+
     var m = /data-add-cart="([^"]+)"/.exec(html);
-    if (!m) { sinBoton.push(f); return; }
-    if (!ids[m[1]]) idInvalido.push(f + " -> " + m[1]);
+    if (p.vendible){
+      if (!m) sinBoton.push(f);
+      else if (m[1] !== p.id) idInvalido.push(f + " -> " + m[1]);
+    } else {
+      if (m) botonInvalido.push(f + " -> " + m[1]);
+      if (!/class="btn btn-disabled"[^>]*disabled/.test(html)) sinDisabled.push(f);
+    }
+    if (m && !byId[m[1]]) idInvalido.push(f + " -> " + m[1]);
+
+    if (p.toxicidad === "EXTREMA"){
+      if (!/class="alerta-toxica-extrema"/.test(html)) sinAlertaExtrema.push(f);
+      if (/Usos tradicionales registrados|Preparación tradicional/.test(html)) usosExtrema.push(f);
+    }
+
     if (!/<script src="\.\.\/js\/cart\.js\?v=[0-9a-f]{8}"/.test(html)) sinVersion.push(f);
     if (!/js\/cart\.js/.test(html)) sinCartJs.push(f);
     if (/\{\{[A-Z0-9_]+\}\}/.test(html)) tokens.push(f);
+
+    var relatedIndex = html.indexOf('<section class="related wrap"');
+    if (relatedIndex !== -1){
+      var links = html.slice(relatedIndex).match(/href="([^"]+\.html)"/g) || [];
+      links.forEach(function(link){
+        var slug = /href="([^"]+)\.html"/.exec(link)[1];
+        var related = byFile[slug + ".html"];
+        if (related && related.toxicidad === "EXTREMA") relatedExtrema.push(f + " -> " + slug);
+      });
+    }
   });
 
-  check("todas con boton data-add-cart", sinBoton, []);
-  check("todos los ids existen en js/productos.js", idInvalido, []);
+  check("todas las fichas corresponden al catálogo", sinProducto, []);
+  check("vendibles con boton data-add-cart", sinBoton, []);
+  check("no vendibles sin boton de carrito", botonInvalido, []);
+  check("ids de carrito validos", idInvalido, []);
+  check("no vendibles con CTA deshabilitado", sinDisabled, []);
+  check("EXTREMA con alerta roja", sinAlertaExtrema, []);
+  check("EXTREMA sin usos ni preparacion", usosExtrema, []);
+  check("relacionados nunca son EXTREMA", relatedExtrema, []);
   check("todas cargan js/cart.js", sinCartJs, []);
   check("todas con ?v= de cache-busting", sinVersion, []);
   check("ningun token sin reemplazar", tokens, []);
@@ -310,6 +373,20 @@ console.log("\n6. Fichas generadas — data-add-cart y carga de cart.js");
   var index = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
   ok("index.html carga js/cart.js con ?v=", /<script src="js\/cart\.js\?v=[0-9a-f]{8}"/.test(index));
   ok("index.html carga js/app.js con ?v=", /<script src="js\/app\.js\?v=[0-9a-f]{8}"/.test(index));
+
+  var catalogo = fs.readFileSync(path.join(ROOT, "productos.html"), "utf8");
+  var itemListAt = catalogo.indexOf('"@type": "ItemList"');
+  var itemList = itemListAt === -1 ? "" : catalogo.slice(itemListAt, catalogo.indexOf("</script>", itemListAt));
+  check("productos.html anuncia el total del catálogo",
+    Number((/"numberOfItems":\s*(\d+)/.exec(catalogo) || [0, -1])[1]), PRODUCTS.length);
+  check("indice estatico con todas las fichas",
+    (catalogo.match(/href="productos\/[^"]+\.html"/g) || []).length, PRODUCTS.length);
+  check("JSON-LD ItemList con todos los productos",
+    (itemList.match(/"@type": "ListItem"/g) || []).length, PRODUCTS.length);
+  ok("productos.html sin tokens", !/\{\{[A-Z0-9_]+\}\}/.test(catalogo));
+  ok("catalogo tiene productos vendibles", PRODUCTS.some(function(p){ return p.vendible; }));
+  check("EXTREMA nunca es vendible",
+    PRODUCTS.filter(function(p){ return p.toxicidad === "EXTREMA" && p.vendible; }), []);
 })();
 
 /* =====================================================================

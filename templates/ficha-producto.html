@@ -160,7 +160,7 @@
     <article class="ficha" aria-labelledby="ficha-title">
       <div class="ficha-media">
         <div class="ficha-gallery">
-          <img class="ficha-main" src="{{IMAGE}}" alt="{{NAME}}, producto de herboristería artesanal de DORILA" fetchpriority="high">
+          <img class="ficha-main {{IMAGE_CLASS}}" src="{{IMAGE}}" alt="{{NAME}}, producto de herboristería artesanal de DORILA" fetchpriority="high">
           {{IMAGE_2_GALLERY}}
         </div>
       </div>
@@ -168,18 +168,26 @@
         <span class="ficha-cat">{{CATEGORY}}</span>
         <h1 id="ficha-title">{{NAME}}</h1>
         <p class="ficha-scientific"><strong>Nombre científico:</strong> {{SCIENTIFIC}}</p>
+        <p class="ficha-tox-line">{{TOXICIDAD}}</p>
+        <p class="ficha-tox-line">{{FAMILIA}}</p>
+        {{ALERTA_BOTANICA}}
+        <p class="ficha-stock">{{STOCK_LABEL}}</p>
         <p class="ficha-desc">{{DESC}}</p>
+        {{DESC_BOTANICA}}
         <div class="ficha-props">
-          <h2>Beneficios y propiedades</h2>
+          <h2>{{PROPS_TITLE}}</h2>
           <ul>
             {{PROPS}}
           </ul>
         </div>
+        {{USOS_BOTANICOS}}
+        {{PREPARACION_BOTANICA}}
         <p class="ficha-price">{{PRICE}}</p>
         <div class="ficha-ctas">
-          <button class="btn btn-primary" type="button" data-add-cart="{{ID}}">Agregar al carrito</button>
+          {{CTA}}
           <a class="btn btn-ghost" href="../productos.html">Ver todos los productos</a>
         </div>
+        <p class="ficha-prec">{{PRECAUCIONES}}</p>
         <p class="ficha-note">La información de esta ficha es orientativa y no reemplaza la consulta médica. Consultá siempre con un profesional de la salud.</p>
         <p class="ficha-by">Elaborado por <a href="https://dorila.netlify.app/">DORILA &mdash; Herbolaria artesanal en Uruguay</a>.</p>
       </div>

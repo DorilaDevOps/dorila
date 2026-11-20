@@ -45,7 +45,7 @@
     if (!products || !products.length) return cart;
     var clean = {};
     products.forEach(function(p){
-      if (cart[p.id]) clean[p.id] = cart[p.id];
+      if (p.vendible && cart[p.id]) clean[p.id] = cart[p.id];
     });
     return clean;
   }
@@ -114,7 +114,10 @@
        verdad. Si DORILA_PRODUCTS aún no cargó se acepta igual: abortar en silencio
        dejaba el botón sin ningún feedback. */
     var products = window.DORILA_PRODUCTS;
-    if (products && products.length && !products.some(function(p){ return p.id === id; })) return;
+    if (products && products.length){
+      var found = products.filter(function(p){ return p.id === id; })[0];
+      if (!found || !found.vendible) return;
+    }
     cart[id] = (cart[id] || 0) + 1;
     try { window.localStorage.setItem("dorila-cart", JSON.stringify(cart)); } catch (err) {}
     updateBadge();

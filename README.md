@@ -24,10 +24,10 @@ generar una orden de compra y enviarla por WhatsApp. Incluye además páginas
 de **recetas y remedios caseros**, educación herbolaria y agradecimientos.
 
 > ⚙️ **Cómo se genera**: 6 páginas base escritas a mano (`index`, `productos`,
-> `historia`, `saber`, `recetas`, `gracias`) + `404.html` + **36 fichas de producto**
-> generadas automáticamente desde `templates/ficha-producto.html` y `js/productos.js`
-> con `tools/generate.js`. Las imágenes se optimizan a WebP con
-> `tools/images.js` (sharp).
+> `historia`, `saber`, `recetas`, `gracias`) + `404.html` + fichas de producto
+> generadas desde `data/plantas.json` → `js/productos.js` →
+> `templates/ficha-producto.html` con `tools/generar-productos.js` y
+> `tools/generate.js`. Las imágenes se optimizan a WebP con `tools/images.js` (sharp).
 
 ### ✨ Características
 
@@ -35,7 +35,9 @@ de **recetas y remedios caseros**, educación herbolaria y agradecimientos.
 |---|---|
 | 🛒 **Carrito persistente** | Se guarda en `localStorage`, con cantidades, subtotal y badges; se agrega desde la grilla, el modal de planta y cada ficha de producto |
 | 📄 **Orden de compra** | Verificación en dos pasos (revisión → orden), número de orden, envío por WhatsApp (vacía el carrito) y PDF/imprimir |
-| 🔎 **Catálogo buscable** | Página `productos.html` con los 36 productos, búsqueda por nombre, uso o nombre científico, filtros por categoría e índice estático para SEO |
+| 🔎 **Catálogo buscable** | Página `productos.html` con el herbario completo, búsqueda por nombre, uso o nombre científico, familia y toxicidad, filtros por categoría e índice estático generado para SEO |
+| 🧪 **Fichas botánicas** | Datos botánicos importados desde `data/entrada-plantas.json`, fusión por nombre/científico con los productos comerciales, fallback mandala teñido por categoría |
+| ⚠️ **Seguridad toxicológica** | Nivel de toxicidad visible; `EXTREMA` muestra alerta roja, oculta el botón de compra y nunca sugiere consumo; `stock <= 0` también bloquea la venta |
 | 🪴 **Modal de producto** | Vista rápida con categoría, precio, propiedades, productos relacionados y acceso a la ficha completa |
 | 🧩 **Categorías** | Tarjetas con filtro directo, iconos y badge destacado; 2 columnas en móvil y 3 desde 640px |
 | 🔁 **Buscar desde cualquier página** | El buscador del header guarda el término en `sessionStorage` (`dorila-search`) y lo prellena al llegar a la tienda |
@@ -48,7 +50,7 @@ de **recetas y remedios caseros**, educación herbolaria y agradecimientos.
 | 💬 **Testimonios** | Carrusel de experiencias reales en la página principal |
 | 🙏 **Agradecimientos** | Página de agradecimiento posterior al envío del formulario |
 | ♿ **Accesible** | `aria-*`, skip-link, focus visible, `prefers-reduced-motion`, carrusel con teclado/swipe y tarjetas de categoría operables con Enter/Espacio |
-| 🔍 **SEO** | Meta tags optimizados, Open Graph, Twitter Cards, JSON-LD (`LocalBusiness`, `WebSite`, `ItemList` y `BreadcrumbList`), sitemap con las 36 fichas y página 404 `noindex` |
+| 🔍 **SEO** | Meta tags optimizados, Open Graph, Twitter Cards, JSON-LD (`LocalBusiness`, `WebSite`, `ItemList` y `BreadcrumbList`), sitemap con todas las fichas y página 404 `noindex` |
 | ⚡ **Velocidad** | Imágenes WebP + thumbs, fuentes recortadas, `defer`, revalidación por ETag tras cada deploy |
 
 ---
@@ -65,11 +67,12 @@ dorila/
 ├── gracias.html      # Agradecimientos post-formulario
 ├── 404.html          # Página no encontrada (noindex)
 ├── asset/            # CSS por áreas: base, home, pages, carousel, ficha
+├── data/             # entrada-plantas.json, plantas.json y categorias.json
 ├── img/              # Fotografías (WebP optimizado + fuentes jpg/png)
 ├── js/               # shell, cart, app, ficha, productos, testimonios…
-├── productos/        # 36 fichas de producto (generadas)
+├── productos/        # Fichas de producto (generadas)
 ├── templates/        # Plantilla de ficha de producto
-├── tools/            # generate.js (fichas) e images.js (WebP + thumbs)
+├── tools/            # catálogo, generate.js (fichas) e images.js (WebP + thumbs)
 ├── netlify.toml      # Deploy + headers de caché inmutable
 └── .gitignore        # Excluye documentos internos (Cremas.txt, etc.)
 ```
@@ -93,9 +96,31 @@ Abrí <http://localhost:8000> desde tu navegador.
 ```bash
 npm install          # una vez: instala sharp (solo dev)
 npm run images       # regenera WebP + thumbs desde las fuentes de img/
-npm run generate     # regenera las 36 fichas de producto
-npm run build        # images + generate + tests
+npm run catalogo     # valida data/plantas.json y regenera js/productos.js
+npm run generate     # regenera fichas, sitemap, índice y ?v= de los scripts
+npm run build        # images + catálogo + generate + tests
 ```
+
+### 📚 Editar el catálogo
+
+La fuente canónica es `data/plantas.json`. `data/entrada-plantas.json` guarda el
+dataset botánico original y `data/categorias.json` define etiquetas, grupos,
+prefijos y tonos. No editar `js/productos.js` a mano: se regenera desde el JSON.
+
+```bash
+node tools/gestionar-catalogo.js validar
+node tools/gestionar-catalogo.js listar digestion
+node tools/gestionar-catalogo.js ver cons-001
+node tools/gestionar-catalogo.js importar data/entrada-plantas.json
+node tools/gestionar-catalogo.js agregar nueva-planta.json
+node tools/gestionar-catalogo.js editar cons-001 precio 195
+node tools/gestionar-catalogo.js eliminar DOR-TRA-018
+node tools/gestionar-catalogo.js validar --dry-run
+```
+
+Cada cambio con escritura crea un `.bak` y regenera `js/productos.js`. Las reglas
+de seguridad se validan: `EXTREMA` nunca puede tener precio, stock ni
+disponibilidad, y un producto disponible requiere `stock > 0` y `precio > 0`.
 
 ---
 
@@ -113,7 +138,7 @@ npm run build        # images + generate + tests
 ### 🧭 Footer editorial
 
 El footer vive bajo el namespace `.dorila-footer*` en `asset/base.css` y se replica
-en 7 páginas raíz + `templates/ficha-producto.html` (de ahí se generan las 36
+en 7 páginas raíz + `templates/ficha-producto.html` (de ahí se generan todas las
 fichas). Es **mobile-first**: 1 columna en móvil, 2 desde 640px y 4 desde 1000px.
 Organiza Identidad, Explorar, DORILA y Comunidad; deja los enlaces legales en una
 franja separada con modales y mantiene siempre visible el disclaimer con un

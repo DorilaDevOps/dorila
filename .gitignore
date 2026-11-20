@@ -16,3 +16,6 @@ desktop.ini
 
 # Dependencias de desarrollo (sharp para optimizar imágenes)
 node_modules/
+
+# Backups que escribe tools/gestionar-catalogo.js
+*.bak

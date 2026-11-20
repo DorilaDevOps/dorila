@@ -45,6 +45,16 @@
 .related-name{ font-weight:700; font-size:0.95rem; }
 .related-price{ font-family:var(--font-display); color:var(--color-forest-deep); font-size:0.9rem; margin-left:auto; }
 
+/* Ficha botánica y seguridad */
+.ficha-prec{ margin-top:var(--space-2); font-size:var(--fs-small); color:var(--color-body-soft); }
+.ficha-botanica{ margin-top:var(--space-3); padding:var(--space-2) var(--space-3); border-left:3px solid var(--color-salvia); background:var(--color-parchment-soft); border-radius:var(--radius-sm); }
+.ficha-botanica h2{ font-family:var(--font-display); font-size:1.05rem; margin:0 0 var(--space-1); color:var(--color-forest-deep); }
+.ficha-botanica li{ position:relative; padding-left:1.1rem; color:var(--color-ink); }
+.ficha-botanica li::before{ content:"•"; position:absolute; left:0; color:var(--color-salvia); }
+.ficha-info .alerta-toxica,
+.ficha-info .alerta-toxica-extrema{ margin-top:var(--space-2); }
+.ficha-price:empty{ display:none; }
+
 /* Responsive */
 @media (max-width:820px){ .ficha{ grid-template-columns:1fr; } }
 @media (max-width:560px){ .related-grid{ grid-template-columns:1fr; } }
