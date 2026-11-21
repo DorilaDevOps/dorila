@@ -33,7 +33,7 @@
   --color-salvia-claro:        #B8C1AB;   /* salvia claro — texto sobre bosque */
   --color-crema:               #F4EBDD;   /* crema — letra del footer */
   --color-terracotta-cta:      #B96F52;   /* terracota — promociones/llamadas */
-  --color-link:                #33230F;   /* texto sobre botones salvia */
+  --color-link:                var(--color-ink);   /* texto sobre botones salvia */
   --color-alerta-bg:           #7A1010;
   --color-alerta-ink:          #FFF5F0;
   --color-alerta-border:       #E06A6A;
@@ -62,7 +62,7 @@
   --fs-mid:      clamp(0.9rem, 0.5vw + 0.78rem, 0.98rem);
   --fs-small:    clamp(0.8rem, 0.4vw + 0.7rem, 0.875rem);
   --fs-tiny:     clamp(0.72rem, 0.3vw + 0.65rem, 0.78rem);
-  --fs-label:    clamp(0.72rem, 0.3vw + 0.65rem, 0.78rem);
+  --fs-label:    var(--fs-tiny);
   --fs-card-link: clamp(0.6rem, 0.2vw + 0.55rem, 0.75rem);
 
   --lh-display: 1.05;
@@ -83,6 +83,7 @@
   --border-frame2: 3px solid var(--color-forest);
   --border-frame3: 3px solid #75b599;
   --shadow-card: 0 10px 24px -14px rgba(51, 35, 15, 0.45);
+  --shadow-btn: 0 8px 18px -8px rgba(122, 52, 25, 0.65);
 
   --max-content: 1180px;
   --max-text: 62ch;
@@ -185,6 +186,9 @@ img.img-toned,
   text-transform: uppercase;
 }
 .eyebrow-mark svg{ width:1em; height:1em; flex-shrink:0; }
+@media (max-width: 639px){
+  .eyebrow-mark{ display:none; }
+}
 
 .section-head{
   max-width: var(--max-text);
@@ -225,7 +229,7 @@ img.img-toned,
 .btn-primary{
   background: var(--color-salvia);
   color: var(--color-link);
-  box-shadow: 0 8px 18px -8px rgba(122, 52, 25, 0.65);
+  box-shadow: var(--shadow-btn);
 }
 .btn-primary:hover{ background: var(--color-crema); color: var(--color-black);}
 .btn-outline{
@@ -238,7 +242,7 @@ img.img-toned,
   background: transparent;
   color: var(--color-forest-deep);
   border: 1px solid transparent;
-  box-shadow: 0 8px 18px -8px rgba(122, 52, 25, 0.65);
+  box-shadow: var(--shadow-btn);
   transition: background-color var(--transition-fast), color var(--transition-fast),
               box-shadow var(--transition-fast), transform var(--transition-fast);
 }

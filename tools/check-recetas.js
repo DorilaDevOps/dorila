@@ -292,6 +292,8 @@ console.log("\n5. Integración en las páginas y configuración");
     /<button[^>]*data-share-open[^>]*aria-label="Compartir mi receta"/.test(heroCtas));
   ok("hero oculta el eyebrow en mobile",
     /@media \(max-width: 639px\)\{[\s\S]*?\.feature-hero \.eyebrow-mark\{ display:none; \}/.test(pagesCss));
+  ok("eyebrow-mark oculto globalmente en mobile",
+    /@media \(max-width: 639px\)\{\s*\.eyebrow-mark\{ display:none; \}/.test(baseCss));
   ok("hero cambia a etiquetas cortas en mobile",
     /@media \(max-width: 639px\)\{[\s\S]*?\.feature-hero \.hero-cta-label-full\{ display:none; \}[\s\S]*?\.feature-hero \.hero-cta-label-short\{ display:inline; \}/.test(pagesCss));
   ok("hero mantiene los CTAs en una fila y con el color claro",
@@ -500,6 +502,10 @@ console.log("\n5. Integración en las páginas y configuración");
     /return siteUrl\(String\(src \|\| ""\)\.replace/.test(appJs) &&
     /modalImg\.src = siteUrl\(p\.img\)/.test(appJs));
   ok("grid usa content-visibility", /\.product-card\{[^}]*content-visibility:auto/.test(homeCss));
+  ok("badge de toxicidad se reduce en móvil",
+    /@media \(max-width: 639px\)\{[\s\S]*?\.product-card \.tox-badge\{[^}]*font-size:\s*0\.68rem/.test(homeCss));
+  ok("badge sigue generándose en la tarjeta",
+    /<span class=\\"tox-badge "/.test(appJs));
   ok("grid usa thumbnails sin data-src", /function buildCardImg/.test(appJs) && !/appendChild\(buildLazyImg/.test(appJs));
   ok("búsqueda usa debounce", /var scheduleRender = debounce\(render, 150\)/.test(appJs));
   ok("deep link canoniza la ficha", /function setDeepLinkCanonical/.test(appJs));
@@ -685,7 +691,7 @@ console.log("\n7. Orden, enlaces y navegación del sitio");
     /@media \(max-width: 999px\)[\s\S]*?\.dorila-footer__eyebrow\{\s*margin-bottom:0/.test(baseCss) &&
     /@media \(max-width: 999px\)[\s\S]*?\.dorila-footer__inner,\s*\.dorila-footer__grid\{\s*gap:clamp\(/.test(baseCss));
   ok("home.css usa la ruta correcta de girasol_bg.webp", /url\('\.\.\/img\/girasol_bg\.webp'\)/.test(homeCss));
-  ok("base.css define --color-link", /--color-link:\s*#/.test(baseCss));
+  ok("base.css define --color-link", /--color-link:\s*(?:#|var\(--color-ink\))/.test(baseCss));
   ok("nav móvil replica el subrayado animado de desktop",
     /\.nav-mobile ul > li > a::after[\s\S]{0,200}right:\s*100%[\s\S]{0,120}background:\s*var\(--color-terracotta\)/.test(baseCss) &&
     /\.nav-mobile ul > li > a:hover::after[\s\S]{0,180}right:\s*0/.test(baseCss));
