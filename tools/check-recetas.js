@@ -463,7 +463,7 @@ console.log("\n5. Integración en las páginas y configuración");
   ok("robots bloquea admin", /Disallow: \/admin-recetas\.html/.test(robots));
   ok("netlify.toml protege admin", /for = "\/admin-recetas\.html"/.test(netlify) && /X-Robots-Tag/.test(netlify));
   ok("generate.js incluye admin", /ROOT_PAGES = \[[^\]]*admin-recetas\.html/.test(generate));
-  ok("admin no entra al sitemap", /mainPages = \["", "productos\.html", "historia\.html", "saber\.html", "recetas\.html", "gracias\.html"\]/.test(generate));
+  ok("admin no entra al sitemap", /mainPages = \["", "productos\/", "historia\.html", "saber\.html", "recetas\.html", "gracias\.html"\]/.test(generate));
 
   var productosPage = productos;
   var sitemap = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
@@ -471,8 +471,9 @@ console.log("\n5. Integración en las páginas y configuración");
   var shellJs = fs.readFileSync(path.join(ROOT, "js", "shell.js"), "utf8");
 
   ok("productos.html existe y es indexable", /<meta name="robots" content="index, follow">/.test(productosPage));
-  ok("productos.html tiene canonical propio", /rel="canonical" href="https:\/\/dorila\.netlify\.app\/productos\.html"/.test(productosPage));
-  ok("productos.html carga el catálogo completo", /id="productGrid"/.test(productosPage) && /js\/productos\.js\?v=/.test(productosPage) && /js\/app\.js\?v=/.test(productosPage));
+  ok("productos.html tiene canonical propio", /rel="canonical" href="https:\/\/dorila\.netlify\.app\/productos\/"/.test(productosPage));
+  ok("productos.html carga el catálogo completo", /id="productGrid"/.test(productosPage) && /js\/productos\.js\?v=/.test(productosPage) && /js\/app\.js\?v=/.test(productosPage) && /asset\/base\.css\?v=/.test(productosPage));
+  ok("productos.html no linkea la variante .html", !/href="productos\.html"/.test(productosPage) && !/productos\.html<\/loc>/.test(sitemap));
   ok("hero de productos usa el hero compartido",
     /<section class="page-hero catalog-hero feature-hero"/.test(productosPage) &&
     /<div class="hero-media">[\s\S]*?<img[\s\S]*?src="img\/montes_bg\.webp"[\s\S]*?fetchpriority="high"/.test(productosPage) &&
@@ -486,6 +487,10 @@ console.log("\n5. Integración en las páginas y configuración");
   check("productos.html ofrece índice estático de todas las fichas",
     (productosPage.match(/href="productos\/[^"]+\.html"/g) || []).length, PRODUCTS.length);
   ok("productos.html no limita los resultados", !/id="productGrid"[^>]*data-limit=/.test(productosPage));
+  ok("grid usa content-visibility", /\.product-card\{[^}]*content-visibility:auto/.test(homeCss));
+  ok("grid usa thumbnails sin data-src", /function buildCardImg/.test(appJs) && !/appendChild\(buildLazyImg/.test(appJs));
+  ok("búsqueda usa debounce", /var scheduleRender = debounce\(render, 150\)/.test(appJs));
+  ok("deep link canoniza la ficha", /function setDeepLinkCanonical/.test(appJs));
   ok("index limita los destacados a 8", /id="productGrid" data-limit="8"/.test(index));
   ok("modal muestra categoría y precio", /id="modalCat"/.test(index) && /id="modalPrice"/.test(index));
   ok("modal incluye productos relacionados", /id="modalRelatedWrap"/.test(index) && /id="modalRelated"/.test(index));
@@ -497,8 +502,14 @@ console.log("\n5. Integración en las páginas y configuración");
   ok("nav desktop incluye enlace directo a /recetas y trigger accesible",
     /<a href="\/recetas">Recetas<\/a>/.test(index) &&
     /<button class="dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="desktopRecetasMenu"/.test(index));
-  ok("netlify.toml redirige /recetas a /recetas.html",
-    /\[\[redirects\]\][\s\S]*?from = "\/recetas"[\s\S]*?to = "\/recetas\.html"[\s\S]*?status = 301/.test(netlify));
+  ok("netlify.toml fuerza canonical y redirige /recetas",
+    /from = "\/productos"[\s\S]*?to = "\/productos\/"[\s\S]*?status = 301[\s\S]*?force = true/.test(netlify) &&
+    /from = "\/productos\.html"[\s\S]*?to = "\/productos\/"[\s\S]*?status = 301[\s\S]*?force = true/.test(netlify) &&
+    /from = "\/recetas"[\s\S]*?to = "\/recetas\.html"[\s\S]*?status = 301[\s\S]*?force = true/.test(netlify));
+  ok("netlify.toml cachea JS y CSS con versión",
+    /for = "\/js\/\*"[\s\S]*?Cache-Control = "public, max-age=31536000, immutable"/.test(netlify) &&
+    /for = "\/asset\/\*"[\s\S]*?Cache-Control = "public, max-age=31536000, immutable"/.test(netlify) &&
+    (netlify.match(/Cache-Control = "public, max-age=31536000, immutable"/g) || []).length === 2);
   ok("shell.js alterna el dropdown con clic, aria-expanded y cierre diferido",
     /dropdown-toggle/.test(shellJs) &&
     /setOpen\(!li\.classList\.contains\("is-open"\)\)/.test(shellJs) &&
@@ -511,8 +522,8 @@ console.log("\n5. Integración en las páginas y configuración");
     }));
   ok("footer enlaza Envíos y garantía", /Envíos y garantía/.test(index) && /Envíos y garantía/.test(productosPage));
   ok("404 es noindex y vuelve al inicio", /name="robots" content="noindex, follow"/.test(notFound) && /href="index\.html"/.test(notFound));
-  ok("sitemap incluye productos.html y excluye 404/admin", /productos\.html<\/loc>/.test(sitemap) && !/404\.html<\/loc>/.test(sitemap) && !/admin-recetas\.html<\/loc>/.test(sitemap));
-  ok("buscador apunta a productos.html", /DORILA_SEARCH_TARGET \|\| .*productos\.html/.test(shellJs));
+  ok("sitemap incluye /productos/ y excluye 404/admin", /productos\/<\/loc>/.test(sitemap) && !/productos\.html<\/loc>/.test(sitemap) && !/404\.html<\/loc>/.test(sitemap) && !/admin-recetas\.html<\/loc>/.test(sitemap));
+  ok("buscador apunta a /productos/", /DORILA_SEARCH_TARGET \|\| "\/productos\/"/.test(shellJs));
 })();
 
 console.log("\n6. Sintaxis de JavaScript nuevo");

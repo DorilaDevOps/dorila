@@ -27,19 +27,22 @@ function sectionBotanica(title, items){
   return '<section class="ficha-botanica"><h2>' + esc(title) + '</h2><ul>' + escList(items) + '</ul></section>';
 }
 
-/* Los ?v= de los <script> evitan que el navegador sirva un JS viejo.
-   Se derivan del contenido de todo js/, así que nunca quedan desactualizados
+/* Los ?v= de scripts y estilos evitan que el navegador sirva archivos viejos.
+   Se derivan del contenido de js/ y asset/, así que nunca quedan desactualizados
    a mano y las fichas y las páginas raíz comparten la misma versión. */
-var JS_VERSION;
+var ASSET_VERSION;
 try {
   var h = crypto.createHash("sha1");
-  fs.readdirSync(path.join(ROOT, "js"))
-    .filter(function(f){ return /\.js$/.test(f); })
-    .sort()
-    .forEach(function(f){ h.update(fs.readFileSync(path.join(ROOT, "js", f))); });
-  JS_VERSION = h.digest("hex").slice(0, 8);
+  [["js", /\.js$/], ["asset", /\.css$/]].forEach(function(entry){
+    var dir = entry[0], ext = entry[1];
+    fs.readdirSync(path.join(ROOT, dir))
+      .filter(function(f){ return ext.test(f); })
+      .sort()
+      .forEach(function(f){ h.update(fs.readFileSync(path.join(ROOT, dir, f))); });
+  });
+  ASSET_VERSION = h.digest("hex").slice(0, 8);
 } catch (e) {
-  console.error("Falta js/ para calcular la versión de los scripts");
+  console.error("Falta js/ o asset/ para calcular la versión de los recursos");
   process.exit(1);
 }
 
@@ -141,7 +144,7 @@ products.forEach(function(p){
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Inicio", "item": BASE + "/" },
-      { "@type": "ListItem", "position": 2, "name": "Productos", "item": BASE + "/productos.html" },
+      { "@type": "ListItem", "position": 2, "name": "Productos", "item": BASE + "/productos/" },
       { "@type": "ListItem", "position": 3, "name": p.name, "item": url }
     ]
   }, null, 2);
@@ -164,7 +167,7 @@ products.forEach(function(p){
   }).join("\n");
 
   var html = template
-    .replace(/\{\{JS_VERSION\}\}/g, JS_VERSION)
+    .replace(/\{\{ASSET_VERSION\}\}/g, ASSET_VERSION)
     .replace(/\{\{PAGE_TITLE\}\}/g, title)
     .replace(/\{\{PAGE_DESC\}\}/g, desc)
     .replace(/\{\{META_KEYWORDS\}\}/g, esc(keywords))
@@ -212,7 +215,7 @@ products.forEach(function(p){
   console.log("OK  productos/" + slug + ".html   <- " + p.name);
 });
 
-var mainPages = ["", "productos.html", "historia.html", "saber.html", "recetas.html", "gracias.html"];
+var mainPages = ["", "productos/", "historia.html", "saber.html", "recetas.html", "gracias.html"];
 var sitemap = ['<?xml version="1.0" encoding="UTF-8"?>'];
 sitemap.push('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 mainPages.forEach(function(m){ sitemap.push("  <url><loc>" + BASE + "/" + m + "</loc></url>"); });
@@ -245,8 +248,8 @@ Object.keys(REDIRECTS).forEach(function(from){
   console.log("OK  productos/" + from + ".html  -> " + to + ".html");
 });
 
-/* Las páginas raíz son editadas a mano, pero el ?v= de sus <script> se
-   reescribe acá para que nunca queden con la versión vieja de un JS. */
+/* Las páginas raíz son editadas a mano, pero las URLs canónicas y el ?v= de
+   scripts y estilos se reescriben acá para no depender de cambios manuales. */
 var ROOT_PAGES = ["index.html", "productos.html", "404.html", "historia.html", "saber.html", "recetas.html", "gracias.html", "admin-recetas.html"];
 var catalogoItems = products.map(function(p, i){
   return '    {\n      "@type": "ListItem",\n      "position": ' + (i + 1) + ',\n      "name": ' + JSON.stringify(p.name) + ',\n      "url": "' + BASE + '/productos/' + p.slug + '.html"\n    }';
@@ -269,15 +272,18 @@ ROOT_PAGES.forEach(function(file){
       .replace(/("@type":\s*"ItemList"[\s\S]*?"itemListElement":\s*\[)[\s\S]*?(\r?\n  \]\r?\n\})/, function(_, open, close){ return open + "\n" + catalogoItems + close; })
       .replace(/(<ul class="catalog-index-list">\r?\n)[\s\S]*?(\r?\n      <\/ul>)/, function(_, open, close){ return open + catalogoIndex + close; });
   }
+  after = after.split(BASE + "/productos.html").join(BASE + "/productos/");
+  after = after.replace(/href="productos\.html"/g, 'href="/productos/"');
   after = after.replace(/Nombre, uso o nombre científico…/g, "Nombre, sinónimo, uso o nombre científico…");
-  after = after.replace(/(<script src="js\/[^"?]+)(?:\?v=[^"]*)?(")/g, "$1?v=" + JS_VERSION + "$2");
+  after = after.replace(/(<script src="js\/[^"?]+)(?:\?v=[^"]*)?(")/g, "$1?v=" + ASSET_VERSION + "$2");
+  after = after.replace(/(<link rel="stylesheet" href="asset\/[^"?]+)(?:\?v=[^"]*)?(")/g, "$1?v=" + ASSET_VERSION + "$2");
   if (after !== before){
     fs.writeFileSync(p, after);
     stamped++;
-    console.log("OK  " + file + "  (?v=" + JS_VERSION + ")");
+    console.log("OK  " + file + "  (?v=" + ASSET_VERSION + ")");
   }
 });
 
 console.log("\nGeneradas " + pages.length + " fichas.");
 console.log("Sitemap: " + pages.length + " productos + " + mainPages.length + " páginas.");
-console.log("JS ?v=" + JS_VERSION + " | páginas raíz reescritas: " + stamped);
+console.log("Assets ?v=" + ASSET_VERSION + " | páginas raíz reescritas: " + stamped);

@@ -64,6 +64,14 @@ function El(tag, id){
   el.getAttribute = function(k){ return (k in el.attrs) ? el.attrs[k] : null; };
   el.removeAttribute = function(k){ delete el.attrs[k]; };
   el.appendChild = function(c){ el.children.push(c); return c; };
+  el.replaceChildren = function(){
+    el.children = [];
+    for (var i = 0; i < arguments.length; i++){
+      var child = arguments[i];
+      if (child && child.tagName === "#fragment") el.children = el.children.concat(child.children);
+      else if (child) el.children.push(child);
+    }
+  };
   el.addEventListener = function(t, f){ (el.handlers[t] = el.handlers[t] || []).push(f); };
   el.removeEventListener = function(){};
   el.querySelector = function(sel){
@@ -97,6 +105,7 @@ function makeEnv(opts){
     },
     querySelectorAll: function(){ return []; },
     createElement: function(t){ return El(t); },
+    createDocumentFragment: function(){ return El("#fragment"); },
     createTextNode: function(t){ return { nodeValue: t }; },
     addEventListener: function(t, f){ (docHandlers[t] = docHandlers[t] || []).push(f); },
     removeEventListener: function(){}
@@ -119,7 +128,7 @@ function makeEnv(opts){
     removeEventListener: function(){},
     scrollTo: function(){}, print: function(){}, dispatchEvent: function(){},
     Image: function(){ this.onload = null; },
-    IntersectionObserver: function(){ this.observe = function(){}; this.unobserve = function(){}; }
+    IntersectionObserver: function(){ this.observe = function(){}; this.unobserve = function(){}; this.disconnect = function(){}; }
   };
   win.fire = function(t, ev){ (winHandlers[t] || []).forEach(function(f){ f(ev || {}); }); };
 
@@ -378,6 +387,7 @@ console.log("\n6. Fichas generadas — catálogo, carrito y seguridad");
   var index = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
   ok("index.html carga js/cart.js con ?v=", /<script src="js\/cart\.js\?v=[0-9a-f]{8}"/.test(index));
   ok("index.html carga js/app.js con ?v=", /<script src="js\/app\.js\?v=[0-9a-f]{8}"/.test(index));
+  ok("index.html carga CSS con ?v=", /<link rel="stylesheet" href="asset\/base\.css\?v=[0-9a-f]{8}"/.test(index));
 
   var catalogo = fs.readFileSync(path.join(ROOT, "productos.html"), "utf8");
   var itemListAt = catalogo.indexOf('"@type": "ItemList"');

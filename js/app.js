@@ -10,6 +10,8 @@
 
   /* --- 1. DATOS --- */
   var PRODUCTS = window.DORILA_PRODUCTS || [];
+  var PRODUCT_BY_SLUG = {};
+  PRODUCTS.forEach(function(p){ PRODUCT_BY_SLUG[p.slug] = p; });
 
   function setText(id, value){
     var el = document.getElementById(id);
@@ -25,17 +27,31 @@
       .replace(/^-+|-+$/g, "");
   }
 
+  function debounce(fn, wait){
+    var timer = null;
+    return function(){
+      var context = this, args = arguments;
+      clearTimeout(timer);
+      timer = setTimeout(function(){ fn.apply(context, args); }, wait);
+    };
+  }
+
+  function setDeepLinkCanonical(slug){
+    var p = PRODUCT_BY_SLUG[slug];
+    if (!p) return;
+    var link = document.querySelector('link[rel="canonical"]');
+    if (link) link.href = window.location.origin + "/productos/" + p.slug + ".html";
+  }
+
   /* --- 2. IMÁGENES lazy --- */
-  function buildLazyImg(fullUrl, alt, imageClass){
-    var thumb = fullUrl.replace(/\.webp$/, "-thumb.webp");
+  function buildCardImg(fullUrl, alt, imageClass){
     var img = document.createElement("img");
-    img.className = "lazy-img" + (imageClass ? " " + imageClass : "");
-    img.src = thumb;
-    img.setAttribute("data-src", fullUrl);
+    img.className = "card-img" + (imageClass ? " " + imageClass : "");
+    img.src = thumbUrl(fullUrl);
     img.alt = alt;
     img.loading = "lazy";
     img.decoding = "async";
-    img.fetchpriority = "low";
+    img.setAttribute("fetchpriority", "low");
     img.width = 600; img.height = 600;
     return img;
   }
@@ -170,7 +186,7 @@
   }
 
   function openProductModal(slug){
-    var p = PRODUCTS.find(function(item){ return item.slug === slug; });
+    var p = PRODUCT_BY_SLUG[slug];
     if (!p || !modal) return;
     modalLastFocus = document.activeElement;
 
@@ -255,12 +271,10 @@
     var relatedGrid = document.getElementById("modalRelated");
     if (!wrap || !relatedGrid) return;
     relatedGrid.innerHTML = "";
-    var bySlug = {};
-    PRODUCTS.forEach(function(r){ bySlug[r.slug] = r; });
     var permitir = p.vendible
       ? function(r){ return r.vendible; }
       : function(r){ return r.toxicidad !== "EXTREMA"; };
-    var related = (p.related || []).map(function(slug){ return bySlug[slug]; }).filter(function(r){
+    var related = (p.related || []).map(function(slug){ return PRODUCT_BY_SLUG[slug]; }).filter(function(r){
       return r && r.id !== p.id && permitir(r);
     }).slice(0, 4);
     if (!related.length){
@@ -312,7 +326,7 @@
 
     var media = document.createElement("div");
     media.className = "product-media";
-    media.appendChild(buildLazyImg(p.img, p.name + ", hierba medicinal de DORILA", p.imageClass));
+    media.appendChild(buildCardImg(p.img, p.name + ", hierba medicinal de DORILA", p.imageClass));
 
     var badge = p.toxicidad && p.toxicidad !== "SEGURA" && p.toxicidad !== "NO_DETERMINADA"
       ? "<span class=\"tox-badge " + (p.alertClass || "") + "\">" + p.toxicidadLabel + "</span>"
@@ -425,8 +439,10 @@
     var isDefaultView = !cat && !q;
     if (limit > 0 && isDefaultView) list = list.slice(0, limit);
 
-    grid.innerHTML = "";
-    list.forEach(function(p){ grid.appendChild(cardForProduct(p)); });
+    var fragment = document.createDocumentFragment();
+    list.forEach(function(p){ fragment.appendChild(cardForProduct(p)); });
+    if (lazyObserver) lazyObserver.disconnect();
+    grid.replaceChildren(fragment);
     if (limit > 0 && isDefaultView && total > limit){
       document.getElementById("productCount").textContent = "Mostrando " + list.length + " de " + total + " hierbas destacadas";
     } else {
@@ -497,9 +513,10 @@
   /* Buscador inline */
   var searchInput = document.getElementById("searchInput");
   var searchClear = document.getElementById("searchClear");
+  var scheduleRender = debounce(render, 150);
   searchInput.addEventListener("input", function(){
     searchClear.classList.toggle("is-visible", searchInput.value.length > 0);
-    render();
+    scheduleRender();
   });
   searchClear.addEventListener("click", function(){
     searchInput.value = "";
@@ -719,8 +736,11 @@
   if (initialCat) applyCategoryFilter(initialCat);
   var initialProduct = initialParams.get("p") || initialParams.get("producto");
   if (initialProduct){
-    var initialMatch = PRODUCTS.filter(function(p){ return (p.slug || slugify(p.name)) === initialProduct || slugify(p.name) === initialProduct; })[0];
-    if (initialMatch) openProductModal(initialMatch.slug);
+    var initialMatch = PRODUCT_BY_SLUG[initialProduct] || PRODUCTS.filter(function(p){ return (p.slug || slugify(p.name)) === initialProduct || slugify(p.name) === initialProduct; })[0];
+    if (initialMatch){
+      setDeepLinkCanonical(initialMatch.slug);
+      openProductModal(initialMatch.slug);
+    }
   }
 
   /* --- 6. FILTROS DESDE NAV --- */

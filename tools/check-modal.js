@@ -74,6 +74,8 @@ ok("catálogo estático anuncia el total actual", catalogoHtml.indexOf('"numberO
 var fichaHiperico = read("productos/hiperico.html");
 ok("ficha canónica de Hipérico existe", /<h1 id="ficha-title">Hipérico<\/h1>/.test(fichaHiperico));
 ok("ficha de Hipérico incluye keywords", /name="keywords"[^>]*Hipérico/.test(fichaHiperico));
+ok("ficha de Hipérico enlaza el catálogo canónico", /href="\/productos\/"/.test(fichaHiperico) && !/href="\.\.\/productos\.html"/.test(fichaHiperico));
+ok("ficha de Hipérico versiona los estilos", /asset\/base\.css\?v=[0-9a-f]{8}/.test(fichaHiperico));
 var redirect = read("productos/hierba-de-san-juan.html");
 ok("redirect apunta a hiperico", /url=\.\/hiperico\.html/.test(redirect) && /location\.replace\(".\/hiperico\.html"\)/.test(redirect));
 var sitemap = read("sitemap.xml");

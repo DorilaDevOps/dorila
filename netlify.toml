@@ -2,25 +2,23 @@
   command = "npm run build"
   publish = "."
 
-# El JS y el CSS no llevan hash en el nombre del archivo, así que una
-# caché del navegador puede servir una versión vieja (el botón "Agregar al
-# carrito" de las fichas dejó de funcionar por eso). no-store obliga a
-# revalidar siempre; el sitio es chico y pesa menos que el riesgo.
+# JS y CSS llevan ?v= calculado desde su contenido, así que una caché larga
+# no sirve versiones viejas. Las imágenes no llevan hash en el nombre.
 
 [[headers]]
   for = "/js/*"
   [headers.values]
-    Cache-Control = "public, no-store, must-revalidate"
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
   for = "/asset/*"
   [headers.values]
-    Cache-Control = "public, no-store, must-revalidate"
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
   for = "/img/*"
   [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
 
 [[headers]]
   for = "/admin-recetas.html"
@@ -31,6 +29,19 @@
     Referrer-Policy = "no-referrer"
 
 [[redirects]]
+  from = "/productos"
+  to = "/productos/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/productos.html"
+  to = "/productos/"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/recetas"
   to = "/recetas.html"
   status = 301
+  force = true
