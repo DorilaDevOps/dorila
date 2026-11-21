@@ -258,6 +258,12 @@
   var grid         = document.getElementById("productGrid");
   var cartCountEl  = document.getElementById("cartCount");
   var cartBtn      = document.getElementById("cartBtn");
+  var loadMoreBtn  = document.getElementById("loadMoreProducts");
+  var INITIAL_VISIBLE = 4;
+  var PAGE_SIZE = 4;
+  var visibleCount = INITIAL_VISIBLE;
+  var renderToken = 0;
+  var skeletonTimer = null;
 
   /* Grupos de categorías: "Todas" + 2 agrupaciones */
   var GROUP_DEFS = [
@@ -422,7 +428,27 @@
     return coincidencias / partes.length >= 0.6 ? 2 + coincidencias : 0;
   }
 
+  function skeletonCard(){
+    var card = document.createElement("div");
+    card.className = "product-card is-skeleton";
+    card.setAttribute("aria-hidden", "true");
+    card.innerHTML = '<div class="skeleton-media"></div><div class="product-body"><div class="skeleton-line"></div><div class="skeleton-line is-short"></div><div class="product-footer"><span class="skeleton-line"></span><span class="skeleton-line is-short"></span></div></div>';
+    return card;
+  }
+
+  function showSkeleton(count){
+    var fragment = document.createDocumentFragment();
+    for (var i = 0; i < count; i++) fragment.appendChild(skeletonCard());
+    if (lazyObserver) lazyObserver.disconnect();
+    grid.replaceChildren(fragment);
+    grid.setAttribute("aria-busy", "true");
+    if (loadMoreBtn) loadMoreBtn.hidden = true;
+    document.getElementById("productCount").textContent = "Cargando hierbas\u2026";
+    document.getElementById("productEmpty").hidden = true;
+  }
+
   function render(){
+    var token = ++renderToken;
     var q  = (document.getElementById("searchInput").value || "").trim();
     var activeCat = document.querySelector(".filter-btn.is-active");
     var cat = activeCat ? activeCat.dataset.category : "";
@@ -443,19 +469,29 @@
     var total = list.length;
     var limit = parseInt(grid.dataset.limit || "0", 10);
     var isDefaultView = !cat && !q;
-    if (limit > 0 && isDefaultView) list = list.slice(0, limit);
+    var isPreview = limit > 0 && isDefaultView;
+    var previewTotal = isPreview ? Math.min(total, limit) : total;
+    var visible = isPreview ? Math.min(visibleCount, previewTotal) : previewTotal;
+    var shown = list.slice(0, visible);
 
-    var fragment = document.createDocumentFragment();
-    list.forEach(function(p){ fragment.appendChild(cardForProduct(p)); });
-    if (lazyObserver) lazyObserver.disconnect();
-    grid.replaceChildren(fragment);
-    if (limit > 0 && isDefaultView && total > limit){
-      document.getElementById("productCount").textContent = "Mostrando " + list.length + " de " + total + " hierbas destacadas";
-    } else {
-      document.getElementById("productCount").textContent = total + " hierba" + (total === 1 ? "" : "s") + " encontrada" + (total === 1 ? "" : "s");
-    }
-    document.getElementById("productEmpty").hidden = total > 0;
-    initLazyLoading();
+    showSkeleton(shown.length);
+    window.clearTimeout(skeletonTimer);
+    skeletonTimer = window.setTimeout(function(){
+      if (token !== renderToken) return;
+      var fragment = document.createDocumentFragment();
+      shown.forEach(function(p){ fragment.appendChild(cardForProduct(p)); });
+      if (lazyObserver) lazyObserver.disconnect();
+      grid.replaceChildren(fragment);
+      grid.removeAttribute("aria-busy");
+      if (isPreview){
+        document.getElementById("productCount").textContent = "Mostrando " + shown.length + " de " + previewTotal + " hierbas destacadas";
+      } else {
+        document.getElementById("productCount").textContent = total + " hierba" + (total === 1 ? "" : "s") + " encontrada" + (total === 1 ? "" : "s");
+      }
+      document.getElementById("productEmpty").hidden = total > 0;
+      initLazyLoading();
+      if (loadMoreBtn) loadMoreBtn.hidden = !(isPreview && visible < previewTotal);
+    }, 120);
   }
 
   /* Filtros por grupo */
@@ -468,6 +504,7 @@
   allBtn.addEventListener("click", function(){
     filtersWrap.querySelectorAll(".filter-btn").forEach(function(b){ b.classList.remove("is-active"); });
     allBtn.classList.add("is-active");
+    visibleCount = INITIAL_VISIBLE;
     render();
   });
   filtersWrap.appendChild(allBtn);
@@ -527,9 +564,19 @@
   searchClear.addEventListener("click", function(){
     searchInput.value = "";
     searchClear.classList.remove("is-visible");
+    visibleCount = INITIAL_VISIBLE;
     render();
     searchInput.focus();
   });
+
+  if (loadMoreBtn){
+    loadMoreBtn.addEventListener("click", function(){
+      var limit = parseInt(grid.dataset.limit || "0", 10) || 0;
+      if (visibleCount >= limit) return;
+      visibleCount += PAGE_SIZE;
+      render();
+    });
+  }
 
   /* --- 5. CARRITO --- */
   var cart = {};

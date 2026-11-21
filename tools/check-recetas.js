@@ -571,6 +571,38 @@ console.log("\n5. Integración en las páginas y configuración");
   ok("búsqueda usa debounce", /var scheduleRender = debounce\(render, 150\)/.test(appJs));
   ok("deep link canoniza la ficha", /function setDeepLinkCanonical/.test(appJs));
   ok("index limita los destacados a 8", /id="productGrid" data-limit="8"/.test(index));
+  var categorySection = index.slice(index.indexOf('<div class="category-grid"'), index.indexOf("</section>", index.indexOf('<div class="category-grid"')));
+  ok("categorías sin aria-label redundante en la flecha decorativa",
+    (categorySection.match(/class="category-links" aria-hidden="true"/g) || []).length === 12 &&
+    !/class="category-links"[^>]*aria-label=/.test(categorySection));
+  ok("12 íconos de categoría usan SVG inline homogéneo",
+    (categorySection.match(/<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1\.6"/g) || []).length === 12 &&
+    !/<img\b/.test(categorySection));
+  ok("PNG de lotus sin uso eliminado", !fs.existsSync(path.join(ROOT, "img", "icons", "icons83-lotus-100.png")));
+  var media640 = homeCss.slice(homeCss.indexOf("@media (min-width:640px){"), homeCss.indexOf("@media (min-width:768px){"));
+  ok("categorías mantienen 2 columnas hasta 768px",
+    /\.category-grid\{ display:grid; gap:0\.45rem; grid-template-columns:repeat\(2,1fr\); \}/.test(homeCss) &&
+    /@media \(min-width:768px\)\{[\s\S]*?\.category-grid\{ grid-template-columns:repeat\(3,1fr\); gap:var\(--space-2\); \}/.test(homeCss) &&
+    !/\.category-grid\{ grid-template-columns:repeat\(3,1fr\)/.test(media640));
+  ok("h2 de historia usa token clamp sin estilo inline",
+    /<h2 id="historia-heading">/.test(index) &&
+    !/<h2 id="historia-heading"[^>]*style=/.test(index) &&
+    /#historia-heading\{ font-family:var\(--font-display\); font-size:var\(--fs-h2\); color:var\(--color-ink\); margin-top:0\.6rem; \}/.test(homeCss));
+  ok("galería inicializa 4 productos y carga 4 más hasta 8",
+    /id="productGrid" data-limit="8"/.test(index) &&
+    /id="loadMoreProducts"/.test(index) &&
+    /var INITIAL_VISIBLE = 4;/.test(appJs) &&
+    /var PAGE_SIZE = 4;/.test(appJs) &&
+    /visibleCount \+= PAGE_SIZE/.test(appJs) &&
+    /Math\.min\(visibleCount, previewTotal\)/.test(appJs));
+  ok("skeleton loader marca la grid como ocupada y respeta movimiento reducido",
+    /function showSkeleton/.test(appJs) &&
+    /grid\.setAttribute\("aria-busy", "true"\)/.test(appJs) &&
+    /grid\.removeAttribute\("aria-busy"\)/.test(appJs) &&
+    /product-card is-skeleton/.test(appJs) &&
+    /@keyframes shimmer/.test(homeCss) &&
+    /\.product-card\.is-skeleton/.test(homeCss) &&
+    /prefers-reduced-motion: reduce/.test(homeCss));
   ok("modal muestra categoría y precio", /id="modalCat"/.test(index) && /id="modalPrice"/.test(index));
   ok("modal incluye productos relacionados", /id="modalRelatedWrap"/.test(index) && /id="modalRelated"/.test(index));
   ok("app.js renderiza relacionados y limita la home", /function renderRelated/.test(appJs) && /dataset\.limit/.test(appJs));
@@ -602,6 +634,11 @@ console.log("\n5. Integración en las páginas y configuración");
     /dropdown-toggle/.test(shellJs) &&
     /setOpen\(!li\.classList\.contains\("is-open"\)\)/.test(shellJs) &&
     /setTimeout\(function\(\)\{ setOpen\(false\)/.test(shellJs));
+  ok("shell.js sincroniza aria-expanded en menú, acordeones y dropdowns",
+    /menuToggle\.setAttribute\("aria-expanded", "true"\)/.test(shellJs) &&
+    /menuToggle\.setAttribute\("aria-expanded", "false"\)/.test(shellJs) &&
+    /toggle\.setAttribute\("aria-expanded", open \? "true" : "false"\)/.test(shellJs) &&
+    /btn\.setAttribute\("aria-expanded", isOpen \? "true" : "false"\)/.test(shellJs));
   ok("todas las fuentes públicas acreditan a Kikiriya-DevOps",
     [index, productosPage, historia, saber, recetas, gracias, notFound, template].every(function(html){
       return /Un proyecto desarrollado con dedicación por/.test(html) &&
