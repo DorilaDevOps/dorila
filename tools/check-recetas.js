@@ -618,7 +618,9 @@ console.log("\n5. Integración en las páginas y configuración");
     /addBtn\.hidden = !disponible/.test(appJs) &&
     /addBtn\.disabled = !disponible/.test(appJs));
   ok("app.js excluye EXTREMA de relacionados", /r\.toxicidad !== "EXTREMA"/.test(appJs));
-  ok("app.js rechaza clics en productos no vendibles", /if \(!p \|\| !p\.vendible\) return/.test(appJs));
+  ok("app.js rechaza clics en productos no vendibles",
+    /if \(!hasStock\(p\)\) return false/.test(appJs) &&
+    /function hasStock[\s\S]*?!!p && !!p\.vendible && Number\(p\.stock\) > 0/.test(appJs));
   ok("app.js soporta enlaces profundos de producto y categoría", /get\("p"\)/.test(appJs) && /get\("categoria"\)/.test(appJs));
   ok("nav desktop incluye enlace directo a /recetas y trigger accesible",
     /<a href="\/recetas">Recetas<\/a>/.test(index) &&

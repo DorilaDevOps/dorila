@@ -43,6 +43,21 @@ ok("app.js bloquea el carrito del modal sin stock",
   /addBtn\.hidden = !disponible/.test(app) &&
   /addBtn\.disabled = !disponible/.test(app) &&
   /if \(!hasStock\(findProduct\(this\.dataset\.id\)\)\) return/.test(app));
+ok("app.js limita cantidades al stock",
+  /function maxQty[\s\S]*?parseInt\(p\.stock, 10\)/.test(app) &&
+  /Math\.min\(before \+ 1, maxQty\(p\)\)/.test(app) &&
+  /Math\.min\(n, maxQty\(p\)\)/.test(app));
+ok("tarjeta no abre modal con Enter/Espacio desde el boton de agregar",
+  /card\.addEventListener\("keydown"[\s\S]*?if \(e\.target !== card\) return[\s\S]*?openProductModal/.test(app));
+ok("WhatsApp no vacia el carrito al abrir el enlace",
+  /orderWa\.addEventListener\("click"[\s\S]*?orderWa\.classList\.add\("is-disabled"\)/.test(app) &&
+  !/orderWa\.addEventListener\("click"[\s\S]{0,320}cart = \{\}/.test(app));
+
+var cartJs = read("js/cart.js");
+ok("cart.js respeta stock al agregar y sanear",
+  /function maxQty[\s\S]*?parseInt\(p\.stock, 10\)/.test(cartJs) &&
+  /clean\[p\.id\] = Math\.min\(n, top\)/.test(cartJs) &&
+  /cart\[id\] = Math\.min\(\(cart\[id\] \|\| 0\) \+ 1, top\)/.test(cartJs));
 ok("app.js no usa Escape manual del modal", !/modal\.classList\.contains\("is-open"\)/.test(app));
 ok("app.js renderiza sinónimos", /p\.sinonimos/.test(app));
 ok("app.js normaliza búsqueda con slugify", /function slugify/.test(app) && /searchScore/.test(app));

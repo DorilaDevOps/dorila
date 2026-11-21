@@ -17,6 +17,16 @@
     return !!p && !!p.vendible && Number(p.stock) > 0;
   }
 
+  function maxQty(p){
+    if (!p || p.stock === undefined || p.stock === null || p.stock === "") return Infinity;
+    var n = parseInt(p.stock, 10);
+    return isNaN(n) ? Infinity : Math.max(0, n);
+  }
+
+  function capQty(id, n){
+    return Math.max(0, Math.min(n, maxQty(findProduct(id))));
+  }
+
   function setText(id, value){
     var el = document.getElementById(id);
     if (el) el.textContent = value || "";
@@ -369,7 +379,7 @@
     var addBtn = body.querySelector(".add-btn");
     if (addBtn) addBtn.addEventListener("click", function(e){
       e.stopPropagation();
-      addToCart(p.id);
+      if (!addToCart(p.id)) return;
       this.innerHTML = "<svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M20 6L9 17l-5-5\"/></svg>";
       var self = this;
       setTimeout(function(){
@@ -379,6 +389,7 @@
 
     card.addEventListener("keydown", function(e){
       if (e.key !== "Enter" && e.key !== " ") return;
+      if (e.target !== card) return;
       e.preventDefault();
       openProductModal(p.slug);
     });
@@ -605,13 +616,18 @@
   }
   function addToCart(id){
     var p = findProduct(id);
-    if (!p || !p.vendible) return;
-    cart[id] = (cart[id] || 0) + 1;
+    if (!hasStock(p)) return false;
+    var before = cart[id] || 0;
+    var next = Math.min(before + 1, maxQty(p));
+    if (next <= before) return false;
+    cart[id] = next;
     saveCart(); updateBadge(); renderCart();
+    return true;
   }
   function changeQty(id, delta){
-    cart[id] = (cart[id] || 0) + delta;
-    if (cart[id] <= 0) delete cart[id];
+    var next = capQty(id, (cart[id] || 0) + delta);
+    if (next <= 0) delete cart[id];
+    else cart[id] = next;
     saveCart(); updateBadge(); renderCart();
   }
 
@@ -626,7 +642,7 @@
     Object.keys(fresh).forEach(function(id){
       var n = parseInt(fresh[id], 10);
       var p = findProduct(id);
-      if (n > 0 && p && p.vendible) cart[id] = n;
+      if (n > 0 && hasStock(p)) cart[id] = Math.min(n, maxQty(p));
     });
     saveCart();
     updateBadge();
@@ -638,7 +654,7 @@
   if (modalAddBtn) modalAddBtn.addEventListener("click", function(){
     if (this.disabled || this.hidden || this.classList.contains("is-success")) return;
     if (!hasStock(findProduct(this.dataset.id))) return;
-    addToCart(this.dataset.id);
+    if (!addToCart(this.dataset.id)) return;
     this.classList.add("is-success");
     this.textContent = "\u00A1Agregado! \u2713";
     var self = this;
@@ -764,14 +780,10 @@
   var orderWa = document.getElementById("orderWa");
   orderWa.addEventListener("click", function(){
     if (orderWa.classList.contains("is-disabled")) return;
-    cart = {};
-    saveCart();
-    updateBadge();
-    renderCart();
     orderWa.classList.add("is-disabled");
-    orderWa.textContent = "Orden enviada \u2713";
+    orderWa.textContent = "Abriendo WhatsApp\u2026";
     var orderNote = document.querySelector(".order-note");
-    if (orderNote) orderNote.textContent = "Tu carrito se vaci\u00F3 al enviar la orden. Pod\u00E9s imprimirla o guardarla en PDF como comprobante.";
+    if (orderNote) orderNote.textContent = "Tu carrito se conserva hasta que confirmes la orden. Si WhatsApp no se abre, volv\u00E9 a revisar y enviar el pedido.";
   });
   document.getElementById("orderPrint").addEventListener("click", function(){ window.print(); });
   document.getElementById("orderDone").addEventListener("click", finishOrder);

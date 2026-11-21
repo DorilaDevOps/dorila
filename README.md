@@ -35,8 +35,8 @@ de **recetas y remedios caseros**, educación herbolaria y agradecimientos.
 
 | Funcionalidad | Detalle |
 |---|---|
-| 🛒 **Carrito persistente** | Se guarda en `localStorage`, con cantidades, subtotal y badges; se agrega desde la grilla, el modal de planta y cada ficha de producto |
-| 📄 **Orden de compra** | Verificación en dos pasos (revisión → orden), número de orden, envío por WhatsApp (vacía el carrito) y PDF/imprimir |
+| 🛒 **Carrito persistente** | Se guarda en `localStorage`, con cantidades limitadas por `stock`, subtotal y badges; se agrega desde la grilla, el modal de planta y cada ficha de producto |
+| 📄 **Orden de compra** | Verificación en dos pasos (revisión → orden), número de orden, envío por WhatsApp y PDF/imprimir; el carrito se vacía al confirmar la orden |
 | 🔎 **Catálogo buscable** | Página `productos.html` con el herbario completo, búsqueda por nombre, uso o nombre científico, familia y toxicidad, filtros por categoría e índice estático generado para SEO |
 | 🧪 **Fichas botánicas** | Datos botánicos importados desde `data/entrada-plantas.json`, fusión por nombre/científico con los productos comerciales, fallback mandala teñido por categoría |
 | ⚠️ **Seguridad toxicológica** | Nivel de toxicidad visible; `EXTREMA` muestra alerta roja, oculta el botón de compra y nunca sugiere consumo; `stock <= 0` oculta y deshabilita `modalAddBtn` y bloquea la venta |
@@ -135,7 +135,7 @@ node tools/gestionar-catalogo.js validar --dry-run
 
 Cada cambio con escritura crea un `.bak` y regenera `js/productos.js`. Las reglas
 de seguridad se validan: `EXTREMA` nunca puede tener precio, stock ni
-disponibilidad, y un producto disponible requiere `stock > 0` y `precio > 0`.
+disponibilidad, y un producto disponible requiere `stock > 0` y `precio > 0`; el carrito nunca supera ese `stock`.
 Los IDs antiguos `cons-*` se descartan al importar y al sanificar el carrito:
 no hay migración de carritos. `tools/generate.js` crea además el redirect
 `productos/hierba-de-san-juan.html` → `productos/hiperico.html`, que no entra
@@ -177,10 +177,12 @@ en los tres anchos. El marker `.eyebrow-mark` se oculta en todos los eyebrows
 por debajo de 640px y `.product-card .tox-badge` baja a `0.68rem` para no
 compactar la grilla en móvil.
 
-`npm test` ejecuta 505 verificaciones (`52 + 248 + 109 + 96`): cubre carrito,
+`npm test` ejecuta 515 verificaciones (`58 + 248 + 109 + 100`): cubre carrito,
 recetas, contraste WCAG AA, modal y catálogo. Entre los contratos nuevos están
 las 2 columnas de categorías hasta 768px, el `skeleton` de la home, el foco con
-`preventScroll` y el `modalAddBtn` deshabilitado cuando `stock <= 0`.
+`preventScroll`, el `modalAddBtn` deshabilitado cuando `stock <= 0`, el tope de
+cantidad por `stock`, el guard de teclado en la tarjeta y el carrito conservado
+hasta confirmar la orden.
 
 ### 🌐 URLs canónicas y caché
 

@@ -208,14 +208,16 @@ console.log("\n2. Ficha — el boton nunca queda pegado (varios clics seguidos)"
   clickOn(env.doc, btn);
   clickOn(env.doc, btn);
   clickOn(env.doc, btn);
-  check("tres clics = 3 unidades", env.read(), { "DOR-ARO-012": 3 });
+  check("tres clics = tope de stock", env.read(), { "DOR-ARO-012": 1 });
+  check("badge no pasa del stock",
+        env.doc.querySelector(".cart-btn").querySelector(".cart-count").textContent, "1");
 
   env.timers.flush();
   check("vuelve a 'Agregar al carrito' (bug anterior: quedaba en '¡Agregado! ✓')",
         btn.textContent, "Agregar al carrito");
 
   clickOn(env.doc, btn);
-  check("y sigue agregando despues de resetear", env.read(), { "DOR-ARO-012": 4 });
+  check("sigue en el tope despues de resetear", env.read(), { "DOR-ARO-012": 1 });
 })();
 
 /* =====================================================================
@@ -241,23 +243,24 @@ console.log("\n3b. Ficha — carrito rechaza ids no vendibles");
     scriptSrc: "../js/cart.js",
     store: (function(){
       var s = {};
-      s[KEY] = JSON.stringify({ "DOR-TRA-020": 2, "DOR-TRA-001": 1, "DOR-ARO-012": 1 });
+      s[KEY] = JSON.stringify({ "DOR-TRA-020": 2, "DOR-TRA-001": 1, "DOR-ARO-012": 1, "DOR-DIG-013": 7 });
       return s;
     })()
   });
   env.run("productos.js");
   env.run("cart.js");
 
-  check("sanitize elimina EXTREMA y sin stock", env.read(), { "DOR-ARO-012": 1 });
+  check("sanitize elimina no vendibles y respeta stock",
+        env.read(), { "DOR-DIG-013": 1, "DOR-ARO-012": 1 });
 
   var extrema = makeAddBtn("DOR-TRA-020");
   clickOn(env.doc, extrema);
-  check("clic en EXTREMA no agrega", env.read(), { "DOR-ARO-012": 1 });
+  check("clic en EXTREMA no agrega", env.read(), { "DOR-DIG-013": 1, "DOR-ARO-012": 1 });
   check("EXTREMA no recibe feedback de agregado", extrema.textContent, "Agregar al carrito");
 
   var sinStock = makeAddBtn("DOR-TRA-001");
   clickOn(env.doc, sinStock);
-  check("clic en sin stock no agrega", env.read(), { "DOR-ARO-012": 1 });
+  check("clic en sin stock no agrega", env.read(), { "DOR-DIG-013": 1, "DOR-ARO-012": 1 });
   check("sin stock no recibe feedback de agregado", sinStock.textContent, "Agregar al carrito");
 })();
 
@@ -288,32 +291,61 @@ console.log("\n5. index (js/app.js) — resincronizacion del carrito");
   env.run("cart.js");
   env.run("app.js");
 
-  check("lee el carrito que dejo la ficha", env.read(), { "DOR-DIG-013": 2 });
-  check("badge con 2 unidades", env.byId.cartCount.textContent, "2");
-  check("el carrito abierto suma 2", env.byId.cartItemCount.textContent, "2");
-  check("subtotal de 2 manzanillas", env.byId.cartSubtotal.textContent, "$360");
+  check("lee y capea el carrito que dejo la ficha", env.read(), { "DOR-DIG-013": 1 });
+  check("badge con 1 unidad", env.byId.cartCount.textContent, "1");
+  check("el carrito abierto suma 1", env.byId.cartItemCount.textContent, "1");
+  check("subtotal de la manzanilla", env.byId.cartSubtotal.textContent, "$180");
 
   function clickCartBtn(){ (env.byId.cartBtn.handlers.click || []).forEach(function(f){ f({ target: env.byId.cartBtn }); }); }
 
   /* Otra pestaña agrega: bfcache / storage / visibilitychange */
   env.store[KEY] = '{"DOR-DIG-056":3}';
   env.win.fire("pageshow");
-  check("pageshow (atras/adelante) lee el cambio externo", env.byId.cartCount.textContent, "3");
+  check("pageshow (atras/adelante) lee y capea el cambio externo", env.byId.cartCount.textContent, "1");
 
-  env.store[KEY] = '{"DOR-DIG-056":3,"DOR-TRA-005":1}';
+  env.store[KEY] = '{"DOR-DIG-056":1,"DOR-ARO-012":1}';
   env.win.fire("storage", { key: KEY });
-  check("storage (otra pestana) lee el cambio externo", env.byId.cartCount.textContent, "4");
+  check("storage (otra pestana) lee el cambio externo", env.byId.cartCount.textContent, "2");
 
-  env.store[KEY] = '{"DOR-DIG-056":7}';
+  env.store[KEY] = '{"DOR-DIG-013":1,"DOR-DIG-056":1,"DOR-ARO-012":1}';
   env.doc.hidden = false;
   env.doc.fire("visibilitychange");
-  check("visibilitychange (volver al tab) lee el cambio externo", env.byId.cartCount.textContent, "7");
+  check("visibilitychange (volver al tab) lee el cambio externo", env.byId.cartCount.textContent, "3");
 
   /* Al abrir el carrito tiene que re-leer, no mostrar la copia vieja */
-  env.store[KEY] = '{"DOR-DIG-056":7,"DOR-DIG-010":2}';
+  env.store[KEY] = '{"DOR-DIG-013":1,"DOR-DIG-056":1,"DOR-ARO-012":1,"ghost-999":5}';
   clickCartBtn();
-  check("abrir el carrito re-lee localStorage", env.byId.cartItemCount.textContent, "9");
+  check("abrir el carrito re-lee localStorage", env.byId.cartItemCount.textContent, "3");
   check("el drawer queda abierto", env.byId.cartPage.classList.contains("is-open"), true);
+})();
+
+/* =====================================================================
+   5b. index: WhatsApp no descarta la orden si no se abre el enlace
+   ===================================================================== */
+console.log("\n5b. index (js/app.js) — WhatsApp conserva el carrito");
+(function(){
+  var env = makeEnv({ pathname: "/index.html" });
+  env.run("productos.js");
+  env.run("cart.js");
+  env.run("app.js");
+
+  function fire(id){
+    (env.byId[id].handlers.click || []).forEach(function(f){ f({ target: env.byId[id] }); });
+  }
+
+  env.store[KEY] = JSON.stringify({ "DOR-ARO-012": 1 });
+  fire("cartBtn");
+  fire("cartCheckout");
+  fire("verifyConfirm");
+  ok("la orden se genera con productos", env.byId.orderTotal.textContent !== "$0");
+
+  fire("orderWa");
+  check("el click de WhatsApp no vacia el carrito", env.read(), { "DOR-ARO-012": 1 });
+  ok("el enlace queda deshabilitado", env.byId.orderWa.classList.contains("is-disabled"));
+
+  fire("orderDone");
+  check("orderDone si vacia el carrito", env.read(), {});
+  check("badge vuelve a 0", env.byId.cartCount.textContent, "0");
 })();
 
 /* =====================================================================

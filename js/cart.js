@@ -40,12 +40,20 @@
     return n;
   }
 
+  function maxQty(p){
+    if (!p || p.stock === undefined || p.stock === null || p.stock === "") return Infinity;
+    var n = parseInt(p.stock, 10);
+    return isNaN(n) ? Infinity : Math.max(0, n);
+  }
+
   function sanitize(cart){
     var products = window.DORILA_PRODUCTS;
     if (!products || !products.length) return cart;
     var clean = {};
     products.forEach(function(p){
-      if (p.vendible && cart[p.id]) clean[p.id] = cart[p.id];
+      var n = parseInt(cart[p.id], 10);
+      var top = maxQty(p);
+      if (p.vendible && n > 0 && top > 0) clean[p.id] = Math.min(n, top);
     });
     return clean;
   }
@@ -114,11 +122,14 @@
        verdad. Si DORILA_PRODUCTS aún no cargó se acepta igual: abortar en silencio
        dejaba el botón sin ningún feedback. */
     var products = window.DORILA_PRODUCTS;
+    var top = Infinity;
     if (products && products.length){
       var found = products.filter(function(p){ return p.id === id; })[0];
       if (!found || !found.vendible) return;
+      top = maxQty(found);
+      if (top <= 0) return;
     }
-    cart[id] = (cart[id] || 0) + 1;
+    cart[id] = Math.min((cart[id] || 0) + 1, top);
     try { window.localStorage.setItem("dorila-cart", JSON.stringify(cart)); } catch (err) {}
     updateBadge();
     showFeedback(btn);
