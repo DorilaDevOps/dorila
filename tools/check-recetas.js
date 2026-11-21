@@ -590,6 +590,46 @@ console.log("\n5. Integración en las páginas y configuración");
     /\.category-grid\{ display:grid; gap:0\.45rem; grid-template-columns:repeat\(2,1fr\); \}/.test(homeCss) &&
     /@media \(min-width:768px\)\{[\s\S]*?\.category-grid\{ grid-template-columns:repeat\(3,1fr\); gap:var\(--space-2\); \}/.test(homeCss) &&
     !/\.category-grid\{ grid-template-columns:repeat\(3,1fr\)/.test(media640));
+  ok("hero posiciona DORILA como yuyos + botica + recetas",
+    index.indexOf('<h1 id="hero-heading">Elegí cuidarte con productos naturales,<br>botica artesanal y recetas compartidas</h1>') !== -1 &&
+    index.indexOf('Explorá yuyos y sus usos, descubrí preparados artesanales hechos en pequeñas tandas y compartí tus recetas con la comunidad.') !== -1);
+  ok("hero CTA lleva al catálogo y al recetario",
+    index.indexOf('<a class="btn btn-look" href="/productos/">Explorar yuyos y productos</a>') !== -1 &&
+    index.indexOf('<a class="btn btn-look" href="recetas.html#recetas-caseras">Ver y compartir recetas</a>') !== -1);
+  ok("SEO de home refleja el nuevo posicionamiento",
+    index.indexOf('<title>DORILA — Botica artesanal, guía de yuyos y recetas compartidas en Uruguay</title>') !== -1 &&
+    index.indexOf('name="description" content="DORILA es botica artesanal, guía de yuyos y recetario comunitario en Uruguay.') !== -1 &&
+    index.indexOf('property="og:title" content="DORILA — Botica artesanal, guía de yuyos y recetas compartidas"') !== -1);
+  ok("home explica qué podés hacer en DORILA",
+    index.indexOf('id="que-podes-hacer"') !== -1 &&
+    (index.match(/class="ecosystem-card reveal"/g) || []).length === 3);
+  ok("bloque DORILA enlaza guía, botica y comunidad",
+    index.indexOf('<a class="btn btn-outline" href="/productos/">Explorar yuyos</a>') !== -1 &&
+    index.indexOf('<a class="btn btn-outline" href="/productos/">Ver la botica</a>') !== -1 &&
+    index.indexOf('<a class="btn btn-outline" href="recetas.html#recetas-caseras">Ver recetas</a>') !== -1 &&
+    index.indexOf('<a class="btn btn-outline" href="recetas.html?compartir=1#recetas-comunidad">Compartir mi receta</a>') !== -1);
+  ok("CSS del bloque DORILA pasa a 3 columnas en desktop",
+    homeCss.indexOf('@media (min-width:768px){ .ecosystem-grid{ grid-template-columns:repeat(3,1fr); } }') !== -1);
+  ok("12 categorías son enlaces reales al catálogo",
+    (categorySection.match(/<a class="category-card[^>]*href="\/productos\/\?categoria=[a-z-]+#productos"/g) || []).length === 12 &&
+    !/<article class="category-card/.test(categorySection) &&
+    !/role="button"/.test(categorySection));
+  ok("enlaces de categoría conservan data-category",
+    (categorySection.match(/data-category="[a-z-]+"/g) || []).length === 12);
+  var beneficiosPos = index.indexOf('<section class="benefits"');
+  var historiaPos = index.indexOf('<!-- ===================== HISTORIA ===================== -->');
+  var recetasBannerPos = index.indexOf('<section class="community-teaser" id="recetas-comunidad"');
+  ok("banner de recetas queda entre Beneficios e Historia",
+    beneficiosPos !== -1 && recetasBannerPos > beneficiosPos && recetasBannerPos < historiaPos &&
+    (index.match(/id="recetas-comunidad"/g) || []).length === 1 &&
+    index.indexOf('id="community-teaser-heading"') === -1);
+  ok("banner de recetas usa la copia acordada",
+    index.indexOf('id="homeRecetasTitle">De la planta a tu taza: recetas y técnicas</h2>') !== -1 &&
+    index.indexOf('Aprendé a preparar infusiones, decocciones y oleatos en casa, explorá recetas probadas por otros usuarios o sumá la tuya al herbario comunitario.') !== -1);
+  ok("banner de recetas ofrece recetas, técnicas y compartir",
+    index.indexOf('<a class="btn btn-look" href="recetas.html#recetas-caseras">Explorar recetas</a>') !== -1 &&
+    index.indexOf('<a class="btn btn-look" href="recetas.html#tecnicas">Técnicas de preparación</a>') !== -1 &&
+    index.indexOf('<a class="btn btn-look" href="recetas.html?compartir=1#recetas-comunidad">Compartir mi receta →</a>') !== -1);
   ok("h2 de historia usa token clamp sin estilo inline",
     /<h2 id="historia-heading">/.test(index) &&
     !/<h2 id="historia-heading"[^>]*style=/.test(index) &&

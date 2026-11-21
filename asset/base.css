@@ -136,12 +136,24 @@ body{
 }
 
 .skip-link{
-  position:absolute; left:-999px; top:auto;
-  background: var(--color-ink); color: var(--color-parchment-soft);
-  padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm);
+  position:absolute;
+  left:-999px;
+  top:auto;
+  background: var(--color-ink);
+  color: var(--color-parchment-soft);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  border: 2px solid transparent;
+  transition: top 0.2s ease;
   z-index: 200;
 }
-.skip-link:focus{ left: var(--space-2); top: var(--space-2); }
+.skip-link:focus-visible{
+  left: var(--space-2);
+  top: var(--space-2);
+  outline: 3px solid #c88a4b; /* Borde dorado/tierra con alto contraste */
+  outline-offset: none;
+  border-color: var(--color-forest-accent);
+}
 
 /* Migas de pan (breadcrumb) */
 .crumbs{ padding-block: var(--space-3) 0; font-size: var(--fs-small); color: var(--color-body-soft); display:flex; flex-wrap:wrap; gap:0.45rem; }

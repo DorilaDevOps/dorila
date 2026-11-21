@@ -560,11 +560,13 @@
       document.getElementById("productos").scrollIntoView({ behavior: "smooth" });
     }
 
-    card.addEventListener("click", selectCategory);
-    card.addEventListener("keydown", function(e){
-      if (e.key === "Enter" || e.key === " "){
-        e.preventDefault();
-        selectCategory();
+    card.addEventListener("click", function(e){
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      selectCategory();
+      if (window.history && window.history.replaceState){
+        var url = window.location.pathname + "?categoria=" + encodeURIComponent(card.dataset.category) + "#productos";
+        window.history.replaceState(null, "", url);
       }
     });
   });

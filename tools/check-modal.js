@@ -53,6 +53,14 @@ ok("WhatsApp no vacia el carrito al abrir el enlace",
   /orderWa\.addEventListener\("click"[\s\S]*?orderWa\.classList\.add\("is-disabled"\)/.test(app) &&
   !/orderWa\.addEventListener\("click"[\s\S]{0,320}cart = \{\}/.test(app));
 
+var categoryJs = app.slice(app.indexOf('document.querySelectorAll(".category-card[data-category]")'), app.indexOf("/* Buscador inline */"));
+ok("categorías usan enlace nativo sin teclado manual",
+  categoryJs.indexOf('addEventListener("keydown"') === -1 &&
+  categoryJs.indexOf("e.defaultPrevented") !== -1);
+ok("categorías ignoran clics modificados y actualizan la URL",
+  /e\.metaKey \|\| e\.ctrlKey/.test(categoryJs) &&
+  /history\.replaceState/.test(categoryJs));
+
 var cartJs = read("js/cart.js");
 ok("cart.js respeta stock al agregar y sanear",
   /function maxQty[\s\S]*?parseInt\(p\.stock, 10\)/.test(cartJs) &&
