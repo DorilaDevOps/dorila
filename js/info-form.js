@@ -64,7 +64,7 @@
     modal.classList.add("is-open");
     modal.setAttribute("aria-hidden", "false");
     var firstField = infoForm.querySelector("input, select, textarea");
-    if (firstField) setTimeout(function(){ firstField.focus(); }, 80);
+    if (firstField) setTimeout(function(){ firstField.focus({ preventScroll: true }); }, 80);
   }
   function closeModal(){
     modal.classList.remove("is-open");

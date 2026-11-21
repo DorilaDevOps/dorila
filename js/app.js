@@ -13,6 +13,10 @@
   var PRODUCT_BY_SLUG = {};
   PRODUCTS.forEach(function(p){ PRODUCT_BY_SLUG[p.slug] = p; });
 
+  function hasStock(p){
+    return !!p && !!p.vendible && Number(p.stock) > 0;
+  }
+
   function setText(id, value){
     var el = document.getElementById(id);
     if (el) el.textContent = value || "";
@@ -203,7 +207,8 @@
     setText("modalSynonyms", sinonimos.length ? "También conocida como: " + sinonimos.join(", ") : "");
     sectionHidden("modalSynonyms", !sinonimos.length);
     setText("modalDesc", p.botanicalDesc || p.desc || "");
-    setText("modalStock", p.vendible ? "Disponible" : (p.toxicidad === "EXTREMA" ? "No disponible para venta" : "Sin stock"));
+    var disponible = hasStock(p);
+    setText("modalStock", disponible ? "Disponible" : (p.toxicidad === "EXTREMA" ? "No disponible para venta" : "Sin stock"));
     setText("modalPrice", p.price || (p.toxicidad === "EXTREMA" ? "No se comercializa" : "Ficha botánica informativa"));
     setText("modalFamilia", p.familia || "—");
     setText("modalTox", p.toxicidadLabel || p.toxicidad || "—");
@@ -219,8 +224,8 @@
 
     var addBtn = document.getElementById("modalAddBtn");
     if (addBtn){
-      addBtn.hidden = !p.vendible;
-      addBtn.disabled = !p.vendible;
+      addBtn.hidden = !disponible;
+      addBtn.disabled = !disponible;
       addBtn.setAttribute("data-id", p.id);
     }
 
@@ -631,7 +636,8 @@
   /* Agregar al carrito desde el modal de planta */
   var modalAddBtn = document.getElementById("modalAddBtn");
   if (modalAddBtn) modalAddBtn.addEventListener("click", function(){
-    if (this.classList.contains("is-success")) return;
+    if (this.disabled || this.hidden || this.classList.contains("is-success")) return;
+    if (!hasStock(findProduct(this.dataset.id))) return;
     addToCart(this.dataset.id);
     this.classList.add("is-success");
     this.textContent = "\u00A1Agregado! \u2713";

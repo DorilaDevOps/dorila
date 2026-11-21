@@ -18,6 +18,10 @@
 
   function byId(id){ return document.getElementById(id); }
 
+  function focusWithoutScroll(item){
+    if (item && typeof item.focus === "function") item.focus({ preventScroll: true });
+  }
+
   function node(tag, className, text){
     var item = document.createElement(tag);
     if (className) item.className = className;
@@ -274,11 +278,11 @@
       var firstInvalid = [firstName, lastName, nationality, city, contact, category, story, precautions].find(function(input){
         return input && input.getAttribute("aria-invalid") === "true";
       });
-      if (firstInvalid) firstInvalid.focus();
-      else if (ingredients.length < 2) byId("ingredientInput").focus();
-      else if (steps.length < 2) byId("stepInput").focus();
-      else if (consentReview && !consentReview.checked) consentReview.focus();
-      else if (consentPrivacy && !consentPrivacy.checked) consentPrivacy.focus();
+      if (firstInvalid) focusWithoutScroll(firstInvalid);
+      else if (ingredients.length < 2) focusWithoutScroll(byId("ingredientInput"));
+      else if (steps.length < 2) focusWithoutScroll(byId("stepInput"));
+      else if (consentReview && !consentReview.checked) focusWithoutScroll(consentReview);
+      else if (consentPrivacy && !consentPrivacy.checked) focusWithoutScroll(consentPrivacy);
       return false;
     }
     return true;
@@ -325,7 +329,7 @@
     input.value = "";
     renderRows(kind);
     setError(isIngredient ? "ingredientError" : "stepError", "");
-    input.focus();
+    focusWithoutScroll(input);
   }
 
   function openDialog(dialog){
@@ -455,7 +459,7 @@
         var precautions = byId("sharePrecautions");
         if (!precautions) return;
         precautions.disabled = byId("shareNoPrecautions").checked;
-        if (!precautions.disabled) precautions.focus();
+        if (!precautions.disabled) focusWithoutScroll(precautions);
       });
     }
 

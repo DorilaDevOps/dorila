@@ -38,6 +38,11 @@ var app = read("js/app.js");
 ok("app.js abre con showModal", /modal\.showModal\(\)/.test(app));
 ok("app.js cierra con close", /modal\.close\(\)/.test(app));
 ok("app.js restaura foco al cerrar", /addEventListener\("close"/.test(app) && /\.focus\(\{ preventScroll: true \}\)/.test(app));
+ok("app.js bloquea el carrito del modal sin stock",
+  /function hasStock[\s\S]*?Number\(p\.stock\) > 0/.test(app) &&
+  /addBtn\.hidden = !disponible/.test(app) &&
+  /addBtn\.disabled = !disponible/.test(app) &&
+  /if \(!hasStock\(findProduct\(this\.dataset\.id\)\)\) return/.test(app));
 ok("app.js no usa Escape manual del modal", !/modal\.classList\.contains\("is-open"\)/.test(app));
 ok("app.js renderiza sinónimos", /p\.sinonimos/.test(app));
 ok("app.js normaliza búsqueda con slugify", /function slugify/.test(app) && /searchScore/.test(app));
@@ -55,6 +60,7 @@ ok("CSS tiñe mandalas con color fijo", /\.mandala-tratamientos\{ --mandala-filt
 var products = require(path.join(ROOT, "js", "productos.js"));
 var canon = require(path.join(ROOT, "data", "plantas.json"));
 ok("productos usan IDs DOR", products.every(function(p){ return /^DOR-[A-Z]{3}-\d{3}$/.test(p.id); }));
+ok("catálogo no vende productos sin stock", products.every(function(p){ return !p.vendible || Number(p.stock) > 0; }));
 ok("catálogo no conserva cons-*", !products.some(function(p){ return /^cons-/.test(p.id); }));
 ok("catálogo no expone idBotanico", !products.some(function(p){ return "idBotanico" in p; }));
 ok("canonical no expone idBotanico", !canon.some(function(p){ return "idBotanico" in p; }));
