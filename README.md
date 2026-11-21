@@ -11,6 +11,8 @@
 
 *Donde las plantas guardan historias.*
 
+[Ver sitio en vivo](https://dorila.netlify.app) · [Catálogo completo](https://dorila.netlify.app/productos.html)
+
 </div>
 
 ---
@@ -37,21 +39,29 @@ de **recetas y remedios caseros**, educación herbolaria y agradecimientos.
 | 📄 **Orden de compra** | Verificación en dos pasos (revisión → orden), número de orden, envío por WhatsApp (vacía el carrito) y PDF/imprimir |
 | 🔎 **Catálogo buscable** | Página `productos.html` con el herbario completo, búsqueda por nombre, uso o nombre científico, familia y toxicidad, filtros por categoría e índice estático generado para SEO |
 | 🧪 **Fichas botánicas** | Datos botánicos importados desde `data/entrada-plantas.json`, fusión por nombre/científico con los productos comerciales, fallback mandala teñido por categoría |
-| ⚠️ **Seguridad toxicológica** | Nivel de toxicidad visible; `EXTREMA` muestra alerta roja, oculta el botón de compra y nunca sugiere consumo; `stock <= 0` también bloquea la venta |
+| ⚠️ **Seguridad toxicológica** | Nivel de toxicidad visible; `EXTREMA` muestra alerta roja, oculta el botón de compra y nunca sugiere consumo; `stock <= 0` oculta y deshabilita `modalAddBtn` y bloquea la venta |
 | 🪴 **Modal de producto** | `<dialog>` nativo con galería, sinónimos, descripción botánica, usos, preparación, precauciones, alertas y relacionados; las fichas estáticas se conservan para SEO |
-| 🧩 **Categorías** | Tarjetas con filtro directo, iconos y badge destacado; 2 columnas en móvil y 3 desde 640px |
+| 🧩 **Categorías** | Tarjetas con filtro directo, iconos y badge destacado; 2 columnas en móvil, 3 desde 768px y 4 desde 1024px |
 | 🔁 **Buscar desde cualquier página** | El buscador del header guarda el término en `sessionStorage` (`dorila-search`) y lo prellena al llegar a la tienda |
-| 🖼️ **Lazy loading** | Carga progresiva de imágenes con placeholder difuminado (`IntersectionObserver`) |
-| 📱 **Mobile-first** | CSS con `min-width` progresivo y `clamp()`; la grilla de categorías se mantiene en 2 columnas en móvil y pasa a 3 desde 640px |
+| 🖼️ **Carga progresiva** | Imágenes con `IntersectionObserver` + `skeleton` en la grilla; la home muestra 4 productos y “Cargar más” suma 4 hasta 8 |
+| 📱 **Mobile-first** | CSS con `min-width` progresivo y `clamp()`; la grilla de categorías se mantiene en 2 columnas en móvil, 3 desde 768px y 4 desde 1024px |
 | 🧭 **Footer editorial** | Cuatro bloques con namespace propio, 2/2/4 columnas compactas, disclaimer destacado, modales legales y crédito a Kikiriya-DevOps |
 | 🍵 **Recetas y remedios** | Página con técnicas de preparación, recetas paso a paso y consejos de conservación |
 | 🌿 **Recetas de persona a persona** | Formulario único con contacto opcional interno, moderación privada con checklist, publicación solo tras aprobación y sin exponer datos personales |
 | 🎓 **Educación herbolaria** | Página informativa sobre plantas y su uso seguro |
 | 💬 **Testimonios** | Carrusel de experiencias reales en la página principal |
 | 🙏 **Agradecimientos** | Página de agradecimiento posterior al envío del formulario |
-| ♿ **Accesible** | `aria-*`, skip-link, focus visible, `prefers-reduced-motion`, carrusel con teclado/swipe y tarjetas de categoría operables con Enter/Espacio |
+| ♿ **Accesible** | `aria-*`, skip-link, focus visible con `preventScroll` en deep-links y formularios, `prefers-reduced-motion`, carrusel con teclado/swipe y tarjetas de categoría operables con Enter/Espacio |
+| 🛍️ **Flujo de compra** | Home progresiva → modal/ficha seguro → carrito persistente → revisión → WhatsApp |
 | 🔍 **SEO** | Meta tags optimizados, Open Graph, Twitter Cards, JSON-LD (`LocalBusiness`, `WebSite`, `ItemList` y `BreadcrumbList`), canonical `/productos/` con rewrite interno vía Netlify Edge Function (301 desde `/productos` y `/productos.html`), links y assets root-relative, sitemap con todas las fichas y 404 `noindex` |
 | ⚡ **Velocidad** | Imágenes WebP + thumbs, fuentes recortadas, `defer`, revalidación por ETag tras cada deploy |
+
+#### 🛍️ Flujo de compra
+
+1. Explorar los destacados de la home: la grilla arranca con 4 productos y “Cargar más” suma 4 hasta 8; “Ver todos los productos” abre el catálogo completo.
+2. Abrir el modal o la ficha, revisar usos, dosis, contraindicaciones y disponibilidad.
+3. Agregar al carrito persistente y ajustar cantidades.
+4. Revisar el pedido y generar el mensaje listo para WhatsApp.
 
 ---
 
@@ -167,6 +177,11 @@ en los tres anchos. El marker `.eyebrow-mark` se oculta en todos los eyebrows
 por debajo de 640px y `.product-card .tox-badge` baja a `0.68rem` para no
 compactar la grilla en móvil.
 
+`npm test` ejecuta 505 verificaciones (`52 + 248 + 109 + 96`): cubre carrito,
+recetas, contraste WCAG AA, modal y catálogo. Entre los contratos nuevos están
+las 2 columnas de categorías hasta 768px, el `skeleton` de la home, el foco con
+`preventScroll` y el `modalAddBtn` deshabilitado cuando `stock <= 0`.
+
 ### 🌐 URLs canónicas y caché
 
 El catálogo canónico es <https://dorila.netlify.app/productos/>. Netlify no
@@ -189,7 +204,7 @@ curl -s https://dorila.netlify.app/productos/ | grep 'rel="canonical"'
 
 - **WhatsApp**: [`+598 94 872 605`](https://wa.me/59894872605)
 - **Instagram**: [`@dorilanatural`](https://instagram.com/dorilanatural)
-- **Email**: `hola@raizyhoja.uy`
+- **Email**: `dorilanatural@gmail.com`
 
 ---
 
