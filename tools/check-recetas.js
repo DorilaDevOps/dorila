@@ -503,8 +503,11 @@ console.log("\n5. Integración en las páginas y configuración");
   ok("nav desktop incluye enlace directo a /recetas y trigger accesible",
     /<a href="\/recetas">Recetas<\/a>/.test(index) &&
     /<button class="dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="desktopRecetasMenu"/.test(index));
-  ok("edge function canoniza /productos y /productos.html",
+  ok("edge function canoniza /productos y /productos.html sin loop",
     /path: \["\/productos", "\/productos\.html"\]/.test(edgeCatalogo) &&
+    /export default async \(request, context\)/.test(edgeCatalogo) &&
+    /url\.pathname === "\/productos\/"/.test(edgeCatalogo) &&
+    /return context\.next\(\)/.test(edgeCatalogo) &&
     /url\.pathname = "\/productos\/"/.test(edgeCatalogo) &&
     /Response\.redirect\(url\.toString\(\), 301\)/.test(edgeCatalogo));
   ok("netlify.toml redirige /recetas",
