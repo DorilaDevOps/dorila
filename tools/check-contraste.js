@@ -150,6 +150,14 @@ ok("verdes base unificados en 4 tokens",
   ["--color-forest", "--color-forest-deep", "--color-salvia", "--color-salvia-claro"].every(function(name){
     return /^#[0-9a-f]{6}$/i.test(base[name]);
   }));
+ok("superficies claras unificadas en parchment-soft",
+  base["--color-crema"] === base["--color-parchment-soft"] &&
+  community["--cr-ivory"] === base["--color-parchment-soft"]);
+ok("tokens compartidos resueltos",
+  base["--color-neutral-muted"] === "#5B665C" &&
+  base["--color-error"] === "#8C3F28" &&
+  base["--color-error-bg"] === "#FBEAE4" &&
+  community["--cr-warning-bg"] === base["--color-alerta-soft-bg"]);
 ok("público resuelve todas las referencias --cr-*",
   missingCommunityTokens.length === 0);
 if (missingCommunityTokens.length){
@@ -165,7 +173,7 @@ if (missingCommunityTokens.length){
 });
 
 console.log("\n2. Contraste del panel público");
-var CR_IVORY = "#F7F5EF";
+var CR_IVORY = community["--cr-ivory"];
 var CR_GREEN = "#E9F0E7";
 pair("texto principal sobre tarjeta", community["--cr-deep"], CR_IVORY, 4.5);
 pair("texto principal sobre campo", community["--cr-deep"], community["--cr-field-bg"], 4.5);
@@ -198,11 +206,11 @@ pair("borde de cierre sobre fondo de cierre", community["--cr-border"], communit
 pair("borde de aviso sobre fondo de aviso", community["--cr-warning-border"], community["--cr-warning-bg"], 3);
 pair("borde de error sobre fondo de error", community["--cr-error-border"], community["--cr-error-bg"], 3);
 pair("texto del CTA sobre fondo tintado", base["--color-alerta-text"], mix(base["--color-forest"], community["--cr-green"], 0.08), 4.5);
-pair("texto del botón del CTA", base["--color-crema"], community["--cr-deep"], 4.5);
+pair("texto del botón del CTA", base["--color-parchment-soft"], base["--color-forest-accent"], 3);
 
 console.log("\n3. Contraste del panel de administración");
-var AD_PAGE = "#E9F0E7";
-var AD_IVORY = "#F7F5EF";
+var AD_PAGE = base["--color-verde-suave"];
+var AD_IVORY = base["--color-parchment-soft"];
 pair("texto principal sobre página", admin["--admin-text"], AD_PAGE, 4.5);
 pair("texto principal sobre tarjeta", admin["--admin-text"], AD_IVORY, 4.5);
 pair("texto secundario sobre página", admin["--admin-muted"], AD_PAGE, 4.5);

@@ -379,6 +379,11 @@ console.log("\n5. Integración en las páginas y configuración");
     /\.stats-row\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/.test(pagesCss) &&
     /\.stat dt\{[^}]*font-family:var\(--font-body\)/.test(pagesCss) &&
     !/(--color-terracotta|font-family:\s*var\(--font-display\))/.test(saberBlock));
+  ok("tech-card usa borde de acento compartido",
+    /\.tech-card\{[^}]*border:\s*1px solid var\(--cr-border\);[^}]*border-left:\s*4px solid var\(--color-forest-accent\);/.test(pagesCss));
+  ok("parchment-soft sigue como superficie clara canónica",
+    /--color-parchment-soft:\s*#FAF3E3/.test(baseCss) &&
+    /\.tech-card\{[^}]*background:\s*var\(--color-parchment-soft\)/.test(pagesCss));
   var accordionStart = saber.indexOf('<div class="accordion"');
   var accordionHtml = saber.slice(accordionStart, saber.indexOf('<section class="seasonal-wrap"', accordionStart));
   ok("acordeón de saber usa details nativos y tokens compartidos",
@@ -439,9 +444,10 @@ console.log("\n5. Integración en las páginas y configuración");
   ok("acciones de comunidad replican al teaser del index",
     /\.community-actions\{ display: flex; flex-wrap: nowrap; gap: 0\.5rem; margin-top: 1\.5rem; \}/.test(communityCss) &&
     /\.community-actions \.btn\{[\s\S]*?flex: 1 1 0;[\s\S]*?min-width: 0;[\s\S]*?padding: 0\.3em 1\.1em;[\s\S]*?font-size: var\(--fs-small\);[\s\S]*?white-space: normal;[\s\S]*?text-align: center;[\s\S]*?line-height: 1\.2;/.test(communityCss) &&
-    /\.community-actions \.btn-look\{ color: var\(--color-crema\); border-color: rgba\(244,235,221,0\.55\); \}/.test(communityCss) &&
+    /\.community-actions \.btn-look\{ color: var\(--color-forest-accent\); border-color: color-mix\(in srgb, var\(--color-crema\) 55%, transparent\); \}/.test(communityCss) &&
     /@media \(min-width: 760px\)\{[\s\S]*?\.community-actions\{ justify-content: flex-end; \}[\s\S]*?\.community-actions \.btn\{ flex: 0 1 auto; padding: 0\.7em 1\.2em; \}/.test(communityCss) &&
-    /\.community-cta \.btn-look\{ background: var\(--color-forest-deep\); border-color: var\(--color-forest-deep\); color: var\(--color-crema\); \}/.test(communityCss));
+    /\.community-cta \.btn-look\{ background: var\(--color-forest-accent\); border-color: var\(--color-parchment-soft\); color: var\(--color-parchment-soft\); \}/.test(communityCss) &&
+    /\.community-cta \.btn-look:hover\{ background: var\(--color-parchment-soft\); border-color: var\(--color-forest-accent\); color: var\(--color-forest-accent\); \}/.test(communityCss));
   ["shareDialog", "shareConfirmDialog", "shareCancelDialog", "shareSuccessDialog", "shareErrorDialog"].forEach(function(id){
     ok("diálogo presente: " + id, new RegExp('id="' + id + '"').test(recetas));
   });

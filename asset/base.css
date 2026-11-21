@@ -24,10 +24,12 @@
   --color-salvia:             #879F82;   /* salvia — bordes y decoración */
   --color-salvia-claro:       #B8C1AB;   /* salvia claro — texto sobre bosque */
   --color-forest-bosque:      var(--color-forest-deep);  /* alias histórico del footer */
-  --color-forest-accent:      #5C936F;   /* acento decorativo — no usar como texto */
+  --color-forest-accent:      #5C936F;   /* acento decorativo y de CTA */
   --color-forest-tint:        color-mix(in srgb, var(--color-forest) 8%, transparent);
   --color-verde-suave:        #E9F0E7;   /* fondo verde muy claro */
   --color-alerta-text:        #A33B3B;   /* texto de alerta accesible */
+  --cr-border:                var(--color-forest-accent);  /* borde de acento compartido */
+  --color-neutral-muted:      #5B665C;   /* textos secundarios y deshabilitados */
 
   --color-terracotta:         #9C4626;   /* bordes, acentos, botón principal */
   --color-terracotta-deep:    #7A3419;
@@ -38,8 +40,7 @@
   --lime:                     #C8FF57;
 
   /* --- color: identidad renovada --- */
-  --color-crema:               #F4EBDD;   /* crema — letra del footer */
-  --color-terracotta-cta:      #B96F52;   /* terracota — promociones/llamadas */
+  --color-crema:               var(--color-parchment-soft);   /* crema — alias de superficie clara */
   --color-link:                var(--color-ink);   /* texto sobre botones salvia */
   --color-alerta-bg:           #7A1010;
   --color-alerta-ink:          #FFF5F0;
@@ -47,10 +48,12 @@
   --color-alerta-soft-bg:      #FFF1D6;
   --color-alerta-soft-ink:     #6B3A00;
   --color-alerta-soft-border:  #A86C00;
+  --color-error:               #8C3F28;
+  --color-error-strong:        #7A341F;
+  --color-error-bg:            #FBEAE4;
 
   /* --- color: logo --- */
   --color-logo-brown:          #42230C;   /* marrón oscuro — borde/marca del logo */
-  --color-logo-tan:            #A17947;   /* sienna/tan — letras del logo */
   --color-logo-parchment:      #D7B993;   /* pergamino claro — detalle del logo */
 
   --bg-global-celeste: radial-gradient(ellipse at 8% 0%, color-mix(in srgb, var(--color-forest) 18%, transparent), transparent 48%), radial-gradient(ellipse at 92% 100%, rgba(185, 165, 138, 0.22), transparent 52%), var(--color-verde-suave);
@@ -88,7 +91,6 @@
   --radius-sm: 10px;
   --border-frame: 3px solid var(--color-terracotta);
   --border-frame2: 3px solid var(--color-forest);
-  --border-frame3: 3px solid var(--color-forest-accent);
   --shadow-card: 0 10px 24px -14px rgba(51, 35, 15, 0.45);
   --shadow-btn: 0 8px 18px -8px rgba(122, 52, 25, 0.65);
 
