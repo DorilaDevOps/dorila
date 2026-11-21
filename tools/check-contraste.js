@@ -30,12 +30,25 @@ function block(css, selector){
 function tokens(css, selector){
   var found = {};
   var source = block(css, selector);
-  var pattern = /(--[a-z0-9-]+)\s*:\s*(#[0-9a-f]{3,6})\s*;/gi;
+  var pattern = /(--[a-z0-9-]+)\s*:\s*(#[0-9a-f]{3,6}|var\(--[a-z0-9-]+\))\s*;/gi;
   var match;
   while ((match = pattern.exec(source))){
     found[match[1]] = match[2];
   }
   return found;
+}
+
+function resolveAliases(target, fallbacks){
+  Object.keys(target).forEach(function(name){
+    var value = target[name];
+    var seen = {};
+    while (/^var\(--[a-z0-9-]+\)$/i.test(value) && !seen[value]){
+      seen[value] = true;
+      var alias = value.slice(4, -1);
+      value = target[alias] || fallbacks[alias] || "";
+    }
+    target[name] = value;
+  });
 }
 
 function tokenNames(css, selector){
@@ -47,6 +60,14 @@ function tokenNames(css, selector){
     found.push(match[1]);
   }
   return found;
+}
+
+function mix(foreground, background, percent){
+  var first = rgb(foreground);
+  var second = rgb(background);
+  return "#" + first.map(function(value, index){
+    return Math.round(value * percent + second[index] * (1 - percent)).toString(16).padStart(2, "0");
+  }).join("");
 }
 
 function rgb(hex){
@@ -106,6 +127,9 @@ var communityLiteralDialogCss = communityCss
   .slice(communityCss.indexOf("/* ---------- Diálogos ---------- */"))
   .replace(/var\(--cr-backdrop,\s*rgba\([^)]+\)\)/g, "");
 var admin = tokens(adminCss, ".admin-page");
+resolveAliases(base, {});
+resolveAliases(community, base);
+resolveAliases(admin, base);
 
 console.log("1. Tokens de contraste");
 [
@@ -122,6 +146,10 @@ ok("público define --cr-shadow", communityTokenNames.indexOf("--cr-shadow") !==
 ok("público declara todos los tokens en :root",
   communityTokenNames.indexOf("--cr-deep") !== -1 && communityTokenNames.indexOf("--cr-backdrop") !== -1);
 ok("público mantiene una paleta reducida", communityTokenNames.length >= 18 && communityTokenNames.length <= 26);
+ok("verdes base unificados en 4 tokens",
+  ["--color-forest", "--color-forest-deep", "--color-salvia", "--color-salvia-claro"].every(function(name){
+    return /^#[0-9a-f]{6}$/i.test(base[name]);
+  }));
 ok("público resuelve todas las referencias --cr-*",
   missingCommunityTokens.length === 0);
 if (missingCommunityTokens.length){
@@ -169,8 +197,8 @@ pair("borde inválido sobre campo inválido", community["--cr-error-border"], co
 pair("borde de cierre sobre fondo de cierre", community["--cr-border"], community["--cr-ivory"], 3);
 pair("borde de aviso sobre fondo de aviso", community["--cr-warning-border"], community["--cr-warning-bg"], 3);
 pair("borde de error sobre fondo de error", community["--cr-error-border"], community["--cr-error-bg"], 3);
-pair("texto del CTA sobre fondo de foco", community["--cr-ivory"], community["--cr-focus"], 4.5);
-pair("texto del botón del CTA", community["--cr-deep"], community["--cr-ivory"], 4.5);
+pair("texto del CTA sobre fondo tintado", base["--color-alerta-text"], mix(base["--color-forest"], community["--cr-green"], 0.08), 4.5);
+pair("texto del botón del CTA", base["--color-crema"], community["--cr-deep"], 4.5);
 
 console.log("\n3. Contraste del panel de administración");
 var AD_PAGE = "#E9F0E7";
@@ -222,10 +250,10 @@ ok("público usa token en botón de cierre",
   /\.community-dialog-close\{[^}]*background:\s*var\(--cr-ivory\)/.test(communityCss));
 ok("público usa token en resumen de confirmación",
   /\.community-confirm-summary\{[^}]*background:\s*var\(--cr-progress-bg\)/.test(communityCss));
-ok("público usa foco como fondo del CTA",
-  /\.community-cta\{[^}]*background:\s*var\(--cr-focus\)/.test(communityCss));
-ok("público usa ivory pleno en el texto del CTA",
-  /\.community-cta p\{[^}]*color:\s*var\(--cr-ivory\)/.test(communityCss));
+ok("público usa tint compartido como fondo del CTA",
+  /\.community-cta\{[^}]*background:\s*var\(--color-forest-tint\)/.test(communityCss));
+ok("público usa texto de alerta accesible en el CTA",
+  /\.community-cta p\{[^}]*color:\s*var\(--color-alerta-text\)/.test(communityCss));
 ok("diálogos y formulario no usan colores literales",
   !/#[0-9a-f]{3,8}\b|rgba?\(/i.test(communityLiteralDialogCss));
 ok("admin declara placeholders con color propio",

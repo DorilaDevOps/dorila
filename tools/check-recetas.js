@@ -344,7 +344,7 @@ console.log("\n5. Integración en las páginas y configuración");
     !/var\(----/.test(allCss) &&
     !/--bg_global-celeste/.test(allCss) &&
     /--border-frame2:\s*3px solid var\(--color-forest\)/.test(baseCss) &&
-    /--bg-global-celeste:\s*[^;]*#E9F0E7/.test(baseCss));
+    /--bg-global-celeste:\s*[^;]*(?:#E9F0E7|var\(--color-verde-suave\))/.test(baseCss));
   ok("fondos alternados usan el token correcto",
     /\.products\{[^}]*background:\s*var\(--bg-global-celeste\)/.test(homeCss) &&
     /\.techniques\{[^}]*background:\s*var\(--bg-global-celeste\)/.test(pagesCss) &&
@@ -441,7 +441,7 @@ console.log("\n5. Integración en las páginas y configuración");
     /\.community-actions \.btn\{[\s\S]*?flex: 1 1 0;[\s\S]*?min-width: 0;[\s\S]*?padding: 0\.3em 1\.1em;[\s\S]*?font-size: var\(--fs-small\);[\s\S]*?white-space: normal;[\s\S]*?text-align: center;[\s\S]*?line-height: 1\.2;/.test(communityCss) &&
     /\.community-actions \.btn-look\{ color: var\(--color-crema\); border-color: rgba\(244,235,221,0\.55\); \}/.test(communityCss) &&
     /@media \(min-width: 760px\)\{[\s\S]*?\.community-actions\{ justify-content: flex-end; \}[\s\S]*?\.community-actions \.btn\{ flex: 0 1 auto; padding: 0\.7em 1\.2em; \}/.test(communityCss) &&
-    /\.community-cta \.btn-look\{ background: var\(--cr-ivory\); border-color: var\(--cr-ivory\); color: var\(--cr-deep\); \}/.test(communityCss));
+    /\.community-cta \.btn-look\{ background: var\(--color-forest-deep\); border-color: var\(--color-forest-deep\); color: var\(--color-crema\); \}/.test(communityCss));
   ["shareDialog", "shareConfirmDialog", "shareCancelDialog", "shareSuccessDialog", "shareErrorDialog"].forEach(function(id){
     ok("diálogo presente: " + id, new RegExp('id="' + id + '"').test(recetas));
   });

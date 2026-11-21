@@ -17,8 +17,18 @@
   --color-ink:               #33230F;   /* titulares, texto fuerte */
   --color-body:               #5B4630;   /* texto de párrafo */
   --color-body-soft:          #7A6448;   /* texto secundario */
-  --color-forest:             #3E5A34;   /* verde salvia — marca / precios secundarios */
-  --color-forest-deep:        #2C3F24;
+
+  /* --- color: 4 verdes unificados + derivados --- */
+  --color-forest:             #3E5A34;   /* verde principal — texto y marca */
+  --color-forest-deep:        #2C3F24;   /* verde profundo — texto oscuro */
+  --color-salvia:             #879F82;   /* salvia — bordes y decoración */
+  --color-salvia-claro:       #B8C1AB;   /* salvia claro — texto sobre bosque */
+  --color-forest-bosque:      var(--color-forest-deep);  /* alias histórico del footer */
+  --color-forest-accent:      #5C936F;   /* acento decorativo — no usar como texto */
+  --color-forest-tint:        color-mix(in srgb, var(--color-forest) 8%, transparent);
+  --color-verde-suave:        #E9F0E7;   /* fondo verde muy claro */
+  --color-alerta-text:        #A33B3B;   /* texto de alerta accesible */
+
   --color-terracotta:         #9C4626;   /* bordes, acentos, botón principal */
   --color-terracotta-deep:    #7A3419;
   --color-gold:               #B0793B;   /* divisores, detalles */
@@ -28,9 +38,6 @@
   --lime:                     #C8FF57;
 
   /* --- color: identidad renovada --- */
-  --color-forest-bosque:       #29483A;   /* verde bosque — footer */
-  --color-salvia:              #879F82;   /* verde salvia — detalles/franjas */
-  --color-salvia-claro:        #B8C1AB;   /* salvia claro — texto sobre bosque */
   --color-crema:               #F4EBDD;   /* crema — letra del footer */
   --color-terracotta-cta:      #B96F52;   /* terracota — promociones/llamadas */
   --color-link:                var(--color-ink);   /* texto sobre botones salvia */
@@ -46,7 +53,7 @@
   --color-logo-tan:            #A17947;   /* sienna/tan — letras del logo */
   --color-logo-parchment:      #D7B993;   /* pergamino claro — detalle del logo */
 
-  --bg-global-celeste: radial-gradient(ellipse at 8% 0%, rgba(85, 116, 91, 0.18), transparent 48%), radial-gradient(ellipse at 92% 100%, rgba(185, 165, 138, 0.22), transparent 52%), #E9F0E7;
+  --bg-global-celeste: radial-gradient(ellipse at 8% 0%, color-mix(in srgb, var(--color-forest) 18%, transparent), transparent 48%), radial-gradient(ellipse at 92% 100%, rgba(185, 165, 138, 0.22), transparent 52%), var(--color-verde-suave);
 
   /* --- tipografía --- */
   --font-display: "Rye", serif;
@@ -81,7 +88,7 @@
   --radius-sm: 10px;
   --border-frame: 3px solid var(--color-terracotta);
   --border-frame2: 3px solid var(--color-forest);
-  --border-frame3: 3px solid #75b599;
+  --border-frame3: 3px solid var(--color-forest-accent);
   --shadow-card: 0 10px 24px -14px rgba(51, 35, 15, 0.45);
   --shadow-btn: 0 8px 18px -8px rgba(122, 52, 25, 0.65);
 
@@ -511,7 +518,7 @@ a.nav-mobile-cta:hover{ background: #1eab52; color: #fff; transform: translateY(
 /* --- Buscador overlay (header) --- */
 .search-overlay{
   position:fixed; inset:0; z-index:200;
-  background:rgba(41,72,58,0.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  background:color-mix(in srgb, var(--color-forest-deep) 92%, transparent); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
   display:flex; flex-direction:column; align-items:center;
   padding: clamp(4rem, 10vw, 7rem) var(--space-3) var(--space-3);
   opacity:0; visibility:hidden; pointer-events:none;

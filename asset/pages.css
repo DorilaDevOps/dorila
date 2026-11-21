@@ -264,6 +264,10 @@ details.recipe-details .recipe-tip{ margin-top: var(--space-2); font-size: var(-
   .feature-hero .hero-cta-label-short{ display:inline; }
   .feature-hero .hero-ctas .btn{ padding:0.7em 0.6em; }
   .info-request-card .eyebrow-mark{ display:none; }
+  .recipe-media{ aspect-ratio: auto; background: transparent; padding: var(--space-2) var(--space-3) 0; }
+  .recipe-media img{ display: none; }
+  .recipe-kicker{ position: static; display: inline-block; }
+  .recipe-body{ padding-top: var(--space-2); }
 }
 @media (min-width: 640px){
   .tech-grid{ grid-template-columns: repeat(2, 1fr); }
