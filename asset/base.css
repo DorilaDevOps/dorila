@@ -89,7 +89,7 @@
   /* --- forma --- */
   --radius-card: 26px;
   --radius-sm: 10px;
-  --border-frame: 3px solid var(--color-terracotta);
+  --border-frame: 3px solid var(--color-forest-accent);
   --border-frame2: 3px solid var(--color-forest);
   --shadow-card: 0 10px 24px -14px rgba(51, 35, 15, 0.45);
   --shadow-btn: 0 8px 18px -8px rgba(122, 52, 25, 0.65);

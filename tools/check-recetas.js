@@ -240,8 +240,18 @@ console.log("\n5. Integración en las páginas y configuración");
 
   ok("parchment-deep usa el nuevo color",
     /--color-parchment-deep:\s*#edece9/.test(baseCss));
-  ok("conservación usa parchment-deep de fondo",
-    /\.conservation\{[^}]*background:\s*var\(--color-parchment-deep\)/.test(pagesCss));
+  ok("conservación usa parchment-soft de fondo",
+    /\.conservation\{[^}]*background:\s*var\(--color-parchment-soft\)/.test(pagesCss));
+  ok("intro usa parchment-soft de fondo",
+    /\.intro\{[^}]*background:\s*var\(--color-parchment-soft\)/.test(pagesCss));
+  ok("técnicas y disclaimer usan parchment-deep de fondo",
+    /\.techniques\{[^}]*background:\s*var\(--color-parchment-deep\)/.test(pagesCss) &&
+    /\.disclaimer\{[^}]*background:\s*var\(--color-parchment-deep\)/.test(pagesCss));
+  ok("recipe-kicker usa salvia claro con texto crema",
+    /\.recipe-kicker\{[^}]*background:\s*var\(--color-salvia-claro\);[^}]*color:\s*var\(--color-parchment-soft\)/.test(pagesCss));
+  ok("comunidad conserva su fondo verde",
+    /\.community\{[^}]*background:[\s\S]*?var\(--cr-green\)/.test(communityCss) &&
+    /--cr-green:\s*var\(--color-verde-suave\)/.test(communityCss));
   ok("conservación usa textos oscuros legibles",
     /\.conservation-item h3\{[^}]*color:\s*var\(--color-ink\)/.test(pagesCss) &&
     /\.conservation-item p\{[^}]*color:\s*var\(--color-body\)/.test(pagesCss));
@@ -347,8 +357,8 @@ console.log("\n5. Integración en las páginas y configuración");
     /--bg-global-celeste:\s*[^;]*(?:#E9F0E7|var\(--color-verde-suave\))/.test(baseCss));
   ok("fondos alternados usan el token correcto",
     /\.products\{[^}]*background:\s*var\(--bg-global-celeste\)/.test(homeCss) &&
-    /\.techniques\{[^}]*background:\s*var\(--bg-global-celeste\)/.test(pagesCss) &&
-    /\.recipes\{[^}]*background:\s*var\(--bg-global-celeste\)/.test(pagesCss));
+    /\.techniques\{[^}]*background:\s*var\(--color-parchment-deep\)/.test(pagesCss) &&
+    /\.recipes\{[^}]*background:\s*var\(--color-parchment-soft\)/.test(pagesCss));
   ok("historia y saber comparten hero y color de acento",
     /<section class="page-hero wrap">\s*<div class="hero-content">/.test(historia) &&
     /<section class="page-hero wrap">\s*<div class="hero-content">/.test(saber) &&
@@ -428,8 +438,13 @@ console.log("\n5. Integración en las páginas y configuración");
   ok("disclaimer mantiene el contenido dentro de wrap",
     /<div class="wrap">\s*<div class="disclaimer-card/.test(disclaimerSection));
   ok("CTA e info-request vuelven al padding compacto",
-    /\.cta-recipes\{ padding-block: var\(--space-3\); \}/.test(pagesCss) &&
-    /\.info-request\{ padding-block: var\(--space-3\); \}/.test(pagesCss));
+    /\.cta-recipes\{[^}]*padding-block: var\(--space-3\);[^}]*\}/.test(pagesCss) &&
+    /\.info-request\{[^}]*padding-block: var\(--space-3\);[^}]*\}/.test(pagesCss));
+  ok("CTA e info-request usan parchment-soft",
+    /\.cta-recipes\{[^}]*background:\s*var\(--color-parchment-soft\)/.test(pagesCss) &&
+    /\.info-request\{[^}]*background:\s*var\(--color-parchment-soft\)/.test(pagesCss));
+  ok("CTA e info-request comparten estilo de párrafo",
+    /\.cta-card p,\s*\.info-request-card > p\{[^}]*margin-inline:\s*auto;[^}]*margin-top:\s*var\(--space-2\);[^}]*color:\s*var\(--color-body-soft\);[^}]*max-width:\s*46ch;[^}]*font-size:\s*var\(--fs-small\);/.test(pagesCss));
   ok("CTA e info-request sin bordes",
     !/\.cta-card\{[^}]*border:/.test(pagesCss) &&
     !/\.info-request-card\{[^}]*border:/.test(pagesCss));
