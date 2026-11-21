@@ -505,10 +505,14 @@ console.log("\n5. Integración en las páginas y configuración");
     /<button class="dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="desktopRecetasMenu"/.test(index));
   ok("edge function canoniza /productos y /productos.html sin loop",
     /path: \["\/productos", "\/productos\.html"\]/.test(edgeCatalogo) &&
-    /export default async \(request, context\)/.test(edgeCatalogo) &&
-    /url\.pathname === "\/productos\/"/.test(edgeCatalogo) &&
-    /return context\.next\(\)/.test(edgeCatalogo) &&
-    /url\.pathname = "\/productos\/"/.test(edgeCatalogo) &&
+    /const CANONICAL_PATH = "\/productos\/"/.test(edgeCatalogo) &&
+    /const SOURCE_PATH = "\/productos\.html"/.test(edgeCatalogo) &&
+    /const REWRITE_FLAG = "__productos_rewrite"/.test(edgeCatalogo) &&
+    /url\.searchParams\.has\(REWRITE_FLAG\)/.test(edgeCatalogo) &&
+    /return context\.next\(new Request\(url\.toString\(\)/.test(edgeCatalogo) &&
+    /if \(url\.pathname === CANONICAL_PATH\)/.test(edgeCatalogo) &&
+    /return rewrite/.test(edgeCatalogo) &&
+    /url\.pathname = CANONICAL_PATH/.test(edgeCatalogo) &&
     /Response\.redirect\(url\.toString\(\), 301\)/.test(edgeCatalogo));
   ok("netlify.toml redirige /recetas",
     /from = "\/recetas"[\s\S]*?to = "\/recetas\.html"[\s\S]*?status = 301[\s\S]*?force = true/.test(netlify));
