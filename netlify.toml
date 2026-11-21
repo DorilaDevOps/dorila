@@ -29,18 +29,6 @@
     Referrer-Policy = "no-referrer"
 
 [[redirects]]
-  from = "/productos"
-  to = "/productos/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/productos.html"
-  to = "/productos/"
-  status = 301
-  force = true
-
-[[redirects]]
   from = "/recetas"
   to = "/recetas.html"
   status = 301

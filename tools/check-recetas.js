@@ -469,6 +469,7 @@ console.log("\n5. Integración en las páginas y configuración");
   var sitemap = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
   var appJs = fs.readFileSync(path.join(ROOT, "js", "app.js"), "utf8");
   var shellJs = fs.readFileSync(path.join(ROOT, "js", "shell.js"), "utf8");
+  var edgeCatalogo = fs.readFileSync(path.join(ROOT, "netlify", "edge-functions", "canonical-productos.js"), "utf8");
 
   ok("productos.html existe y es indexable", /<meta name="robots" content="index, follow">/.test(productosPage));
   ok("productos.html tiene canonical propio", /rel="canonical" href="https:\/\/dorila\.netlify\.app\/productos\/"/.test(productosPage));
@@ -502,9 +503,11 @@ console.log("\n5. Integración en las páginas y configuración");
   ok("nav desktop incluye enlace directo a /recetas y trigger accesible",
     /<a href="\/recetas">Recetas<\/a>/.test(index) &&
     /<button class="dropdown-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="desktopRecetasMenu"/.test(index));
-  ok("netlify.toml fuerza canonical y redirige /recetas",
-    /from = "\/productos"[\s\S]*?to = "\/productos\/"[\s\S]*?status = 301[\s\S]*?force = true/.test(netlify) &&
-    /from = "\/productos\.html"[\s\S]*?to = "\/productos\/"[\s\S]*?status = 301[\s\S]*?force = true/.test(netlify) &&
+  ok("edge function canoniza /productos y /productos.html",
+    /path: \["\/productos", "\/productos\.html"\]/.test(edgeCatalogo) &&
+    /url\.pathname = "\/productos\/"/.test(edgeCatalogo) &&
+    /Response\.redirect\(url\.toString\(\), 301\)/.test(edgeCatalogo));
+  ok("netlify.toml redirige /recetas",
     /from = "\/recetas"[\s\S]*?to = "\/recetas\.html"[\s\S]*?status = 301[\s\S]*?force = true/.test(netlify));
   ok("netlify.toml cachea JS y CSS con versión",
     /for = "\/js\/\*"[\s\S]*?Cache-Control = "public, max-age=31536000, immutable"/.test(netlify) &&
