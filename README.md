@@ -7,7 +7,7 @@
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/es/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/es/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/es/docs/Web/JavaScript)
-[![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)]()
+[![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://dorila.netlify.app)
 
 *Donde las plantas guardan historias.*
 
@@ -50,7 +50,7 @@ de **recetas y remedios caseros**, educación herbolaria y agradecimientos.
 | 💬 **Testimonios** | Carrusel de experiencias reales en la página principal |
 | 🙏 **Agradecimientos** | Página de agradecimiento posterior al envío del formulario |
 | ♿ **Accesible** | `aria-*`, skip-link, focus visible, `prefers-reduced-motion`, carrusel con teclado/swipe y tarjetas de categoría operables con Enter/Espacio |
-| 🔍 **SEO** | Meta tags optimizados, Open Graph, Twitter Cards, JSON-LD (`LocalBusiness`, `WebSite`, `ItemList` y `BreadcrumbList`), sitemap con todas las fichas y página 404 `noindex` |
+| 🔍 **SEO** | Meta tags optimizados, Open Graph, Twitter Cards, JSON-LD (`LocalBusiness`, `WebSite`, `ItemList` y `BreadcrumbList`), canonical `/productos/` con rewrite interno vía Netlify Edge Function (301 desde `/productos` y `/productos.html`), links y assets root-relative, sitemap con todas las fichas y 404 `noindex` |
 | ⚡ **Velocidad** | Imágenes WebP + thumbs, fuentes recortadas, `defer`, revalidación por ETag tras cada deploy |
 
 ---
@@ -74,6 +74,7 @@ dorila/
 ├── templates/        # Plantilla de ficha de producto
 ├── tools/            # catálogo, generate.js (fichas) e images.js (WebP + thumbs)
 ├── netlify.toml      # Deploy + headers de caché inmutable
+├── netlify/          # Edge Function canonical + Functions de recetas
 └── .gitignore        # Excluye documentos internos (Cremas.txt, etc.)
 ```
 
@@ -89,7 +90,8 @@ start index.html
 python -m http.server 8000
 ```
 
-Abrí <http://localhost:8000> desde tu navegador.
+Abrí <http://localhost:8000> desde tu navegador. El servidor local no ejecuta la
+Edge Function: las URLs canónicas con slash final se validan en Netlify.
 
 ### 🔧 Regenerar fichas o imágenes
 
@@ -140,6 +142,8 @@ al sitemap.
 - **JavaScript vanilla**: DOM, `IntersectionObserver`, `localStorage`,
   `sessionStorage`, `fetchpriority`, swipe táctil, accesibilidad
 - **Fuentes**: Rye (display) + Montserrat (texto) vía Google Fonts
+- **Netlify**: Edge Function para el canonical `/productos/`, Functions + Blobs
+  para las recetas y headers de caché inmutable por `?v=`
 - **Build ligero**: sharp (dev) para imágenes; sin bundlers en producción
 
 ### 🧭 Footer editorial
@@ -159,7 +163,25 @@ Además de `npm test` (carrito, recetas, contraste WCAG AA, consistencia del
 footer y modal/catálogo), el footer se validó con Chrome headless en 360px, 768px y 1280px:
 sin scroll horizontal, 2/2/4 columnas, eyebrow y wordmark en la misma fila en
 mobile/tablet, 3 iconos, 6 enlaces de navegación y disclaimer + crédito visibles
-en los tres anchos.
+en los tres anchos. El marker `.eyebrow-mark` se oculta en todos los eyebrows
+por debajo de 640px y `.product-card .tox-badge` baja a `0.68rem` para no
+compactar la grilla en móvil.
+
+### 🌐 URLs canónicas y caché
+
+El catálogo canónico es <https://dorila.netlify.app/productos/>. Netlify no
+permite redirecciones que agreguen o quiten el slash final, así que
+`netlify/edge-functions/canonical-productos.js` responde `301` para `/productos`
+y `/productos.html` y hace rewrite interno a `/productos.html` sin cambiar la URL
+pública. No se usa `<base href="/">`: rompe las anclas `#main`, `#productos` y
+`#catalog-index-heading`. Los HTML generados usan rutas root-relative y los
+assets JS/CSS llevan `?v=` con caché inmutable.
+
+```bash
+curl -I https://dorila.netlify.app/productos
+curl -I https://dorila.netlify.app/productos.html
+curl -s https://dorila.netlify.app/productos/ | grep 'rel="canonical"'
+```
 
 ---
 
