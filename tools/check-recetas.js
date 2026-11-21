@@ -477,7 +477,7 @@ console.log("\n5. Integración en las páginas y configuración");
   ok("productos.html no linkea la variante .html", !/href="productos\.html"/.test(productosPage) && !/productos\.html<\/loc>/.test(sitemap));
   ok("hero de productos usa el hero compartido",
     /<section class="page-hero catalog-hero feature-hero"/.test(productosPage) &&
-    /<div class="hero-media">[\s\S]*?<img[\s\S]*?src="img\/montes_bg\.webp"[\s\S]*?fetchpriority="high"/.test(productosPage) &&
+    /<div class="hero-media">[\s\S]*?<img[\s\S]*?src="\/?img\/montes_bg\.webp"[\s\S]*?fetchpriority="high"/.test(productosPage) &&
     /<p class="hero-lead">/.test(productosPage) &&
     /<div class="hero-ctas">[\s\S]*?class="btn btn-look"/.test(productosPage));
   ok("catálogo quitó el span del h1",
@@ -486,8 +486,19 @@ console.log("\n5. Integración en las páginas y configuración");
     /<nav class="crumbs crumbs-hero" aria-label="Migas de pan">/.test(productosPage) &&
     productosPage.indexOf('class="crumbs crumbs-hero"') < productosPage.indexOf('class="page-hero catalog-hero feature-hero"'));
   check("productos.html ofrece índice estático de todas las fichas",
-    (productosPage.match(/href="productos\/[^"]+\.html"/g) || []).length, PRODUCTS.length);
+    (productosPage.match(/href="\/productos\/[^"]+\.html"/g) || []).length, PRODUCTS.length);
   ok("productos.html no limita los resultados", !/id="productGrid"[^>]*data-limit=/.test(productosPage));
+  ok("productos.html usa URLs root-relative bajo /productos/",
+    /<script src="\/js\/productos\.js\?v=[0-9a-f]{8}"/.test(productosPage) &&
+    /<script src="\/js\/app\.js\?v=[0-9a-f]{8}"/.test(productosPage) &&
+    /<link rel="stylesheet" href="\/asset\/base\.css\?v=[0-9a-f]{8}"/.test(productosPage) &&
+    /src="\/img\/montes_bg\.webp"/.test(productosPage) &&
+    !/(?:src|href)="(?:js|asset|img|productos)\//.test(productosPage));
+  ok("app.js normaliza imágenes del catálogo a root-relative",
+    /function siteUrl\(src\)/.test(appJs) &&
+    /return "\/" \+ value/.test(appJs) &&
+    /return siteUrl\(String\(src \|\| ""\)\.replace/.test(appJs) &&
+    /modalImg\.src = siteUrl\(p\.img\)/.test(appJs));
   ok("grid usa content-visibility", /\.product-card\{[^}]*content-visibility:auto/.test(homeCss));
   ok("grid usa thumbnails sin data-src", /function buildCardImg/.test(appJs) && !/appendChild\(buildLazyImg/.test(appJs));
   ok("búsqueda usa debounce", /var scheduleRender = debounce\(render, 150\)/.test(appJs));

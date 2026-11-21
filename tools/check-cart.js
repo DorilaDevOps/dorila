@@ -395,7 +395,7 @@ console.log("\n6. Fichas generadas — catálogo, carrito y seguridad");
   check("productos.html anuncia el total del catálogo",
     Number((/"numberOfItems":\s*(\d+)/.exec(catalogo) || [0, -1])[1]), PRODUCTS.length);
   check("indice estatico con todas las fichas",
-    (catalogo.match(/href="productos\/[^"]+\.html"/g) || []).length, PRODUCTS.length);
+    (catalogo.match(/href="\/productos\/[^"]+\.html"/g) || []).length, PRODUCTS.length);
   check("JSON-LD ItemList con todos los productos",
     (itemList.match(/"@type": "ListItem"/g) || []).length, PRODUCTS.length);
   ok("productos.html sin tokens", !/\{\{[A-Z0-9_]+\}\}/.test(catalogo));

@@ -36,6 +36,12 @@
     };
   }
 
+  function siteUrl(src){
+    var value = String(src || "");
+    if (!value || /^(?:[a-z][a-z0-9+.-]*:|\/\/|\/|#)/i.test(value)) return value;
+    return "/" + value;
+  }
+
   function setDeepLinkCanonical(slug){
     var p = PRODUCT_BY_SLUG[slug];
     if (!p) return;
@@ -59,8 +65,8 @@
     var full = img.getAttribute("data-src");
     if (!full) return;
     var loader = new Image();
-    loader.onload = function(){ img.src = full; img.classList.add("is-loaded"); };
-    loader.src = full;
+    loader.onload = function(){ img.src = siteUrl(full); img.classList.add("is-loaded"); };
+    loader.src = siteUrl(full);
     img.removeAttribute("data-src");
   }
   var lazyObserver = null;
@@ -87,7 +93,7 @@
   var modalLastFocus = null;
 
   function thumbUrl(src){
-    return String(src || "").replace(/\.webp(\?.*)?$/, "-thumb.webp$1");
+    return siteUrl(String(src || "").replace(/\.webp(\?.*)?$/, "-thumb.webp$1"));
   }
 
   function sectionHidden(id, hidden){
@@ -126,13 +132,13 @@
       thumb.loading = "lazy";
       thumb.onerror = function(){
         thumb.onerror = null;
-        thumb.src = p.fallbackImg || window.FALLBACK_IMG || src;
+        thumb.src = siteUrl(p.fallbackImg || window.FALLBACK_IMG || src);
       };
       btn.appendChild(thumb);
       btn.addEventListener("click", function(){
         if (modalImg){
           modalImg.dataset.fallback = "";
-          modalImg.src = src;
+          modalImg.src = siteUrl(src);
         }
         modalThumbs.querySelectorAll(".modal-thumb").forEach(function(other){
           other.classList.toggle("is-active", other === btn);
@@ -148,7 +154,7 @@
     modalImg.className = "modal-img" + (p.imageClass ? " " + p.imageClass : "");
     modalImg.alt = p.name + ", producto de herboristería artesanal de DORILA";
     modalImg.removeAttribute("data-src");
-    modalImg.src = p.img;
+    modalImg.src = siteUrl(p.img);
     renderGallery(p);
   }
 
@@ -156,7 +162,7 @@
     modalImg.addEventListener("error", function(){
       if (modalImg.dataset.fallback) return;
       modalImg.dataset.fallback = "1";
-      modalImg.src = window.FALLBACK_IMG || "img/placeholder/mandala.svg";
+      modalImg.src = siteUrl(window.FALLBACK_IMG || "img/placeholder/mandala.svg");
     });
   }
 

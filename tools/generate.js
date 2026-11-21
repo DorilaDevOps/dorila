@@ -275,8 +275,13 @@ ROOT_PAGES.forEach(function(file){
   after = after.split(BASE + "/productos.html").join(BASE + "/productos/");
   after = after.replace(/href="productos\.html"/g, 'href="/productos/"');
   after = after.replace(/Nombre, uso o nombre científico…/g, "Nombre, sinónimo, uso o nombre científico…");
-  after = after.replace(/(<script src="js\/[^"?]+)(?:\?v=[^"]*)?(")/g, "$1?v=" + ASSET_VERSION + "$2");
-  after = after.replace(/(<link rel="stylesheet" href="asset\/[^"?]+)(?:\?v=[^"]*)?(")/g, "$1?v=" + ASSET_VERSION + "$2");
+  after = after.replace(/(<script src="\/?js\/[^"?]+)(?:\?v=[^"]*)?(")/g, "$1?v=" + ASSET_VERSION + "$2");
+  after = after.replace(/(<link rel="stylesheet" href="\/?asset\/[^"?]+)(?:\?v=[^"]*)?(")/g, "$1?v=" + ASSET_VERSION + "$2");
+  if (file === "productos.html"){
+    after = after.replace(/(<[^<>]*?\s(?:src|href)=")(?!\/|#|https?:|mailto:|tel:|data:)([^"]+)(")/g, function(_, open, value, close){
+      return open + "/" + value + close;
+    });
+  }
   if (after !== before){
     fs.writeFileSync(p, after);
     stamped++;
