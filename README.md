@@ -47,7 +47,7 @@ de **recetas y remedios caseros**, educación herbolaria y agradecimientos.
 | 📱 **Mobile-first** | CSS con `min-width` progresivo y `clamp()`; la grilla de categorías se mantiene en 2 columnas en móvil, 3 desde 768px y 4 desde 1024px |
 | 🧭 **Footer editorial** | Cuatro bloques con namespace propio, 2/2/4 columnas compactas, disclaimer destacado, modales legales y crédito a Kikiriya-DevOps |
 | 🍵 **Recetas y remedios** | Página con técnicas de preparación, recetas paso a paso y consejos de conservación |
-| 🧭 **Ecosistema DORILA** | Hero y bloque “Qué podés hacer” presentan juntos la botica, la guía de yuyos y el recetario; el banner “De la planta a tu taza” destaca técnicas y participación en la home |
+| 🧭 **Ecosistema DORILA** | Hero y bloque “Qué podés hacer” presentan juntos la botica, la guía de yuyos y el recetario; el banner “El arte de transformar las plantas” destaca técnicas y participación en la home |
 | 🌿 **Recetas de persona a persona** | Formulario único con contacto opcional interno, moderación privada con checklist, publicación solo tras aprobación y sin exponer datos personales |
 | 🎓 **Educación herbolaria** | Página informativa sobre plantas y su uso seguro |
 | 💬 **Testimonios** | Carrusel de experiencias reales en la página principal |
@@ -178,13 +178,14 @@ en los tres anchos. El marker `.eyebrow-mark` se oculta en todos los eyebrows
 por debajo de 640px y `.product-card .tox-badge` baja a `0.68rem` para no
 compactar la grilla en móvil.
 
-`npm test` ejecuta 528 verificaciones (`58 + 259 + 109 + 102`): cubre carrito,
+`npm test` ejecuta 532 verificaciones (`58 + 259 + 113 + 102`): cubre carrito,
 recetas, contraste WCAG AA, modal y catálogo. Entre los contratos nuevos están
 las 2 columnas de categorías hasta 768px, el `skeleton` de la home, el foco con
 `preventScroll`, el `modalAddBtn` deshabilitado cuando `stock <= 0`, el tope de
 cantidad por `stock`, el carrito conservado hasta confirmar la orden, el guard
-de teclado en la tarjeta de producto, las 12 categorías como enlaces reales y el
-banner “De la planta a tu taza”.
+de teclado en la tarjeta de producto, las 12 categorías como enlaces reales, el
+banner “El arte de transformar las plantas” y el contraste del acento en hover
+y en el teaser.
 
 ### 🌐 URLs canónicas y caché
 

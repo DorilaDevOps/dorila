@@ -111,6 +111,7 @@ function pair(name, foreground, background, minimum){
 var communityCss = fs.readFileSync(path.join(ROOT, "asset", "comunidad.css"), "utf8");
 var adminCss = fs.readFileSync(path.join(ROOT, "asset", "admin-recetas.css"), "utf8");
 var baseCss = fs.readFileSync(path.join(ROOT, "asset", "base.css"), "utf8");
+var homeCss = fs.readFileSync(path.join(ROOT, "asset", "home.css"), "utf8");
 var base = tokens(baseCss, ":root");
 var community = tokens(communityCss, ":root");
 var communityTokenNames = tokenNames(communityCss, ":root");
@@ -207,6 +208,13 @@ pair("borde de aviso sobre fondo de aviso", community["--cr-warning-border"], co
 pair("borde de error sobre fondo de error", community["--cr-error-border"], community["--cr-error-bg"], 3);
 pair("texto del CTA sobre fondo tintado", base["--color-alerta-text"], mix(base["--color-forest"], community["--cr-green"], 0.08), 4.5);
 pair("texto del botón del CTA", base["--color-parchment-soft"], base["--color-forest-accent"], 3);
+pair("texto del botón outline en hover", base["--color-black"], base["--color-forest-accent"], 4.5);
+pair("texto del teaser sobre acento", base["--color-crema"], mix(base["--color-forest-accent"], base["--color-forest-deep"], 0.6), 4.5);
+ok("hover de outline usa texto negro sobre acento",
+  /\.btn-outline:hover\{[^}]*background: var\(--color-forest-accent\); color: var\(--color-black\); \}/.test(baseCss));
+ok("teaser de recetas conserva el acento legible",
+  /\.community-teaser\{[\s\S]*?color-mix\(in srgb, var\(--color-forest-accent\) 60%, var\(--color-forest-deep\)\)/.test(homeCss) &&
+  /\.community-teaser-copy p\{[\s\S]*?color: var\(--color-crema\);/.test(homeCss));
 
 console.log("\n3. Contraste del panel de administración");
 var AD_PAGE = base["--color-verde-suave"];

@@ -591,8 +591,8 @@ console.log("\n5. Integración en las páginas y configuración");
     /@media \(min-width:768px\)\{[\s\S]*?\.category-grid\{ grid-template-columns:repeat\(3,1fr\); gap:var\(--space-2\); \}/.test(homeCss) &&
     !/\.category-grid\{ grid-template-columns:repeat\(3,1fr\)/.test(media640));
   ok("hero posiciona DORILA como yuyos + botica + recetas",
-    index.indexOf('<h1 id="hero-heading">Elegí cuidarte con productos naturales,<br>botica artesanal y recetas compartidas</h1>') !== -1 &&
-    index.indexOf('Explorá yuyos y sus usos, descubrí preparados artesanales hechos en pequeñas tandas y compartí tus recetas con la comunidad.') !== -1);
+    index.indexOf('<h1 id="hero-heading">Conectá con lo natural. Descubrí nuevos caminos</h1>') !== -1 &&
+    index.indexOf('Explorá el mundo de los yuyos y sus propiedades, descubrí preparados artesanales y compartí recetas y saberes con nuestra comunidad.') !== -1);
   ok("hero CTA lleva al catálogo y al recetario",
     index.indexOf('<a class="btn btn-look" href="/productos/">Explorar yuyos y productos</a>') !== -1 &&
     index.indexOf('<a class="btn btn-look" href="recetas.html#recetas-caseras">Ver y compartir recetas</a>') !== -1);
@@ -606,8 +606,9 @@ console.log("\n5. Integración en las páginas y configuración");
   ok("bloque DORILA enlaza guía, botica y comunidad",
     index.indexOf('<a class="btn btn-outline" href="/productos/">Explorar yuyos</a>') !== -1 &&
     index.indexOf('<a class="btn btn-outline" href="/productos/">Ver la botica</a>') !== -1 &&
+    index.indexOf('<div class="btn-group">') !== -1 &&
     index.indexOf('<a class="btn btn-outline" href="recetas.html#recetas-caseras">Ver recetas</a>') !== -1 &&
-    index.indexOf('<a class="btn btn-outline" href="recetas.html?compartir=1#recetas-comunidad">Compartir mi receta</a>') !== -1);
+    index.indexOf('<a class="btn btn-outline" href="recetas.html?compartir=1#recetas-comunidad">Compartir receta</a>') !== -1);
   ok("CSS del bloque DORILA pasa a 3 columnas en desktop",
     homeCss.indexOf('@media (min-width:768px){ .ecosystem-grid{ grid-template-columns:repeat(3,1fr); } }') !== -1);
   ok("12 categorías son enlaces reales al catálogo",
@@ -623,8 +624,8 @@ console.log("\n5. Integración en las páginas y configuración");
     beneficiosPos !== -1 && recetasBannerPos > beneficiosPos && recetasBannerPos < historiaPos &&
     (index.match(/id="recetas-comunidad"/g) || []).length === 1 &&
     index.indexOf('id="community-teaser-heading"') === -1);
-  ok("banner de recetas usa la copia acordada",
-    index.indexOf('id="homeRecetasTitle">De la planta a tu taza: recetas y técnicas</h2>') !== -1 &&
+  ok("banner de recetas usa la copia actual",
+    index.indexOf('id="homeRecetasTitle">El arte de transformar las plantas</h2>') !== -1 &&
     index.indexOf('Aprendé a preparar infusiones, decocciones y oleatos en casa, explorá recetas probadas por otros usuarios o sumá la tuya al herbario comunitario.') !== -1);
   ok("banner de recetas ofrece recetas, técnicas y compartir",
     index.indexOf('<a class="btn btn-look" href="recetas.html#recetas-caseras">Explorar recetas</a>') !== -1 &&

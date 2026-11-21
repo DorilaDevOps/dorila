@@ -258,7 +258,7 @@ img.img-toned,
   border-color: var(--color-ink);
   color: var(--color-ink);
 }
-.btn-outline:hover{ background: var(--color-ink); color: var(--color-parchment-soft); }
+.btn-outline:hover{ background: var(--color-forest-accent); color: var(--color-black); }
 .btn-look{
   background: transparent;
   color: var(--color-forest-deep);
@@ -269,6 +269,7 @@ img.img-toned,
 }
 .btn-look:hover{ background: var(--color-crema); color: var(--color-black); }
 .btn-look:active{ transform: translateY(1px); }
+.btn-group{display:flex; align-items:center; gap:0.8em; flex-wrap:wrap; }
 .btn-ghost{
   background: transparent;
   color: var(--color-forest-deep);

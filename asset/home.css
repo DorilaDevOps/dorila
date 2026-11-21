@@ -392,7 +392,6 @@ a.category-card{ display:block; color:inherit; text-decoration:none; }
    =========================================================== */
 @media (min-width:480px){
   .story{ background-image:linear-gradient(to bottom, color-mix(in srgb, var(--color-parchment-soft) 16%, transparent) 0%, color-mix(in srgb, var(--color-parchment-soft) 60%, transparent) 100%), url('../img/girasol_bg.webp'); background-color:var(--color-parchment-deep); background-size:cover; background-position:center; }
-  .story-media{ display:block; }
 }
 @media (max-width: 639px){
   .product-card .tox-badge{ font-size:0.68rem; }
@@ -404,9 +403,8 @@ a.category-card{ display:block; color:inherit; text-decoration:none; }
   .product-body{ padding:var(--space-2); }
   .product-filters{ gap:0.35rem; }
   .filter-btn{ font-size:var(--fs-tiny); padding:0.4em 0.9em; }
+  .story-media{ display:block; }
   .story{ background-image:none; background-color:var(--color-parchment-deep); }
-  .story-text.reveal.is-visible p,
-  .story-text.reveal.is-visible .story-signature{ text-shadow:none; }
   .cart-item{ flex-wrap:nowrap; }
   .cart-item-img{ width:64px; height:64px; }
   .cart-item-side{ margin-left:0; }
@@ -443,8 +441,8 @@ a.category-card{ display:block; color:inherit; text-decoration:none; }
 .community-teaser{
   padding-block: clamp(2.5rem, 6vw, 4.5rem);
   background:
-    radial-gradient(ellipse at 10% 10%, color-mix(in srgb, var(--color-salvia) 28%, transparent), transparent 50%),
-    var(--color-forest-bosque);
+    radial-gradient(ellipse at 10% 10%, color-mix(in srgb, var(--color-forest-deep) 28%, transparent), transparent 50%),
+    color-mix(in srgb, var(--color-forest-accent) 60%, var(--color-forest-deep));
   color: var(--color-crema);
 }
 .community-teaser-card{
@@ -454,7 +452,7 @@ a.category-card{ display:block; color:inherit; text-decoration:none; }
   padding: clamp(1.4rem, 4vw, 2.2rem);
   border: 1px solid color-mix(in srgb, var(--color-crema) 22%, transparent);
   border-radius: var(--radius-card);
-  background: color-mix(in srgb, var(--color-crema) 6%, transparent);
+  background: color-mix(in srgb, var(--color-crema) 4%, transparent);
 }
 .community-teaser .eyebrow-mark{
   color: var(--color-crema);
@@ -474,7 +472,7 @@ a.category-card{ display:block; color:inherit; text-decoration:none; }
   max-width: 62ch;
   font-size: var(--fs-small);
   line-height: 1.7;
-  color: color-mix(in srgb, var(--color-crema) 82%, transparent);
+  color: var(--color-crema);
 }
 .community-teaser-actions{ display: flex; flex-wrap: nowrap; gap: 0.5rem; }
 .community-teaser-actions .btn{
