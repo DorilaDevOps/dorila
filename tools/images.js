@@ -1,6 +1,7 @@
 // =====================================================================
 // DORILA — Optimizador de imágenes.
-// Genera <nombre>.webp (máx. 1200px, calidad 80) y <nombre>-thumb.webp
+// Genera <nombre>.webp (máx. 1200px, calidad 80), <nombre>-480.webp
+// (máx. 480px, srcset responsive) y <nombre>-thumb.webp
 // (32px, placeholder difuminado) para cada imagen del directorio img/.
 //
 // Uso:  node tools/images.js
@@ -20,6 +21,7 @@ const sharp = require("sharp");
 const ROOT = path.join(__dirname, "..");
 const SRC_DIR = path.join(ROOT, "img");
 const MAX_WIDTH = 1200;
+const SMALL_WIDTH = 480;
 const THUMB_WIDTH = 32;
 const QUALITY = 80;
 const SKIP = new Set(["favicon.png", "og-dorila.png", "cart22.png"]);
@@ -55,28 +57,30 @@ function loadSiteText() {
   for (const file of sources) {
     const base = file.slice(0, file.lastIndexOf("."));
     const webp = base + ".webp";
+    const small = base + "-480.webp";
     const thumb = base + "-thumb.webp";
 
     const srcStat = fs.statSync(file);
     const stale = (out) =>
       !fs.existsSync(out) || srcStat.mtimeMs > fs.statSync(out).mtimeMs;
+    const outputs = [
+      { file: webp, width: MAX_WIDTH, quality: QUALITY, withoutEnlargement: true },
+      { file: small, width: SMALL_WIDTH, quality: QUALITY, withoutEnlargement: true },
+      { file: thumb, width: THUMB_WIDTH, quality: 60, withoutEnlargement: false }
+    ].filter((out) => stale(out.file));
 
-    if (!stale(webp)) {
+    if (outputs.length === 0) {
       kept++;
       continue;
     }
 
-    await sharp(file)
-      .rotate()
-      .resize({ width: MAX_WIDTH, withoutEnlargement: true })
-      .webp({ quality: QUALITY })
-      .toFile(webp);
-
-    await sharp(file)
-      .rotate()
-      .resize({ width: THUMB_WIDTH })
-      .webp({ quality: 60 })
-      .toFile(thumb);
+    for (const out of outputs) {
+      await sharp(file)
+        .rotate()
+        .resize({ width: out.width, withoutEnlargement: out.withoutEnlargement })
+        .webp({ quality: out.quality })
+        .toFile(out.file);
+    }
 
     const kb = (fs.statSync(webp).size / 1024).toFixed(1);
     console.log("→ " + path.basename(webp) + " (" + kb + " KB)");
@@ -87,35 +91,44 @@ function loadSiteText() {
   let removed = 0;
   for (const f of fs.readdirSync(SRC_DIR)) {
     if (!f.endsWith(".webp")) continue;
-    const base = f.endsWith("-thumb.webp")
-      ? f.slice(0, f.length - "-thumb.webp".length)
-      : f.slice(0, f.length - ".webp".length);
+    const suffix = f.endsWith("-thumb.webp")
+      ? "-thumb.webp"
+      : f.endsWith("-480.webp")
+      ? "-480.webp"
+      : ".webp";
+    const base = f.slice(0, f.length - suffix.length);
     const hasSource = [".jpg", ".jpeg", ".png"].some((ext) =>
       fs.existsSync(path.join(SRC_DIR, base + ext))
     );
     if (hasSource) continue;
-    const plainName = base + ".webp";
-    if (siteText.includes("img/" + f) || siteText.includes("img/" + plainName)) continue;
+    const variants = [base + ".webp", base + "-480.webp", base + "-thumb.webp"];
+    if (variants.some((variant) => siteText.includes("img/" + variant))) continue;
     fs.unlinkSync(path.join(SRC_DIR, f));
     console.log("⌫ huérfano eliminado: " + f);
     removed++;
   }
 
-  let thumbAdded = 0;
+  let variantsAdded = 0;
   for (const f of fs.readdirSync(SRC_DIR)) {
-    if (!f.endsWith(".webp") || f.endsWith("-thumb.webp")) continue;
-    const thumb = f.slice(0, f.length - ".webp".length) + "-thumb.webp";
-    if (fs.existsSync(path.join(SRC_DIR, thumb))) continue;
-    await sharp(path.join(SRC_DIR, f))
-      .resize({ width: THUMB_WIDTH })
-      .webp({ quality: 60 })
-      .toFile(path.join(SRC_DIR, thumb));
-    console.log("→ thumb reparado: " + thumb);
-    thumbAdded++;
+    if (!f.endsWith(".webp") || f.endsWith("-thumb.webp") || f.endsWith("-480.webp")) continue;
+    const stem = f.slice(0, f.length - ".webp".length);
+    const missing = [
+      { file: stem + "-480.webp", width: SMALL_WIDTH, quality: QUALITY, label: "480" },
+      { file: stem + "-thumb.webp", width: THUMB_WIDTH, quality: 60, label: "thumb" }
+    ].filter((out) => !fs.existsSync(path.join(SRC_DIR, out.file)));
+
+    for (const out of missing) {
+      await sharp(path.join(SRC_DIR, f))
+        .resize({ width: out.width })
+        .webp({ quality: out.quality })
+        .toFile(path.join(SRC_DIR, out.file));
+      console.log("→ " + out.label + " reparado: " + out.file);
+      variantsAdded++;
+    }
   }
 
   console.log(
-    `\nImágenes: ${updated} regeneradas, ${kept} sin cambios, ${removed} huérfanos eliminados, ${thumbAdded} thumbs reparados.`
+    `\nImágenes: ${updated} regeneradas, ${kept} sin cambios, ${removed} huérfanos eliminados, ${variantsAdded} variantes reparadas.`
   );
   if (updated) {
     console.log("Corré también: node tools/generate.js (no necesario por contenido).");

@@ -825,13 +825,13 @@ body:has(dialog.modal-plant[open]){ overflow:hidden; }
 .dorila-footer__link:focus-visible::after{ right:0; }
 .dorila-footer__community-copy{
   max-width:30ch; margin-bottom:0.8rem;
-  font-family:var(--font-display); font-size:var(--fs-small); line-height:1.5;
+  font-family:var(--font-body); font-size:var(--fs-small); line-height:1.5;
   color:var(--color-crema);
 }
 .dorila-footer__share{
   display:inline-flex; align-items:center; gap:0.4rem;
-  padding-bottom:0.2rem; border-bottom:1px solid currentColor;
-  font-size:var(--fs-small); font-weight:700; color:var(--color-salvia-claro);
+  padding-bottom:0.2rem; border-bottom:1px solid var(--color-logo-parchment);
+  font-size:var(--fs-small); font-weight:700; color:var(--color-logo-parchment);
   transition: color var(--transition-fast), transform var(--transition-fast);
 }
 .dorila-footer__share:hover,
@@ -918,7 +918,7 @@ body:has(dialog.modal-plant[open]){ overflow:hidden; }
     align-items:baseline; column-gap:0.6rem;
   }
   .dorila-footer__eyebrow{ margin-bottom:0; }
-  .dorila-footer__wordmark{ font-size:clamp(1.75rem, 7vw, 2.25rem); }
+  .dorila-footer__wordmark{ font-size:clamp(1.35rem, 6vw, 1.9rem); }
   .dorila-footer__description,
   .dorila-footer__tagline{ grid-column:1 / -1; margin-top:0.55rem; line-height:1.5; }
   .dorila-footer__title{ margin-bottom:0.55rem; }

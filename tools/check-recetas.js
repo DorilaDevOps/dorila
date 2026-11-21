@@ -227,6 +227,7 @@ console.log("\n5. Integración en las páginas y configuración");
   var robots = fs.readFileSync(path.join(ROOT, "robots.txt"), "utf8");
   var netlify = fs.readFileSync(path.join(ROOT, "netlify.toml"), "utf8");
   var generate = fs.readFileSync(path.join(ROOT, "tools", "generate.js"), "utf8");
+  var imagesJs = fs.readFileSync(path.join(ROOT, "tools", "images.js"), "utf8");
   var pagesCss = fs.readFileSync(path.join(ROOT, "asset", "pages.css"), "utf8");
   var baseCss = fs.readFileSync(path.join(ROOT, "asset", "base.css"), "utf8");
   var homeCss = fs.readFileSync(path.join(ROOT, "asset", "home.css"), "utf8");
@@ -357,7 +358,7 @@ console.log("\n5. Integración en las páginas y configuración");
     /@media \(max-width: 639px\)\{[\s\S]*?\.page-hero \.eyebrow-mark\{ display:none; \}/.test(pagesCss));
   ok("CTA de historia y saber usa hero-ctas y btn-primary",
     [historia, saber].every(function(page){
-      var foldStart = page.indexOf('<section class="cta-fold wrap">');
+      var foldStart = page.search(/<section class="cta-fold(?: saber-cta)? wrap"[^>]*>/);
       var fold = page.slice(foldStart, page.indexOf("</section>", foldStart));
       return /<div class="hero-ctas">/.test(fold) &&
              (fold.match(/class="btn btn-primary"/g) || []).length === 2 &&
@@ -366,12 +367,51 @@ console.log("\n5. Integración en las páginas y configuración");
     /\.cta-fold \.hero-ctas\{/.test(pagesCss) &&
     /\.cta-fold \.hero-ctas \.btn\{/.test(pagesCss) &&
     /\.btn-primary:hover\{ background: var\(--color-crema\); color: var\(--color-black\);\}/.test(baseCss));
-  ok("acordeón de saber usa tokens compartidos",
-    /--border-frame3:\s*3px solid #75b599/.test(baseCss) &&
-    /\.stat-card\{ border: var\(--border-frame3\)/.test(pagesCss) &&
-    /\.acc-item\{ border: var\(--border-frame3\)[^}]*background: var\(--bg-global-celeste\)/.test(pagesCss) &&
+  var saberBlock = pagesCss.slice(
+    pagesCss.indexOf("/* ==================== saber.html ==================== */"),
+    pagesCss.indexOf("/* ==================== gracias.html ==================== */")
+  );
+  ok("saber usa stats semánticas y tipografía sobria",
+    /<dl class="stats-row">/.test(saber) &&
+    (saber.match(/<dt class="stat-num">/g) || []).length === 4 &&
+    (saber.match(/<dd class="stat-label">/g) || []).length === 4 &&
+    !/<div class="stat-card"/.test(saber) &&
+    /\.stats-row\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/.test(pagesCss) &&
+    /\.stat dt\{[^}]*font-family:var\(--font-body\)/.test(pagesCss) &&
+    !/(--color-terracotta|font-family:\s*var\(--font-display\))/.test(saberBlock));
+  var accordionStart = saber.indexOf('<div class="accordion"');
+  var accordionHtml = saber.slice(accordionStart, saber.indexOf('<section class="seasonal-wrap"', accordionStart));
+  ok("acordeón de saber usa details nativos y tokens compartidos",
+    (accordionHtml.match(/<details class="acc-item" name="saber">/g) || []).length === 5 &&
+    (accordionHtml.match(/<summary class="acc-trigger">/g) || []).length === 5 &&
+    !/aria-expanded=/.test(accordionHtml) &&
+    !/<button class="acc-trigger"/.test(accordionHtml) &&
     /--fs-acc-trigger:\s*clamp\(/.test(baseCss) &&
-    /\.acc-trigger\{[^}]*font-size: var\(--fs-acc-trigger\)/.test(pagesCss));
+    /\.acc-trigger h3\{[^}]*font-size:var\(--fs-acc-trigger\)/.test(pagesCss) &&
+    /\.acc-item\[open\] \.acc-icon\{[^}]*transform:rotate\(45deg\)/.test(pagesCss));
+  ok("plantas de temporada son compactas y crecen sin JS",
+    /<section class="seasonal-wrap" aria-labelledby="saber-seasonal-heading">/.test(saber) &&
+    /\.plant-card\{[^}]*grid-template-columns:clamp\(84px, 24vw, 120px\)/.test(pagesCss) &&
+    /@media \(min-width:560px\)\{[\s\S]*?\.seasonal-grid\{ grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/.test(pagesCss) &&
+    /@media \(min-width:1000px\)\{[\s\S]*?\.plant-card\{ display:flex; flex-direction:column/.test(pagesCss) &&
+    pagesCss.indexOf("cierre mobile-first") > pagesCss.indexOf(".catalog-index"));
+  ok("imágenes de saber usan srcset responsive y variantes -480",
+    (saber.match(/<img src="img\/[^"]+-480\.webp"/g) || []).length === 4 &&
+    (saber.match(/srcset="img\/[^"]+-480\.webp 480w, img\/[^"]+\.webp 1200w"/g) || []).length === 4 &&
+    (saber.match(/sizes="\(min-width: 1000px\) 260px, \(min-width: 560px\) 320px, 120px"/g) || []).length === 4 &&
+    (saber.match(/width="1200" height="(?:788|798|900)"/g) || []).length === 4 &&
+    (saber.match(/decoding="async" fetchpriority="low"/g) || []).length === 4 &&
+    !/class="plant-media img-toned"/.test(saber) &&
+    /SMALL_WIDTH = 480/.test(imagesJs) &&
+    /-480\.webp/.test(imagesJs));
+  ok("SEO de saber incluye OG, Twitter y datos estructurados",
+    /<meta property="og:locale" content="es_UY">/.test(saber) &&
+    /<meta property="og:image:width" content="1200">/.test(saber) &&
+    /<meta name="twitter:card" content="summary_large_image">/.test(saber) &&
+    /<script type="application\/ld\+json">/.test(saber) &&
+    /"@type": "WebPage"/.test(saber) &&
+    /"@type": "BreadcrumbList"/.test(saber) &&
+    !/FAQPage/.test(saber));
   ok("temporada vuelve al pergamino base",
     /\.seasonal-wrap\{[^}]*background: var\(--color-parchment\); \}/.test(pagesCss));
   ok("disclaimer mantiene franja completa y borde verde",
@@ -685,6 +725,13 @@ console.log("\n7. Orden, enlaces y navegación del sitio");
   ok("el tagline del footer usa tipografía de cuerpo",
     /\.dorila-footer__tagline\{[^}]*color:\s*var\(--color-crema\)/.test(baseCss) &&
     !/\.dorila-footer__tagline\{[^}]*font-family:\s*var\(--font-display\)/.test(baseCss));
+  ok("footer usa pergamino en share y cuerpo en community",
+    /\.dorila-footer__share\{[^}]*border-bottom:1px solid var\(--color-logo-parchment\)/.test(baseCss) &&
+    /\.dorila-footer__share\{[^}]*color:var\(--color-logo-parchment\)/.test(baseCss) &&
+    /\.dorila-footer__community-copy\{[^}]*font-family:var\(--font-body\)/.test(baseCss) &&
+    !/\.dorila-footer__community-copy\{[^}]*font-family:\s*var\(--font-display\)/.test(baseCss));
+  ok("wordmark del footer se reduce con clamp en mobile",
+    /\.dorila-footer__wordmark\{ font-size:clamp\(1\.35rem, 6vw, 1\.9rem\)/.test(baseCss));
   ok("el footer compacta navs y espacios por debajo de 1000px",
     /@media \(min-width: 360px\)\{[\s\S]*?\.dorila-footer__grid\{\s*grid-template-columns:repeat\(2, minmax\(0, 1fr\)\);/.test(baseCss) &&
     /@media \(max-width: 999px\)\{[\s\S]*?\.dorila-footer__brand\{\s*display:grid;[\s\S]{0,220}grid-template-columns:max-content minmax\(0, 1fr\)/.test(baseCss) &&
