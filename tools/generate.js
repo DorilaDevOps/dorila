@@ -91,10 +91,18 @@ products.forEach(function(p){
   var title = p.name + " — " + (p.fichaBotanica ? "Ficha botánica" : label(p.categoriaLabel || cat)) + " | DORILA Uruguay";
   var descBase = p.desc || p.botanicalDesc || p.name;
   var desc = p.vendible ? descBase + " Envíos a todo el país desde Uruguay." : descBase + " Ficha informativa de DORILA.";
+  var keywords = [p.name, p.scientific].concat(p.sinonimos || [], p.palabrasClave || [])
+    .filter(Boolean).filter(function(x, i, arr){ return arr.indexOf(x) === i; }).join(", ");
   var props = (p.props || []).map(function(x){ return "<li>" + esc(x) + "</li>"; }).join("\n");
   var toxicidad = p.toxicidadLabel ? "Toxicidad: " + p.toxicidadLabel : "";
   var familia = p.familia ? "Familia: " + p.familia : "";
-  var alerta = p.alerta ? '<p class="' + (p.alertClass || "alerta-toxica") + '">' + esc(p.alerta) + "</p>" : "";
+  var alerta = p.alertaTitulo
+    ? '<div class="' + esc(p.alertClass || "alerta-toxica") + '" role="alert">' +
+        '<strong>' + esc(p.alertaTitulo) + '</strong>' +
+        '<p>' + esc(p.alertaCuerpo || p.alerta) + '</p>' +
+        (p.alertaNota ? '<small>' + esc(p.alertaNota) + '</small>' : "") +
+      '</div>'
+    : "";
   var stockLabel = p.vendible ? "Disponible" : (p.toxicidad === "EXTREMA" ? "No disponible para venta" : "Sin stock");
   var descBotanica = p.fichaBotanica && p.botanicalDesc && p.botanicalDesc !== p.desc
     ? '<section class="ficha-botanica"><h2>Descripción botánica</h2><p>' + esc(p.botanicalDesc) + "</p></section>"
@@ -159,6 +167,7 @@ products.forEach(function(p){
     .replace(/\{\{JS_VERSION\}\}/g, JS_VERSION)
     .replace(/\{\{PAGE_TITLE\}\}/g, title)
     .replace(/\{\{PAGE_DESC\}\}/g, desc)
+    .replace(/\{\{META_KEYWORDS\}\}/g, esc(keywords))
     .replace(/\{\{PAGE_URL\}\}/g, url)
     .replace(/\{\{OG_TITLE\}\}/g, title)
     .replace(/\{\{OG_DESC\}\}/g, desc)
@@ -211,6 +220,31 @@ pages.forEach(function(pg){ sitemap.push("  <url><loc>" + pg.page + "</loc></url
 sitemap.push("</urlset>");
 fs.writeFileSync(path.join(ROOT, "sitemap.xml"), sitemap.join("\n") + "\n");
 
+/* Redirecciones de slugs históricos. No se agregan al sitemap: solo apuntan
+   a la ficha canónica para no perder enlaces entrantes. */
+var REDIRECTS = { "hierba-de-san-juan": "hiperico" };
+Object.keys(REDIRECTS).forEach(function(from){
+  var to = REDIRECTS[from];
+  var target = "./" + to + ".html";
+  var redirect =
+    '<!DOCTYPE html>\n' +
+    '<html lang="es">\n' +
+    '<head>\n' +
+    '  <meta charset="UTF-8">\n' +
+    '  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n' +
+    '  <title>Redirección a ' + to + ' | DORILA</title>\n' +
+    '  <link rel="canonical" href="' + BASE + '/productos/' + to + '.html">\n' +
+    '  <meta http-equiv="refresh" content="0; url=' + target + '">\n' +
+    '</head>\n' +
+    '<body>\n' +
+    '  <p>Esta ficha cambió de nombre. <a href="' + target + '">Continuar a ' + to + '</a>.</p>\n' +
+    '  <script>location.replace(' + JSON.stringify(target) + ');</script>\n' +
+    '</body>\n' +
+    '</html>\n';
+  fs.writeFileSync(path.join(ROOT, "productos", from + ".html"), redirect, "utf8");
+  console.log("OK  productos/" + from + ".html  -> " + to + ".html");
+});
+
 /* Las páginas raíz son editadas a mano, pero el ?v= de sus <script> se
    reescribe acá para que nunca queden con la versión vieja de un JS. */
 var ROOT_PAGES = ["index.html", "productos.html", "404.html", "historia.html", "saber.html", "recetas.html", "gracias.html", "admin-recetas.html"];
@@ -230,8 +264,12 @@ ROOT_PAGES.forEach(function(file){
     after = after
       .replace(/\{\{CATALOGO_TOTAL\}\}/g, String(products.length))
       .replace(/\{\{CATALOGO_JSONLD_ITEMS\}\}/g, catalogoItems)
-      .replace(/\{\{CATALOGO_INDEX\}\}/g, catalogoIndex);
+      .replace(/\{\{CATALOGO_INDEX\}\}/g, catalogoIndex)
+      .replace(/("numberOfItems":\s*)\d+/, function(_, prefix){ return prefix + products.length; })
+      .replace(/("@type":\s*"ItemList"[\s\S]*?"itemListElement":\s*\[)[\s\S]*?(\r?\n  \]\r?\n\})/, function(_, open, close){ return open + "\n" + catalogoItems + close; })
+      .replace(/(<ul class="catalog-index-list">\r?\n)[\s\S]*?(\r?\n      <\/ul>)/, function(_, open, close){ return open + catalogoIndex + close; });
   }
+  after = after.replace(/Nombre, uso o nombre científico…/g, "Nombre, sinónimo, uso o nombre científico…");
   after = after.replace(/(<script src="js\/[^"?]+)(?:\?v=[^"]*)?(")/g, "$1?v=" + JS_VERSION + "$2");
   if (after !== before){
     fs.writeFileSync(p, after);

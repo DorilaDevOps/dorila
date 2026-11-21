@@ -570,7 +570,10 @@ console.log("\n7. Orden, enlaces y navegación del sitio");
   ok("pages.css no redefine btn-primary", !/\.btn-primary\s*\{/.test(pagesCss));
 
   var sourcePages = ["index.html", "productos.html", "historia.html", "saber.html", "recetas.html", "gracias.html", "404.html", "templates/ficha-producto.html"];
-  var productFiles = fs.readdirSync(path.join(ROOT, "productos")).filter(function(file){ return /\.html$/.test(file); });
+  var REDIRECTS = { "hierba-de-san-juan.html": true };
+  var productFiles = fs.readdirSync(path.join(ROOT, "productos")).filter(function(file){
+    return /\.html$/.test(file) && !REDIRECTS[file];
+  });
   var allPages = sourcePages.concat(productFiles.map(function(file){ return "productos/" + file; }));
   var missing = allPages.filter(function(file){
     var html = fs.readFileSync(path.join(ROOT, file), "utf8");

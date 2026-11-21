@@ -38,7 +38,7 @@ de **recetas y remedios caseros**, educación herbolaria y agradecimientos.
 | 🔎 **Catálogo buscable** | Página `productos.html` con el herbario completo, búsqueda por nombre, uso o nombre científico, familia y toxicidad, filtros por categoría e índice estático generado para SEO |
 | 🧪 **Fichas botánicas** | Datos botánicos importados desde `data/entrada-plantas.json`, fusión por nombre/científico con los productos comerciales, fallback mandala teñido por categoría |
 | ⚠️ **Seguridad toxicológica** | Nivel de toxicidad visible; `EXTREMA` muestra alerta roja, oculta el botón de compra y nunca sugiere consumo; `stock <= 0` también bloquea la venta |
-| 🪴 **Modal de producto** | Vista rápida con categoría, precio, propiedades, productos relacionados y acceso a la ficha completa |
+| 🪴 **Modal de producto** | `<dialog>` nativo con galería, sinónimos, descripción botánica, usos, preparación, precauciones, alertas y relacionados; las fichas estáticas se conservan para SEO |
 | 🧩 **Categorías** | Tarjetas con filtro directo, iconos y badge destacado; 2 columnas en móvil y 3 desde 640px |
 | 🔁 **Buscar desde cualquier página** | El buscador del header guarda el término en `sessionStorage` (`dorila-search`) y lo prellena al llegar a la tienda |
 | 🖼️ **Lazy loading** | Carga progresiva de imágenes con placeholder difuminado (`IntersectionObserver`) |
@@ -104,23 +104,30 @@ npm run build        # images + catálogo + generate + tests
 ### 📚 Editar el catálogo
 
 La fuente canónica es `data/plantas.json`. `data/entrada-plantas.json` guarda el
-dataset botánico original y `data/categorias.json` define etiquetas, grupos,
-prefijos y tonos. No editar `js/productos.js` a mano: se regenera desde el JSON.
+dataset botánico original, `data/categorias.json` define etiquetas, grupos,
+prefijos y tonos, y `data/overrides.json` aplica correcciones puntuales por ID
+(por ejemplo, `DOR-DES-009` → `Hipérico` / `hiperico`). Todos los IDs tienen
+formato `DOR-XXX-###` y usan el prefijo de su categoría; no existe `idBotanico`.
+No editar `js/productos.js` a mano: se regenera desde el JSON.
 
 ```bash
 node tools/gestionar-catalogo.js validar
 node tools/gestionar-catalogo.js listar digestion
-node tools/gestionar-catalogo.js ver cons-001
+node tools/gestionar-catalogo.js ver DOR-DIG-013
 node tools/gestionar-catalogo.js importar data/entrada-plantas.json
 node tools/gestionar-catalogo.js agregar nueva-planta.json
-node tools/gestionar-catalogo.js editar cons-001 precio 195
-node tools/gestionar-catalogo.js eliminar DOR-TRA-018
+node tools/gestionar-catalogo.js editar DOR-DIG-013 precio 195
+node tools/gestionar-catalogo.js eliminar DOR-TRA-020
 node tools/gestionar-catalogo.js validar --dry-run
 ```
 
 Cada cambio con escritura crea un `.bak` y regenera `js/productos.js`. Las reglas
 de seguridad se validan: `EXTREMA` nunca puede tener precio, stock ni
 disponibilidad, y un producto disponible requiere `stock > 0` y `precio > 0`.
+Los IDs antiguos `cons-*` se descartan al importar y al sanificar el carrito:
+no hay migración de carritos. `tools/generate.js` crea además el redirect
+`productos/hierba-de-san-juan.html` → `productos/hiperico.html`, que no entra
+al sitemap.
 
 ---
 
@@ -148,8 +155,8 @@ tratamiento sutil de borde y sombra. El crédito a
 
 ### ✅ Verificación responsive
 
-Además de `npm test` (carrito, recetas, contraste WCAG AA y consistencia del
-footer), el footer se validó con Chrome headless en 360px, 768px y 1280px:
+Además de `npm test` (carrito, recetas, contraste WCAG AA, consistencia del
+footer y modal/catálogo), el footer se validó con Chrome headless en 360px, 768px y 1280px:
 sin scroll horizontal, 2/2/4 columnas, eyebrow y wordmark en la misma fila en
 mobile/tablet, 3 iconos, 6 enlaces de navegación y disclaimer + crédito visibles
 en los tres anchos.
@@ -228,7 +235,7 @@ npx netlify dev
 ### Verificación
 
 ```bash
-npm test          # carrito + recetas + contraste WCAG AA
+npm test          # carrito + recetas + contraste WCAG AA + modal/catálogo
 npm run generate  # reestampa ?v= y regenera fichas/sitemap
 ```
 

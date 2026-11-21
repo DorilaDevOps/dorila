@@ -205,7 +205,7 @@
 .modal-related[hidden]{ display:none; }
 .modal-related h4{ font-family:var(--font-display); font-size:var(--fs-mid); color:var(--color-ink); margin-bottom:var(--space-2); }
 .related-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:var(--space-2); }
-.related-card{ display:flex; flex-direction:column; background:var(--color-parchment-deep); border:1px solid var(--color-line); border-radius:12px; overflow:hidden; color:inherit; text-decoration:none; transition:transform var(--transition-fast), box-shadow var(--transition-fast); }
+.related-card{ display:flex; flex-direction:column; width:100%; padding:0; font:inherit; text-align:left; cursor:pointer; background:var(--color-parchment-deep); border:1px solid var(--color-line); border-radius:12px; overflow:hidden; color:inherit; text-decoration:none; transition:transform var(--transition-fast), box-shadow var(--transition-fast); }
 .related-card:hover{ transform:translateY(-2px); box-shadow:0 10px 20px -14px rgba(51,35,15,0.6); }
 .related-card img{ display:block; width:100%; aspect-ratio:1/1; object-fit:cover; }
 .related-name{ padding:0.4rem var(--space-1) 0; font-size:var(--fs-small); font-weight:700; line-height:1.2; }

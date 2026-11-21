@@ -166,13 +166,13 @@ console.log("\n1. Ficha (js/cart.js) — agregar al carrito");
   env.run("productos.js");
   env.run("cart.js");
 
-  var btn = makeAddBtn("cons-012");
+  var btn = makeAddBtn("DOR-ARO-012");
   var badge = env.doc.querySelector(".cart-btn").querySelector(".cart-count");
   check("badge arranca en 0", badge.textContent, "0");
 
   clickOn(env.doc, btn);
   check("badge sube a 1", badge.textContent, "1");
-  check("guarda en localStorage", env.read(), { "cons-012": 1 });
+  check("guarda en localStorage", env.read(), { "DOR-ARO-012": 1 });
   check("boton muestra confirmacion", btn.textContent, "¡Agregado! ✓");
   ok("boton queda en is-success", btn.classList.contains("is-success"));
 
@@ -195,18 +195,18 @@ console.log("\n2. Ficha — el boton nunca queda pegado (varios clics seguidos)"
   env.run("productos.js");
   env.run("cart.js");
 
-  var btn = makeAddBtn("cons-012");
+  var btn = makeAddBtn("DOR-ARO-012");
   clickOn(env.doc, btn);
   clickOn(env.doc, btn);
   clickOn(env.doc, btn);
-  check("tres clics = 3 unidades", env.read(), { "cons-012": 3 });
+  check("tres clics = 3 unidades", env.read(), { "DOR-ARO-012": 3 });
 
   env.timers.flush();
   check("vuelve a 'Agregar al carrito' (bug anterior: quedaba en '¡Agregado! ✓')",
         btn.textContent, "Agregar al carrito");
 
   clickOn(env.doc, btn);
-  check("y sigue agregando despues de resetear", env.read(), { "cons-012": 4 });
+  check("y sigue agregando despues de resetear", env.read(), { "DOR-ARO-012": 4 });
 })();
 
 /* =====================================================================
@@ -217,9 +217,9 @@ console.log("\n3. Ficha — el clic nunca se descarta en silencio");
   var env = makeEnv({ scriptSrc: "../js/cart.js" });
   env.run("cart.js");   // sin productos.js a propósito
 
-  var btn = makeAddBtn("cons-012");
+  var btn = makeAddBtn("DOR-ARO-012");
   clickOn(env.doc, btn);
-  check("agrega igual sin catalogo cargado", env.read(), { "cons-012": 1 });
+  check("agrega igual sin catalogo cargado", env.read(), { "DOR-ARO-012": 1 });
   check("y da feedback visual", btn.textContent, "¡Agregado! ✓");
 })();
 
@@ -232,23 +232,23 @@ console.log("\n3b. Ficha — carrito rechaza ids no vendibles");
     scriptSrc: "../js/cart.js",
     store: (function(){
       var s = {};
-      s[KEY] = JSON.stringify({ "DOR-TRA-018": 2, "DOR-TRA-001": 1, "cons-012": 1 });
+      s[KEY] = JSON.stringify({ "DOR-TRA-020": 2, "DOR-TRA-001": 1, "DOR-ARO-012": 1 });
       return s;
     })()
   });
   env.run("productos.js");
   env.run("cart.js");
 
-  check("sanitize elimina EXTREMA y sin stock", env.read(), { "cons-012": 1 });
+  check("sanitize elimina EXTREMA y sin stock", env.read(), { "DOR-ARO-012": 1 });
 
-  var extrema = makeAddBtn("DOR-TRA-018");
+  var extrema = makeAddBtn("DOR-TRA-020");
   clickOn(env.doc, extrema);
-  check("clic en EXTREMA no agrega", env.read(), { "cons-012": 1 });
+  check("clic en EXTREMA no agrega", env.read(), { "DOR-ARO-012": 1 });
   check("EXTREMA no recibe feedback de agregado", extrema.textContent, "Agregar al carrito");
 
   var sinStock = makeAddBtn("DOR-TRA-001");
   clickOn(env.doc, sinStock);
-  check("clic en sin stock no agrega", env.read(), { "cons-012": 1 });
+  check("clic en sin stock no agrega", env.read(), { "DOR-ARO-012": 1 });
   check("sin stock no recibe feedback de agregado", sinStock.textContent, "Agregar al carrito");
 })();
 
@@ -273,13 +273,13 @@ console.log("\n5. index (js/app.js) — resincronizacion del carrito");
 (function(){
   var env = makeEnv({
     pathname: "/index.html", search: "?open-cart=1",
-    store: (function(){ var s = {}; s[KEY] = '{"cons-001":2,"ghost-999":5}'; return s; })()
+    store: (function(){ var s = {}; s[KEY] = '{"DOR-DIG-013":2,"ghost-999":5}'; return s; })()
   });
   env.run("productos.js");
   env.run("cart.js");
   env.run("app.js");
 
-  check("lee el carrito que dejo la ficha", env.read(), { "cons-001": 2 });
+  check("lee el carrito que dejo la ficha", env.read(), { "DOR-DIG-013": 2 });
   check("badge con 2 unidades", env.byId.cartCount.textContent, "2");
   check("el carrito abierto suma 2", env.byId.cartItemCount.textContent, "2");
   check("subtotal de 2 manzanillas", env.byId.cartSubtotal.textContent, "$360");
@@ -287,21 +287,21 @@ console.log("\n5. index (js/app.js) — resincronizacion del carrito");
   function clickCartBtn(){ (env.byId.cartBtn.handlers.click || []).forEach(function(f){ f({ target: env.byId.cartBtn }); }); }
 
   /* Otra pestaña agrega: bfcache / storage / visibilitychange */
-  env.store[KEY] = '{"cons-002":3}';
+  env.store[KEY] = '{"DOR-DIG-056":3}';
   env.win.fire("pageshow");
   check("pageshow (atras/adelante) lee el cambio externo", env.byId.cartCount.textContent, "3");
 
-  env.store[KEY] = '{"cons-002":3,"cons-005":1}';
+  env.store[KEY] = '{"DOR-DIG-056":3,"DOR-TRA-005":1}';
   env.win.fire("storage", { key: KEY });
   check("storage (otra pestana) lee el cambio externo", env.byId.cartCount.textContent, "4");
 
-  env.store[KEY] = '{"cons-002":7}';
+  env.store[KEY] = '{"DOR-DIG-056":7}';
   env.doc.hidden = false;
   env.doc.fire("visibilitychange");
   check("visibilitychange (volver al tab) lee el cambio externo", env.byId.cartCount.textContent, "7");
 
   /* Al abrir el carrito tiene que re-leer, no mostrar la copia vieja */
-  env.store[KEY] = '{"cons-002":7,"cons-010":2}';
+  env.store[KEY] = '{"DOR-DIG-056":7,"DOR-DIG-010":2}';
   clickCartBtn();
   check("abrir el carrito re-lee localStorage", env.byId.cartItemCount.textContent, "9");
   check("el drawer queda abierto", env.byId.cartPage.classList.contains("is-open"), true);
@@ -313,17 +313,19 @@ console.log("\n5. index (js/app.js) — resincronizacion del carrito");
 console.log("\n6. Fichas generadas — catálogo, carrito y seguridad");
 (function(){
   var dir = path.join(ROOT, "productos");
+  var REDIRECTS = { "hierba-de-san-juan.html": "hiperico.html" };
   var files = fs.readdirSync(dir).filter(function(f){ return /\.html$/.test(f); });
+  var fichas = files.filter(function(f){ return !REDIRECTS[f]; });
   var byId = {}, byFile = {};
   PRODUCTS.forEach(function(p){ byId[p.id] = p; byFile[p.slug + ".html"] = p; });
 
-  check("generadas " + PRODUCTS.length + " fichas", files.length, PRODUCTS.length);
+  check("generadas " + PRODUCTS.length + " fichas", fichas.length, PRODUCTS.length);
 
   var sinProducto = [], sinBoton = [], botonInvalido = [], idInvalido = [];
   var sinCartJs = [], sinVersion = [], tokens = [], sinAlertaExtrema = [];
   var usosExtrema = [], relatedExtrema = [], sinDisabled = [];
 
-  files.forEach(function(f){
+  fichas.forEach(function(f){
     var html = fs.readFileSync(path.join(dir, f), "utf8");
     var p = byFile[f];
     if (!p){ sinProducto.push(f); return; }
@@ -369,6 +371,9 @@ console.log("\n6. Fichas generadas — catálogo, carrito y seguridad");
   check("todas cargan js/cart.js", sinCartJs, []);
   check("todas con ?v= de cache-busting", sinVersion, []);
   check("ningun token sin reemplazar", tokens, []);
+  var redirectHtml = fs.readFileSync(path.join(dir, "hierba-de-san-juan.html"), "utf8");
+  ok("redirect histórico apunta a hiperico",
+    /url=\.\/hiperico\.html/.test(redirectHtml) && /location\.replace\(".\/hiperico\.html"\)/.test(redirectHtml));
 
   var index = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
   ok("index.html carga js/cart.js con ?v=", /<script src="js\/cart\.js\?v=[0-9a-f]{8}"/.test(index));

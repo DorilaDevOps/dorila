@@ -96,8 +96,8 @@
     {
       "@type": "ListItem",
       "position": 9,
-      "name": "Hierba de San Juan",
-      "url": "https://dorila.netlify.app/productos/hierba-de-san-juan.html"
+      "name": "Hipérico",
+      "url": "https://dorila.netlify.app/productos/hiperico.html"
     },
     {
       "@type": "ListItem",
@@ -1915,7 +1915,7 @@
     <label class="search-overlay-label" for="searchOverlayInput">Buscá tu hierba favorita</label>
     <div class="search-overlay-wrap">
       <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-      <input class="search-overlay-input" id="searchOverlayInput" type="search" placeholder="Nombre, uso o nombre científico…" autocomplete="off" aria-label="Buscar en el catálogo">
+      <input class="search-overlay-input" id="searchOverlayInput" type="search" placeholder="Nombre, sinónimo, uso o nombre científico…" autocomplete="off" aria-label="Buscar en el catálogo">
       <button class="search-overlay-clear" id="searchOverlayClear" type="button" aria-label="Limpiar búsqueda">&times;</button>
     </div>
     <p class="search-overlay-hint">Escribí y se filtrarán los productos en la galería de abajo.</p>
@@ -2048,7 +2048,7 @@
             <li><a href="productos/diente-de-leon.html">Diente de león</a></li>
             <li><a href="productos/cola-de-caballo.html">Cola de caballo</a></li>
             <li><a href="productos/ortiga-verde.html">Ortiga verde</a></li>
-            <li><a href="productos/hierba-de-san-juan.html">Hierba de San Juan</a></li>
+            <li><a href="productos/hiperico.html">Hipérico</a></li>
             <li><a href="productos/agripalma.html">Agripalma</a></li>
             <li><a href="productos/ruda.html">Ruda</a></li>
             <li><a href="productos/lavanda.html">Lavanda</a></li>
@@ -2394,45 +2394,60 @@
 </footer>
 
 <!-- ===================== MODAL PLANTA ===================== -->
-<div class="modal" id="plantModal" role="dialog" aria-modal="true" aria-labelledby="plantModalName" aria-hidden="true">
-  <div class="modal-scrim" data-close-modal></div>
-  <div class="modal-dialog" role="document">
-    <button class="modal-close" type="button" id="modalClose" aria-label="Cerrar">
+<dialog class="modal modal-plant" id="plantModal" aria-labelledby="modalTitle">
+  <div class="modal-dialog">
+    <button class="modal-close" type="button" id="modalClose" aria-label="Cerrar ficha">
       <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
-    <div class="modal-media">
-      <img id="modalImg" src="" alt="">
-      <button type="button" id="modalImg2Btn" class="modal-img2" hidden aria-label="Ver segunda imagen">
-        <img id="modalImg2" src="" alt="">
-      </button>
-      <span class="modal-cat" id="modalCat"></span>
-      <span class="modal-id" id="modalId"></span>
-    </div>
-    <div class="modal-body">
-      <h3 id="plantModalName">Planta</h3>
-      <p class="modal-scientific"><strong>Nombre científico:</strong> <span id="modalScientific"></span></p>
-      <p class="modal-tox-line" id="modalToxicidad"></p>
-      <p class="modal-tox-line" id="modalFamilia"></p>
-      <p class="modal-alerta" id="modalAlerta" hidden></p>
-      <p class="modal-stock" id="modalStock"></p>
-      <p class="modal-price" id="modalPrice"></p>
-      <p class="modal-desc" id="modalDesc"></p>
-      <div class="modal-props">
-        <h4>Propiedades medicinales</h4>
-        <ul id="modalProps"></ul>
+    <div class="modal-body modal-body--plant">
+      <div class="modal-media">
+        <img id="modalImg" class="modal-img" src="" alt="">
+        <div class="modal-thumbs" id="modalThumbs" hidden></div>
+        <span class="modal-cat" id="modalCat"></span>
       </div>
-      <p class="modal-note">La información de esta ficha es orientativa y no reemplaza la consulta médica. Consultá siempre con un profesional de la salud.</p>
-      <div class="modal-more">
-        <button class="btn btn-primary" id="modalAddBtn" type="button">Agregar al carrito</button>
-        <a class="btn btn-ghost" id="modalMoreLink" href="productos.html">Ver todos los productos</a>
-      </div>
-      <div class="modal-related" id="modalRelatedWrap" hidden>
-        <h4>Productos relacionados</h4>
-        <div class="related-grid" id="modalRelated"></div>
+      <div class="modal-copy">
+        <span class="modal-kicker">Ficha botánica</span>
+        <h2 id="modalTitle">Planta</h2>
+        <p class="modal-scientific" id="modalScientific"></p>
+        <p class="modal-synonyms" id="modalSynonyms" hidden></p>
+        <div class="modal-alert" id="modalAlert" hidden></div>
+        <p class="modal-stock" id="modalStock"></p>
+        <p class="modal-price" id="modalPrice"></p>
+        <p class="modal-desc" id="modalDesc"></p>
+        <section class="modal-section" id="modalPropsSection" hidden>
+          <h3>Beneficios y propiedades</h3>
+          <ul class="modal-props" id="modalProps"></ul>
+        </section>
+        <section class="modal-section" id="modalUsosSection" hidden>
+          <h3>Usos tradicionales registrados</h3>
+          <ul id="modalUsos"></ul>
+        </section>
+        <section class="modal-section" id="modalPreparacionSection" hidden>
+          <h3>Preparación tradicional</h3>
+          <ul id="modalPreparacion"></ul>
+        </section>
+        <section class="modal-section" id="modalPrecaucionesSection" hidden>
+          <h3>Precauciones</h3>
+          <p id="modalPrecauciones"></p>
+        </section>
+        <dl class="modal-meta">
+          <div><dt>Familia</dt><dd id="modalFamilia"></dd></div>
+          <div><dt>Toxicidad</dt><dd id="modalTox"></dd></div>
+        </dl>
+        <p class="modal-note">La información de esta ficha es orientativa y no reemplaza la consulta médica. Consultá siempre con un profesional de la salud.</p>
+        <div class="modal-more">
+          <button class="btn btn-primary" id="modalAddBtn" type="button" data-id="" hidden>Agregar al carrito</button>
+          <a class="btn btn-ghost" href="productos.html">Ver todos los productos</a>
+          <button class="btn btn-ghost" type="button" data-close-modal>Cerrar</button>
+        </div>
+        <div class="modal-related" id="modalRelatedWrap" hidden>
+          <h3>Productos relacionados</h3>
+          <div class="related-grid" id="modalRelated"></div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</dialog>
 
 <!-- ===================== MODAL PRIVACIDAD ===================== -->
 <div class="modal modal-legal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle" aria-hidden="true">
@@ -2594,9 +2609,9 @@
 
 
 
-<script src="js/shell.js?v=cddccd1e" defer></script>
-<script src="js/productos.js?v=cddccd1e" defer></script>
-<script src="js/cart.js?v=cddccd1e" defer></script>
-<script src="js/app.js?v=cddccd1e" defer></script>
+<script src="js/shell.js?v=4f20e7bd" defer></script>
+<script src="js/productos.js?v=4f20e7bd" defer></script>
+<script src="js/cart.js?v=4f20e7bd" defer></script>
+<script src="js/app.js?v=4f20e7bd" defer></script>
 </body>
 </html>

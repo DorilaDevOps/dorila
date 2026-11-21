@@ -7,11 +7,14 @@ var ROOT = path.resolve(__dirname, "..");
 var DATA_DIR = path.join(ROOT, "data");
 var CATEGORIAS_PATH = path.join(DATA_DIR, "categorias.json");
 var ENTRADA_PATH = path.join(DATA_DIR, "entrada-plantas.json");
+var OVERRIDES_PATH = path.join(DATA_DIR, "overrides.json");
 var PLANTAS_PATH = path.join(DATA_DIR, "plantas.json");
 var PRODUCTOS_PATH = path.join(ROOT, "js", "productos.js");
 var FALLBACK_IMG = "img/placeholder/mandala.svg";
 var DEFAULT_PRECAUCION = "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.";
 var ALERTA_EXTREMA = "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.";
+var ALERTA_EXTREMA_TITULO = "⚠️ ADVERTENCIA BOTÁNICA — ESPECIE ALTAMENTE TÓXICA";
+var ALERTA_EXTREMA_NOTA = "Esta ficha tiene fines exclusivamente educativos y botánicos. Producto no disponible para la venta ni consumo.";
 var TOXICIDADES = ["SEGURA", "BAJA", "MODERADA", "ALTA", "EXTREMA", "NO_DETERMINADA"];
 var TOX_LABELS = {
   SEGURA: "Segura",
@@ -45,6 +48,14 @@ function encoding(){
 
 function categorias(){
   return readJson(CATEGORIAS_PATH);
+}
+
+function overrides(){
+  return fs.existsSync(OVERRIDES_PATH) ? readJson(OVERRIDES_PATH) : {};
+}
+
+function overridePara(id){
+  return id ? (overrides()[id] || null) : null;
 }
 
 function categoriaPorSlug(slug){
@@ -118,12 +129,13 @@ function prefijoDe(categoriaSlug){
   return cat.prefijo;
 }
 
-function idunico(id, ctx){
-  if (id && !ctx.usedIds[id]){
+function idunico(id, ctx, categoria){
+  var cat = categoria ? (categoriaPorSlug(categoria) || categoriaPorLabel(categoria)) : null;
+  var prefix = cat ? cat.prefijo : prefijoDe("tratamientos");
+  if (id && !ctx.usedIds[id] && String(id).indexOf(prefix + "-") === 0){
     ctx.usedIds[id] = true;
     return id;
   }
-  var prefix = id ? String(id).replace(/-\d+$/, "") : prefijoDe("tratamientos");
   var n = Number((String(id).match(/-(\d+)$/) || [])[1] || 0);
   var candidate;
   do {
@@ -176,8 +188,8 @@ function buscarMatch(planta, index){
 }
 
 function propsBotanicas(planta, extrema){
-  if (extrema) return [ALERTA_EXTREMA, "No se comercializa ni se sugiere su consumo."];
-  var props = ["Ficha botánica informativa. Sin stock para venta."];
+  if (extrema) return [ALERTA_EXTREMA];
+  var props = [];
   var usos = lista(planta.usos_y_dolencias).slice(0, 3);
   if (usos.length) props.push("Usos tradicionales registrados: " + usos.join(", ") + ".");
   if (planta.precauciones) props.push(texto(planta.precauciones));
@@ -194,7 +206,7 @@ function presentacion(id, precio, disponible){
   }];
 }
 
-function desdeComercial(p, planta, ctx){
+function desdeComercial(p, planta, ctx, id, override){
   var cat = categoriaPorSlug(p.category) || categoriaPorLabel("Tratamientos") || categorias()[0];
   var toxicidad = planta ? (TOXICIDADES.indexOf(planta.toxicidad) !== -1 ? planta.toxicidad : "NO_DETERMINADA") : "NO_DETERMINADA";
   var extrema = toxicidad === "EXTREMA";
@@ -202,14 +214,16 @@ function desdeComercial(p, planta, ctx){
   var disponible = !extrema;
   var stock = disponible ? 1 : 0;
   var props = lista(p.props);
-  if (extrema) props = [ALERTA_EXTREMA, "No se comercializa ni se sugiere su consumo."];
+  var nombre = override && override.nombre ? texto(override.nombre) : texto(p.name);
+  var slugBase = override && override.slug ? texto(override.slug) : nombre;
+  var sinonimos = override && override.sinonimos ? lista(override.sinonimos) : (planta ? lista(planta.sinonimos) : []);
+  if (extrema) props = [ALERTA_EXTREMA];
 
   return {
-    id: p.id,
-    idBotanico: planta ? texto(planta.id) : "",
-    nombre: texto(p.name),
-    slug: slugunico(p.name, ctx),
-    sinonimos: planta ? lista(planta.sinonimos) : [],
+    id: id,
+    nombre: nombre,
+    slug: slugunico(slugBase, ctx),
+    sinonimos: sinonimos,
     nombre_cientifico: planta && planta.nombre_cientifico ? texto(planta.nombre_cientifico) : texto(p.scientific),
     familia: planta ? texto(planta.familia) : "",
     categoria: cat.label,
@@ -232,7 +246,7 @@ function desdeComercial(p, planta, ctx){
     precio: precio,
     stock: stock,
     disponible: disponible,
-    presentaciones: presentacion(p.id, precio, disponible),
+    presentaciones: presentacion(id, precio, disponible),
     props: props,
     origen: planta ? "fusionado" : "comercial"
   };
@@ -242,14 +256,13 @@ function desdeBotanica(planta, ctx){
   var cat = categoriaPorLabel(planta.categoria) || categoriaPorSlug("tratamientos") || categorias()[0];
   var toxicidad = TOXICIDADES.indexOf(planta.toxicidad) !== -1 ? planta.toxicidad : "NO_DETERMINADA";
   var extrema = toxicidad === "EXTREMA";
-  var id = idunico(planta.id, ctx);
+  var id = idunico(planta.id, ctx, planta.categoriaSlug || planta.categoria);
   var desc = extrema
     ? "Ficha informativa sobre una planta tóxica. No se recomienda su consumo ni uso medicinal; no se comercializa en DORILA."
     : "Ficha botánica informativa de " + texto(planta.nombre) + ". Sin stock para venta en este catálogo.";
 
   return {
     id: id,
-    idBotanico: texto(planta.id),
     nombre: texto(planta.nombre),
     slug: slugunico(planta.nombre, ctx),
     sinonimos: lista(planta.sinonimos),
@@ -291,28 +304,41 @@ function mergeCatalog(entradaFile){
   var entrada = readJson(entradaFile || ENTRADA_PATH);
   if (!Array.isArray(entrada)) throw new Error("El archivo de entrada debe contener un array de plantas");
 
-  var base = readCurrentProducts().filter(function(p){ return /^cons-\d{3}$/.test(p.id); });
+  var base = readCurrentProducts().filter(function(p){
+    return p.origen === "fusionado" || p.origen === "comercial";
+  });
   var ctx = newContext();
-  base.forEach(function(p){ ctx.usedIds[p.id] = true; });
-
   var index = indexarCurrent(base);
   var matches = {};
   entrada.forEach(function(planta, i){
     var hit = buscarMatch(planta || {}, index);
     if (hit !== undefined) matches[i] = hit;
   });
-  Object.keys(matches).forEach(function(i){
-    var planta = entrada[Number(i)];
-    if (planta && planta.id) ctx.idMap[planta.id] = base[matches[i]].id;
+
+  function plantaDe(i){
+    var idx = Object.keys(matches).filter(function(k){ return matches[k] === i; })[0];
+    return idx === undefined ? null : entrada[Number(idx)];
+  }
+
+  var ids = {};
+  base.forEach(function(p, i){
+    var planta = plantaDe(i);
+    var categoria = planta && planta.categoriaSlug ? planta.categoriaSlug : p.category;
+    ids[i] = idunico(planta && planta.id ? texto(planta.id) : null, ctx, categoria);
+    if (planta && planta.id) ctx.idMap[texto(planta.id)] = ids[i];
   });
 
   var resultado = [];
   base.forEach(function(p, i){
-    var plantaIdx = Object.keys(matches).filter(function(k){ return matches[k] === i; })[0];
-    resultado.push(desdeComercial(p, plantaIdx === undefined ? null : entrada[Number(plantaIdx)], ctx));
+    var planta = plantaDe(i);
+    var override = planta ? overridePara(texto(planta.id)) : null;
+    resultado.push(desdeComercial(p, planta, ctx, ids[i], override));
   });
   entrada.forEach(function(planta, i){
-    if (matches[i] === undefined && planta) resultado.push(desdeBotanica(planta, ctx));
+    if (matches[i] !== undefined || !planta) return;
+    var fusion = desdeBotanica(planta, ctx);
+    if (planta.id) ctx.idMap[texto(planta.id)] = fusion.id;
+    resultado.push(fusion);
   });
   resultado.forEach(function(planta){
     if (planta.toxicidad === "EXTREMA"){
@@ -332,12 +358,18 @@ function validateCatalog(plantas){
   var ids = {};
   var slugs = {};
   var cats = {};
-  categorias().forEach(function(c){ cats[c.slug] = true; });
+  var prefijos = {};
+
+  categorias().forEach(function(c){ cats[c.slug] = true; prefijos[c.slug] = c.prefijo; });
 
   plantas.forEach(function(p, i){
     var where = "[" + i + "] " + (p && p.id ? p.id : "sin id");
     if (!p || typeof p !== "object"){ errors.push(where + ": registro inválido"); return; }
     if (!p.id) errors.push(where + ": falta id");
+    else if (!/^DOR-[A-Z]{3}-\d{3}$/.test(p.id)) errors.push(where + ": id debe tener formato DOR-XXX-###");
+    else if (prefijos[p.categoriaSlug] && p.id.indexOf(prefijos[p.categoriaSlug] + "-") !== 0){
+      errors.push(where + ": id no usa el prefijo de " + p.categoriaSlug);
+    }
     if (ids[p.id]) errors.push(where + ": id duplicado");
     ids[p.id] = true;
     if (!p.nombre) errors.push(where + ": falta nombre");
@@ -370,12 +402,29 @@ function saveCanonical(plantas){
   return plantas;
 }
 
-function alertaPara(planta){
-  if (planta.toxicidad === "EXTREMA") return ALERTA_EXTREMA;
-  if (planta.toxicidad === "ALTA" || planta.toxicidad === "MODERADA" || planta.toxicidad === "BAJA"){
-    return "Precaución: " + TOX_LABELS[planta.toxicidad].toLowerCase() + ". " + (planta.precauciones || DEFAULT_PRECAUCION);
+function alertaInfo(planta){
+  if (planta.toxicidad === "EXTREMA"){
+    return {
+      titulo: ALERTA_EXTREMA_TITULO,
+      cuerpo: ALERTA_EXTREMA,
+      nota: ALERTA_EXTREMA_NOTA,
+      clase: "alerta-toxica-extrema"
+    };
   }
-  return "";
+  if (planta.toxicidad === "ALTA" || planta.toxicidad === "MODERADA" || planta.toxicidad === "BAJA"){
+    return {
+      titulo: "Precaución: " + TOX_LABELS[planta.toxicidad].toLowerCase(),
+      cuerpo: texto(planta.precauciones) || DEFAULT_PRECAUCION,
+      nota: "",
+      clase: "alerta-toxica"
+    };
+  }
+  return null;
+}
+
+function alertaPara(planta){
+  var aviso = alertaInfo(planta);
+  return aviso ? aviso.cuerpo : "";
 }
 
 function imageClass(planta){
@@ -386,6 +435,7 @@ function imageClass(planta){
 
 function toProduct(planta, byId){
   var vendible = esVendible(planta);
+  var aviso = alertaInfo(planta);
   var related = (planta.relacionadas || []).map(function(id){ return byId[id]; }).filter(function(p){
     return p && p.toxicidad !== "EXTREMA";
   }).map(function(p){ return p.slug; });
@@ -394,6 +444,7 @@ function toProduct(planta, byId){
     id: planta.id,
     name: planta.nombre,
     slug: planta.slug,
+    sinonimos: lista(planta.sinonimos),
     scientific: planta.nombre_cientifico,
     category: planta.categoriaSlug,
     categoriaLabel: planta.categoria,
@@ -410,7 +461,10 @@ function toProduct(planta, byId){
     toxicidad: planta.toxicidad,
     toxicidadLabel: TOX_LABELS[planta.toxicidad] || planta.toxicidad,
     alerta: alertaPara(planta),
-    alertClass: planta.toxicidad === "EXTREMA" ? "alerta-toxica-extrema" : (planta.alerta ? "alerta-toxica" : ""),
+    alertaTitulo: aviso ? aviso.titulo : "",
+    alertaCuerpo: aviso ? aviso.cuerpo : "",
+    alertaNota: aviso ? aviso.nota : "",
+    alertClass: aviso ? aviso.clase : "",
     stock: planta.stock,
     disponible: !!planta.disponible,
     vendible: vendible,
@@ -469,6 +523,7 @@ module.exports = {
   ROOT: ROOT,
   CATEGORIAS_PATH: CATEGORIAS_PATH,
   ENTRADA_PATH: ENTRADA_PATH,
+  OVERRIDES_PATH: OVERRIDES_PATH,
   PLANTAS_PATH: PLANTAS_PATH,
   PRODUCTOS_PATH: PRODUCTOS_PATH,
   FALLBACK_IMG: FALLBACK_IMG,
@@ -480,6 +535,7 @@ module.exports = {
   clave: clave,
   normalizarImagen: normalizarImagen,
   esVendible: esVendible,
+  alertaInfo: alertaInfo,
   mergeCatalog: mergeCatalog,
   validateCatalog: validateCatalog,
   readCanonical: readCanonical,

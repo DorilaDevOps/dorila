@@ -8,7 +8,7 @@
     "catalogo": "node tools/gestionar-catalogo.js validar && node tools/generar-productos.js",
     "catalogo:importar": "node tools/gestionar-catalogo.js importar",
     "generate": "node tools/generate.js",
-    "test": "node tools/check-cart.js && node tools/check-recetas.js && node tools/check-contraste.js",
+    "test": "node tools/check-cart.js && node tools/check-recetas.js && node tools/check-contraste.js && node tools/check-modal.js",
     "build": "npm run images && npm run catalogo && npm run generate && npm test"
   },
   "dependencies": {

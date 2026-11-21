@@ -52,11 +52,10 @@ function normalizarNuevo(raw, plantas){
   var precio = Number(raw.precio || 0);
   var stock = Number(raw.stock || 0);
   var disponible = raw.disponible === true && toxicidad !== "EXTREMA" && stock > 0 && precio > 0;
-  var id = raw.id || catalogo.siguienteId(plantas, cat.slug);
+  var id = /^DOR-[A-Z]{3}-\d{3}$/.test(raw.id || "") ? raw.id : catalogo.siguienteId(plantas, cat.slug);
 
   return {
     id: id,
-    idBotanico: raw.idBotanico || raw.id || "",
     nombre: raw.nombre || raw.name || "",
     slug: uniqueSlug(raw.slug || raw.nombre || raw.name || "planta", plantas, id),
     sinonimos: raw.sinonimos || [],
@@ -84,8 +83,8 @@ function normalizarNuevo(raw, plantas){
     disponible: disponible,
     presentaciones: raw.presentaciones || [],
     props: toxicidad === "EXTREMA"
-      ? ["ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal.", "No se comercializa en DORILA."]
-      : (raw.props || ["Ficha botánica informativa."]),
+      ? ["ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA."]
+      : (raw.props || []),
     origen: raw.origen || "botanico"
   };
 }

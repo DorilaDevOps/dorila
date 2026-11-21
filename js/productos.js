@@ -2,9 +2,10 @@
    No editar a mano: corré "npm run catalogo". */
 var DORILA_PRODUCTS = [
   {
-    "id": "cons-001",
+    "id": "DOR-DIG-013",
     "name": "Manzanilla",
     "slug": "manzanilla",
+    "sinonimos": [],
     "scientific": "Matricaria chamomilla / Matricaria recutita",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -25,6 +26,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -59,9 +63,9 @@ var DORILA_PRODUCTS = [
       "aclarar cabello"
     ],
     "related": [
+      "agripalma",
       "amapola",
-      "angel",
-      "avena"
+      "angel"
     ],
     "presentaciones": [
       "[object Object]"
@@ -70,9 +74,12 @@ var DORILA_PRODUCTS = [
     "origen": "fusionado"
   },
   {
-    "id": "cons-002",
+    "id": "DOR-DIG-056",
     "name": "Menta piperita",
     "slug": "menta-piperita",
+    "sinonimos": [
+      "Yerba buena"
+    ],
     "scientific": "Mentha piperita / Mentha rotundifolia",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -92,8 +99,11 @@ var DORILA_PRODUCTS = [
     "familia": "Labiada",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No tomar durante el embarazo, en caso de úlcera gástrica activa ni en niños menores de 5 años.",
-    "alertClass": "",
+    "alerta": "No tomar durante el embarazo, en caso de úlcera gástrica activa ni en niños menores de 5 años.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No tomar durante el embarazo, en caso de úlcera gástrica activa ni en niños menores de 5 años.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 1,
     "disponible": true,
     "vendible": true,
@@ -122,9 +132,9 @@ var DORILA_PRODUCTS = [
       "yerba buena"
     ],
     "related": [
+      "hierbabuena",
       "abrojo-chico",
-      "achicoria",
-      "agar-agar"
+      "achicoria"
     ],
     "presentaciones": [
       "[object Object]"
@@ -133,9 +143,10 @@ var DORILA_PRODUCTS = [
     "origen": "fusionado"
   },
   {
-    "id": "cons-003",
+    "id": "DOR-DIG-001",
     "name": "Hierbabuena",
     "slug": "hierbabuena",
+    "sinonimos": [],
     "scientific": "Mentha spicata",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -156,6 +167,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "NO_DETERMINADA",
     "toxicidadLabel": "Sin determinar",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -176,9 +190,10 @@ var DORILA_PRODUCTS = [
     "origen": "comercial"
   },
   {
-    "id": "cons-004",
+    "id": "DOR-TRA-015",
     "name": "Borraja",
     "slug": "borraja",
+    "sinonimos": [],
     "scientific": "Borago officinalis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -199,6 +214,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -239,9 +257,13 @@ var DORILA_PRODUCTS = [
     "origen": "fusionado"
   },
   {
-    "id": "cons-005",
+    "id": "DOR-TRA-005",
     "name": "Caléndula",
     "slug": "calendula",
+    "sinonimos": [
+      "Dominguillo",
+      "Maravilla"
+    ],
     "scientific": "Calendula officinalis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -262,6 +284,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -298,9 +323,9 @@ var DORILA_PRODUCTS = [
       "maravilla"
     ],
     "related": [
-      "aguacate",
-      "aloe",
-      "bardana"
+      "lavanda-dulce",
+      "agua-de-hidrosol",
+      "aguacate"
     ],
     "presentaciones": [
       "[object Object]"
@@ -309,9 +334,12 @@ var DORILA_PRODUCTS = [
     "origen": "fusionado"
   },
   {
-    "id": "cons-006",
+    "id": "DOR-DIG-010",
     "name": "Diente de león",
     "slug": "diente-de-leon",
+    "sinonimos": [
+      "Diente de león"
+    ],
     "scientific": "Taraxacum officinale",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -332,6 +360,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -364,9 +395,9 @@ var DORILA_PRODUCTS = [
       "diente de león"
     ],
     "related": [
+      "hierbabuena",
       "abrojo-chico",
-      "achicoria",
-      "agar-agar"
+      "achicoria"
     ],
     "presentaciones": [
       "[object Object]"
@@ -375,9 +406,15 @@ var DORILA_PRODUCTS = [
     "origen": "fusionado"
   },
   {
-    "id": "cons-007",
+    "id": "DOR-TRA-045",
     "name": "Cola de caballo",
     "slug": "cola-de-caballo",
+    "sinonimos": [
+      "Rabo de mula",
+      "Cola de lagarto",
+      "Yerba del platero",
+      "Equiseto"
+    ],
     "scientific": "Equisetum giganteum",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -397,8 +434,11 @@ var DORILA_PRODUCTS = [
     "familia": "Equisetacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No tomar más de 21 días seguidos (ni más de 30 días en hombres con problemas de próstata).",
-    "alertClass": "",
+    "alerta": "No tomar más de 21 días seguidos (ni más de 30 días en hombres con problemas de próstata).",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No tomar más de 21 días seguidos (ni más de 30 días en hombres con problemas de próstata).",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 1,
     "disponible": true,
     "vendible": true,
@@ -450,9 +490,10 @@ var DORILA_PRODUCTS = [
     "origen": "fusionado"
   },
   {
-    "id": "cons-008",
+    "id": "DOR-TRA-102",
     "name": "Ortiga verde",
     "slug": "ortiga-verde",
+    "sinonimos": [],
     "scientific": "Urtica dioica / Urtica urens",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -473,6 +514,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -525,9 +569,14 @@ var DORILA_PRODUCTS = [
     "origen": "fusionado"
   },
   {
-    "id": "cons-009",
-    "name": "Hierba de San Juan",
-    "slug": "hierba-de-san-juan",
+    "id": "DOR-DES-009",
+    "name": "Hipérico",
+    "slug": "hiperico",
+    "sinonimos": [
+      "Yerba de San Juan",
+      "Hierba de San Juan",
+      "Corazoncillo"
+    ],
     "scientific": "Hypericum perforatum",
     "category": "descanso",
     "categoriaLabel": "Descanso",
@@ -547,8 +596,11 @@ var DORILA_PRODUCTS = [
     "familia": "Hypericaceae",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. No tomar en exceso ni en decocción fuerte. Produce fotosensibilidad solar e interactúa con numerosos medicamentos (anticonceptivos, antidepresivos, anticoagulantes).",
-    "alertClass": "",
+    "alerta": "No tomar en exceso ni en decocción fuerte. Produce fotosensibilidad solar e interactúa con numerosos medicamentos (anticonceptivos, antidepresivos, anticoagulantes).",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "No tomar en exceso ni en decocción fuerte. Produce fotosensibilidad solar e interactúa con numerosos medicamentos (anticonceptivos, antidepresivos, anticoagulantes).",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 1,
     "disponible": true,
     "vendible": true,
@@ -578,9 +630,9 @@ var DORILA_PRODUCTS = [
       "corazoncillo"
     ],
     "related": [
+      "agripalma",
       "amapola",
-      "angel",
-      "avena"
+      "angel"
     ],
     "presentaciones": [
       "[object Object]"
@@ -589,9 +641,10 @@ var DORILA_PRODUCTS = [
     "origen": "fusionado"
   },
   {
-    "id": "cons-010",
+    "id": "DOR-DES-001",
     "name": "Agripalma",
     "slug": "agripalma",
+    "sinonimos": [],
     "scientific": "Leonurus cardiaca",
     "category": "descanso",
     "categoriaLabel": "Descanso",
@@ -612,6 +665,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "NO_DETERMINADA",
     "toxicidadLabel": "Sin determinar",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -632,9 +688,12 @@ var DORILA_PRODUCTS = [
     "origen": "comercial"
   },
   {
-    "id": "cons-011",
+    "id": "DOR-TRA-122",
     "name": "Ruda",
     "slug": "ruda",
+    "sinonimos": [
+      "Ruda macho"
+    ],
     "scientific": "Ruta chalepensis / Ruta graveolens",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -654,8 +713,11 @@ var DORILA_PRODUCTS = [
     "familia": "Rutacea",
     "toxicidad": "ALTA",
     "toxicidadLabel": "Toxicidad alta",
-    "alerta": "Precaución: toxicidad alta. ⚠️ PLANTA ABORTIVA Y TÓXICA EN DOSIS ALTAS: Prohibido en embarazo y lactancia; puede dañar el riñón y provocar fotosensibilidad en la piel al sol.",
-    "alertClass": "",
+    "alerta": "⚠️ PLANTA ABORTIVA Y TÓXICA EN DOSIS ALTAS: Prohibido en embarazo y lactancia; puede dañar el riñón y provocar fotosensibilidad en la piel al sol.",
+    "alertaTitulo": "Precaución: toxicidad alta",
+    "alertaCuerpo": "⚠️ PLANTA ABORTIVA Y TÓXICA EN DOSIS ALTAS: Prohibido en embarazo y lactancia; puede dañar el riñón y provocar fotosensibilidad en la piel al sol.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 1,
     "disponible": true,
     "vendible": true,
@@ -695,9 +757,14 @@ var DORILA_PRODUCTS = [
     "origen": "fusionado"
   },
   {
-    "id": "cons-012",
+    "id": "DOR-ARO-012",
     "name": "Lavanda",
     "slug": "lavanda",
+    "sinonimos": [
+      "Espliego",
+      "Alfacema",
+      "Alhucema"
+    ],
     "scientific": "Lavandula officinalis / Lavandula angustifolia",
     "category": "aromaterapia",
     "categoriaLabel": "Aromaterapia",
@@ -718,6 +785,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -753,9 +823,9 @@ var DORILA_PRODUCTS = [
       "alhucema"
     ],
     "related": [
+      "agripalma",
       "amapola",
-      "angel",
-      "avena"
+      "angel"
     ],
     "presentaciones": [
       "[object Object]"
@@ -764,9 +834,10 @@ var DORILA_PRODUCTS = [
     "origen": "fusionado"
   },
   {
-    "id": "cons-013",
+    "id": "DOR-ARO-001",
     "name": "Lavanda real",
     "slug": "lavanda-real",
+    "sinonimos": [],
     "scientific": "Lavandula x intermedia",
     "category": "aromaterapia",
     "categoriaLabel": "Aromaterapia",
@@ -787,6 +858,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "NO_DETERMINADA",
     "toxicidadLabel": "Sin determinar",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -807,9 +881,10 @@ var DORILA_PRODUCTS = [
     "origen": "comercial"
   },
   {
-    "id": "cons-014",
+    "id": "DOR-BEL-001",
     "name": "Lavanda dulce",
     "slug": "lavanda-dulce",
+    "sinonimos": [],
     "scientific": "Lavandula latifolia",
     "category": "belleza",
     "categoriaLabel": "Belleza",
@@ -830,6 +905,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "NO_DETERMINADA",
     "toxicidadLabel": "Sin determinar",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -850,9 +928,12 @@ var DORILA_PRODUCTS = [
     "origen": "comercial"
   },
   {
-    "id": "cons-015",
+    "id": "DOR-BEL-124",
     "name": "Salvia común",
     "slug": "salvia-comun",
+    "sinonimos": [
+      "Té indígena"
+    ],
     "scientific": "Salvia officinalis / Lippia alba",
     "category": "belleza",
     "categoriaLabel": "Belleza",
@@ -872,8 +953,11 @@ var DORILA_PRODUCTS = [
     "familia": "Labiada",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No tomar más de 1 taza al día ni usar durante el embarazo o lactancia.",
-    "alertClass": "",
+    "alerta": "No tomar más de 1 taza al día ni usar durante el embarazo o lactancia.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No tomar más de 1 taza al día ni usar durante el embarazo o lactancia.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 1,
     "disponible": true,
     "vendible": true,
@@ -921,9 +1005,10 @@ var DORILA_PRODUCTS = [
     "origen": "fusionado"
   },
   {
-    "id": "cons-016",
+    "id": "DOR-ARO-002",
     "name": "Salvia adivina",
     "slug": "salvia-adivina",
+    "sinonimos": [],
     "scientific": "Salvia divinorum",
     "category": "aromaterapia",
     "categoriaLabel": "Aromaterapia",
@@ -944,6 +1029,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "NO_DETERMINADA",
     "toxicidadLabel": "Sin determinar",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -964,9 +1052,10 @@ var DORILA_PRODUCTS = [
     "origen": "comercial"
   },
   {
-    "id": "cons-017",
+    "id": "DOR-BEL-002",
     "name": "Agua de hidrosol",
     "slug": "agua-de-hidrosol",
+    "sinonimos": [],
     "scientific": "Distilados de plantas",
     "category": "belleza",
     "categoriaLabel": "Belleza",
@@ -987,6 +1076,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "NO_DETERMINADA",
     "toxicidadLabel": "Sin determinar",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -1007,9 +1099,10 @@ var DORILA_PRODUCTS = [
     "origen": "comercial"
   },
   {
-    "id": "cons-018",
+    "id": "DOR-ACE-001",
     "name": "Aceite de coco virgen",
     "slug": "aceite-de-coco-virgen",
+    "sinonimos": [],
     "scientific": "Cocos nucifera",
     "category": "aceites",
     "categoriaLabel": "Aceites",
@@ -1030,6 +1123,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "NO_DETERMINADA",
     "toxicidadLabel": "Sin determinar",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -1050,9 +1146,10 @@ var DORILA_PRODUCTS = [
     "origen": "comercial"
   },
   {
-    "id": "cons-019",
+    "id": "DOR-ARO-003",
     "name": "Mezcla aceites esenciales",
     "slug": "mezcla-aceites-esenciales",
+    "sinonimos": [],
     "scientific": "Blends botánicos",
     "category": "aromaterapia",
     "categoriaLabel": "Aromaterapia",
@@ -1073,6 +1170,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "NO_DETERMINADA",
     "toxicidadLabel": "Sin determinar",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -1093,9 +1193,10 @@ var DORILA_PRODUCTS = [
     "origen": "comercial"
   },
   {
-    "id": "cons-020",
+    "id": "DOR-ARO-004",
     "name": "Esencia de aromaterapia",
     "slug": "esencia-de-aromaterapia",
+    "sinonimos": [],
     "scientific": "Esencias botánicas puras",
     "category": "aromaterapia",
     "categoriaLabel": "Aromaterapia",
@@ -1116,6 +1217,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "NO_DETERMINADA",
     "toxicidadLabel": "Sin determinar",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -1136,9 +1240,10 @@ var DORILA_PRODUCTS = [
     "origen": "comercial"
   },
   {
-    "id": "cons-021",
+    "id": "DOR-ACE-002",
     "name": "Aceite para masajes",
     "slug": "aceite-para-masajes",
+    "sinonimos": [],
     "scientific": "Oleatos vegetales macerados",
     "category": "aceites",
     "categoriaLabel": "Aceites",
@@ -1159,6 +1264,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "NO_DETERMINADA",
     "toxicidadLabel": "Sin determinar",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -1179,9 +1287,10 @@ var DORILA_PRODUCTS = [
     "origen": "comercial"
   },
   {
-    "id": "cons-022",
+    "id": "DOR-MAS-001",
     "name": "Espátulas y dulces relajación",
     "slug": "espatulas-y-dulces-relajacion",
+    "sinonimos": [],
     "scientific": "Ritual de descanso",
     "category": "masajes",
     "categoriaLabel": "Masajes",
@@ -1202,6 +1311,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "NO_DETERMINADA",
     "toxicidadLabel": "Sin determinar",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -1222,9 +1334,10 @@ var DORILA_PRODUCTS = [
     "origen": "comercial"
   },
   {
-    "id": "cons-023",
+    "id": "DOR-ACE-011",
     "name": "Aceite de oliva macerado",
     "slug": "aceite-de-oliva-macerado",
+    "sinonimos": [],
     "scientific": "Olea europaea",
     "category": "aceites",
     "categoriaLabel": "Aceites",
@@ -1245,6 +1358,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -1273,9 +1389,9 @@ var DORILA_PRODUCTS = [
       "úlceras"
     ],
     "related": [
-      "aguacate",
-      "aloe",
-      "bardana"
+      "lavanda-dulce",
+      "agua-de-hidrosol",
+      "aguacate"
     ],
     "presentaciones": [
       "[object Object]"
@@ -1284,9 +1400,10 @@ var DORILA_PRODUCTS = [
     "origen": "fusionado"
   },
   {
-    "id": "cons-024",
+    "id": "DOR-JAB-001",
     "name": "Jabón de hierbas",
     "slug": "jabon-de-hierbas",
+    "sinonimos": [],
     "scientific": "Saponificados botánicos",
     "category": "jabones",
     "categoriaLabel": "Jabones",
@@ -1307,6 +1424,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "NO_DETERMINADA",
     "toxicidadLabel": "Sin determinar",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -1327,9 +1447,10 @@ var DORILA_PRODUCTS = [
     "origen": "comercial"
   },
   {
-    "id": "cons-025",
+    "id": "DOR-ACE-003",
     "name": "Aceite corporal nutriz",
     "slug": "aceite-corporal-nutriz",
+    "sinonimos": [],
     "scientific": "Oleato de caléndula y oliva",
     "category": "aceites",
     "categoriaLabel": "Aceites",
@@ -1350,6 +1471,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "NO_DETERMINADA",
     "toxicidadLabel": "Sin determinar",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -1370,9 +1494,12 @@ var DORILA_PRODUCTS = [
     "origen": "comercial"
   },
   {
-    "id": "cons-026",
+    "id": "DOR-DIG-008",
     "name": "Cedrón",
     "slug": "cedron",
+    "sinonimos": [
+      "Hierba luisa"
+    ],
     "scientific": "Aloysia citrodora / Lippia citriodora",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -1393,6 +1520,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -1420,9 +1550,9 @@ var DORILA_PRODUCTS = [
       "hierba luisa"
     ],
     "related": [
+      "agripalma",
       "amapola",
-      "angel",
-      "avena"
+      "angel"
     ],
     "presentaciones": [
       "[object Object]"
@@ -1431,9 +1561,12 @@ var DORILA_PRODUCTS = [
     "origen": "fusionado"
   },
   {
-    "id": "cons-027",
+    "id": "DOR-TRA-066",
     "name": "Ginkgo biloba",
     "slug": "ginkgo-biloba",
+    "sinonimos": [
+      "Árbol de la vida"
+    ],
     "scientific": "Ginkgo biloba",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -1453,8 +1586,11 @@ var DORILA_PRODUCTS = [
     "familia": "Ginkgoaceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No combinar con medicamentos anticoagulantes sin consultar al médico (antiagregante plaquetario).",
-    "alertClass": "",
+    "alerta": "No combinar con medicamentos anticoagulantes sin consultar al médico (antiagregante plaquetario).",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No combinar con medicamentos anticoagulantes sin consultar al médico (antiagregante plaquetario).",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 1,
     "disponible": true,
     "vendible": true,
@@ -1494,9 +1630,10 @@ var DORILA_PRODUCTS = [
     "origen": "fusionado"
   },
   {
-    "id": "cons-028",
+    "id": "DOR-ARO-005",
     "name": "Incienso",
     "slug": "incienso",
+    "sinonimos": [],
     "scientific": "Boswellia serrata",
     "category": "aromaterapia",
     "categoriaLabel": "Aromaterapia",
@@ -1517,6 +1654,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "NO_DETERMINADA",
     "toxicidadLabel": "Sin determinar",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -1537,9 +1677,10 @@ var DORILA_PRODUCTS = [
     "origen": "comercial"
   },
   {
-    "id": "cons-029",
+    "id": "DOR-ARO-006",
     "name": "Kana",
     "slug": "kana",
+    "sinonimos": [],
     "scientific": "Ahumado botánico artesanal",
     "category": "aromaterapia",
     "categoriaLabel": "Aromaterapia",
@@ -1560,6 +1701,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "NO_DETERMINADA",
     "toxicidadLabel": "Sin determinar",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -1580,9 +1724,13 @@ var DORILA_PRODUCTS = [
     "origen": "comercial"
   },
   {
-    "id": "cons-030",
+    "id": "DOR-DIG-055",
     "name": "Marrubio",
     "slug": "marrubio",
+    "sinonimos": [
+      "Malva rubia",
+      "Yerba del sapo"
+    ],
     "scientific": "Marrubium vulgare",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -1602,8 +1750,11 @@ var DORILA_PRODUCTS = [
     "familia": "Labiadas",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. En dosis elevadas puede afectar el ritmo cardíaco; evitar en embarazo.",
-    "alertClass": "",
+    "alerta": "En dosis elevadas puede afectar el ritmo cardíaco; evitar en embarazo.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "En dosis elevadas puede afectar el ritmo cardíaco; evitar en embarazo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 1,
     "disponible": true,
     "vendible": true,
@@ -1637,9 +1788,9 @@ var DORILA_PRODUCTS = [
       "yerba del sapo"
     ],
     "related": [
+      "hierbabuena",
       "abrojo-chico",
-      "achicoria",
-      "agar-agar"
+      "achicoria"
     ],
     "presentaciones": [
       "[object Object]"
@@ -1648,9 +1799,10 @@ var DORILA_PRODUCTS = [
     "origen": "fusionado"
   },
   {
-    "id": "cons-031",
+    "id": "DOR-TRA-004",
     "name": "Romero",
     "slug": "romero",
+    "sinonimos": [],
     "scientific": "Salvia rosmarinus / Rosmarinus officinalis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -1671,6 +1823,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -1711,7 +1866,7 @@ var DORILA_PRODUCTS = [
       "piojos"
     ],
     "related": [
-      "mirra"
+      "salvia-adivina"
     ],
     "presentaciones": [
       "[object Object]"
@@ -1720,9 +1875,10 @@ var DORILA_PRODUCTS = [
     "origen": "fusionado"
   },
   {
-    "id": "cons-032",
+    "id": "DOR-CRE-001",
     "name": "Crema de hierbas",
     "slug": "crema-de-hierbas",
+    "sinonimos": [],
     "scientific": "Fitocosmética artesanal",
     "category": "cremas",
     "categoriaLabel": "Cremas",
@@ -1743,6 +1899,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "NO_DETERMINADA",
     "toxicidadLabel": "Sin determinar",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -1763,9 +1922,10 @@ var DORILA_PRODUCTS = [
     "origen": "comercial"
   },
   {
-    "id": "cons-033",
+    "id": "DOR-LOC-001",
     "name": "Loción de hierbas",
     "slug": "locion-de-hierbas",
+    "sinonimos": [],
     "scientific": "Fitocosmética artesanal",
     "category": "locion",
     "categoriaLabel": "Loción",
@@ -1786,6 +1946,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "NO_DETERMINADA",
     "toxicidadLabel": "Sin determinar",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -1806,9 +1969,10 @@ var DORILA_PRODUCTS = [
     "origen": "comercial"
   },
   {
-    "id": "cons-034",
+    "id": "DOR-UNG-001",
     "name": "Ungüento de hierbas",
     "slug": "unguento-de-hierbas",
+    "sinonimos": [],
     "scientific": "Pomadas botánicas",
     "category": "unguentos",
     "categoriaLabel": "Ungüentos",
@@ -1829,6 +1993,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "NO_DETERMINADA",
     "toxicidadLabel": "Sin determinar",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -1849,9 +2016,10 @@ var DORILA_PRODUCTS = [
     "origen": "comercial"
   },
   {
-    "id": "cons-035",
+    "id": "DOR-TIN-001",
     "name": "Tintura madre",
     "slug": "tintura-madre",
+    "sinonimos": [],
     "scientific": "Extractos hidroalcohólicos",
     "category": "tinturas",
     "categoriaLabel": "Tinturas",
@@ -1872,6 +2040,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "NO_DETERMINADA",
     "toxicidadLabel": "Sin determinar",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -1892,9 +2063,10 @@ var DORILA_PRODUCTS = [
     "origen": "comercial"
   },
   {
-    "id": "cons-036",
+    "id": "DOR-MAS-002",
     "name": "Aceite relajante",
     "slug": "aceite-relajante",
+    "sinonimos": [],
     "scientific": "Oleato corporal relajante",
     "category": "masajes",
     "categoriaLabel": "Masajes",
@@ -1915,6 +2087,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "NO_DETERMINADA",
     "toxicidadLabel": "Sin determinar",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 1,
     "disponible": true,
@@ -1938,6 +2113,7 @@ var DORILA_PRODUCTS = [
     "id": "DOR-TRA-001",
     "name": "Abrojo grande",
     "slug": "abrojo-grande",
+    "sinonimos": [],
     "scientific": "Xanthium cavanillesii / Xanthium macrocarpum",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -1950,7 +2126,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: hemorragias nasales, inflamación de garganta, encías.",
       "Tóxico, especialmente cuando germinan las semillas."
     ],
@@ -1958,6 +2133,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -1987,16 +2165,20 @@ var DORILA_PRODUCTS = [
     "related": [
       "acacia-mansa",
       "aguapei",
-      "ajo"
+      "romero"
     ],
     "presentaciones": [],
     "fichaBotanica": true,
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-001",
+    "id": "DOR-DIG-002",
     "name": "Abrojo chico",
     "slug": "abrojo-chico",
+    "sinonimos": [
+      "Cepa de caballo",
+      "Espina de carnero"
+    ],
     "scientific": "Xanthium spinosum",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -2009,7 +2191,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: hígado, retención de líquidos, estreñimiento suave.",
       "Consultar antes de usar en tratamientos prolongados."
     ],
@@ -2017,6 +2198,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -2048,9 +2232,9 @@ var DORILA_PRODUCTS = [
       "espina de carnero"
     ],
     "related": [
+      "abrojo-chico",
       "achicoria",
-      "agar-agar",
-      "ajedrea"
+      "agar-agar"
     ],
     "presentaciones": [],
     "fichaBotanica": true,
@@ -2060,6 +2244,9 @@ var DORILA_PRODUCTS = [
     "id": "DOR-TRA-002",
     "name": "Acacia mansa",
     "slug": "acacia-mansa",
+    "sinonimos": [
+      "Acacia de bañado"
+    ],
     "scientific": "Sesbania punicea",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -2072,7 +2259,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: diarrea, heridas.",
       "La decocción de raíz provoca el vómito (emético)."
     ],
@@ -2080,6 +2266,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -2101,16 +2290,20 @@ var DORILA_PRODUCTS = [
     "related": [
       "abrojo-grande",
       "aguapei",
-      "ajo"
+      "romero"
     ],
     "presentaciones": [],
     "fichaBotanica": true,
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-002",
+    "id": "DOR-DIG-003",
     "name": "Achicoria",
     "slug": "achicoria",
+    "sinonimos": [
+      "Chicoria",
+      "Radicha"
+    ],
     "scientific": "Cichorium intybus",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -2123,7 +2316,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: hígado, vesícula, falta de apetito.",
       "El consumo excesivo afecta la vista."
     ],
@@ -2131,6 +2323,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -2160,17 +2355,20 @@ var DORILA_PRODUCTS = [
     ],
     "related": [
       "abrojo-chico",
-      "agar-agar",
-      "ajedrea"
+      "achicoria",
+      "agar-agar"
     ],
     "presentaciones": [],
     "fichaBotanica": true,
     "origen": "botanico"
   },
   {
-    "id": "DOR-MAS-001",
+    "id": "DOR-MAS-003",
     "name": "Afrechillo",
     "slug": "afrechillo",
+    "sinonimos": [
+      "Aflechillo"
+    ],
     "scientific": "Especie no determinada (Afrechillo)",
     "category": "masajes",
     "categoriaLabel": "Masajes",
@@ -2183,7 +2381,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-masajes",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: dolor de cintura.",
       "Uso externo; verificar temperatura antes de apoyar sobre la piel."
     ],
@@ -2191,6 +2388,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -2207,18 +2407,21 @@ var DORILA_PRODUCTS = [
       "aflechillo"
     ],
     "related": [
-      "aji",
-      "alcanfor",
-      "arnica"
+      "aceite-relajante",
+      "afrechillo",
+      "aji"
     ],
     "presentaciones": [],
     "fichaBotanica": true,
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-003",
+    "id": "DOR-DIG-004",
     "name": "Agar-agar",
     "slug": "agar-agar",
+    "sinonimos": [
+      "Alga"
+    ],
     "scientific": "Gelidium corneum",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -2231,7 +2434,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: tránsito intestinal, estreñimiento.",
       "Consumir siempre acompañado de abundante agua."
     ],
@@ -2239,6 +2441,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -2259,16 +2464,19 @@ var DORILA_PRODUCTS = [
     "related": [
       "abrojo-chico",
       "achicoria",
-      "ajedrea"
+      "agar-agar"
     ],
     "presentaciones": [],
     "fichaBotanica": true,
     "origen": "botanico"
   },
   {
-    "id": "DOR-BEL-001",
+    "id": "DOR-BEL-003",
     "name": "Aguacate",
     "slug": "aguacate",
+    "sinonimos": [
+      "Palta"
+    ],
     "scientific": "Persea gratissima / Persea americana",
     "category": "belleza",
     "categoriaLabel": "Belleza",
@@ -2281,7 +2489,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-belleza",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: piel seca, artritis, reuma.",
       "No tiene contraindicaciones mayores en uso moderado."
     ],
@@ -2289,6 +2496,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -2317,8 +2527,8 @@ var DORILA_PRODUCTS = [
       "palta"
     ],
     "related": [
-      "aloe",
-      "bardana",
+      "agua-de-hidrosol",
+      "aguacate",
       "calendula"
     ],
     "presentaciones": [],
@@ -2329,6 +2539,10 @@ var DORILA_PRODUCTS = [
     "id": "DOR-TRA-003",
     "name": "Aguapeí",
     "slug": "aguapei",
+    "sinonimos": [
+      "Camalote",
+      "Lirio del agua"
+    ],
     "scientific": "Eichhornia crassipes",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -2341,7 +2555,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: corazón, divertículos, diarrea.",
       "Contiene oxalato de calcio."
     ],
@@ -2349,6 +2562,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -2378,16 +2594,17 @@ var DORILA_PRODUCTS = [
     "related": [
       "abrojo-grande",
       "acacia-mansa",
-      "ajo"
+      "romero"
     ],
     "presentaciones": [],
     "fichaBotanica": true,
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-004",
+    "id": "DOR-DIG-005",
     "name": "Ajedrea",
     "slug": "ajedrea",
+    "sinonimos": [],
     "scientific": "Satureja montana",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -2400,13 +2617,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: astringente."
     ],
     "familia": "",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -2431,9 +2650,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-005",
+    "id": "DOR-DIG-006",
     "name": "Ajenjo",
     "slug": "ajenjo",
+    "sinonimos": [
+      "Yerba santa",
+      "Artemisa amarga"
+    ],
     "scientific": "Artemisia absinthium",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -2446,7 +2669,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: hígado, vesícula, falta de apetito.",
       "No usar en embarazadas. Tóxico si se abusa o en dosis altas."
     ],
@@ -2454,6 +2676,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -2494,9 +2719,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-MAS-002",
+    "id": "DOR-MAS-004",
     "name": "Ají",
     "slug": "aji",
+    "sinonimos": [
+      "Cumbarí"
+    ],
     "scientific": "Capsicum microcarpum",
     "category": "masajes",
     "categoriaLabel": "Masajes",
@@ -2509,7 +2737,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-masajes",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: reumatismo, ciática, neuralgias.",
       "Evitar contacto con ojos y mucosas; puede irritar pieles sensibles."
     ],
@@ -2517,6 +2744,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -2538,17 +2768,17 @@ var DORILA_PRODUCTS = [
     ],
     "related": [
       "afrechillo",
-      "alcanfor",
-      "arnica"
+      "aji"
     ],
     "presentaciones": [],
     "fichaBotanica": true,
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-004",
+    "id": "DOR-TRA-006",
     "name": "Ajo",
     "slug": "ajo",
+    "sinonimos": [],
     "scientific": "Allium sativum",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -2561,7 +2791,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: presión alta, colesterol, parásitos.",
       "En dosis altas puede producir irritación intestinal; por vía externa puede causar dermatitis."
     ],
@@ -2569,6 +2798,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -2605,9 +2837,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-006",
+    "id": "DOR-DIG-007",
     "name": "Albahaca",
     "slug": "albahaca",
+    "sinonimos": [],
     "scientific": "Ocimum selloi / Ocimum basilicum",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -2620,7 +2853,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: digestión, gases, vómitos.",
       "Tener precaución con el aceite esencial de albahaca en niños."
     ],
@@ -2628,6 +2860,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -2665,9 +2900,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-007",
+    "id": "DOR-DIG-009",
     "name": "Alcachofa",
     "slug": "alcachofa",
+    "sinonimos": [
+      "Alcaucil"
+    ],
     "scientific": "Cynara scolymus",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -2680,7 +2918,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: hígado, ácido úrico, vesícula.",
       "Evitar en caso de obstrucción de vías biliares."
     ],
@@ -2688,6 +2925,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -2719,9 +2959,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-MAS-003",
+    "id": "DOR-MAS-005",
     "name": "Alcanfor",
     "slug": "alcanfor",
+    "sinonimos": [],
     "scientific": "Cinnamomum camphora",
     "category": "masajes",
     "categoriaLabel": "Masajes",
@@ -2734,7 +2975,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-masajes",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: reuma, gota, dolores musculares.",
       "Uso externo; no ingerir."
     ],
@@ -2742,6 +2982,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -2764,17 +3007,17 @@ var DORILA_PRODUCTS = [
     ],
     "related": [
       "afrechillo",
-      "aji",
-      "arnica"
+      "aji"
     ],
     "presentaciones": [],
     "fichaBotanica": true,
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-005",
+    "id": "DOR-TRA-007",
     "name": "Alfalfa",
     "slug": "alfalfa",
+    "sinonimos": [],
     "scientific": "Medicago sativa",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -2787,7 +3030,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: artritis, reuma, ácido úrico.",
       "Apta como complemento nutritivo."
     ],
@@ -2795,6 +3037,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -2829,9 +3074,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-006",
+    "id": "DOR-TRA-008",
     "name": "Algas",
     "slug": "algas",
+    "sinonimos": [
+      "Lechuga de mar",
+      "Fucus"
+    ],
     "scientific": "Especie no determinada (Algas)",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -2844,7 +3093,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: sobrepeso, celulitis, metabolismo.",
       "No usar en casos de hipertiroidismo/alteraciones tiroideas sin supervisión médica por su alto contenido de yodo."
     ],
@@ -2852,6 +3100,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -2890,9 +3141,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-008",
+    "id": "DOR-DIG-011",
     "name": "Algarrobo",
     "slug": "algarrobo",
+    "sinonimos": [],
     "scientific": "Prosopis nigra",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -2905,13 +3157,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: inflamación de ojos, diarrea."
     ],
     "familia": "Leguminosa",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -2939,9 +3193,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-BEL-002",
+    "id": "DOR-BEL-004",
     "name": "Aloe",
     "slug": "aloe",
+    "sinonimos": [
+      "Babosa",
+      "Aloe vera"
+    ],
     "scientific": "Aloe succotrina / Aloe vera",
     "category": "belleza",
     "categoriaLabel": "Belleza",
@@ -2954,7 +3212,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-belleza",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: quemaduras, heridas, cicatrizante.",
       "No ingerir si se padece hemorroides o diarrea. No usar en embarazadas ni durante la menstruación. Probar en piel antes para descartar irritación."
     ],
@@ -2962,6 +3219,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -2999,7 +3259,6 @@ var DORILA_PRODUCTS = [
     ],
     "related": [
       "aguacate",
-      "bardana",
       "calendula"
     ],
     "presentaciones": [],
@@ -3007,9 +3266,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-009",
+    "id": "DOR-DIG-012",
     "name": "Altamisa",
     "slug": "altamisa",
+    "sinonimos": [
+      "Ajenjo del campo"
+    ],
     "scientific": "Ambrosia artemisiaefolia",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -3022,7 +3284,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: digestión, menstruación irregular, parásitos intestinales.",
       "Evitar en embarazo."
     ],
@@ -3030,6 +3291,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -3059,9 +3323,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DES-001",
+    "id": "DOR-DES-002",
     "name": "Amapola",
     "slug": "amapola",
+    "sinonimos": [
+      "Opio"
+    ],
     "scientific": "Papaver rhoeas / Papaver somniferum",
     "category": "descanso",
     "categoriaLabel": "Descanso",
@@ -3074,7 +3341,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-descanso",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: bronquios, tos, insomnio.",
       "Planta con alcaloides activos; usar únicamente los pétalos en dosis bajas y bajo precaución."
     ],
@@ -3082,6 +3348,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -3105,18 +3374,22 @@ var DORILA_PRODUCTS = [
       "opio"
     ],
     "related": [
+      "amapola",
       "angel",
-      "avena",
-      "azota-caballo"
+      "avena"
     ],
     "presentaciones": [],
     "fichaBotanica": true,
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-007",
+    "id": "DOR-TRA-009",
     "name": "Anacahuita",
     "slug": "anacahuita",
+    "sinonimos": [
+      "Molle",
+      "Aguaribay"
+    ],
     "scientific": "Schinus molle",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -3129,7 +3402,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: bronquios, tos, catarro.",
       "No recalentar ni hervir para uso interno porque libera exceso de taninos. Contraindicada en embarazo (emenagogo/abortivo en dosis altas)."
     ],
@@ -3137,6 +3409,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -3172,9 +3447,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DES-002",
+    "id": "DOR-DES-003",
     "name": "Ángel",
     "slug": "angel",
+    "sinonimos": [
+      "Cedrón del monte"
+    ],
     "scientific": "Aloysia ligustrina",
     "category": "descanso",
     "categoriaLabel": "Descanso",
@@ -3187,13 +3465,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-descanso",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: dolor de estómago, nervios, insomnio."
     ],
     "familia": "Verbenacea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -3215,17 +3495,21 @@ var DORILA_PRODUCTS = [
     ],
     "related": [
       "amapola",
-      "avena",
-      "azota-caballo"
+      "angel",
+      "avena"
     ],
     "presentaciones": [],
     "fichaBotanica": true,
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-011",
+    "id": "DOR-DIG-014",
     "name": "Angélica",
     "slug": "angelica",
+    "sinonimos": [
+      "Raíz de la larga vida",
+      "Yerba del Espíritu Santo"
+    ],
     "scientific": "Angelica archangelica",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -3238,7 +3522,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: estómago, indigestión, gases.",
       "Sus hojas son muy parecidas a la cicuta (tóxica); asegurar correcta identificación botánica."
     ],
@@ -3246,6 +3529,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -3282,9 +3568,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-012",
+    "id": "DOR-DIG-015",
     "name": "Anís estrellado",
     "slug": "anis-estrellado",
+    "sinonimos": [
+      "Anís"
+    ],
     "scientific": "Illicium verum",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -3297,7 +3586,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: digestión, gases, cólicos.",
       "Usar en muy poca cantidad en niños y no abusar en adultos."
     ],
@@ -3305,6 +3593,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -3343,9 +3634,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-008",
+    "id": "DOR-TRA-010",
     "name": "Apio cimarrón",
     "slug": "apio-cimarron",
+    "sinonimos": [
+      "Apio de bañado",
+      "Apio de las paredes"
+    ],
     "scientific": "Apium graveolens",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -3358,7 +3653,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: gases, digestión, retención de líquidos.",
       "No usar con afecciones renales agudas, cistitis ni durante el embarazo."
     ],
@@ -3366,6 +3660,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -3403,9 +3700,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-009",
+    "id": "DOR-TRA-011",
     "name": "Arándano",
     "slug": "arandano",
+    "sinonimos": [],
     "scientific": "Especie no determinada (Arándano)",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -3418,13 +3716,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: estómago, cistitis, vista."
     ],
     "familia": "",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -3453,9 +3753,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-013",
+    "id": "DOR-DIG-016",
     "name": "Arazá",
     "slug": "araza",
+    "sinonimos": [],
     "scientific": "Psidium cattleianum",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -3468,13 +3769,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: indigestión, estómago, infecciones vaginales y urinarias."
     ],
     "familia": "Mirtacea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -3504,9 +3807,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-MAS-004",
+    "id": "DOR-MAS-006",
     "name": "Árnica",
     "slug": "arnica",
+    "sinonimos": [
+      "Yerba calmante",
+      "Quina de los pobres"
+    ],
     "scientific": "Arnica montana",
     "category": "masajes",
     "categoriaLabel": "Masajes",
@@ -3519,7 +3826,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-masajes",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: golpes, moretones, inflamación.",
       "Puede ser tóxica por vía interna; no usar en el embarazo ni sobre heridas abiertas."
     ],
@@ -3527,6 +3833,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -3562,9 +3871,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-014",
+    "id": "DOR-DIG-017",
     "name": "Arrayán",
     "slug": "arrayan",
+    "sinonimos": [
+      "Murta"
+    ],
     "scientific": "Blepharocalyx salicifolius",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -3577,13 +3889,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: diarrea, dispepsia, infección intestinal."
     ],
     "familia": "Mirtacea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -3619,9 +3933,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-015",
+    "id": "DOR-DIG-018",
     "name": "Artemisa",
     "slug": "artemisa",
+    "sinonimos": [],
     "scientific": "Artemisia vulgaris",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -3634,7 +3949,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: inapetencia, digestión, parásitos.",
       "Puede ser tóxica si se consume durante períodos largos. No usar en embarazo."
     ],
@@ -3642,6 +3956,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -3676,9 +3993,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-010",
+    "id": "DOR-TRA-012",
     "name": "Aruera",
     "slug": "aruera",
+    "sinonimos": [],
     "scientific": "Lithraea brasiliensis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -3691,7 +4009,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: inflamaciones locales.",
       "Contiene sustancias altamente alergógenas que provocan dermatitis severa al contacto o sombra."
     ],
@@ -3699,6 +4016,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -3723,9 +4043,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DES-003",
+    "id": "DOR-DES-004",
     "name": "Avena",
     "slug": "avena",
+    "sinonimos": [],
     "scientific": "Avena sativa",
     "category": "descanso",
     "categoriaLabel": "Descanso",
@@ -3738,7 +4059,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-descanso",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: cansancio, nervios, diarrea.",
       "Contiene gluten (no apta para celíacos)."
     ],
@@ -3746,6 +4066,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -3774,16 +4097,19 @@ var DORILA_PRODUCTS = [
     "related": [
       "amapola",
       "angel",
-      "azota-caballo"
+      "avena"
     ],
     "presentaciones": [],
     "fichaBotanica": true,
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-016",
+    "id": "DOR-DIG-019",
     "name": "Azafrán",
     "slug": "azafran",
+    "sinonimos": [
+      "Cúrcuma (mencionada como afín)"
+    ],
     "scientific": "Crocus sativus",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -3796,7 +4122,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: gases, espasmos, depresión.",
       "No exceder las dosis culinarias/terapéuticas suaves."
     ],
@@ -3804,6 +4129,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -3837,9 +4165,14 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DES-004",
+    "id": "DOR-DES-005",
     "name": "Azota caballo",
     "slug": "azota-caballo",
+    "sinonimos": [
+      "Caá-obetí",
+      "Francisco Álvarez",
+      "Yerba amarga"
+    ],
     "scientific": "Luehea divaricata",
     "category": "descanso",
     "categoriaLabel": "Descanso",
@@ -3852,13 +4185,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-descanso",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: nervios, estómago, diarrea."
     ],
     "familia": "Tiliaceae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -3893,9 +4228,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DES-005",
+    "id": "DOR-DES-006",
     "name": "Barba de chivo",
     "slug": "barba-de-chivo",
+    "sinonimos": [
+      "Lagaña de perro"
+    ],
     "scientific": "Caesalpinia gilliesii",
     "category": "descanso",
     "categoriaLabel": "Descanso",
@@ -3908,7 +4246,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-descanso",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: insomnio, nervios, fiebre.",
       "Las semillas verdes son tóxicas; usar solo hojas en dosis indicadas."
     ],
@@ -3916,6 +4253,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -3948,9 +4288,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-011",
+    "id": "DOR-TRA-013",
     "name": "Barba de choclo",
     "slug": "barba-de-choclo",
+    "sinonimos": [],
     "scientific": "Zea mays",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -3963,13 +4304,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: retención de líquidos, cistitis, riñones."
     ],
     "familia": "Gramínea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -3998,9 +4341,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-012",
+    "id": "DOR-TRA-014",
     "name": "Barba del monte",
     "slug": "barba-del-monte",
+    "sinonimos": [
+      "Clavel del aire colgante"
+    ],
     "scientific": "Tillandsia usneoides",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -4013,13 +4359,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: retención de líquidos, hemorroides."
     ],
     "familia": "Bromeliacea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -4048,9 +4396,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-BEL-003",
+    "id": "DOR-BEL-005",
     "name": "Bardana",
     "slug": "bardana",
+    "sinonimos": [
+      "Lampazo",
+      "Cachurrera"
+    ],
     "scientific": "Arctium lappa",
     "category": "belleza",
     "categoriaLabel": "Belleza",
@@ -4063,7 +4415,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-belleza",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: acné, eczema, psoriasis.",
       "Usar preferentemente la planta verde/fresca."
     ],
@@ -4071,6 +4422,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -4110,9 +4464,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-013",
+    "id": "DOR-TRA-016",
     "name": "Berro",
     "slug": "berro",
+    "sinonimos": [],
     "scientific": "Cardamine bonariensis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -4125,7 +4480,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: riñones, hígado, arenilla.",
       "Lavar muy bien si se recolecta silvestre en cursos de agua."
     ],
@@ -4133,6 +4487,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -4168,9 +4525,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-017",
+    "id": "DOR-DIG-020",
     "name": "Boldo",
     "slug": "boldo",
+    "sinonimos": [],
     "scientific": "Peumus boldus",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -4183,7 +4541,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: hígado, digestión lenta, cólicos biliares.",
       "No usar en caso de obstrucción de vías biliares ni durante el embarazo."
     ],
@@ -4191,6 +4548,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -4224,9 +4584,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-014",
+    "id": "DOR-TRA-017",
     "name": "Bolsa de pastor",
     "slug": "bolsa-de-pastor",
+    "sinonimos": [
+      "Mastuerzo",
+      "Yerba del pajarito"
+    ],
     "scientific": "Capsella bursa-pastoris",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -4239,7 +4603,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: menstruación excesiva, dolor menstrual, hemorragias nasales.",
       "No usar durante el embarazo."
     ],
@@ -4247,6 +4610,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -4284,9 +4650,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DES-006",
+    "id": "DOR-DES-007",
     "name": "Burucuyá",
     "slug": "burucuya",
+    "sinonimos": [
+      "Mburucuyá",
+      "Pasionaria"
+    ],
     "scientific": "Passiflora caerulea / Passiflora foetida",
     "category": "descanso",
     "categoriaLabel": "Descanso",
@@ -4299,7 +4669,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-descanso",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: insomnio, nervios, presión alta.",
       "No tomar con presión baja. En exceso puede provocar dolor de cabeza o trastornos de visión."
     ],
@@ -4307,6 +4676,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -4344,9 +4716,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-016",
+    "id": "DOR-TRA-018",
     "name": "Barba de tigre",
     "slug": "barba-de-tigre",
+    "sinonimos": [
+      "Quina"
+    ],
     "scientific": "Colletia spinosissima",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -4359,15 +4734,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: fiebre, caída del cabello.",
       "Usar en concentraciones bajas."
     ],
     "familia": "Rhamnaceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Usar en concentraciones bajas.",
-    "alertClass": "",
+    "alerta": "Usar en concentraciones bajas.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Usar en concentraciones bajas.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -4394,9 +4771,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-017",
+    "id": "DOR-TRA-019",
     "name": "Barbasco",
     "slug": "barbasco",
+    "sinonimos": [
+      "Cabeza de negro"
+    ],
     "scientific": "Especie no determinada (Barbasco)",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -4409,15 +4789,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: uso histórico anticonceptivo.",
       "ADVERTENCIA: Contiene saponinas tóxicas; no apta para consumo ni uso casero sin supervisión profesional."
     ],
     "familia": "",
     "toxicidad": "ALTA",
     "toxicidadLabel": "Toxicidad alta",
-    "alerta": "Precaución: toxicidad alta. ADVERTENCIA: Contiene saponinas tóxicas; no apta para consumo ni uso casero sin supervisión profesional.",
-    "alertClass": "",
+    "alerta": "ADVERTENCIA: Contiene saponinas tóxicas; no apta para consumo ni uso casero sin supervisión profesional.",
+    "alertaTitulo": "Precaución: toxicidad alta",
+    "alertaCuerpo": "ADVERTENCIA: Contiene saponinas tóxicas; no apta para consumo ni uso casero sin supervisión profesional.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -4442,9 +4824,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-018",
+    "id": "DOR-TRA-020",
     "name": "Belladona",
     "slug": "belladona",
+    "sinonimos": [
+      "Hierba de los brujos"
+    ],
     "scientific": "Atropa belladonna",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -4457,13 +4842,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
-      "No se comercializa ni se sugiere su consumo."
+      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA."
     ],
     "familia": "Solanacea",
     "toxicidad": "EXTREMA",
     "toxicidadLabel": "Toxicidad extrema",
     "alerta": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaTitulo": "⚠️ ADVERTENCIA BOTÁNICA — ESPECIE ALTAMENTE TÓXICA",
+    "alertaCuerpo": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaNota": "Esta ficha tiene fines exclusivamente educativos y botánicos. Producto no disponible para la venta ni consumo.",
     "alertClass": "alerta-toxica-extrema",
     "stock": 0,
     "disponible": false,
@@ -4482,9 +4869,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-019",
+    "id": "DOR-TRA-021",
     "name": "Blanquillo",
     "slug": "blanquillo",
+    "sinonimos": [
+      "Árbol de la leche",
+      "Palo de la leche"
+    ],
     "scientific": "Sebastiania brasiliensis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -4497,15 +4888,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: verrugas cutáneas, dolor de muela.",
       "⚠️ TÓXICO / CÁUSTICO: Látex irritante; no ingerir ni acercar a ojos o mucosas."
     ],
     "familia": "Euforbiacea",
     "toxicidad": "ALTA",
     "toxicidadLabel": "Toxicidad alta",
-    "alerta": "Precaución: toxicidad alta. ⚠️ TÓXICO / CÁUSTICO: Látex irritante; no ingerir ni acercar a ojos o mucosas.",
-    "alertClass": "",
+    "alerta": "⚠️ TÓXICO / CÁUSTICO: Látex irritante; no ingerir ni acercar a ojos o mucosas.",
+    "alertaTitulo": "Precaución: toxicidad alta",
+    "alertaCuerpo": "⚠️ TÓXICO / CÁUSTICO: Látex irritante; no ingerir ni acercar a ojos o mucosas.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -4533,9 +4926,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-020",
+    "id": "DOR-TRA-022",
     "name": "Boj",
     "slug": "boj",
+    "sinonimos": [
+      "Box"
+    ],
     "scientific": "Buxus sempervirens",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -4548,15 +4944,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: fiebre, reuma.",
       "⚠️ PLANTA TÓXICA: Sus alcaloides pueden provocar vómitos, diarrea y toxicidad nerviosa; evitar uso interno."
     ],
     "familia": "Buxaceae",
     "toxicidad": "ALTA",
     "toxicidadLabel": "Toxicidad alta",
-    "alerta": "Precaución: toxicidad alta. ⚠️ PLANTA TÓXICA: Sus alcaloides pueden provocar vómitos, diarrea y toxicidad nerviosa; evitar uso interno.",
-    "alertClass": "",
+    "alerta": "⚠️ PLANTA TÓXICA: Sus alcaloides pueden provocar vómitos, diarrea y toxicidad nerviosa; evitar uso interno.",
+    "alertaTitulo": "Precaución: toxicidad alta",
+    "alertaCuerpo": "⚠️ PLANTA TÓXICA: Sus alcaloides pueden provocar vómitos, diarrea y toxicidad nerviosa; evitar uso interno.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -4583,9 +4981,15 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-021",
+    "id": "DOR-TRA-023",
     "name": "Caá-obetí",
     "slug": "caa-obeti",
+    "sinonimos": [
+      "Azota caballo",
+      "Francisco Álvarez",
+      "Yerba amarga",
+      "Coa"
+    ],
     "scientific": "Luehea divaricata",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -4598,15 +5002,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: tos, manchas en el cutis, retención de líquidos.",
       "Contiene solaninas y saponinas; no exceder dosis ni usar sin identificar correctamente la especie."
     ],
     "familia": "Tiliaceae",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. Contiene solaninas y saponinas; no exceder dosis ni usar sin identificar correctamente la especie.",
-    "alertClass": "",
+    "alerta": "Contiene solaninas y saponinas; no exceder dosis ni usar sin identificar correctamente la especie.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "Contiene solaninas y saponinas; no exceder dosis ni usar sin identificar correctamente la especie.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -4639,9 +5045,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-018",
+    "id": "DOR-DIG-021",
     "name": "Café",
     "slug": "cafe",
+    "sinonimos": [],
     "scientific": "Coffea arabica",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -4654,15 +5061,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: secreción de bilis, cansancio, estimulante.",
       "Evitar en casos de hipertensión severa, insomnio o ansiedad."
     ],
     "familia": "Rubiaceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Evitar en casos de hipertensión severa, insomnio o ansiedad.",
-    "alertClass": "",
+    "alerta": "Evitar en casos de hipertensión severa, insomnio o ansiedad.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Evitar en casos de hipertensión severa, insomnio o ansiedad.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -4690,9 +5099,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-022",
+    "id": "DOR-TRA-024",
     "name": "Calaguala",
     "slug": "calaguala",
+    "sinonimos": [
+      "Helecho"
+    ],
     "scientific": "Polystichum adiantiforme",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -4705,15 +5117,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: encías, menstruación irregular, nervios.",
       "No usar durante el embarazo (emenagogo)."
     ],
     "familia": "Polypodiacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No usar durante el embarazo (emenagogo).",
-    "alertClass": "",
+    "alerta": "No usar durante el embarazo (emenagogo).",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No usar durante el embarazo (emenagogo).",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -4748,9 +5162,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-019",
+    "id": "DOR-DIG-022",
     "name": "Cálamo",
     "slug": "calamo",
+    "sinonimos": [
+      "Cálamo aromático"
+    ],
     "scientific": "Acorus calamus",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -4763,15 +5180,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: estómago, digestión.",
       "No utilizar en tratamientos prolongados ni en embarazo."
     ],
     "familia": "Araceas",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. No utilizar en tratamientos prolongados ni en embarazo.",
-    "alertClass": "",
+    "alerta": "No utilizar en tratamientos prolongados ni en embarazo.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "No utilizar en tratamientos prolongados ni en embarazo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -4798,9 +5217,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-023",
+    "id": "DOR-TRA-025",
     "name": "Camambú",
     "slug": "camambu",
+    "sinonimos": [
+      "Uvilla del monte",
+      "Uvilla de campo"
+    ],
     "scientific": "Physalis viscosa",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -4813,15 +5236,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: retención de líquidos, fiebre, tos.",
       "Consumir solo frutos bien maduros; partes verdes contienen solaninas."
     ],
     "familia": "Solanacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Consumir solo frutos bien maduros; partes verdes contienen solaninas.",
-    "alertClass": "",
+    "alerta": "Consumir solo frutos bien maduros; partes verdes contienen solaninas.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Consumir solo frutos bien maduros; partes verdes contienen solaninas.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -4857,9 +5282,14 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-024",
+    "id": "DOR-TRA-026",
     "name": "Cambará",
     "slug": "cambara",
+    "sinonimos": [
+      "Camará",
+      "Lantana camará",
+      "Salvia morada"
+    ],
     "scientific": "Lantana montevidensis / Lantana camara",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -4872,15 +5302,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: bronquios, tos, fiebre.",
       "Tóxico para el ganado; no abusar en consumo interno."
     ],
     "familia": "Verbenacea",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. Tóxico para el ganado; no abusar en consumo interno.",
-    "alertClass": "",
+    "alerta": "Tóxico para el ganado; no abusar en consumo interno.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "Tóxico para el ganado; no abusar en consumo interno.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -4918,9 +5350,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-025",
+    "id": "DOR-TRA-027",
     "name": "Camalote blanco",
     "slug": "camalote-blanco",
+    "sinonimos": [
+      "Chamineiro",
+      "Cucharón"
+    ],
     "scientific": "Echinodorus grandiflorus",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -4933,14 +5369,16 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: circulación, retención de líquidos, reuma."
     ],
     "familia": "Alismataceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
-    "alertClass": "",
+    "alerta": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -4981,9 +5419,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-026",
+    "id": "DOR-TRA-028",
     "name": "Campanilla",
     "slug": "campanilla",
+    "sinonimos": [],
     "scientific": "Ipomoea indica / Ipomoea cairica",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -4996,15 +5435,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: fiebre, estreñimiento, heridas.",
       "Efecto purgante fuerte; no usar en embarazo ni niños."
     ],
     "familia": "Convolvulacea",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. Efecto purgante fuerte; no usar en embarazo ni niños.",
-    "alertClass": "",
+    "alerta": "Efecto purgante fuerte; no usar en embarazo ni niños.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "Efecto purgante fuerte; no usar en embarazo ni niños.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -5033,9 +5474,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-020",
+    "id": "DOR-DIG-023",
     "name": "Canela",
     "slug": "canela",
+    "sinonimos": [],
     "scientific": "Cinnamomum zeylanicum",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -5048,15 +5490,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: gripe, resfrío, digestión.",
       "No usar en embarazadas ni en personas con úlcera gastroduodenal."
     ],
     "familia": "Lauracea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No usar en embarazadas ni en personas con úlcera gastroduodenal.",
-    "alertClass": "",
+    "alerta": "No usar en embarazadas ni en personas con úlcera gastroduodenal.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No usar en embarazadas ni en personas con úlcera gastroduodenal.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -5089,9 +5533,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-027",
+    "id": "DOR-TRA-029",
     "name": "Caña",
     "slug": "cana",
+    "sinonimos": [
+      "Caña de Castilla"
+    ],
     "scientific": "Arundo donax",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -5104,15 +5551,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: dolor de columna, retención de líquidos.",
       "Puede disminuir la secreción de leche materna (antigalactógeno)."
     ],
     "familia": "Graminacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Puede disminuir la secreción de leche materna (antigalactógeno).",
-    "alertClass": "",
+    "alerta": "Puede disminuir la secreción de leche materna (antigalactógeno).",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Puede disminuir la secreción de leche materna (antigalactógeno).",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -5139,9 +5588,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-028",
+    "id": "DOR-TRA-030",
     "name": "Cáñamo",
     "slug": "canamo",
+    "sinonimos": [
+      "Cannabis",
+      "Marihuana"
+    ],
     "scientific": "Cannabis sativa",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -5154,15 +5607,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: dolor crónico, espasmos musculares, náuseas.",
       "Uso sujeto a regulación legal vigente en Uruguay; puede producir efectos psicoactivos."
     ],
     "familia": "Cannabiacea",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. Uso sujeto a regulación legal vigente en Uruguay; puede producir efectos psicoactivos.",
-    "alertClass": "",
+    "alerta": "Uso sujeto a regulación legal vigente en Uruguay; puede producir efectos psicoactivos.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "Uso sujeto a regulación legal vigente en Uruguay; puede producir efectos psicoactivos.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -5196,9 +5651,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-029",
+    "id": "DOR-TRA-031",
     "name": "Caraguatá",
     "slug": "caraguata",
+    "sinonimos": [],
     "scientific": "Eryngium paniculatum / Eryngium pandanifolium",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -5211,15 +5667,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: garganta, retención de líquidos, digestión.",
       "Evitar en embarazo (emenagogo)."
     ],
     "familia": "Umbelífera",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Evitar en embarazo (emenagogo).",
-    "alertClass": "",
+    "alerta": "Evitar en embarazo (emenagogo).",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Evitar en embarazo (emenagogo).",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -5250,9 +5708,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-030",
+    "id": "DOR-TRA-032",
     "name": "Carapé",
     "slug": "carape",
+    "sinonimos": [],
     "scientific": "Dioscorea sinuata",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -5265,15 +5724,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: estreñimiento severo.",
       "⚠️ PURGANTE DRÁSTICO: Alto contenido de saponinas irritantes; no usar en niños, embarazadas ni personas debilitadas."
     ],
     "familia": "Dioscoreacea",
     "toxicidad": "ALTA",
     "toxicidadLabel": "Toxicidad alta",
-    "alerta": "Precaución: toxicidad alta. ⚠️ PURGANTE DRÁSTICO: Alto contenido de saponinas irritantes; no usar en niños, embarazadas ni personas debilitadas.",
-    "alertClass": "",
+    "alerta": "⚠️ PURGANTE DRÁSTICO: Alto contenido de saponinas irritantes; no usar en niños, embarazadas ni personas debilitadas.",
+    "alertaTitulo": "Precaución: toxicidad alta",
+    "alertaCuerpo": "⚠️ PURGANTE DRÁSTICO: Alto contenido de saponinas irritantes; no usar en niños, embarazadas ni personas debilitadas.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -5297,9 +5758,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-021",
+    "id": "DOR-DIG-024",
     "name": "Cardamomo",
     "slug": "cardamomo",
+    "sinonimos": [],
     "scientific": "Elettaria cardamomum",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -5312,13 +5774,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: gripe, resfrío, circulación."
     ],
     "familia": "Zingiberaceae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -5349,9 +5813,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-022",
+    "id": "DOR-DIG-025",
     "name": "Cardo",
     "slug": "cardo",
+    "sinonimos": [
+      "Cardo de Castilla"
+    ],
     "scientific": "Cynara cardunculus",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -5364,7 +5831,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: hígado, hepatitis, colesterol.",
       "No tomar con hipertensión."
     ],
@@ -5372,6 +5838,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -5408,9 +5877,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-023",
+    "id": "DOR-DIG-026",
     "name": "Carnicera",
     "slug": "carnicera",
+    "sinonimos": [
+      "Yerba carnicera"
+    ],
     "scientific": "Conyza bonariensis",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -5423,13 +5895,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: gastritis, úlceras, heridas."
     ],
     "familia": "Compositae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -5470,9 +5944,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-024",
+    "id": "DOR-DIG-027",
     "name": "Carqueja",
     "slug": "carqueja",
+    "sinonimos": [],
     "scientific": "Baccharis trimera / Baccharis articulata",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -5485,7 +5960,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: hígado, cólicos hepáticos, estómago.",
       "Evitar durante el embarazo."
     ],
@@ -5493,6 +5967,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -5532,9 +6009,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-025",
+    "id": "DOR-DIG-028",
     "name": "Cascarilla",
     "slug": "cascarilla",
+    "sinonimos": [
+      "Eleuteria"
+    ],
     "scientific": "Croton eluteria",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -5547,14 +6027,16 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: estómago, intestino, dispepsia."
     ],
     "familia": "Euforbiacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
-    "alertClass": "",
+    "alerta": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -5585,9 +6067,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-026",
+    "id": "DOR-DIG-029",
     "name": "Cassia corymbosa",
     "slug": "cassia-corymbosa",
+    "sinonimos": [
+      "Sen del campo",
+      "Rama negra"
+    ],
     "scientific": "Senna corymbosa / Senna alexandrina",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -5600,15 +6086,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: estreñimiento, inflamación intestinal.",
       "NO tomar embarazadas ni mujeres amamantando. Efecto purgante fuerte; no usar de forma crónica."
     ],
     "familia": "Leguminosae",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. NO tomar embarazadas ni mujeres amamantando. Efecto purgante fuerte; no usar de forma crónica.",
-    "alertClass": "",
+    "alerta": "NO tomar embarazadas ni mujeres amamantando. Efecto purgante fuerte; no usar de forma crónica.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "NO tomar embarazadas ni mujeres amamantando. Efecto purgante fuerte; no usar de forma crónica.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -5636,9 +6124,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-031",
+    "id": "DOR-TRA-033",
     "name": "Castaña de la India",
     "slug": "castana-de-la-india",
+    "sinonimos": [],
     "scientific": "Aesculus hippocastanum",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -5651,15 +6140,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: circulación, várices, hemorroides.",
       "Tomar con mucha moderación; las semillas crudas en exceso son tóxicas."
     ],
     "familia": "Hippocastanaceae",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. Tomar con mucha moderación; las semillas crudas en exceso son tóxicas.",
-    "alertClass": "",
+    "alerta": "Tomar con mucha moderación; las semillas crudas en exceso son tóxicas.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "Tomar con mucha moderación; las semillas crudas en exceso son tóxicas.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -5691,9 +6182,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-032",
+    "id": "DOR-TRA-034",
     "name": "Cebada perlada",
     "slug": "cebada-perlada",
+    "sinonimos": [
+      "Cebada pelada"
+    ],
     "scientific": "Hordeum vulgare",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -5706,7 +6200,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: verrugas, piel, hígado.",
       "Contiene gluten."
     ],
@@ -5714,6 +6207,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -5745,9 +6241,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-033",
+    "id": "DOR-TRA-035",
     "name": "Cebolla",
     "slug": "cebolla",
+    "sinonimos": [],
     "scientific": "Allium cepa",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -5760,13 +6257,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: presión alta, colesterol, diabetes."
     ],
     "familia": "Liliaceae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -5807,9 +6306,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-034",
+    "id": "DOR-TRA-036",
     "name": "Ceibo",
     "slug": "ceibo",
+    "sinonimos": [
+      "Tomate del diablo"
+    ],
     "scientific": "Erythrina crista-galli",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -5822,13 +6324,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
-      "No se comercializa ni se sugiere su consumo."
+      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA."
     ],
     "familia": "Leguminosa",
     "toxicidad": "EXTREMA",
     "toxicidadLabel": "Toxicidad extrema",
     "alerta": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaTitulo": "⚠️ ADVERTENCIA BOTÁNICA — ESPECIE ALTAMENTE TÓXICA",
+    "alertaCuerpo": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaNota": "Esta ficha tiene fines exclusivamente educativos y botánicos. Producto no disponible para la venta ni consumo.",
     "alertClass": "alerta-toxica-extrema",
     "stock": 0,
     "disponible": false,
@@ -5849,9 +6353,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-027",
+    "id": "DOR-DIG-030",
     "name": "Centaura",
     "slug": "centaura",
+    "sinonimos": [],
     "scientific": "Centaurium erythraea",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -5864,13 +6369,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: falta de apetito, digestión, acidez."
     ],
     "familia": "Gentianaceae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -5907,9 +6414,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-BEL-005",
+    "id": "DOR-BEL-006",
     "name": "Centella asiática",
     "slug": "centella-asiatica",
+    "sinonimos": [],
     "scientific": "Centella asiatica",
     "category": "belleza",
     "categoriaLabel": "Belleza",
@@ -5922,7 +6430,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-belleza",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: celulitis, várices, circulación.",
       "Evitar en embarazo y lactancia."
     ],
@@ -5930,6 +6437,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -5969,9 +6479,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-028",
+    "id": "DOR-DIG-031",
     "name": "Cerraja",
     "slug": "cerraja",
+    "sinonimos": [
+      "Cerrojo"
+    ],
     "scientific": "Sonchus oleraceus",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -5984,13 +6497,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: hígado, estómago, inflamación intestinal."
     ],
     "familia": "Compositae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -6026,9 +6541,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-035",
+    "id": "DOR-TRA-037",
     "name": "Cerezo",
     "slug": "cerezo",
+    "sinonimos": [
+      "Cereja"
+    ],
     "scientific": "Prunus avium",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -6041,15 +6559,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: gota, ácido úrico, retención de líquidos.",
       "No triturar ni consumir los carozos/semillas (contienen glucósidos cianogénicos)."
     ],
     "familia": "Rosacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No triturar ni consumir los carozos/semillas (contienen glucósidos cianogénicos).",
-    "alertClass": "",
+    "alerta": "No triturar ni consumir los carozos/semillas (contienen glucósidos cianogénicos).",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No triturar ni consumir los carozos/semillas (contienen glucósidos cianogénicos).",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -6078,9 +6598,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-029",
+    "id": "DOR-DIG-032",
     "name": "Chal-chal",
     "slug": "chal-chal",
+    "sinonimos": [],
     "scientific": "Allophylus edulis",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -6093,13 +6614,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: hígado, digestión, reuma."
     ],
     "familia": "Sapindacea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -6129,9 +6652,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-036",
+    "id": "DOR-TRA-038",
     "name": "Chamico",
     "slug": "chamico",
+    "sinonimos": [
+      "Chamizo",
+      "Yerba de los brujos"
+    ],
     "scientific": "Datura ferox / Datura stramonium",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -6144,13 +6671,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
-      "No se comercializa ni se sugiere su consumo."
+      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA."
     ],
     "familia": "Solanacea",
     "toxicidad": "EXTREMA",
     "toxicidadLabel": "Toxicidad extrema",
     "alerta": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaTitulo": "⚠️ ADVERTENCIA BOTÁNICA — ESPECIE ALTAMENTE TÓXICA",
+    "alertaCuerpo": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaNota": "Esta ficha tiene fines exclusivamente educativos y botánicos. Producto no disponible para la venta ni consumo.",
     "alertClass": "alerta-toxica-extrema",
     "stock": 0,
     "disponible": false,
@@ -6170,9 +6699,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-037",
+    "id": "DOR-TRA-039",
     "name": "Chaptalia",
     "slug": "chaptalia",
+    "sinonimos": [
+      "Peludilla"
+    ],
     "scientific": "Chaptalia nutans",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -6185,13 +6717,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: conjuntivitis, heridas sangrantes."
     ],
     "familia": "Compositae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -6220,9 +6754,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-038",
+    "id": "DOR-TRA-040",
     "name": "Chañar",
     "slug": "chanar",
+    "sinonimos": [],
     "scientific": "Geoffroea decorticans",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -6235,13 +6770,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: asma, tos, bronquios."
     ],
     "familia": "Leguminosa",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -6270,9 +6807,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-039",
+    "id": "DOR-TRA-041",
     "name": "Chin-chín",
     "slug": "chin-chin",
+    "sinonimos": [],
     "scientific": "Polygala linoides",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -6285,14 +6823,16 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: retención de líquidos, bronquitis."
     ],
     "familia": "Polygalaceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
-    "alertClass": "",
+    "alerta": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -6319,9 +6859,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-040",
+    "id": "DOR-TRA-042",
     "name": "Cicuta",
     "slug": "cicuta",
+    "sinonimos": [],
     "scientific": "Conium maculatum",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -6334,13 +6875,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
-      "No se comercializa ni se sugiere su consumo."
+      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA."
     ],
     "familia": "Umbelífera",
     "toxicidad": "EXTREMA",
     "toxicidadLabel": "Toxicidad extrema",
     "alerta": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaTitulo": "⚠️ ADVERTENCIA BOTÁNICA — ESPECIE ALTAMENTE TÓXICA",
+    "alertaCuerpo": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaNota": "Esta ficha tiene fines exclusivamente educativos y botánicos. Producto no disponible para la venta ni consumo.",
     "alertClass": "alerta-toxica-extrema",
     "stock": 0,
     "disponible": false,
@@ -6357,9 +6900,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-041",
+    "id": "DOR-TRA-043",
     "name": "Cina-cina",
     "slug": "cina-cina",
+    "sinonimos": [
+      "Retama roja"
+    ],
     "scientific": "Parkinsonia aculeata",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -6372,15 +6918,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: fiebre, reuma.",
       "Contraindicada en embarazo (efectos abortivos)."
     ],
     "familia": "Leguminosa",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. Contraindicada en embarazo (efectos abortivos).",
-    "alertClass": "",
+    "alerta": "Contraindicada en embarazo (efectos abortivos).",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "Contraindicada en embarazo (efectos abortivos).",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -6407,9 +6955,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-042",
+    "id": "DOR-TRA-044",
     "name": "Cipó",
     "slug": "cipo",
+    "sinonimos": [
+      "Milhombres"
+    ],
     "scientific": "Aristolochia triangularis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -6422,15 +6973,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: hígado, bazo, gastralgias.",
       "⚠️ PRECAUCIÓN ALTA: No tomar las hojas (provocan malestar, calor y somnolencia) ni usar por períodos prolongados por toxicidad renal del ácido aristolóquico."
     ],
     "familia": "Aristolochiaceae",
     "toxicidad": "ALTA",
     "toxicidadLabel": "Toxicidad alta",
-    "alerta": "Precaución: toxicidad alta. ⚠️ PRECAUCIÓN ALTA: No tomar las hojas (provocan malestar, calor y somnolencia) ni usar por períodos prolongados por toxicidad renal del ácido aristolóquico.",
-    "alertClass": "",
+    "alerta": "⚠️ PRECAUCIÓN ALTA: No tomar las hojas (provocan malestar, calor y somnolencia) ni usar por períodos prolongados por toxicidad renal del ácido aristolóquico.",
+    "alertaTitulo": "Precaución: toxicidad alta",
+    "alertaCuerpo": "⚠️ PRECAUCIÓN ALTA: No tomar las hojas (provocan malestar, calor y somnolencia) ni usar por períodos prolongados por toxicidad renal del ácido aristolóquico.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -6463,9 +7016,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-043",
+    "id": "DOR-TRA-046",
     "name": "Ciprés piramidal",
     "slug": "cipres-piramidal",
+    "sinonimos": [],
     "scientific": "Cupressus sempervirens",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -6478,15 +7032,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: hemorroides, circulación, nervios.",
       "No ingerir el aceite esencial puro; evitar en embarazo."
     ],
     "familia": "Cupressaceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No ingerir el aceite esencial puro; evitar en embarazo.",
-    "alertClass": "",
+    "alerta": "No ingerir el aceite esencial puro; evitar en embarazo.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No ingerir el aceite esencial puro; evitar en embarazo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -6514,9 +7070,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-030",
+    "id": "DOR-DIG-033",
     "name": "Clavo de olor",
     "slug": "clavo-de-olor",
+    "sinonimos": [],
     "scientific": "Syzygium aromaticum / Eugenia caryophyllata",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -6529,7 +7086,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: dolor de muela, gases, infecciones bucales.",
       "El aceite esencial puro puede irritar mucosas si no se diluye."
     ],
@@ -6537,6 +7093,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -6568,9 +7127,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-031",
+    "id": "DOR-DIG-034",
     "name": "Coca",
     "slug": "coca",
+    "sinonimos": [],
     "scientific": "Erythroxylum coca",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -6583,15 +7143,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: estómago, agotamiento, anemia.",
       "Planta sujeta a fiscalización y restricciones legales."
     ],
     "familia": "Erythroxylaceae",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. Planta sujeta a fiscalización y restricciones legales.",
-    "alertClass": "",
+    "alerta": "Planta sujeta a fiscalización y restricciones legales.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "Planta sujeta a fiscalización y restricciones legales.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -6619,9 +7181,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-044",
+    "id": "DOR-TRA-047",
     "name": "Nuez de cola",
     "slug": "nuez-de-cola",
+    "sinonimos": [
+      "Cola"
+    ],
     "scientific": "Cola acuminata",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -6634,15 +7199,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: cansancio, convalecencia, agotamiento mental.",
       "No usar en hipertensión, insomnio ni problemas cardíacos."
     ],
     "familia": "Sterculiaceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No usar en hipertensión, insomnio ni problemas cardíacos.",
-    "alertClass": "",
+    "alerta": "No usar en hipertensión, insomnio ni problemas cardíacos.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No usar en hipertensión, insomnio ni problemas cardíacos.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -6671,9 +7238,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-032",
+    "id": "DOR-DIG-035",
     "name": "Comino",
     "slug": "comino",
+    "sinonimos": [],
     "scientific": "Cuminum cyminum",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -6686,13 +7254,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: digestión, falta de apetito, gases."
     ],
     "familia": "Umbelífera",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -6728,9 +7298,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-BEL-006",
+    "id": "DOR-BEL-007",
     "name": "Confrei",
     "slug": "confrei",
+    "sinonimos": [
+      "Suelda consuelda",
+      "Consuelda"
+    ],
     "scientific": "Symphytum officinale",
     "category": "belleza",
     "categoriaLabel": "Belleza",
@@ -6743,15 +7317,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-belleza",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: heridas externas, fracturas, arrugas.",
       "⚠️ PROHIBIDO PARA USO INTERNO: No comer ni beber; los alcaloides pirrolizidínicos causan daño hepático grave y pancreatitis."
     ],
     "familia": "Borraginacea",
     "toxicidad": "ALTA",
     "toxicidadLabel": "Toxicidad alta",
-    "alerta": "Precaución: toxicidad alta. ⚠️ PROHIBIDO PARA USO INTERNO: No comer ni beber; los alcaloides pirrolizidínicos causan daño hepático grave y pancreatitis.",
-    "alertClass": "",
+    "alerta": "⚠️ PROHIBIDO PARA USO INTERNO: No comer ni beber; los alcaloides pirrolizidínicos causan daño hepático grave y pancreatitis.",
+    "alertaTitulo": "Precaución: toxicidad alta",
+    "alertaCuerpo": "⚠️ PROHIBIDO PARA USO INTERNO: No comer ni beber; los alcaloides pirrolizidínicos causan daño hepático grave y pancreatitis.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -6789,9 +7365,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-033",
+    "id": "DOR-DIG-036",
     "name": "Congorosa",
     "slug": "congorosa",
+    "sinonimos": [
+      "Cancorosa",
+      "Espinheira santa"
+    ],
     "scientific": "Maytenus ilicifolia",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -6804,15 +7384,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: gastritis, úlceras gástricas, acidez.",
       "En usos prolongados sin descanso puede resultar tóxica; no usar en embarazo ni lactancia."
     ],
     "familia": "Celastracea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. En usos prolongados sin descanso puede resultar tóxica; no usar en embarazo ni lactancia.",
-    "alertClass": "",
+    "alerta": "En usos prolongados sin descanso puede resultar tóxica; no usar en embarazo ni lactancia.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "En usos prolongados sin descanso puede resultar tóxica; no usar en embarazo ni lactancia.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -6852,9 +7434,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-046",
+    "id": "DOR-TRA-048",
     "name": "Contrayerba",
     "slug": "contrayerba",
+    "sinonimos": [
+      "Higuerilla"
+    ],
     "scientific": "Dorstenia brasiliensis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -6867,15 +7452,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: fiebre, arenilla, hígado.",
       "Evitar en embarazo."
     ],
     "familia": "Moraceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Evitar en embarazo.",
-    "alertClass": "",
+    "alerta": "Evitar en embarazo.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Evitar en embarazo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -6909,9 +7496,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-047",
+    "id": "DOR-TRA-049",
     "name": "Convallaria",
     "slug": "convallaria",
+    "sinonimos": [
+      "Lirio de los valles"
+    ],
     "scientific": "Convallaria majalis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -6924,13 +7514,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
-      "No se comercializa ni se sugiere su consumo."
+      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA."
     ],
     "familia": "Asparagaceae",
     "toxicidad": "EXTREMA",
     "toxicidadLabel": "Toxicidad extrema",
     "alerta": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaTitulo": "⚠️ ADVERTENCIA BOTÁNICA — ESPECIE ALTAMENTE TÓXICA",
+    "alertaCuerpo": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaNota": "Esta ficha tiene fines exclusivamente educativos y botánicos. Producto no disponible para la venta ni consumo.",
     "alertClass": "alerta-toxica-extrema",
     "stock": 0,
     "disponible": false,
@@ -6948,9 +7540,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-048",
+    "id": "DOR-TRA-050",
     "name": "Coronilla",
     "slug": "coronilla",
+    "sinonimos": [
+      "Quina de campo"
+    ],
     "scientific": "Scutia buxifolia",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -6963,15 +7558,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: tónico cardíaco, tónico amargo.",
       "Usar con precaución en afecciones cardíacas bajo supervisión médica."
     ],
     "familia": "Rhamnacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Usar con precaución en afecciones cardíacas bajo supervisión médica.",
-    "alertClass": "",
+    "alerta": "Usar con precaución en afecciones cardíacas bajo supervisión médica.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Usar con precaución en afecciones cardíacas bajo supervisión médica.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -6998,9 +7595,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-034",
+    "id": "DOR-DIG-037",
     "name": "Coronillo",
     "slug": "coronillo",
+    "sinonimos": [],
     "scientific": "Scutia buxifolia",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -7013,13 +7611,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: fiebre, estómago, diarrea."
     ],
     "familia": "Rhamnacea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -7049,9 +7649,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-035",
+    "id": "DOR-DIG-038",
     "name": "Coriandro",
     "slug": "coriandro",
+    "sinonimos": [
+      "Corrando",
+      "Cilantro"
+    ],
     "scientific": "Coriandrum sativum",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -7064,13 +7668,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: estómago, intestino, empacho."
     ],
     "familia": "Umbelífera",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -7107,9 +7713,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-BEL-007",
+    "id": "DOR-BEL-008",
     "name": "Cuernos del diablo",
     "slug": "cuernos-del-diablo",
+    "sinonimos": [],
     "scientific": "Ibicella lutea",
     "category": "belleza",
     "categoriaLabel": "Belleza",
@@ -7122,13 +7729,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-belleza",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: inflamaciones locales, ojos cansados."
     ],
     "familia": "Martyniaceae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -7156,9 +7765,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-049",
+    "id": "DOR-TRA-051",
     "name": "Culandrillo",
     "slug": "culandrillo",
+    "sinonimos": [],
     "scientific": "Adiantum cuneatum",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -7171,15 +7781,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: bronquitis, resfrío, tos.",
       "Evitar en embarazo (emenagogo)."
     ],
     "familia": "Polypodiacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Evitar en embarazo (emenagogo).",
-    "alertClass": "",
+    "alerta": "Evitar en embarazo (emenagogo).",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Evitar en embarazo (emenagogo).",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -7215,9 +7827,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-036",
+    "id": "DOR-DIG-039",
     "name": "Culé",
     "slug": "cule",
+    "sinonimos": [
+      "Culén"
+    ],
     "scientific": "Psoralea glandulosa",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -7230,15 +7845,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: empacho, hígado, diarrea.",
       "La raíz provoca el vómito."
     ],
     "familia": "Leguminosae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. La raíz provoca el vómito.",
-    "alertClass": "",
+    "alerta": "La raíz provoca el vómito.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "La raíz provoca el vómito.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -7270,9 +7887,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-050",
+    "id": "DOR-TRA-052",
     "name": "Curupí",
     "slug": "curupi",
+    "sinonimos": [
+      "Árbol de la leche"
+    ],
     "scientific": "Sapium glandulosum",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -7285,15 +7905,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: callos, verrugas, hongos.",
       "⚠️ TÓXICO / IRRITANTE: Látex cáustico; no ingerir ni aplicar cerca de los ojos."
     ],
     "familia": "Euforbiacea",
     "toxicidad": "ALTA",
     "toxicidadLabel": "Toxicidad alta",
-    "alerta": "Precaución: toxicidad alta. ⚠️ TÓXICO / IRRITANTE: Látex cáustico; no ingerir ni aplicar cerca de los ojos.",
-    "alertClass": "",
+    "alerta": "⚠️ TÓXICO / IRRITANTE: Látex cáustico; no ingerir ni aplicar cerca de los ojos.",
+    "alertaTitulo": "Precaución: toxicidad alta",
+    "alertaCuerpo": "⚠️ TÓXICO / IRRITANTE: Látex cáustico; no ingerir ni aplicar cerca de los ojos.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -7324,9 +7946,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-051",
+    "id": "DOR-TRA-053",
     "name": "Digital",
     "slug": "digital",
+    "sinonimos": [
+      "Dedalera"
+    ],
     "scientific": "Digitalis purpurea",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -7339,13 +7964,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
-      "No se comercializa ni se sugiere su consumo."
+      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA."
     ],
     "familia": "Scrophulariaceae",
     "toxicidad": "EXTREMA",
     "toxicidadLabel": "Toxicidad extrema",
     "alerta": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaTitulo": "⚠️ ADVERTENCIA BOTÁNICA — ESPECIE ALTAMENTE TÓXICA",
+    "alertaCuerpo": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaNota": "Esta ficha tiene fines exclusivamente educativos y botánicos. Producto no disponible para la venta ni consumo.",
     "alertClass": "alerta-toxica-extrema",
     "stock": 0,
     "disponible": false,
@@ -7363,9 +7990,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-052",
+    "id": "DOR-TRA-054",
     "name": "Doradilla",
     "slug": "doradilla",
+    "sinonimos": [],
     "scientific": "Anemia phyllitidis var. tweedieana",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -7378,15 +8006,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: tos, flema, menstruación irregular.",
       "Evitar durante el embarazo."
     ],
     "familia": "Anemiacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Evitar durante el embarazo.",
-    "alertClass": "",
+    "alerta": "Evitar durante el embarazo.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Evitar durante el embarazo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -7414,9 +8044,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-038",
+    "id": "DOR-DIG-040",
     "name": "Duraznillo",
     "slug": "duraznillo",
+    "sinonimos": [],
     "scientific": "Especie no determinada (Duraznillo)",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -7429,15 +8060,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: indigestión, diarrea.",
       "Asegurar correcta identificación para no confundir con el duraznillo negro (tóxico)."
     ],
     "familia": "",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. Asegurar correcta identificación para no confundir con el duraznillo negro (tóxico).",
-    "alertClass": "",
+    "alerta": "Asegurar correcta identificación para no confundir con el duraznillo negro (tóxico).",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "Asegurar correcta identificación para no confundir con el duraznillo negro (tóxico).",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -7463,9 +8096,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-053",
+    "id": "DOR-TRA-055",
     "name": "Duraznillo blanco",
     "slug": "duraznillo-blanco",
+    "sinonimos": [],
     "scientific": "Solanum glaucophyllum / Solanum malacoxylon",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -7478,15 +8112,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: fiebre, heridas, cólicos.",
       "⚠️ PRECAUCIÓN ALTA: Especie tóxica para el ganado (enteque seco); evitar uso interno."
     ],
     "familia": "Solanacea",
     "toxicidad": "ALTA",
     "toxicidadLabel": "Toxicidad alta",
-    "alerta": "Precaución: toxicidad alta. ⚠️ PRECAUCIÓN ALTA: Especie tóxica para el ganado (enteque seco); evitar uso interno.",
-    "alertClass": "",
+    "alerta": "⚠️ PRECAUCIÓN ALTA: Especie tóxica para el ganado (enteque seco); evitar uso interno.",
+    "alertaTitulo": "Precaución: toxicidad alta",
+    "alertaCuerpo": "⚠️ PRECAUCIÓN ALTA: Especie tóxica para el ganado (enteque seco); evitar uso interno.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -7516,9 +8152,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-054",
+    "id": "DOR-TRA-056",
     "name": "Duraznillo negro",
     "slug": "duraznillo-negro",
+    "sinonimos": [
+      "Mala yerba",
+      "Mata caballo"
+    ],
     "scientific": "Cestrum parqui",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -7531,13 +8171,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
-      "No se comercializa ni se sugiere su consumo."
+      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA."
     ],
     "familia": "Solanacea",
     "toxicidad": "EXTREMA",
     "toxicidadLabel": "Toxicidad extrema",
     "alerta": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaTitulo": "⚠️ ADVERTENCIA BOTÁNICA — ESPECIE ALTAMENTE TÓXICA",
+    "alertaCuerpo": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaNota": "Esta ficha tiene fines exclusivamente educativos y botánicos. Producto no disponible para la venta ni consumo.",
     "alertClass": "alerta-toxica-extrema",
     "stock": 0,
     "disponible": false,
@@ -7558,9 +8200,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-055",
+    "id": "DOR-TRA-057",
     "name": "Efedra",
     "slug": "efedra",
+    "sinonimos": [
+      "Tramonta"
+    ],
     "scientific": "Ephedra tweediana",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -7573,15 +8218,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: asma, congestión respiratoria.",
       "⚠️ PRECAUCIÓN ALTA: Eleva la presión arterial y la frecuencia cardíaca; contraindicada en hipertensión, problemas cardíacos y embarazo."
     ],
     "familia": "Ephedraceae",
     "toxicidad": "ALTA",
     "toxicidadLabel": "Toxicidad alta",
-    "alerta": "Precaución: toxicidad alta. ⚠️ PRECAUCIÓN ALTA: Eleva la presión arterial y la frecuencia cardíaca; contraindicada en hipertensión, problemas cardíacos y embarazo.",
-    "alertClass": "",
+    "alerta": "⚠️ PRECAUCIÓN ALTA: Eleva la presión arterial y la frecuencia cardíaca; contraindicada en hipertensión, problemas cardíacos y embarazo.",
+    "alertaTitulo": "Precaución: toxicidad alta",
+    "alertaCuerpo": "⚠️ PRECAUCIÓN ALTA: Eleva la presión arterial y la frecuencia cardíaca; contraindicada en hipertensión, problemas cardíacos y embarazo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -7608,9 +8255,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-039",
+    "id": "DOR-DIG-041",
     "name": "Eneldo",
     "slug": "eneldo",
+    "sinonimos": [
+      "Hinojo hediondo"
+    ],
     "scientific": "Anethum graveolens",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -7623,13 +8273,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: digestión, gases, cólicos."
     ],
     "familia": "Umbelifera",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -7659,9 +8311,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-056",
+    "id": "DOR-TRA-058",
     "name": "Epilobio",
     "slug": "epilobio",
+    "sinonimos": [],
     "scientific": "Epilobium parviflorum",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -7674,13 +8327,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: inflamación de próstata, fibroma, quiste de ovario."
     ],
     "familia": "Onagraceae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -7709,9 +8364,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-057",
+    "id": "DOR-TRA-059",
     "name": "Equinácea purpúrea",
     "slug": "equinacea-purpurea",
+    "sinonimos": [],
     "scientific": "Echinacea angustifolia / Echinacea purpurea",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -7724,15 +8380,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: defensas bajas, resfrío, infecciones.",
       "No tomar en caso de hepatitis ni enfermedades autoinmunes."
     ],
     "familia": "Asteraceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No tomar en caso de hepatitis ni enfermedades autoinmunes.",
-    "alertClass": "",
+    "alerta": "No tomar en caso de hepatitis ni enfermedades autoinmunes.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No tomar en caso de hepatitis ni enfermedades autoinmunes.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -7762,9 +8420,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-058",
+    "id": "DOR-TRA-060",
     "name": "Espárrago",
     "slug": "esparrago",
+    "sinonimos": [],
     "scientific": "Asparagus officinalis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -7777,7 +8436,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: retención de líquidos, riñones.",
       "Evitar en inflamación renal aguda."
     ],
@@ -7785,6 +8443,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -7811,9 +8472,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-059",
+    "id": "DOR-TRA-061",
     "name": "Espina amarilla",
     "slug": "espina-amarilla",
+    "sinonimos": [],
     "scientific": "Berberis laurina / Berberis ruscifolia",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -7826,15 +8488,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: garganta, fiebre, eczema.",
       "No usar durante el embarazo por su contenido de berberina."
     ],
     "familia": "Berberidacea",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. No usar durante el embarazo por su contenido de berberina.",
-    "alertClass": "",
+    "alerta": "No usar durante el embarazo por su contenido de berberina.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "No usar durante el embarazo por su contenido de berberina.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -7868,9 +8532,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-060",
+    "id": "DOR-TRA-062",
     "name": "Espina de la cruz",
     "slug": "espina-de-la-cruz",
+    "sinonimos": [
+      "Caramamuel"
+    ],
     "scientific": "Colletia paradoxa",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -7883,14 +8550,16 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: fiebre, falta de apetito, digestión."
     ],
     "familia": "Rhamnacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
-    "alertClass": "",
+    "alerta": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -7920,9 +8589,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-BEL-008",
+    "id": "DOR-BEL-009",
     "name": "Espina de Cristo",
     "slug": "espina-de-cristo",
+    "sinonimos": [
+      "Corona de Cristo"
+    ],
     "scientific": "Gleditsia triacanthos",
     "category": "belleza",
     "categoriaLabel": "Belleza",
@@ -7935,14 +8607,16 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-belleza",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: colesterol, caspa."
     ],
     "familia": "Leguminosa",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
-    "alertClass": "",
+    "alerta": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -7969,9 +8643,14 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-061",
+    "id": "DOR-TRA-063",
     "name": "Espirea",
     "slug": "espirea",
+    "sinonimos": [
+      "Taso",
+      "Ramo de novia",
+      "Aspirina vegetal"
+    ],
     "scientific": "Spiraea cantoniensis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -7984,15 +8663,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: dolor, fiebre, reuma.",
       "Evitar en personas alérgicas a la aspirina (salicilatos)."
     ],
     "familia": "Rosaceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Evitar en personas alérgicas a la aspirina (salicilatos).",
-    "alertClass": "",
+    "alerta": "Evitar en personas alérgicas a la aspirina (salicilatos).",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Evitar en personas alérgicas a la aspirina (salicilatos).",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -8029,6 +8710,9 @@ var DORILA_PRODUCTS = [
     "id": "DOR-DES-008",
     "name": "Espinillo",
     "slug": "espinillo",
+    "sinonimos": [
+      "Aromo"
+    ],
     "scientific": "Acacia caven",
     "category": "descanso",
     "categoriaLabel": "Descanso",
@@ -8041,13 +8725,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-descanso",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: digestión, diarrea, hemorroides."
     ],
     "familia": "Leguminosae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -8087,9 +8773,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-ARO-001",
+    "id": "DOR-ARO-007",
     "name": "Eucalipto",
     "slug": "eucalipto",
+    "sinonimos": [
+      "Eucaliptus",
+      "Ocalito"
+    ],
     "scientific": "Eucalyptus globulus",
     "category": "aromaterapia",
     "categoriaLabel": "Aromaterapia",
@@ -8102,15 +8792,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-aromaterapia",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: congestión nasal, bronquios, catarro.",
       "Usar sin abusar porque puede irritar los bronquios. No usar en embarazo, niños menores de 2 años ni en casos de alergia respiratoria."
     ],
     "familia": "Mirtacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Usar sin abusar porque puede irritar los bronquios. No usar en embarazo, niños menores de 2 años ni en casos de alergia respiratoria.",
-    "alertClass": "",
+    "alerta": "Usar sin abusar porque puede irritar los bronquios. No usar en embarazo, niños menores de 2 años ni en casos de alergia respiratoria.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Usar sin abusar porque puede irritar los bronquios. No usar en embarazo, niños menores de 2 años ni en casos de alergia respiratoria.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -8144,7 +8836,7 @@ var DORILA_PRODUCTS = [
       "ocalito"
     ],
     "related": [
-      "mirra",
+      "salvia-adivina",
       "romero"
     ],
     "presentaciones": [],
@@ -8152,9 +8844,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-062",
+    "id": "DOR-TRA-064",
     "name": "Fenogreco",
     "slug": "fenogreco",
+    "sinonimos": [
+      "Heno griego",
+      "Hinojo griego"
+    ],
     "scientific": "Trigonella foenum-graecum",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -8167,7 +8863,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: colesterol, diabetes, sobrepeso.",
       "Evitar durante el embarazo (estimulante uterino)."
     ],
@@ -8175,6 +8870,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -8215,9 +8913,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-063",
+    "id": "DOR-TRA-065",
     "name": "Floripón",
     "slug": "floripon",
+    "sinonimos": [
+      "Trompeta de ángel"
+    ],
     "scientific": "Brugmansia arborea / Datura arborea",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -8230,13 +8931,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
-      "No se comercializa ni se sugiere su consumo."
+      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA."
     ],
     "familia": "Solanacea",
     "toxicidad": "EXTREMA",
     "toxicidadLabel": "Toxicidad extrema",
     "alerta": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaTitulo": "⚠️ ADVERTENCIA BOTÁNICA — ESPECIE ALTAMENTE TÓXICA",
+    "alertaCuerpo": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaNota": "Esta ficha tiene fines exclusivamente educativos y botánicos. Producto no disponible para la venta ni consumo.",
     "alertClass": "alerta-toxica-extrema",
     "stock": 0,
     "disponible": false,
@@ -8254,9 +8957,14 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-040",
+    "id": "DOR-DIG-042",
     "name": "Fumaria",
     "slug": "fumaria",
+    "sinonimos": [
+      "Yerba de la virgen",
+      "Flor de la palomita",
+      "Perejilillo"
+    ],
     "scientific": "Fumaria officinalis",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -8269,15 +8977,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: hígado, cirrosis, retención de líquidos.",
       "El uso excesivo o prolongado es tóxico y puede provocar hipertensión y glaucoma."
     ],
     "familia": "Papaveraceae",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. El uso excesivo o prolongado es tóxico y puede provocar hipertensión y glaucoma.",
-    "alertClass": "",
+    "alerta": "El uso excesivo o prolongado es tóxico y puede provocar hipertensión y glaucoma.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "El uso excesivo o prolongado es tóxico y puede provocar hipertensión y glaucoma.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -8316,9 +9026,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-064",
+    "id": "DOR-TRA-067",
     "name": "Galega",
     "slug": "galega",
+    "sinonimos": [],
     "scientific": "Galega officinalis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -8331,15 +9042,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: lactancia.",
       "Usar en dosis moderadas."
     ],
     "familia": "Leguminosae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Usar en dosis moderadas.",
-    "alertClass": "",
+    "alerta": "Usar en dosis moderadas.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Usar en dosis moderadas.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -8363,9 +9076,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-065",
+    "id": "DOR-TRA-068",
     "name": "Garcinia",
     "slug": "garcinia",
+    "sinonimos": [],
     "scientific": "Garcinia cambogia / Garcinia morella",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -8378,7 +9092,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: sobrepeso, ansiedad por dulces, colesterol.",
       "Evitar en embarazo y lactancia."
     ],
@@ -8386,6 +9099,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -8414,9 +9130,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-041",
+    "id": "DOR-DIG-043",
     "name": "Genciana",
     "slug": "genciana",
+    "sinonimos": [],
     "scientific": "Gentiana lutea",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -8429,7 +9146,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: falta de apetito, dispepsia, trastornos biliares.",
       "No tomar en la infancia ni en casos de úlcera gastroduodenal activa."
     ],
@@ -8437,6 +9153,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -8472,9 +9191,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-067",
+    "id": "DOR-TRA-069",
     "name": "Ginseng",
     "slug": "ginseng",
+    "sinonimos": [],
     "scientific": "Panax ginseng",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -8487,15 +9207,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: cansancio, convalecencia, defensas bajas.",
       "No tomar más de 6 semanas seguidas, ni con insomnio o hipertensión arterial."
     ],
     "familia": "Araliaceas",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No tomar más de 6 semanas seguidas, ni con insomnio o hipertensión arterial.",
-    "alertClass": "",
+    "alerta": "No tomar más de 6 semanas seguidas, ni con insomnio o hipertensión arterial.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No tomar más de 6 semanas seguidas, ni con insomnio o hipertensión arterial.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -8529,9 +9251,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-068",
+    "id": "DOR-TRA-070",
     "name": "Gordolobo",
     "slug": "gordolobo",
+    "sinonimos": [],
     "scientific": "Verbascum thapsus",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -8544,7 +9267,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: catarro, bronquios, tos.",
       "Colar bien con filtro fino o tela para evitar irritación de garganta por los pelitos de las hojas."
     ],
@@ -8552,6 +9274,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -8580,9 +9305,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-069",
+    "id": "DOR-TRA-071",
     "name": "Gramilla",
     "slug": "gramilla",
+    "sinonimos": [
+      "Pata de perdiz"
+    ],
     "scientific": "Cynodon dactylon",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -8595,13 +9323,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: retención de líquidos, depurativo, hígado."
     ],
     "familia": "Graminea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -8633,9 +9363,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-042",
+    "id": "DOR-DIG-044",
     "name": "Granada",
     "slug": "granada",
+    "sinonimos": [],
     "scientific": "Punica granatum",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -8648,15 +9379,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: diarrea, parásitos intestinales (oxiuros).",
       "No dar a menores de 5 años, embarazadas ni personas muy nerviosas. Usar la corteza con precaución por sus alcaloides."
     ],
     "familia": "Punicacea",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. No dar a menores de 5 años, embarazadas ni personas muy nerviosas. Usar la corteza con precaución por sus alcaloides.",
-    "alertClass": "",
+    "alerta": "No dar a menores de 5 años, embarazadas ni personas muy nerviosas. Usar la corteza con precaución por sus alcaloides.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "No dar a menores de 5 años, embarazadas ni personas muy nerviosas. Usar la corteza con precaución por sus alcaloides.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -8682,9 +9415,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-070",
+    "id": "DOR-TRA-072",
     "name": "Guaco",
     "slug": "guaco",
+    "sinonimos": [],
     "scientific": "Mikania guaco / Mikania glomerata",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -8697,15 +9431,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: tos, bronquios, asma.",
       "En dosis muy altas puede alterar el sistema nervioso o producir efecto anticoagulante."
     ],
     "familia": "Compuesta",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. En dosis muy altas puede alterar el sistema nervioso o producir efecto anticoagulante.",
-    "alertClass": "",
+    "alerta": "En dosis muy altas puede alterar el sistema nervioso o producir efecto anticoagulante.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "En dosis muy altas puede alterar el sistema nervioso o producir efecto anticoagulante.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -8735,9 +9471,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-043",
+    "id": "DOR-DIG-045",
     "name": "Guayabo del país",
     "slug": "guayabo-del-pais",
+    "sinonimos": [
+      "Arazá grande",
+      "Feijoa"
+    ],
     "scientific": "Acca sellowiana / Feijoa sellowiana",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -8750,13 +9490,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: gastroenteritis, diarrea, tránsito intestinal."
     ],
     "familia": "Mirtacea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -8788,9 +9530,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-044",
+    "id": "DOR-DIG-046",
     "name": "Guaycurú",
     "slug": "guaycuru",
+    "sinonimos": [],
     "scientific": "Limonium brasiliense",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -8803,15 +9546,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: diarrea, heridas, llagas.",
       "Evitar en embarazo."
     ],
     "familia": "Plumbaginaceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Evitar en embarazo.",
-    "alertClass": "",
+    "alerta": "Evitar en embarazo.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Evitar en embarazo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -8843,9 +9588,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-071",
+    "id": "DOR-TRA-073",
     "name": "Hamamelis",
     "slug": "hamamelis",
+    "sinonimos": [],
     "scientific": "Hamamelis virginiana",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -8858,13 +9604,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: circulación, várices, flebitis."
     ],
     "familia": "Hamamelidaceas",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -8895,9 +9643,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-045",
+    "id": "DOR-DIG-047",
     "name": "Helecho",
     "slug": "helecho",
+    "sinonimos": [
+      "Helecho macho"
+    ],
     "scientific": "Dryopteris filix-mas",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -8910,15 +9661,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: parásitos intestinales (uso tradicional antiguo).",
       "⚠️ PRECAUCIÓN ALTA: El rizoma es tóxico en dosis elevadas; no usar de forma casera."
     ],
     "familia": "Polypodiaceae",
     "toxicidad": "ALTA",
     "toxicidadLabel": "Toxicidad alta",
-    "alerta": "Precaución: toxicidad alta. ⚠️ PRECAUCIÓN ALTA: El rizoma es tóxico en dosis elevadas; no usar de forma casera.",
-    "alertClass": "",
+    "alerta": "⚠️ PRECAUCIÓN ALTA: El rizoma es tóxico en dosis elevadas; no usar de forma casera.",
+    "alertaTitulo": "Precaución: toxicidad alta",
+    "alertaCuerpo": "⚠️ PRECAUCIÓN ALTA: El rizoma es tóxico en dosis elevadas; no usar de forma casera.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -8943,9 +9696,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-046",
+    "id": "DOR-DIG-048",
     "name": "Hinojo",
     "slug": "hinojo",
+    "sinonimos": [],
     "scientific": "Foeniculum vulgare",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -8958,7 +9712,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: gases, digestión, espasmos.",
       "Evitar aceite esencial puro en embarazo y niños pequeños."
     ],
@@ -8966,6 +9719,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -9005,9 +9761,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-072",
+    "id": "DOR-TRA-074",
     "name": "Hisopo",
     "slug": "hisopo",
+    "sinonimos": [],
     "scientific": "Hyssopus officinalis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -9020,15 +9777,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: asma, bronquios, espasmos.",
       "Evitar en embarazo y en personas con epilepsia."
     ],
     "familia": "Labiadas",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Evitar en embarazo y en personas con epilepsia.",
-    "alertClass": "",
+    "alerta": "Evitar en embarazo y en personas con epilepsia.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Evitar en embarazo y en personas con epilepsia.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -9058,9 +9817,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-073",
+    "id": "DOR-TRA-075",
     "name": "Ibirapitá",
     "slug": "ibirapita",
+    "sinonimos": [
+      "Árbol de Artigas"
+    ],
     "scientific": "Peltophorum dubium",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -9073,13 +9835,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: heridas, cicatrizante."
     ],
     "familia": "Leguminosa",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -9107,9 +9871,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-074",
+    "id": "DOR-TRA-076",
     "name": "Ingá",
     "slug": "inga",
+    "sinonimos": [],
     "scientific": "Inga uruguayensis / Inga vera",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -9122,13 +9887,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: hemorragias, tos, flema."
     ],
     "familia": "Leguminosa",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -9160,9 +9927,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-075",
+    "id": "DOR-TRA-077",
     "name": "Insulina vegetal",
     "slug": "insulina-vegetal",
+    "sinonimos": [
+      "Insulina"
+    ],
     "scientific": "Cissus sicyoides / Cissus verticillata",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -9175,15 +9945,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: diabetes, apoyo en alcoholismo.",
       "Controlar la glucemia si se usa junto a medicación hipoglucemiante."
     ],
     "familia": "Vitaceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Controlar la glucemia si se usa junto a medicación hipoglucemiante.",
-    "alertClass": "",
+    "alerta": "Controlar la glucemia si se usa junto a medicación hipoglucemiante.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Controlar la glucemia si se usa junto a medicación hipoglucemiante.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -9210,9 +9982,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-076",
+    "id": "DOR-TRA-078",
     "name": "Jacarandá",
     "slug": "jacaranda",
+    "sinonimos": [],
     "scientific": "Jacaranda mimosifolia",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -9225,15 +9998,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: heridas, infecciones, uso tradicional anticonceptivo.",
       "Evitar en embarazo."
     ],
     "familia": "Bignoniaceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Evitar en embarazo.",
-    "alertClass": "",
+    "alerta": "Evitar en embarazo.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Evitar en embarazo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -9261,9 +10036,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-077",
+    "id": "DOR-TRA-079",
     "name": "Jarilla",
     "slug": "jarilla",
+    "sinonimos": [],
     "scientific": "Larrea divaricata",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -9276,15 +10052,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: defensas bajas, sabañones, transpiración de los pies.",
       "No exceder dosis por vía interna por posible carga hepática."
     ],
     "familia": "Zygophyllaceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No exceder dosis por vía interna por posible carga hepática.",
-    "alertClass": "",
+    "alerta": "No exceder dosis por vía interna por posible carga hepática.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No exceder dosis por vía interna por posible carga hepática.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -9315,6 +10093,7 @@ var DORILA_PRODUCTS = [
     "id": "DOR-DES-010",
     "name": "Jazmín",
     "slug": "jazmin",
+    "sinonimos": [],
     "scientific": "Jasminum officinale",
     "category": "descanso",
     "categoriaLabel": "Descanso",
@@ -9327,13 +10106,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-descanso",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: ansiedad, depresión leve, depresión posparto."
     ],
     "familia": "Oleaceae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -9366,9 +10147,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-MAS-005",
+    "id": "DOR-MAS-007",
     "name": "Jazmín de leche",
     "slug": "jazmin-de-leche",
+    "sinonimos": [],
     "scientific": "Trachelospermum jasminoides",
     "category": "masajes",
     "categoriaLabel": "Masajes",
@@ -9381,15 +10163,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-masajes",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: reuma, espasmos musculares, faringitis.",
       "Planta laticífera de la familia Apocinácea; priorizar uso externo."
     ],
     "familia": "Apocinacea",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. Planta laticífera de la familia Apocinácea; priorizar uso externo.",
-    "alertClass": "",
+    "alerta": "Planta laticífera de la familia Apocinácea; priorizar uso externo.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "Planta laticífera de la familia Apocinácea; priorizar uso externo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -9419,9 +10203,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-078",
+    "id": "DOR-TRA-080",
     "name": "Jazmín del cielo",
     "slug": "jazmin-del-cielo",
+    "sinonimos": [],
     "scientific": "Plumbago auriculata",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -9434,14 +10219,16 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: infecciones leves."
     ],
     "familia": "Plumbaginaceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
-    "alertClass": "",
+    "alerta": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -9465,9 +10252,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-047",
+    "id": "DOR-DIG-049",
     "name": "Jengibre",
     "slug": "jengibre",
+    "sinonimos": [],
     "scientific": "Zingiber officinale",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -9480,7 +10268,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: circulación, sabañones, mareos.",
       "En exceso puede irritar úlceras gástricas activas."
     ],
@@ -9488,6 +10275,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -9537,9 +10327,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-048",
+    "id": "DOR-DIG-050",
     "name": "Joá",
     "slug": "joa",
+    "sinonimos": [
+      "Revienta caballo",
+      "Coa"
+    ],
     "scientific": "Solanum sisymbriifolium",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -9552,15 +10346,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: trastornos intestinales, inflamaciones locales.",
       "Evitar partes verdes inmaduras por presencia de solaninas."
     ],
     "familia": "Solanacea",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. Evitar partes verdes inmaduras por presencia de solaninas.",
-    "alertClass": "",
+    "alerta": "Evitar partes verdes inmaduras por presencia de solaninas.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "Evitar partes verdes inmaduras por presencia de solaninas.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -9589,9 +10385,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-079",
+    "id": "DOR-TRA-081",
     "name": "Junco",
     "slug": "junco",
+    "sinonimos": [],
     "scientific": "Schoenoplectus californicus",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -9604,13 +10401,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: retención de líquidos, presión alta, heridas."
     ],
     "familia": "Ciperacea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -9640,9 +10439,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-080",
+    "id": "DOR-TRA-082",
     "name": "Junquillo blanco",
     "slug": "junquillo-blanco",
+    "sinonimos": [],
     "scientific": "Narcissus tazetta",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -9655,15 +10455,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: tos, tos convulsa, asma.",
       "El bulbo es tóxico; utilizar únicamente las flores/hojas en dosis bajas."
     ],
     "familia": "Amarilidacea",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. El bulbo es tóxico; utilizar únicamente las flores/hojas en dosis bajas.",
-    "alertClass": "",
+    "alerta": "El bulbo es tóxico; utilizar únicamente las flores/hojas en dosis bajas.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "El bulbo es tóxico; utilizar únicamente las flores/hojas en dosis bajas.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -9691,9 +10493,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-049",
+    "id": "DOR-DIG-051",
     "name": "Jurubeba",
     "slug": "jurubeba",
+    "sinonimos": [],
     "scientific": "Solanum paniculatum",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -9706,15 +10509,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: hígado, bazo, falta de apetito.",
       "No usar en embarazo ni por períodos prolongados."
     ],
     "familia": "Solanacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No usar en embarazo ni por períodos prolongados.",
-    "alertClass": "",
+    "alerta": "No usar en embarazo ni por períodos prolongados.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No usar en embarazo ni por períodos prolongados.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -9744,9 +10549,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-MAS-006",
+    "id": "DOR-MAS-008",
     "name": "Lantana fuscata",
     "slug": "lantana-fuscata",
+    "sinonimos": [],
     "scientific": "Lantana fucata",
     "category": "masajes",
     "categoriaLabel": "Masajes",
@@ -9759,14 +10565,16 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-masajes",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: reuma, dolores articulares."
     ],
     "familia": "Verbenacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
-    "alertClass": "",
+    "alerta": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -9792,9 +10600,14 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-081",
+    "id": "DOR-TRA-083",
     "name": "Lapacho",
     "slug": "lapacho",
+    "sinonimos": [
+      "Lapacho rosado",
+      "Lapacho colorado",
+      "Pau d'arco"
+    ],
     "scientific": "Handroanthus impetiginosus / Tabebuia ipe",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -9807,15 +10620,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: defensas bajas, reuma, hígado.",
       "Evitar en embarazo y en personas que toman anticoagulantes."
     ],
     "familia": "Bignoniaceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Evitar en embarazo y en personas que toman anticoagulantes.",
-    "alertClass": "",
+    "alerta": "Evitar en embarazo y en personas que toman anticoagulantes.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Evitar en embarazo y en personas que toman anticoagulantes.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -9854,9 +10669,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-050",
+    "id": "DOR-DIG-052",
     "name": "Laurel",
     "slug": "laurel",
+    "sinonimos": [],
     "scientific": "Laurus nobilis",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -9869,15 +10685,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: digestión lenta, gases, dolor menstrual.",
       "No ingerir nunca aceite esencial puro de laurel; en uso externo usar diluido al 2%."
     ],
     "familia": "Lauracea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No ingerir nunca aceite esencial puro de laurel; en uso externo usar diluido al 2%.",
-    "alertClass": "",
+    "alerta": "No ingerir nunca aceite esencial puro de laurel; en uso externo usar diluido al 2%.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No ingerir nunca aceite esencial puro de laurel; en uso externo usar diluido al 2%.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -9914,9 +10732,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-082",
+    "id": "DOR-TRA-084",
     "name": "Leandro Gómez",
     "slug": "leandro-gomez",
+    "sinonimos": [
+      "Yerba de Santa Lucía",
+      "Flor de Santa Lucía"
+    ],
     "scientific": "Commelina erecta / Commelina virginica",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -9929,7 +10751,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: conjuntivitis, ojos irritados, sarpullidos.",
       "Asegurar higiene absoluta al preparar lavados oculares."
     ],
@@ -9937,6 +10758,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -9976,9 +10800,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-051",
+    "id": "DOR-DIG-053",
     "name": "Lengua de vaca",
     "slug": "lengua-de-vaca",
+    "sinonimos": [
+      "Acedera"
+    ],
     "scientific": "Rumex crispus",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -9991,15 +10818,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: hígado, vesícula, estreñimiento crónico.",
       "No consumir si se es propenso a cálculos biliares o renales ni si se tiene ácido úrico elevado por su contenido de ácido oxálico."
     ],
     "familia": "Poligonacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No consumir si se es propenso a cálculos biliares o renales ni si se tiene ácido úrico elevado por su contenido de ácido oxálico.",
-    "alertClass": "",
+    "alerta": "No consumir si se es propenso a cálculos biliares o renales ni si se tiene ácido úrico elevado por su contenido de ácido oxálico.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No consumir si se es propenso a cálculos biliares o renales ni si se tiene ácido úrico elevado por su contenido de ácido oxálico.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -10037,9 +10866,14 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-083",
+    "id": "DOR-TRA-085",
     "name": "Liga",
     "slug": "liga",
+    "sinonimos": [
+      "Liga huesos",
+      "Flor del pajarito",
+      "Flor del patito"
+    ],
     "scientific": "Ligaria cuneifolia",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -10052,15 +10886,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: quebraduras de huesos, golpes, cicatrizante.",
       "Priorizar uso externo."
     ],
     "familia": "Lorantacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Priorizar uso externo.",
-    "alertClass": "",
+    "alerta": "Priorizar uso externo.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Priorizar uso externo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -10091,9 +10927,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-084",
+    "id": "DOR-TRA-086",
     "name": "Limón",
     "slug": "limon",
+    "sinonimos": [],
     "scientific": "Citrus limon",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -10106,7 +10943,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: resfríos, anginas, encías sangrantes.",
       "Enjuagar la boca con agua luego de tomar jugo puro para proteger el esmalte dental."
     ],
@@ -10114,6 +10950,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -10152,9 +10991,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-085",
+    "id": "DOR-TRA-087",
     "name": "Llantén",
     "slug": "llanten",
+    "sinonimos": [
+      "Siete venas"
+    ],
     "scientific": "Plantago lanceolata / Plantago major",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -10167,7 +11009,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: asma, flema, gastritis.",
       "Si las hojas se ponen negras al secarse pierden sus propiedades (aucubina) y deben descartarse."
     ],
@@ -10175,6 +11016,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -10224,9 +11068,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-052",
+    "id": "DOR-DIG-054",
     "name": "Lucera",
     "slug": "lucera",
+    "sinonimos": [
+      "Yerba lucera",
+      "Quitoco"
+    ],
     "scientific": "Pluchea sagittalis",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -10239,7 +11087,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: digestión, estómago, hígado.",
       "Puede elevar ligeramente la presión arterial en personas hipertensas."
     ],
@@ -10247,6 +11094,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -10281,9 +11131,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-053",
+    "id": "DOR-DIG-057",
     "name": "Macachín",
     "slug": "macachin",
+    "sinonimos": [
+      "Vinagrillo",
+      "Trébol de 4 hojas"
+    ],
     "scientific": "Oxalis macachin",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -10296,15 +11150,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: retención de líquidos, falta de apetito.",
       "Contiene ácido oxálico; no consumir en exceso ni en personas con cálculos renales."
     ],
     "familia": "Oxalidacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Contiene ácido oxálico; no consumir en exceso ni en personas con cálculos renales.",
-    "alertClass": "",
+    "alerta": "Contiene ácido oxálico; no consumir en exceso ni en personas con cálculos renales.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Contiene ácido oxálico; no consumir en exceso ni en personas con cálculos renales.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -10332,9 +11188,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-BEL-009",
+    "id": "DOR-BEL-010",
     "name": "Madreselva",
     "slug": "madreselva",
+    "sinonimos": [
+      "Maravilha"
+    ],
     "scientific": "Lonicera japonica",
     "category": "belleza",
     "categoriaLabel": "Belleza",
@@ -10347,15 +11206,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-belleza",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: ojos irritados, mal aliento, depurativo.",
       "No ingerir las bayas negras (son tóxicas); usar solo las flores."
     ],
     "familia": "Caprifoliacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No ingerir las bayas negras (son tóxicas); usar solo las flores.",
-    "alertClass": "",
+    "alerta": "No ingerir las bayas negras (son tóxicas); usar solo las flores.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No ingerir las bayas negras (son tóxicas); usar solo las flores.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -10385,9 +11246,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-086",
+    "id": "DOR-TRA-088",
     "name": "Malva",
     "slug": "malva",
+    "sinonimos": [],
     "scientific": "Malva sylvestris / Malva rotundifolia",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -10400,7 +11262,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: cistitis, bronquitis, tos.",
       "Usar fresca porque al secarse pierde gran parte de sus mucílagos."
     ],
@@ -10408,6 +11269,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -10449,9 +11313,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-087",
+    "id": "DOR-TRA-089",
     "name": "Malvarrosa",
     "slug": "malvarrosa",
+    "sinonimos": [],
     "scientific": "Alcea rosea / Althaea rosea",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -10464,13 +11329,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: tos, garganta, piel inflamada."
     ],
     "familia": "Malvacea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -10500,9 +11367,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-088",
+    "id": "DOR-TRA-090",
     "name": "Malvavisco",
     "slug": "malvavisco",
+    "sinonimos": [
+      "Malva blanca"
+    ],
     "scientific": "Sphaeralcea bonariensis / Althaea officinalis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -10515,13 +11385,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: bronquitis, catarro, tos."
     ],
     "familia": "Malvacea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -10560,9 +11432,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-089",
+    "id": "DOR-TRA-091",
     "name": "Mandrágora",
     "slug": "mandragora",
+    "sinonimos": [],
     "scientific": "Mandragora officinarum",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -10575,13 +11448,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
-      "No se comercializa ni se sugiere su consumo."
+      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA."
     ],
     "familia": "Solanacea",
     "toxicidad": "EXTREMA",
     "toxicidadLabel": "Toxicidad extrema",
     "alerta": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaTitulo": "⚠️ ADVERTENCIA BOTÁNICA — ESPECIE ALTAMENTE TÓXICA",
+    "alertaCuerpo": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaNota": "Esta ficha tiene fines exclusivamente educativos y botánicos. Producto no disponible para la venta ni consumo.",
     "alertClass": "alerta-toxica-extrema",
     "stock": 0,
     "disponible": false,
@@ -10598,9 +11473,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-054",
+    "id": "DOR-DIG-058",
     "name": "Marcela",
     "slug": "marcela",
+    "sinonimos": [],
     "scientific": "Achyrocline satureioides",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -10613,7 +11489,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: digestión, inflamación intestinal, espasmos.",
       "Puede bajar ligeramente la presión arterial."
     ],
@@ -10621,6 +11496,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -10664,6 +11542,7 @@ var DORILA_PRODUCTS = [
     "id": "DOR-DES-013",
     "name": "Mejorana",
     "slug": "mejorana",
+    "sinonimos": [],
     "scientific": "Origanum majorana",
     "category": "descanso",
     "categoriaLabel": "Descanso",
@@ -10676,7 +11555,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-descanso",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: ansiedad, nervios, insomnio.",
       "Evitar aceite esencial concentrado en embarazo."
     ],
@@ -10684,6 +11562,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -10725,6 +11606,9 @@ var DORILA_PRODUCTS = [
     "id": "DOR-DES-014",
     "name": "Melisa",
     "slug": "melisa",
+    "sinonimos": [
+      "Toronjil"
+    ],
     "scientific": "Melissa officinalis",
     "category": "descanso",
     "categoriaLabel": "Descanso",
@@ -10737,13 +11621,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-descanso",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: nervios, insomnio, angustia."
     ],
     "familia": "Labiada",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -10786,9 +11672,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-090",
+    "id": "DOR-TRA-092",
     "name": "Mercurio",
     "slug": "mercurio",
+    "sinonimos": [
+      "Sanalotodo"
+    ],
     "scientific": "Modiola caroliniana",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -10801,15 +11690,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: heridas, llagas crónicas, retención de líquidos.",
       "No abusar en heridas profundas ni en tratamientos prolongados."
     ],
     "familia": "Malvaceae",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. No abusar en heridas profundas ni en tratamientos prolongados.",
-    "alertClass": "",
+    "alerta": "No abusar en heridas profundas ni en tratamientos prolongados.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "No abusar en heridas profundas ni en tratamientos prolongados.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -10839,9 +11730,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-091",
+    "id": "DOR-TRA-093",
     "name": "Milenrama",
     "slug": "milenrama",
+    "sinonimos": [
+      "Mil hojas",
+      "Planta de la corotropina"
+    ],
     "scientific": "Achillea millefolium",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -10854,15 +11749,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: heridas sangrantes, cicatrizante, gases.",
       "No usar durante el embarazo (emenagogo)."
     ],
     "familia": "Compuesta",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No usar durante el embarazo (emenagogo).",
-    "alertClass": "",
+    "alerta": "No usar durante el embarazo (emenagogo).",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No usar durante el embarazo (emenagogo).",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -10899,9 +11796,14 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-092",
+    "id": "DOR-TRA-094",
     "name": "Milhombres",
     "slug": "milhombres",
+    "sinonimos": [
+      "Flor del patito",
+      "Buche de pavo",
+      "Liana de agua"
+    ],
     "scientific": "Aristolochia triangularis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -10914,15 +11816,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: gota, artritis, reuma.",
       "⚠️ PRECAUCIÓN ALTA: Contiene ácido aristolóquico (nefrotóxico); evitar uso interno y priorizar exclusivamente aplicaciones externas."
     ],
     "familia": "Aristoloquiacea",
     "toxicidad": "ALTA",
     "toxicidadLabel": "Toxicidad alta",
-    "alerta": "Precaución: toxicidad alta. ⚠️ PRECAUCIÓN ALTA: Contiene ácido aristolóquico (nefrotóxico); evitar uso interno y priorizar exclusivamente aplicaciones externas.",
-    "alertClass": "",
+    "alerta": "⚠️ PRECAUCIÓN ALTA: Contiene ácido aristolóquico (nefrotóxico); evitar uso interno y priorizar exclusivamente aplicaciones externas.",
+    "alertaTitulo": "Precaución: toxicidad alta",
+    "alertaCuerpo": "⚠️ PRECAUCIÓN ALTA: Contiene ácido aristolóquico (nefrotóxico); evitar uso interno y priorizar exclusivamente aplicaciones externas.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -10958,9 +11862,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-093",
+    "id": "DOR-TRA-095",
     "name": "Mío-mío",
     "slug": "mio-mio",
+    "sinonimos": [
+      "Romerillo"
+    ],
     "scientific": "Baccharis coridifolia",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -10973,13 +11880,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
-      "No se comercializa ni se sugiere su consumo."
+      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA."
     ],
     "familia": "Compositae",
     "toxicidad": "EXTREMA",
     "toxicidadLabel": "Toxicidad extrema",
     "alerta": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaTitulo": "⚠️ ADVERTENCIA BOTÁNICA — ESPECIE ALTAMENTE TÓXICA",
+    "alertaCuerpo": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaNota": "Esta ficha tiene fines exclusivamente educativos y botánicos. Producto no disponible para la venta ni consumo.",
     "alertClass": "alerta-toxica-extrema",
     "stock": 0,
     "disponible": false,
@@ -10997,9 +11906,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-ARO-002",
+    "id": "DOR-ARO-008",
     "name": "Mirra",
     "slug": "mirra",
+    "sinonimos": [],
     "scientific": "Commiphora myrrha",
     "category": "aromaterapia",
     "categoriaLabel": "Aromaterapia",
@@ -11012,7 +11922,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-aromaterapia",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: nervios, ambiente cargado, encías.",
       "No ingerir durante el embarazo."
     ],
@@ -11020,6 +11929,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -11046,9 +11958,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-094",
+    "id": "DOR-TRA-096",
     "name": "Molle",
     "slug": "molle",
+    "sinonimos": [
+      "Anacahuita"
+    ],
     "scientific": "Schinus molle / Schinus longifolius",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -11061,15 +11976,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: bronquios, tos, heridas.",
       "No usar en embarazo."
     ],
     "familia": "Anacardacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No usar en embarazo.",
-    "alertClass": "",
+    "alerta": "No usar en embarazo.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No usar en embarazo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -11100,9 +12017,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-057",
+    "id": "DOR-DIG-059",
     "name": "Morera",
     "slug": "morera",
+    "sinonimos": [],
     "scientific": "Morus alba",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -11115,13 +12033,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: diabetes, estreñimiento, hígado."
     ],
     "familia": "Moracea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -11157,9 +12077,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-095",
+    "id": "DOR-TRA-097",
     "name": "Muérdago",
     "slug": "muerdago",
+    "sinonimos": [],
     "scientific": "Viscum album",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -11172,15 +12093,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: presión alta, colesterol, circulación.",
       "Las bayas blancas son tóxicas; usar solo hojas en dosis bajas y evitar en embarazo."
     ],
     "familia": "Lorantacea",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. Las bayas blancas son tóxicas; usar solo hojas en dosis bajas y evitar en embarazo.",
-    "alertClass": "",
+    "alerta": "Las bayas blancas son tóxicas; usar solo hojas en dosis bajas y evitar en embarazo.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "Las bayas blancas son tóxicas; usar solo hojas en dosis bajas y evitar en embarazo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -11214,9 +12137,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-096",
+    "id": "DOR-TRA-098",
     "name": "Murta",
     "slug": "murta",
+    "sinonimos": [
+      "Multa"
+    ],
     "scientific": "Myrceugenia glaucescens",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -11229,13 +12155,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: sobrepeso, colesterol."
     ],
     "familia": "Mirtacea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -11263,9 +12191,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-097",
+    "id": "DOR-TRA-099",
     "name": "Naranjillo",
     "slug": "naranjillo",
+    "sinonimos": [
+      "Tembetarí"
+    ],
     "scientific": "Zanthoxylum hyemale / Fagara hyemalis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -11278,14 +12209,16 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: reuma, retención de líquidos, dolor de oído."
     ],
     "familia": "Rutacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
-    "alertClass": "",
+    "alerta": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -11317,9 +12250,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-098",
+    "id": "DOR-TRA-100",
     "name": "Níspero",
     "slug": "nispero",
+    "sinonimos": [],
     "scientific": "Eriobotrya japonica / Mespilus germanica",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -11332,15 +12266,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: bronquitis, tos, inflamaciones locales.",
       "No triturar ni ingerir las semillas (contienen compuestos cianogénicos)."
     ],
     "familia": "Rosacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No triturar ni ingerir las semillas (contienen compuestos cianogénicos).",
-    "alertClass": "",
+    "alerta": "No triturar ni ingerir las semillas (contienen compuestos cianogénicos).",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No triturar ni ingerir las semillas (contienen compuestos cianogénicos).",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -11369,9 +12305,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-099",
+    "id": "DOR-TRA-101",
     "name": "Nogal",
     "slug": "nogal",
+    "sinonimos": [
+      "Nuez"
+    ],
     "scientific": "Juglans regia",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -11384,13 +12323,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: diabetes, cuidado uterino, astringente."
     ],
     "familia": "Juglandacea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -11426,6 +12367,7 @@ var DORILA_PRODUCTS = [
     "id": "DOR-DES-015",
     "name": "Nuez moscada",
     "slug": "nuez-moscada",
+    "sinonimos": [],
     "scientific": "Myristica fragrans",
     "category": "descanso",
     "categoriaLabel": "Descanso",
@@ -11438,15 +12380,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-descanso",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: insomnio, digestión.",
       "Usar únicamente una pizca culinaria; en dosis elevadas la miristicina es tóxica y neurotóxica."
     ],
     "familia": "Miristicacea",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. Usar únicamente una pizca culinaria; en dosis elevadas la miristicina es tóxica y neurotóxica.",
-    "alertClass": "",
+    "alerta": "Usar únicamente una pizca culinaria; en dosis elevadas la miristicina es tóxica y neurotóxica.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "Usar únicamente una pizca culinaria; en dosis elevadas la miristicina es tóxica y neurotóxica.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -11472,9 +12416,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-058",
+    "id": "DOR-DIG-060",
     "name": "Ñangapiré",
     "slug": "nangapire",
+    "sinonimos": [
+      "Pitanga",
+      "Fruto del diablo"
+    ],
     "scientific": "Eugenia uniflora",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -11487,7 +12435,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: acidez, digestión, estómago.",
       "No ingerir las semillas del fruto porque contienen abundante resina irritante."
     ],
@@ -11495,6 +12442,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -11544,9 +12494,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-100",
+    "id": "DOR-TRA-103",
     "name": "Ombú",
     "slug": "ombu",
+    "sinonimos": [],
     "scientific": "Phytolacca dioica",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -11559,15 +12510,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: reuma, presión alta, parásitos.",
       "⚠️ PRECAUCIÓN ALTA: Purgante drástico; si se usa en infusión debe quitarse siempre la nervadura central de la hoja y no usarse en niños ni embarazadas."
     ],
     "familia": "Fitolaccacea",
     "toxicidad": "ALTA",
     "toxicidadLabel": "Toxicidad alta",
-    "alerta": "Precaución: toxicidad alta. ⚠️ PRECAUCIÓN ALTA: Purgante drástico; si se usa en infusión debe quitarse siempre la nervadura central de la hoja y no usarse en niños ni embarazadas.",
-    "alertClass": "",
+    "alerta": "⚠️ PRECAUCIÓN ALTA: Purgante drástico; si se usa en infusión debe quitarse siempre la nervadura central de la hoja y no usarse en niños ni embarazadas.",
+    "alertaTitulo": "Precaución: toxicidad alta",
+    "alertaCuerpo": "⚠️ PRECAUCIÓN ALTA: Purgante drástico; si se usa en infusión debe quitarse siempre la nervadura central de la hoja y no usarse en niños ni embarazadas.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -11604,9 +12557,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-059",
+    "id": "DOR-DIG-061",
     "name": "Orégano",
     "slug": "oregano",
+    "sinonimos": [],
     "scientific": "Origanum vulgare",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -11619,7 +12573,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: asma, tos, bronquitis.",
       "No usar en dosis medicinales concentradas durante el embarazo."
     ],
@@ -11627,6 +12580,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -11669,9 +12625,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-101",
+    "id": "DOR-TRA-104",
     "name": "Oreja de ratón",
     "slug": "oreja-de-raton",
+    "sinonimos": [
+      "Dichondra"
+    ],
     "scientific": "Dichondra microcalyx / Dichondra sericea",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -11684,15 +12643,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: riñones, reuma, heridas.",
       "Retirar la nervadura de las hojas si se prepara para beber."
     ],
     "familia": "Convolvulaceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Retirar la nervadura de las hojas si se prepara para beber.",
-    "alertClass": "",
+    "alerta": "Retirar la nervadura de las hojas si se prepara para beber.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Retirar la nervadura de las hojas si se prepara para beber.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -11726,9 +12687,15 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-060",
+    "id": "DOR-DIG-062",
     "name": "Paico",
     "slug": "paico",
+    "sinonimos": [
+      "Yerba hedionda",
+      "Yerba de los jesuitas",
+      "Té de México",
+      "Yerba de Santa María"
+    ],
     "scientific": "Dysphania ambrosioides / Chenopodium ambrosioides",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -11741,15 +12708,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: parásitos intestinales, empachos, gases.",
       "No exceder las dosis ni usar aceite esencial puro (el ascaridol es tóxico en sobredosis); prohibido en embarazo y niños pequeños."
     ],
     "familia": "Quenopodiacea",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. No exceder las dosis ni usar aceite esencial puro (el ascaridol es tóxico en sobredosis); prohibido en embarazo y niños pequeños.",
-    "alertClass": "",
+    "alerta": "No exceder las dosis ni usar aceite esencial puro (el ascaridol es tóxico en sobredosis); prohibido en embarazo y niños pequeños.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "No exceder las dosis ni usar aceite esencial puro (el ascaridol es tóxico en sobredosis); prohibido en embarazo y niños pequeños.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -11788,9 +12757,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-MAS-007",
+    "id": "DOR-MAS-009",
     "name": "Palán-palán",
     "slug": "palan-palan",
+    "sinonimos": [
+      "Tabaco amarillo"
+    ],
     "scientific": "Nicotiana glauca",
     "category": "masajes",
     "categoriaLabel": "Masajes",
@@ -11803,13 +12775,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-masajes",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
-      "No se comercializa ni se sugiere su consumo."
+      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA."
     ],
     "familia": "Solanacea",
     "toxicidad": "EXTREMA",
     "toxicidadLabel": "Toxicidad extrema",
     "alerta": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaTitulo": "⚠️ ADVERTENCIA BOTÁNICA — ESPECIE ALTAMENTE TÓXICA",
+    "alertaCuerpo": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaNota": "Esta ficha tiene fines exclusivamente educativos y botánicos. Producto no disponible para la venta ni consumo.",
     "alertClass": "alerta-toxica-extrema",
     "stock": 0,
     "disponible": false,
@@ -11831,9 +12805,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-103",
+    "id": "DOR-TRA-105",
     "name": "Palmera butiá",
     "slug": "palmera-butia",
+    "sinonimos": [],
     "scientific": "Butia capitata / Butia odorata",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -11846,13 +12821,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: tos convulsa."
     ],
     "familia": "Arecaceae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -11877,9 +12854,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-104",
+    "id": "DOR-TRA-106",
     "name": "Palmera pindó",
     "slug": "palmera-pindo",
+    "sinonimos": [],
     "scientific": "Syagrus romanzoffiana",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -11892,14 +12870,16 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: uso tradicional anticonceptivo."
     ],
     "familia": "Arecaceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
-    "alertClass": "",
+    "alerta": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -11923,9 +12903,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-UNG-001",
+    "id": "DOR-UNG-002",
     "name": "Palmita imperial",
     "slug": "palmita-imperial",
+    "sinonimos": [],
     "scientific": "Tanacetum vulgare",
     "category": "unguentos",
     "categoriaLabel": "Ungüentos",
@@ -11938,15 +12919,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-unguentos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: várices abiertas.",
       "Priorizar uso externo; no ingerir ni usar en embarazo."
     ],
     "familia": "Asteraceae",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. Priorizar uso externo; no ingerir ni usar en embarazo.",
-    "alertClass": "",
+    "alerta": "Priorizar uso externo; no ingerir ni usar en embarazo.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "Priorizar uso externo; no ingerir ni usar en embarazo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -11966,9 +12949,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-105",
+    "id": "DOR-TRA-107",
     "name": "Palo amarillo",
     "slug": "palo-amarillo",
+    "sinonimos": [],
     "scientific": "Terminalia australis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -11981,13 +12965,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: diabetes."
     ],
     "familia": "Combretacea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -12012,9 +12998,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-106",
+    "id": "DOR-TRA-108",
     "name": "Palo azul",
     "slug": "palo-azul",
+    "sinonimos": [],
     "scientific": "Cyclolepis genistoides",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -12027,13 +13014,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: artritis, artrosis, ácido úrico."
     ],
     "familia": "Asteraceae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -12064,9 +13053,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-107",
+    "id": "DOR-TRA-109",
     "name": "Palo santo",
     "slug": "palo-santo",
+    "sinonimos": [],
     "scientific": "Bulnesia sarmientoi",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -12079,15 +13069,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: reuma, artritis, ácido úrico.",
       "Evitar en embarazo."
     ],
     "familia": "Zygophyllaceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Evitar en embarazo.",
-    "alertClass": "",
+    "alerta": "Evitar en embarazo.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Evitar en embarazo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -12115,9 +13107,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-MAS-008",
+    "id": "DOR-MAS-010",
     "name": "Papaya",
     "slug": "papaya",
+    "sinonimos": [
+      "Mamón"
+    ],
     "scientific": "Carica papaya",
     "category": "masajes",
     "categoriaLabel": "Masajes",
@@ -12130,13 +13125,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-masajes",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: golpes, digestión."
     ],
     "familia": "Caricaceae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -12164,9 +13161,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-108",
+    "id": "DOR-TRA-110",
     "name": "Paraíso",
     "slug": "paraiso",
+    "sinonimos": [],
     "scientific": "Melia azedarach",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -12179,13 +13177,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
-      "No se comercializa ni se sugiere su consumo."
+      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA."
     ],
     "familia": "Meliacea",
     "toxicidad": "EXTREMA",
     "toxicidadLabel": "Toxicidad extrema",
     "alerta": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaTitulo": "⚠️ ADVERTENCIA BOTÁNICA — ESPECIE ALTAMENTE TÓXICA",
+    "alertaCuerpo": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaNota": "Esta ficha tiene fines exclusivamente educativos y botánicos. Producto no disponible para la venta ni consumo.",
     "alertClass": "alerta-toxica-extrema",
     "stock": 0,
     "disponible": false,
@@ -12207,9 +13207,14 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-109",
+    "id": "DOR-TRA-111",
     "name": "Parietaria",
     "slug": "parietaria",
+    "sinonimos": [
+      "Yerba de los muros",
+      "Yerba de San Pedro",
+      "Caracolera"
+    ],
     "scientific": "Parietaria officinalis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -12222,7 +13227,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: riñones, nefritis, arenilla.",
       "Su polen puede provocar alergias respiratorias en personas sensibles."
     ],
@@ -12230,6 +13234,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -12274,9 +13281,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-061",
+    "id": "DOR-DIG-063",
     "name": "Pasto limón",
     "slug": "pasto-limon",
+    "sinonimos": [
+      "Cedrón pasto",
+      "Lemongrass"
+    ],
     "scientific": "Cymbopogon citratus",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -12289,13 +13300,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: mala digestión, tránsito intestinal, nervios."
     ],
     "familia": "Poaceae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -12326,9 +13339,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-062",
+    "id": "DOR-DIG-064",
     "name": "Pasto cenizo",
     "slug": "pasto-cenizo",
+    "sinonimos": [
+      "Yuyo blanco",
+      "Quinoa silvestre"
+    ],
     "scientific": "Chenopodium album",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -12341,13 +13358,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: estreñimiento suave, hemorroides, reuma."
     ],
     "familia": "Quenopodiacea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -12379,9 +13398,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-110",
+    "id": "DOR-TRA-112",
     "name": "Pata de vaca",
     "slug": "pata-de-vaca",
+    "sinonimos": [
+      "Pezuña de vaca",
+      "Caubá"
+    ],
     "scientific": "Bauhinia forficata",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -12394,7 +13417,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: diabetes, infecciones renales, retención de líquidos.",
       "El consumo excesivo puede afectar la vista y bajar demasiado la presión arterial."
     ],
@@ -12402,6 +13424,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -12440,6 +13465,7 @@ var DORILA_PRODUCTS = [
     "id": "DOR-BEL-011",
     "name": "Pepino",
     "slug": "pepino",
+    "sinonimos": [],
     "scientific": "Cucumis sativus",
     "category": "belleza",
     "categoriaLabel": "Belleza",
@@ -12452,13 +13478,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-belleza",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: piel irritada, hidratación facial."
     ],
     "familia": "Cucurbitaceae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -12485,9 +13513,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-111",
+    "id": "DOR-TRA-113",
     "name": "Perejil",
     "slug": "perejil",
+    "sinonimos": [],
     "scientific": "Petroselinum crispum / Petroselinum hortense",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -12500,15 +13529,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: retención de líquidos, reuma, gota.",
       "NO tomar semillas ni dosis medicinales concentradas durante el embarazo (efecto abortivo/emenagogo)."
     ],
     "familia": "Umbelífera",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. NO tomar semillas ni dosis medicinales concentradas durante el embarazo (efecto abortivo/emenagogo).",
-    "alertClass": "",
+    "alerta": "NO tomar semillas ni dosis medicinales concentradas durante el embarazo (efecto abortivo/emenagogo).",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "NO tomar semillas ni dosis medicinales concentradas durante el embarazo (efecto abortivo/emenagogo).",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -12548,9 +13579,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-112",
+    "id": "DOR-TRA-114",
     "name": "Perejil de agua",
     "slug": "perejil-de-agua",
+    "sinonimos": [
+      "Tembladerillo"
+    ],
     "scientific": "Hydrocotyle bonariensis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -12563,14 +13597,16 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: vejiga, hígado, heridas inflamadas."
     ],
     "familia": "Araliaceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
-    "alertClass": "",
+    "alerta": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -12600,9 +13636,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-113",
+    "id": "DOR-TRA-115",
     "name": "Pico de loro",
     "slug": "pico-de-loro",
+    "sinonimos": [],
     "scientific": "Ephedra tweediana",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -12615,15 +13652,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: vías urinarias, retención de líquidos, garganta.",
       "Evitar en hipertensión y embarazo."
     ],
     "familia": "Ephedraceae",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. Evitar en hipertensión y embarazo.",
-    "alertClass": "",
+    "alerta": "Evitar en hipertensión y embarazo.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "Evitar en hipertensión y embarazo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -12652,9 +13691,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-114",
+    "id": "DOR-TRA-116",
     "name": "Pipí",
     "slug": "pipi",
+    "sinonimos": [
+      "Guiné",
+      "Anamú"
+    ],
     "scientific": "Petiveria alliacea",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -12667,15 +13710,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: retención de líquidos, reuma, parálisis.",
       "No usar durante el embarazo (estimulante uterino)."
     ],
     "familia": "Phytolaccaceae",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. No usar durante el embarazo (estimulante uterino).",
-    "alertClass": "",
+    "alerta": "No usar durante el embarazo (estimulante uterino).",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "No usar durante el embarazo (estimulante uterino).",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -12705,9 +13750,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-115",
+    "id": "DOR-TRA-117",
     "name": "Piretro",
     "slug": "piretro",
+    "sinonimos": [
+      "Pelitre"
+    ],
     "scientific": "Tanacetum cinerariifolium",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -12720,14 +13768,16 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: dolor de cabeza, repelente de hormigas y mosquitos."
     ],
     "familia": "Asteraceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
-    "alertClass": "",
+    "alerta": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "La información es orientativa. Consultá con un profesional de la salud antes de usar cualquier planta medicinal.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -12754,9 +13804,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-063",
+    "id": "DOR-DIG-065",
     "name": "Poleo",
     "slug": "poleo",
+    "sinonimos": [
+      "Menta-poleo"
+    ],
     "scientific": "Mentha pulegium",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -12769,15 +13822,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: jaqueca, digestión, gases.",
       "No tomar aceite esencial puro; evitar dosis altas en embarazo y niños pequeños."
     ],
     "familia": "Labiada",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No tomar aceite esencial puro; evitar dosis altas en embarazo y niños pequeños.",
-    "alertClass": "",
+    "alerta": "No tomar aceite esencial puro; evitar dosis altas en embarazo y niños pequeños.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No tomar aceite esencial puro; evitar dosis altas en embarazo y niños pequeños.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -12820,9 +13875,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-116",
+    "id": "DOR-TRA-118",
     "name": "Quebracho blanco",
     "slug": "quebracho-blanco",
+    "sinonimos": [],
     "scientific": "Aspidosperma quebracho-blanco",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -12835,15 +13891,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: asma, fiebre, edemas.",
       "Contiene alcaloides activos; respetar estrictamente las dosis bajas y evitar en embarazo."
     ],
     "familia": "Apocinaceas",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. Contiene alcaloides activos; respetar estrictamente las dosis bajas y evitar en embarazo.",
-    "alertClass": "",
+    "alerta": "Contiene alcaloides activos; respetar estrictamente las dosis bajas y evitar en embarazo.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "Contiene alcaloides activos; respetar estrictamente las dosis bajas y evitar en embarazo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -12874,9 +13932,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-117",
+    "id": "DOR-TRA-119",
     "name": "Quiebra piedra",
     "slug": "quiebra-piedra",
+    "sinonimos": [
+      "Rompe piedra",
+      "Chanca piedra"
+    ],
     "scientific": "Phyllanthus niruri / Phyllanthus tenellus",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -12889,7 +13951,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: cálculos renales, cálculos de vesícula, arenilla.",
       "No usar por más de 3 meses seguidos sin descanso; evitar en embarazo."
     ],
@@ -12897,6 +13958,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -12935,9 +13999,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-118",
+    "id": "DOR-TRA-120",
     "name": "Quiebra yugos",
     "slug": "quiebra-yugos",
+    "sinonimos": [
+      "Quiebra arados",
+      "Yerba de la vida"
+    ],
     "scientific": "Heimia salicifolia",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -12950,15 +14018,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: retención de líquidos, estreñimiento, diarrea.",
       "En dosis elevadas tiene efecto sedante/alterador leve del sistema nervioso."
     ],
     "familia": "Lythraceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. En dosis elevadas tiene efecto sedante/alterador leve del sistema nervioso.",
-    "alertClass": "",
+    "alerta": "En dosis elevadas tiene efecto sedante/alterador leve del sistema nervioso.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "En dosis elevadas tiene efecto sedante/alterador leve del sistema nervioso.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -12992,9 +14062,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-119",
+    "id": "DOR-TRA-121",
     "name": "Quina",
     "slug": "quina",
+    "sinonimos": [
+      "Barba de tigre"
+    ],
     "scientific": "Cinchona officinalis / Colletia spinosissima",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -13007,15 +14080,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: fiebre, falta de apetito, anemia.",
       "Evitar en embarazo y en personas con sensibilidad a la quinina."
     ],
     "familia": "Rubiacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Evitar en embarazo y en personas con sensibilidad a la quinina.",
-    "alertClass": "",
+    "alerta": "Evitar en embarazo y en personas con sensibilidad a la quinina.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Evitar en embarazo y en personas con sensibilidad a la quinina.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -13046,9 +14121,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-MAS-009",
+    "id": "DOR-MAS-011",
     "name": "Redondita del agua",
     "slug": "redondita-del-agua",
+    "sinonimos": [],
     "scientific": "Hydrocotyle bonariensis / Senecio bonariensis",
     "category": "masajes",
     "categoriaLabel": "Masajes",
@@ -13061,15 +14137,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-masajes",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: esguinces, golpes, moretones.",
       "Priorizar uso externo (algunas especies asociadas como Senecio contienen alcaloides pirrolizidínicos)."
     ],
     "familia": "Araliaceae / Compositae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Priorizar uso externo (algunas especies asociadas como Senecio contienen alcaloides pirrolizidínicos).",
-    "alertClass": "",
+    "alerta": "Priorizar uso externo (algunas especies asociadas como Senecio contienen alcaloides pirrolizidínicos).",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Priorizar uso externo (algunas especies asociadas como Senecio contienen alcaloides pirrolizidínicos).",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -13101,9 +14179,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-064",
+    "id": "DOR-DIG-066",
     "name": "Regaliz",
     "slug": "regaliz",
+    "sinonimos": [
+      "Palo dulce"
+    ],
     "scientific": "Glycyrrhiza glabra",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -13116,15 +14197,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: acidez, úlcera de duodeno, estreñimiento.",
       "No usar en personas con hipertensión arterial ni por más de 4 semanas seguidas (retiene sodio)."
     ],
     "familia": "Leguminosae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No usar en personas con hipertensión arterial ni por más de 4 semanas seguidas (retiene sodio).",
-    "alertClass": "",
+    "alerta": "No usar en personas con hipertensión arterial ni por más de 4 semanas seguidas (retiene sodio).",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No usar en personas con hipertensión arterial ni por más de 4 semanas seguidas (retiene sodio).",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -13160,9 +14243,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-120",
+    "id": "DOR-TRA-123",
     "name": "Retama",
     "slug": "retama",
+    "sinonimos": [],
     "scientific": "Spartium junceum",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -13175,15 +14259,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: retención de líquidos, gota, reuma.",
       "⚠️ PRECAUCIÓN ALTA: Sus semillas y ramas contienen citisina y esparteína (tóxicos cardíacos); no usar sin indicación profesional ni en hipertensión o embarazo."
     ],
     "familia": "Leguminosae",
     "toxicidad": "ALTA",
     "toxicidadLabel": "Toxicidad alta",
-    "alerta": "Precaución: toxicidad alta. ⚠️ PRECAUCIÓN ALTA: Sus semillas y ramas contienen citisina y esparteína (tóxicos cardíacos); no usar sin indicación profesional ni en hipertensión o embarazo.",
-    "alertClass": "",
+    "alerta": "⚠️ PRECAUCIÓN ALTA: Sus semillas y ramas contienen citisina y esparteína (tóxicos cardíacos); no usar sin indicación profesional ni en hipertensión o embarazo.",
+    "alertaTitulo": "Precaución: toxicidad alta",
+    "alertaCuerpo": "⚠️ PRECAUCIÓN ALTA: Sus semillas y ramas contienen citisina y esparteína (tóxicos cardíacos); no usar sin indicación profesional ni en hipertensión o embarazo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -13213,9 +14299,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-121",
+    "id": "DOR-TRA-124",
     "name": "Rauwolfia",
     "slug": "rauwolfia",
+    "sinonimos": [
+      "Rewolfia"
+    ],
     "scientific": "Rauvolfia serpentina",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -13228,15 +14317,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: presión alta (uso farmacológico controlado).",
       "⚠️ PRECAUCIÓN ALTA: Potente hipotensor y depresor del sistema nervioso; no combinar con medicación antihipertensiva ni antidepresivos."
     ],
     "familia": "Apocynaceae",
     "toxicidad": "ALTA",
     "toxicidadLabel": "Toxicidad alta",
-    "alerta": "Precaución: toxicidad alta. ⚠️ PRECAUCIÓN ALTA: Potente hipotensor y depresor del sistema nervioso; no combinar con medicación antihipertensiva ni antidepresivos.",
-    "alertClass": "",
+    "alerta": "⚠️ PRECAUCIÓN ALTA: Potente hipotensor y depresor del sistema nervioso; no combinar con medicación antihipertensiva ni antidepresivos.",
+    "alertaTitulo": "Precaución: toxicidad alta",
+    "alertaCuerpo": "⚠️ PRECAUCIÓN ALTA: Potente hipotensor y depresor del sistema nervioso; no combinar con medicación antihipertensiva ni antidepresivos.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -13264,6 +14355,9 @@ var DORILA_PRODUCTS = [
     "id": "DOR-BEL-012",
     "name": "Ricino",
     "slug": "ricino",
+    "sinonimos": [
+      "Tártago"
+    ],
     "scientific": "Ricinus communis",
     "category": "belleza",
     "categoriaLabel": "Belleza",
@@ -13276,13 +14370,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-belleza",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
-      "No se comercializa ni se sugiere su consumo."
+      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA."
     ],
     "familia": "Euforbiacea",
     "toxicidad": "EXTREMA",
     "toxicidadLabel": "Toxicidad extrema",
     "alerta": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaTitulo": "⚠️ ADVERTENCIA BOTÁNICA — ESPECIE ALTAMENTE TÓXICA",
+    "alertaCuerpo": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaNota": "Esta ficha tiene fines exclusivamente educativos y botánicos. Producto no disponible para la venta ni consumo.",
     "alertClass": "alerta-toxica-extrema",
     "stock": 0,
     "disponible": false,
@@ -13305,6 +14401,7 @@ var DORILA_PRODUCTS = [
     "id": "DOR-BEL-013",
     "name": "Rosa",
     "slug": "rosa",
+    "sinonimos": [],
     "scientific": "Rosa spp.",
     "category": "belleza",
     "categoriaLabel": "Belleza",
@@ -13317,7 +14414,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-belleza",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: conjuntivitis, piel, dolor de cabeza.",
       "Asegurar que los pétalos sean orgánicos sin pesticidas, especialmente para uso ocular."
     ],
@@ -13325,6 +14421,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -13360,6 +14459,7 @@ var DORILA_PRODUCTS = [
     "id": "DOR-BEL-014",
     "name": "Rosa mosqueta",
     "slug": "rosa-mosqueta",
+    "sinonimos": [],
     "scientific": "Rosa rubiginosa / Rosa canina",
     "category": "belleza",
     "categoriaLabel": "Belleza",
@@ -13372,13 +14472,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-belleza",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: regeneración de la piel, cicatrices, arrugas."
     ],
     "familia": "Rosaceae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -13416,9 +14518,14 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-124",
+    "id": "DOR-TRA-125",
     "name": "Sanguinaria",
     "slug": "sanguinaria",
+    "sinonimos": [
+      "Catay",
+      "Yerba del bicho",
+      "Yerba de Santa María"
+    ],
     "scientific": "Polygonum aviculare / Polygonum punctatum",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -13431,15 +14538,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: menstruación irregular, presión alta, reuma.",
       "Contraindicada en embarazo (emenagogo/abortiva en concentraciones altas)."
     ],
     "familia": "Poligonacea",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. Contraindicada en embarazo (emenagogo/abortiva en concentraciones altas).",
-    "alertClass": "",
+    "alerta": "Contraindicada en embarazo (emenagogo/abortiva en concentraciones altas).",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "Contraindicada en embarazo (emenagogo/abortiva en concentraciones altas).",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -13477,9 +14586,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-125",
+    "id": "DOR-TRA-126",
     "name": "Saponaria",
     "slug": "saponaria",
+    "sinonimos": [
+      "Jaboncillo"
+    ],
     "scientific": "Saponaria officinalis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -13492,15 +14604,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: erupciones de piel, catarro, retención de líquidos.",
       "No exceder las dosis ni usar por períodos prolongados (las saponinas en exceso irritan la mucosa gástrica)."
     ],
     "familia": "Cariofilaceas",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. No exceder las dosis ni usar por períodos prolongados (las saponinas en exceso irritan la mucosa gástrica).",
-    "alertClass": "",
+    "alerta": "No exceder las dosis ni usar por períodos prolongados (las saponinas en exceso irritan la mucosa gástrica).",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "No exceder las dosis ni usar por períodos prolongados (las saponinas en exceso irritan la mucosa gástrica).",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -13532,9 +14646,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-126",
+    "id": "DOR-TRA-127",
     "name": "Sarandí blanco",
     "slug": "sarandi-blanco",
+    "sinonimos": [],
     "scientific": "Phyllanthus sellowianus",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -13547,7 +14662,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: diabetes, estreñimiento leve, retención de líquidos.",
       "Controlar la glucemia si se combina con medicación para diabetes."
     ],
@@ -13555,6 +14669,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -13586,9 +14703,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-127",
+    "id": "DOR-TRA-128",
     "name": "Sarandí colorado",
     "slug": "sarandi-colorado",
+    "sinonimos": [],
     "scientific": "Cephalanthus glabratus",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -13601,13 +14719,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: retención de líquidos, depurativo, heridas."
     ],
     "familia": "Rubiacea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -13637,9 +14757,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-128",
+    "id": "DOR-TRA-129",
     "name": "Sauce criollo",
     "slug": "sauce-criollo",
+    "sinonimos": [],
     "scientific": "Salix humboldtiana",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -13652,7 +14773,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: dolor de cabeza, fiebre, reuma.",
       "Evitar en personas alérgicas a la aspirina (salicilatos) o con úlcera gastroduodenal activa."
     ],
@@ -13660,6 +14780,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -13699,9 +14822,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-129",
+    "id": "DOR-TRA-130",
     "name": "Saúco",
     "slug": "sauco",
+    "sinonimos": [],
     "scientific": "Sambucus australis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -13714,15 +14838,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: resfriado, gripe, ojos irritados.",
       "Usar únicamente las flores secas o bayas bien maduras cocidas; las hojas, corteza y frutos verdes son eméticos/purgantes."
     ],
     "familia": "Caprifoliacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Usar únicamente las flores secas o bayas bien maduras cocidas; las hojas, corteza y frutos verdes son eméticos/purgantes.",
-    "alertClass": "",
+    "alerta": "Usar únicamente las flores secas o bayas bien maduras cocidas; las hojas, corteza y frutos verdes son eméticos/purgantes.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Usar únicamente las flores secas o bayas bien maduras cocidas; las hojas, corteza y frutos verdes son eméticos/purgantes.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -13761,9 +14887,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-130",
+    "id": "DOR-TRA-131",
     "name": "Sésamo",
     "slug": "sesamo",
+    "sinonimos": [
+      "Ajonjolí"
+    ],
     "scientific": "Sesamum indicum",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -13776,13 +14905,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: osteoporosis, descalcificación, fertilidad femenina."
     ],
     "familia": "Pedaliaceae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -13812,9 +14943,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-131",
+    "id": "DOR-TRA-132",
     "name": "Siete sangrías",
     "slug": "siete-sangrias",
+    "sinonimos": [],
     "scientific": "Cuphea glutinosa / Cuphea fruticosa",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -13827,15 +14959,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: presión alta, retención de líquidos, colesterol.",
       "Evitar durante el embarazo."
     ],
     "familia": "Lythraceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Evitar durante el embarazo.",
-    "alertClass": "",
+    "alerta": "Evitar durante el embarazo.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Evitar durante el embarazo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -13870,9 +15004,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-132",
+    "id": "DOR-TRA-133",
     "name": "Sombra de toro",
     "slug": "sombra-de-toro",
+    "sinonimos": [
+      "Yerba del toro",
+      "Sangre de toro"
+    ],
     "scientific": "Jodina rhombifolia",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -13885,15 +15023,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: asma, resfríos, ronquera.",
       "En dosis elevadas provoca vómitos y escalofríos; respetar dosis bajas."
     ],
     "familia": "Santalacea",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. En dosis elevadas provoca vómitos y escalofríos; respetar dosis bajas.",
-    "alertClass": "",
+    "alerta": "En dosis elevadas provoca vómitos y escalofríos; respetar dosis bajas.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "En dosis elevadas provoca vómitos y escalofríos; respetar dosis bajas.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -13930,9 +15070,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-065",
+    "id": "DOR-DIG-067",
     "name": "Stevia",
     "slug": "stevia",
+    "sinonimos": [
+      "Yerba dulce",
+      "Ka'a he'ẽ"
+    ],
     "scientific": "Stevia rebaudiana",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -13945,13 +15089,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: diabetes, endulzante natural."
     ],
     "familia": "Asteraceae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -13980,9 +15126,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-133",
+    "id": "DOR-TRA-134",
     "name": "Tabaco",
     "slug": "tabaco",
+    "sinonimos": [],
     "scientific": "Nicotiana tabacum",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -13995,15 +15142,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: antiséptico externo, fungicida.",
       "⚠️ PRECAUCIÓN ALTA: Contiene nicotina altamente adictiva y tóxica; no ingerir infusiones de tabaco."
     ],
     "familia": "Solanacea",
     "toxicidad": "ALTA",
     "toxicidadLabel": "Toxicidad alta",
-    "alerta": "Precaución: toxicidad alta. ⚠️ PRECAUCIÓN ALTA: Contiene nicotina altamente adictiva y tóxica; no ingerir infusiones de tabaco.",
-    "alertClass": "",
+    "alerta": "⚠️ PRECAUCIÓN ALTA: Contiene nicotina altamente adictiva y tóxica; no ingerir infusiones de tabaco.",
+    "alertaTitulo": "Precaución: toxicidad alta",
+    "alertaCuerpo": "⚠️ PRECAUCIÓN ALTA: Contiene nicotina altamente adictiva y tóxica; no ingerir infusiones de tabaco.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -14029,9 +15178,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-134",
+    "id": "DOR-TRA-135",
     "name": "Taco de reina",
     "slug": "taco-de-reina",
+    "sinonimos": [
+      "Capuchina",
+      "Espuela de galán"
+    ],
     "scientific": "Tropaeolum majus",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -14044,7 +15197,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: defensas bajas, infecciones, llagas bucales.",
       "Usar fresca (seca pierde sus propiedades). No ingerir en caso de hipertiroidismo ni en grandes dosis (puede irritar el estómago)."
     ],
@@ -14052,6 +15204,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -14089,9 +15244,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-066",
+    "id": "DOR-DIG-068",
     "name": "Tala",
     "slug": "tala",
+    "sinonimos": [],
     "scientific": "Celtis ehrenbergiana / Celtis tala",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -14104,13 +15260,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: catarro, tos, dolor de cabeza."
     ],
     "familia": "Ulmacea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -14150,9 +15308,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-135",
+    "id": "DOR-TRA-136",
     "name": "Taso",
     "slug": "taso",
+    "sinonimos": [
+      "Tasi",
+      "Cipó de sapo"
+    ],
     "scientific": "Araujia sericifera / Araujia hortorum",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -14165,15 +15327,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: lactancia, dolor de muelas por caries.",
       "No ingerir el látex puro."
     ],
     "familia": "Asclepiadaceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No ingerir el látex puro.",
-    "alertClass": "",
+    "alerta": "No ingerir el látex puro.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No ingerir el látex puro.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -14202,9 +15366,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-136",
+    "id": "DOR-TRA-137",
     "name": "Té bougré",
     "slug": "te-bougre",
+    "sinonimos": [
+      "Guaçatonga"
+    ],
     "scientific": "Casearia sylvestris",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -14217,13 +15384,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: úlceras, quemaduras, herpes."
     ],
     "familia": "Salicaceae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -14255,9 +15424,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-067",
+    "id": "DOR-DIG-069",
     "name": "Té verde",
     "slug": "te-verde",
+    "sinonimos": [
+      "Té"
+    ],
     "scientific": "Camellia sinensis",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -14270,7 +15442,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: retención de líquidos, colesterol, presión alta.",
       "Evitar por la noche en personas sensibles a la cafeína/teína."
     ],
@@ -14278,6 +15449,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -14314,6 +15488,10 @@ var DORILA_PRODUCTS = [
     "id": "DOR-BEL-015",
     "name": "Tea tree",
     "slug": "tea-tree",
+    "sinonimos": [
+      "Árbol del té",
+      "Titrí"
+    ],
     "scientific": "Melaleuca alternifolia",
     "category": "belleza",
     "categoriaLabel": "Belleza",
@@ -14326,15 +15504,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-belleza",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: infecciones de piel, hongos, herpes.",
       "Uso estrictamente externo; no ingerir el aceite esencial."
     ],
     "familia": "Myrtaceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Uso estrictamente externo; no ingerir el aceite esencial.",
-    "alertClass": "",
+    "alerta": "Uso estrictamente externo; no ingerir el aceite esencial.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Uso estrictamente externo; no ingerir el aceite esencial.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -14374,9 +15554,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-137",
+    "id": "DOR-TRA-138",
     "name": "Timbó",
     "slug": "timbo",
+    "sinonimos": [
+      "Oreja de negro"
+    ],
     "scientific": "Enterolobium contortisiliquum",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -14389,15 +15572,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: heridas, dolor muscular, caspa.",
       "Los frutos crudos contienen saponinas tóxicas para el ganado; no abusar por vía interna."
     ],
     "familia": "Leguminosa",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. Los frutos crudos contienen saponinas tóxicas para el ganado; no abusar por vía interna.",
-    "alertClass": "",
+    "alerta": "Los frutos crudos contienen saponinas tóxicas para el ganado; no abusar por vía interna.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "Los frutos crudos contienen saponinas tóxicas para el ganado; no abusar por vía interna.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -14434,6 +15619,7 @@ var DORILA_PRODUCTS = [
     "id": "DOR-DES-016",
     "name": "Tilo",
     "slug": "tilo",
+    "sinonimos": [],
     "scientific": "Tilia tomentosa / Tilia platyphyllos",
     "category": "descanso",
     "categoriaLabel": "Descanso",
@@ -14446,7 +15632,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-descanso",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: nervios, insomnio, palpitaciones.",
       "No hervir en decocción ni usar en personas con problemas cardíacos graves (puede producir bradicardia)."
     ],
@@ -14454,6 +15639,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -14491,9 +15679,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-138",
+    "id": "DOR-TRA-139",
     "name": "Tomillo",
     "slug": "tomillo",
+    "sinonimos": [
+      "Serpol"
+    ],
     "scientific": "Thymus vulgaris",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -14506,7 +15697,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: tos, flema, bronquios.",
       "Evitar aceite esencial puro durante el embarazo."
     ],
@@ -14514,6 +15704,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -14554,9 +15747,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-139",
+    "id": "DOR-TRA-140",
     "name": "Totora",
     "slug": "totora",
+    "sinonimos": [
+      "Espadaña",
+      "Anea"
+    ],
     "scientific": "Typha domingensis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -14569,13 +15766,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: convalecencia, desnutrición, vías urinarias."
     ],
     "familia": "Typhaceae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -14611,9 +15810,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-140",
+    "id": "DOR-TRA-141",
     "name": "Trébol",
     "slug": "trebol",
+    "sinonimos": [
+      "Trébol blanco"
+    ],
     "scientific": "Trifolium repens",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -14626,13 +15828,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: reuma, llagas, heridas."
     ],
     "familia": "Leguminosa",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -14662,9 +15866,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-141",
+    "id": "DOR-TRA-142",
     "name": "Tuna",
     "slug": "tuna",
+    "sinonimos": [
+      "Nopal",
+      "Cactus"
+    ],
     "scientific": "Opuntia paraguayensis / Opuntia ficus-indica",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -14677,7 +15885,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: tos, tos convulsa, diarrea.",
       "Retirar cuidadosamente todas las espinas y gloquidios antes de manipular."
     ],
@@ -14685,6 +15892,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -14722,9 +15932,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-068",
+    "id": "DOR-DIG-070",
     "name": "Tupinambur",
     "slug": "tupinambur",
+    "sinonimos": [
+      "Topinambur",
+      "Alcachofa de Jerusalén"
+    ],
     "scientific": "Helianthus tuberosus",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -14737,13 +15951,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: diabetes, flora intestinal."
     ],
     "familia": "Asteraceae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -14772,9 +15988,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-142",
+    "id": "DOR-TRA-143",
     "name": "Uña de gato",
     "slug": "una-de-gato",
+    "sinonimos": [
+      "Ñapindá"
+    ],
     "scientific": "Uncaria tomentosa / Macfadyena unguis-cati",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -14787,15 +16006,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: artritis, artrosis, reuma.",
       "No hervir más de 15 minutos porque libera sustancias irritantes; evitar en embarazo, lactancia y trasplantes."
     ],
     "familia": "Rubiaceae / Bignoniacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. No hervir más de 15 minutos porque libera sustancias irritantes; evitar en embarazo, lactancia y trasplantes.",
-    "alertClass": "",
+    "alerta": "No hervir más de 15 minutos porque libera sustancias irritantes; evitar en embarazo, lactancia y trasplantes.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "No hervir más de 15 minutos porque libera sustancias irritantes; evitar en embarazo, lactancia y trasplantes.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -14839,6 +16060,9 @@ var DORILA_PRODUCTS = [
     "id": "DOR-DES-017",
     "name": "Valeriana",
     "slug": "valeriana",
+    "sinonimos": [
+      "Curalotodo"
+    ],
     "scientific": "Valeriana officinalis",
     "category": "descanso",
     "categoriaLabel": "Descanso",
@@ -14851,7 +16075,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-descanso",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: insomnio, nerviosismo, angustia.",
       "No tomar de forma continua por más de 10 días sin descanso; evitar combinar con alcohol o sedantes."
     ],
@@ -14859,6 +16082,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -14892,9 +16118,15 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-143",
+    "id": "DOR-TRA-144",
     "name": "Vara de oro",
     "slug": "vara-de-oro",
+    "sinonimos": [
+      "Vara amarilla",
+      "Vara de San José",
+      "Penachillo",
+      "Romerillo amarillo"
+    ],
     "scientific": "Solidago virgaurea / Solidago chilensis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -14907,13 +16139,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: vejiga, retención de líquidos, inflamación intestinal."
     ],
     "familia": "Compuesta",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -14954,6 +16188,9 @@ var DORILA_PRODUCTS = [
     "id": "DOR-DES-018",
     "name": "Verbena",
     "slug": "verbena",
+    "sinonimos": [
+      "Yerba de los hechiceros"
+    ],
     "scientific": "Verbena officinalis",
     "category": "descanso",
     "categoriaLabel": "Descanso",
@@ -14966,7 +16203,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-descanso",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: nervios, digestión, fiebre.",
       "Evitar en embarazo."
     ],
@@ -14974,6 +16210,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -15018,9 +16257,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-144",
+    "id": "DOR-TRA-145",
     "name": "Verdolaga",
     "slug": "verdolaga",
+    "sinonimos": [],
     "scientific": "Portulaca oleracea",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -15033,7 +16273,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: defensas bajas, corazón, inflamación urinaria.",
       "No consumir en grandes cantidades si se sufre de ácido úrico elevado o cálculos renales por su contenido de oxalatos."
     ],
@@ -15041,6 +16280,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -15083,6 +16325,7 @@ var DORILA_PRODUCTS = [
     "id": "DOR-DES-019",
     "name": "Verónica",
     "slug": "veronica",
+    "sinonimos": [],
     "scientific": "Veronica officinalis",
     "category": "descanso",
     "categoriaLabel": "Descanso",
@@ -15095,13 +16338,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-descanso",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: estrés, agotamiento físico y mental, estado depresivo."
     ],
     "familia": "Plantaginaceae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -15132,9 +16377,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-145",
+    "id": "DOR-TRA-146",
     "name": "Vid roja",
     "slug": "vid-roja",
+    "sinonimos": [],
     "scientific": "Vitis vinifera",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -15147,13 +16393,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: várices, piernas cansadas, circulación."
     ],
     "familia": "Vitaceas",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -15184,9 +16432,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-146",
+    "id": "DOR-TRA-147",
     "name": "Vira-vira",
     "slug": "vira-vira",
+    "sinonimos": [],
     "scientific": "Gamochaeta coarctata / Achyrocline",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -15199,13 +16448,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: fiebre, cansancio, angustia."
     ],
     "familia": "Compuesta",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -15241,9 +16492,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-147",
+    "id": "DOR-TRA-148",
     "name": "Yerba del bicho",
     "slug": "yerba-del-bicho",
+    "sinonimos": [
+      "Catay"
+    ],
     "scientific": "Polygonum punctatum",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -15256,15 +16510,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: hemorroides, diarrea, artritis.",
       "Evitar en embarazo."
     ],
     "familia": "Poligonacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Evitar en embarazo.",
-    "alertClass": "",
+    "alerta": "Evitar en embarazo.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Evitar en embarazo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -15296,9 +16552,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-069",
+    "id": "DOR-DIG-071",
     "name": "Yerba del perro",
     "slug": "yerba-del-perro",
+    "sinonimos": [
+      "Feto"
+    ],
     "scientific": "Pleopeltis pleopeltifolia / Polypodium squalidum",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -15311,15 +16570,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: digestión, parásitos intestinales.",
       "Evitar en embarazo."
     ],
     "familia": "Polipodiacea",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Evitar en embarazo.",
-    "alertClass": "",
+    "alerta": "Evitar en embarazo.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Evitar en embarazo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -15346,9 +16607,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-070",
+    "id": "DOR-DIG-072",
     "name": "Yerba del pollo",
     "slug": "yerba-del-pollo",
+    "sinonimos": [],
     "scientific": "Alternanthera pungens",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -15361,13 +16623,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: digestión, empacho, diarrea."
     ],
     "familia": "Amarantacea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -15404,9 +16668,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-148",
+    "id": "DOR-TRA-149",
     "name": "Yerba del resfrío",
     "slug": "yerba-del-resfrio",
+    "sinonimos": [],
     "scientific": "Especie no determinada (Yerba del resfrío)",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -15419,13 +16684,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: resfrío, fiebre, retención de líquidos."
     ],
     "familia": "",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -15457,9 +16724,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-149",
+    "id": "DOR-TRA-150",
     "name": "Yerba de la piedra",
     "slug": "yerba-de-la-piedra",
+    "sinonimos": [
+      "Barba de la piedra"
+    ],
     "scientific": "Usnea hieronymi",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -15472,13 +16742,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: afonía, garganta, heridas."
     ],
     "familia": "Parmeliaceae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -15519,9 +16791,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-150",
+    "id": "DOR-TRA-151",
     "name": "Yerba de la perdiz",
     "slug": "yerba-de-la-perdiz",
+    "sinonimos": [
+      "Perlilla"
+    ],
     "scientific": "Margyricarpus pinnatus / Margyricarpus setosus",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -15534,7 +16809,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: menstruación irregular, dolor menstrual, retención de líquidos.",
       "Evitar en embarazo."
     ],
@@ -15542,6 +16816,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -15578,9 +16855,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-151",
+    "id": "DOR-TRA-152",
     "name": "Yerba de la víbora",
     "slug": "yerba-de-la-vibora",
+    "sinonimos": [],
     "scientific": "Asclepias mellodora",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -15593,15 +16871,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: fiebre, picaduras.",
       "Contiene látex con glucósidos activos (la raíz es emética); priorizar uso externo."
     ],
     "familia": "Apocynaceae",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. Contiene látex con glucósidos activos (la raíz es emética); priorizar uso externo.",
-    "alertClass": "",
+    "alerta": "Contiene látex con glucósidos activos (la raíz es emética); priorizar uso externo.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "Contiene látex con glucósidos activos (la raíz es emética); priorizar uso externo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -15628,9 +16908,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-071",
+    "id": "DOR-DIG-073",
     "name": "Yerba de la oveja",
     "slug": "yerba-de-la-oveja",
+    "sinonimos": [
+      "Agarrabicho"
+    ],
     "scientific": "Acanthospermum australe",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -15643,13 +16926,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: retención de líquidos, fiebre, diarrea."
     ],
     "familia": "Compositae",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -15682,9 +16967,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-152",
+    "id": "DOR-TRA-153",
     "name": "Yerba mate",
     "slug": "yerba-mate",
+    "sinonimos": [],
     "scientific": "Ilex paraguariensis",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -15697,7 +16983,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: agotamiento, cansancio mental, antioxidante.",
       "Moderar su consumo en casos de insomnio, ansiedad o gastritis activa."
     ],
@@ -15705,6 +16990,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -15733,9 +17021,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-153",
+    "id": "DOR-TRA-154",
     "name": "Yerba meona",
     "slug": "yerba-meona",
+    "sinonimos": [
+      "Yerba de la golondrina"
+    ],
     "scientific": "Euphorbia serpens",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -15748,15 +17039,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: vías urinarias, retención de líquidos, vejiga.",
       "Evitar durante el embarazo."
     ],
     "familia": "Euphorbiaceae",
     "toxicidad": "BAJA",
     "toxicidadLabel": "Toxicidad baja",
-    "alerta": "Precaución: toxicidad baja. Evitar durante el embarazo.",
-    "alertClass": "",
+    "alerta": "Evitar durante el embarazo.",
+    "alertaTitulo": "Precaución: toxicidad baja",
+    "alertaCuerpo": "Evitar durante el embarazo.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -15795,9 +17088,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-154",
+    "id": "DOR-TRA-155",
     "name": "Yerba mora",
     "slug": "yerba-mora",
+    "sinonimos": [],
     "scientific": "Solanum nigrum / Solanum americanum",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -15810,15 +17104,17 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: hemorroides, forúnculos, hígado (uso tradicional suave).",
       "⚠️ PRECAUCIÓN: Contiene solanina; priorizar uso externo y evitar frutos verdes."
     ],
     "familia": "Solanacea",
     "toxicidad": "MODERADA",
     "toxicidadLabel": "Toxicidad moderada",
-    "alerta": "Precaución: toxicidad moderada. ⚠️ PRECAUCIÓN: Contiene solanina; priorizar uso externo y evitar frutos verdes.",
-    "alertClass": "",
+    "alerta": "⚠️ PRECAUCIÓN: Contiene solanina; priorizar uso externo y evitar frutos verdes.",
+    "alertaTitulo": "Precaución: toxicidad moderada",
+    "alertaCuerpo": "⚠️ PRECAUCIÓN: Contiene solanina; priorizar uso externo y evitar frutos verdes.",
+    "alertaNota": "",
+    "alertClass": "alerta-toxica",
     "stock": 0,
     "disponible": false,
     "vendible": false,
@@ -15846,9 +17142,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-155",
+    "id": "DOR-TRA-156",
     "name": "Sabina",
     "slug": "sabina",
+    "sinonimos": [
+      "Yuniquerus abina",
+      "Juniperus sabina"
+    ],
     "scientific": "Juniperus sabina",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -15861,13 +17161,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
-      "No se comercializa ni se sugiere su consumo."
+      "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA."
     ],
     "familia": "Cupressaceae",
     "toxicidad": "EXTREMA",
     "toxicidadLabel": "Toxicidad extrema",
     "alerta": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaTitulo": "⚠️ ADVERTENCIA BOTÁNICA — ESPECIE ALTAMENTE TÓXICA",
+    "alertaCuerpo": "ALERTA: toxicidad EXTREMA. No se recomienda su consumo ni uso medicinal. Esta planta no se comercializa en DORILA.",
+    "alertaNota": "Esta ficha tiene fines exclusivamente educativos y botánicos. Producto no disponible para la venta ni consumo.",
     "alertClass": "alerta-toxica-extrema",
     "stock": 0,
     "disponible": false,
@@ -15886,9 +17188,13 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-072",
+    "id": "DOR-DIG-074",
     "name": "Yuyo colorado",
     "slug": "yuyo-colorado",
+    "sinonimos": [
+      "Ataco",
+      "Amaranto silvestre"
+    ],
     "scientific": "Amaranthus quitensis / Amaranthus hybridus",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -15901,13 +17207,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: anemia, aftas, retención de líquidos."
     ],
     "familia": "Amarantacea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -15942,9 +17250,10 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-TRA-156",
+    "id": "DOR-TRA-157",
     "name": "Zarzaparrilla",
     "slug": "zarzaparrilla",
+    "sinonimos": [],
     "scientific": "Smilax campestris / Smilax aspera",
     "category": "tratamientos",
     "categoriaLabel": "Tratamientos",
@@ -15957,7 +17266,6 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-tratamientos",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: depurativo de la sangre, reuma, gota.",
       "No abusar en dosis muy altas para evitar irritación gástrica."
     ],
@@ -15965,6 +17273,9 @@ var DORILA_PRODUCTS = [
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,
@@ -16007,9 +17318,12 @@ var DORILA_PRODUCTS = [
     "origen": "botanico"
   },
   {
-    "id": "DOR-DIG-073",
+    "id": "DOR-DIG-075",
     "name": "Zarzamora",
     "slug": "zarzamora",
+    "sinonimos": [
+      "Mora silvestre"
+    ],
     "scientific": "Rubus ulmifolius",
     "category": "digestivo",
     "categoriaLabel": "Digestivo",
@@ -16022,13 +17336,15 @@ var DORILA_PRODUCTS = [
     "imageClass": "img-mandala mandala-digestivo",
     "fallbackImg": "img/placeholder/mandala.svg",
     "props": [
-      "Ficha botánica informativa. Sin stock para venta.",
       "Usos tradicionales registrados: estómago, intestino, vejiga."
     ],
     "familia": "Rosacea",
     "toxicidad": "SEGURA",
     "toxicidadLabel": "Segura",
     "alerta": "",
+    "alertaTitulo": "",
+    "alertaCuerpo": "",
+    "alertaNota": "",
     "alertClass": "",
     "stock": 0,
     "disponible": false,

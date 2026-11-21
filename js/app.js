@@ -10,11 +10,19 @@
 
   /* --- 1. DATOS --- */
   var PRODUCTS = window.DORILA_PRODUCTS || [];
-  var lastModalTrigger = null;
 
   function setText(id, value){
     var el = document.getElementById(id);
     if (el) el.textContent = value || "";
+  }
+
+  function slugify(texto){
+    return String(texto || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
   }
 
   /* --- 2. IMÁGENES lazy --- */
@@ -56,39 +64,173 @@
   }
 
   /* --- 3. MODAL DE PLANTA --- */
-  function setModalMedia(p){
-    var img = document.getElementById("modalImg");
-    img.className = "lazy-img" + (p.imageClass ? " " + p.imageClass : "");
-    img.alt = p.name;
-    img.setAttribute("data-src", p.img);
-    mediaLoad(img);
+  var modal = document.getElementById("plantModal");
+  var modalImg = document.getElementById("modalImg");
+  var modalThumbs = document.getElementById("modalThumbs");
+  var modalAlert = document.getElementById("modalAlert");
+  var modalLastFocus = null;
 
-    var btn  = document.getElementById("modalImg2Btn");
-    var thumb = document.getElementById("modalImg2");
-    if (btn && thumb && p.img2){
-      btn.hidden = false;
-      thumb.src = p.img2.replace(/\.webp$/, "-thumb.webp");
-      thumb.alt = p.name + ", segunda imagen";
-      btn.dataset.img   = p.img2;
-      btn.dataset.other = p.img;
-    } else if (btn){
-      btn.hidden = true;
-    }
+  function thumbUrl(src){
+    return String(src || "").replace(/\.webp(\?.*)?$/, "-thumb.webp$1");
   }
 
-  (function(){
-    var btn = document.getElementById("modalImg2Btn");
-    if (!btn) return;
-    btn.addEventListener("click", function(){
-      var main = document.getElementById("modalImg");
-      var cur  = main.getAttribute("data-src") || btn.dataset.other;
-      var next = cur === btn.dataset.img ? btn.dataset.other : btn.dataset.img;
-      main.className = main.className.replace(/\bis-loaded\b/g, "").replace(/\s+/g, " ").trim();
-      main.src = next;
-      main.setAttribute("data-src", next);
-      main.alt = btn.dataset.other ? btn.getAttribute("aria-label") : main.alt;
+  function sectionHidden(id, hidden){
+    var el = document.getElementById(id);
+    if (el) el.hidden = !!hidden;
+  }
+
+  function fillList(id, items){
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.replaceChildren();
+    (items || []).forEach(function(item){
+      var li = document.createElement("li");
+      li.textContent = item;
+      el.appendChild(li);
     });
-  })();
+  }
+
+  function renderGallery(p){
+    if (!modalThumbs) return;
+    modalThumbs.replaceChildren();
+    var sources = [p.img, p.img2].filter(Boolean);
+    if (sources.length < 2){
+      modalThumbs.hidden = true;
+      return;
+    }
+    modalThumbs.hidden = false;
+    sources.forEach(function(src, i){
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "modal-thumb" + (i === 0 ? " is-active" : "");
+      btn.setAttribute("aria-label", (i === 0 ? "Imagen principal de " : "Segunda imagen de ") + p.name);
+      var thumb = document.createElement("img");
+      thumb.src = thumbUrl(src);
+      thumb.alt = "";
+      thumb.loading = "lazy";
+      thumb.onerror = function(){
+        thumb.onerror = null;
+        thumb.src = p.fallbackImg || window.FALLBACK_IMG || src;
+      };
+      btn.appendChild(thumb);
+      btn.addEventListener("click", function(){
+        if (modalImg){
+          modalImg.dataset.fallback = "";
+          modalImg.src = src;
+        }
+        modalThumbs.querySelectorAll(".modal-thumb").forEach(function(other){
+          other.classList.toggle("is-active", other === btn);
+        });
+      });
+      modalThumbs.appendChild(btn);
+    });
+  }
+
+  function setModalMedia(p){
+    if (!modalImg) return;
+    modalImg.dataset.fallback = "";
+    modalImg.className = "modal-img" + (p.imageClass ? " " + p.imageClass : "");
+    modalImg.alt = p.name + ", producto de herboristería artesanal de DORILA";
+    modalImg.removeAttribute("data-src");
+    modalImg.src = p.img;
+    renderGallery(p);
+  }
+
+  if (modalImg){
+    modalImg.addEventListener("error", function(){
+      if (modalImg.dataset.fallback) return;
+      modalImg.dataset.fallback = "1";
+      modalImg.src = window.FALLBACK_IMG || "img/placeholder/mandala.svg";
+    });
+  }
+
+  function renderModalAlert(p){
+    if (!modalAlert) return;
+    modalAlert.replaceChildren();
+    if (!p.alertaTitulo){
+      modalAlert.hidden = true;
+      return;
+    }
+    modalAlert.hidden = false;
+    var box = document.createElement("div");
+    box.className = p.alertClass || "alerta-toxica";
+    box.setAttribute("role", "alert");
+    var title = document.createElement("strong");
+    title.textContent = p.alertaTitulo;
+    var body = document.createElement("p");
+    body.textContent = p.alertaCuerpo || p.alerta || "";
+    box.appendChild(title);
+    box.appendChild(body);
+    if (p.alertaNota){
+      var note = document.createElement("small");
+      note.textContent = p.alertaNota;
+      box.appendChild(note);
+    }
+    modalAlert.appendChild(box);
+  }
+
+  function openProductModal(slug){
+    var p = PRODUCTS.find(function(item){ return item.slug === slug; });
+    if (!p || !modal) return;
+    modalLastFocus = document.activeElement;
+
+    var sinonimos = p.sinonimos || [];
+    setText("modalCat", p.categoriaLabel || p.category || "");
+    setText("modalTitle", p.name);
+    setText("modalScientific", p.scientific ? "Nombre científico: " + p.scientific : "");
+    setText("modalSynonyms", sinonimos.length ? "También conocida como: " + sinonimos.join(", ") : "");
+    sectionHidden("modalSynonyms", !sinonimos.length);
+    setText("modalDesc", p.botanicalDesc || p.desc || "");
+    setText("modalStock", p.vendible ? "Disponible" : (p.toxicidad === "EXTREMA" ? "No disponible para venta" : "Sin stock"));
+    setText("modalPrice", p.price || (p.toxicidad === "EXTREMA" ? "No se comercializa" : "Ficha botánica informativa"));
+    setText("modalFamilia", p.familia || "—");
+    setText("modalTox", p.toxicidadLabel || p.toxicidad || "—");
+
+    fillList("modalProps", p.props);
+    sectionHidden("modalPropsSection", !(p.props || []).length);
+    fillList("modalUsos", p.usos);
+    sectionHidden("modalUsosSection", !(p.usos || []).length);
+    fillList("modalPreparacion", p.preparacion);
+    sectionHidden("modalPreparacionSection", !(p.preparacion || []).length);
+    setText("modalPrecauciones", p.precauciones || "");
+    sectionHidden("modalPrecaucionesSection", !p.precauciones);
+
+    var addBtn = document.getElementById("modalAddBtn");
+    if (addBtn){
+      addBtn.hidden = !p.vendible;
+      addBtn.disabled = !p.vendible;
+      addBtn.setAttribute("data-id", p.id);
+    }
+
+    renderRelated(p);
+    setModalMedia(p);
+    renderModalAlert(p);
+    modal.showModal();
+    document.body.classList.add("modal-open");
+  }
+
+  function closeModal(){
+    if (modal && modal.open) modal.close();
+  }
+
+  if (modal){
+    modal.addEventListener("close", function(){
+      document.body.classList.remove("modal-open");
+      if (modalLastFocus && typeof modalLastFocus.focus === "function"){
+        modalLastFocus.focus({ preventScroll: true });
+      }
+    });
+    modal.addEventListener("click", function(event){
+      if (event.target === modal) closeModal();
+    });
+  }
+  var modalCloseBtn = document.getElementById("modalClose");
+  if (modalCloseBtn) modalCloseBtn.addEventListener("click", closeModal);
+  if (modal){
+    modal.querySelectorAll("[data-close-modal]").forEach(function(el){
+      el.addEventListener("click", closeModal);
+    });
+  }
 
   /* --- 4. RENDERIZADO Y FILTROS --- */
   var grid         = document.getElementById("productGrid");
@@ -107,64 +249,6 @@
     g.cats.forEach(function(c){ GROUP_LOOKUP[c] = g.key; });
   });
   function groupFor(cat){ return cat ? (GROUP_LOOKUP[cat] || cat) : ""; }
-
-  function slugify(text){
-    return String(text).toLowerCase().normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "");
-  }
-
-  function openProductModal(p, keepTrigger, trigger){
-    var modal = document.getElementById("plantModal");
-    if (!modal) return;
-    if (!keepTrigger) lastModalTrigger = trigger || document.activeElement || null;
-    setModalMedia(p);
-    document.getElementById("modalId").textContent = p.id;
-    document.getElementById("plantModalName").textContent = p.name;
-    document.getElementById("modalCat").textContent = p.categoriaLabel || p.category || "";
-    document.getElementById("modalScientific").textContent = p.scientific;
-    document.getElementById("modalPrice").textContent = p.price || (p.toxicidad === "EXTREMA" ? "No se comercializa" : "Ficha botánica");
-    document.getElementById("modalDesc").textContent = p.desc || p.botanicalDesc || "";
-    var alerta = document.getElementById("modalAlerta");
-    if (alerta){
-      alerta.hidden = !p.alerta;
-      alerta.textContent = p.alerta || "";
-      alerta.className = "modal-alerta " + (p.alertClass || "");
-    }
-    setText("modalToxicidad", p.toxicidadLabel ? "Toxicidad: " + p.toxicidadLabel : "");
-    setText("modalFamilia", p.familia ? "Familia: " + p.familia : "");
-    setText("modalStock", p.vendible ? "Disponible" : (p.toxicidad === "EXTREMA" ? "No disponible para venta" : "Sin stock"));
-    var propsTitle = document.querySelector(".modal-props h4");
-    if (propsTitle) propsTitle.textContent = p.toxicidad === "EXTREMA" ? "Información de seguridad" : "Propiedades medicinales";
-    var propsList = document.getElementById("modalProps");
-    propsList.innerHTML = "";
-    (p.props || []).forEach(function(prop){
-      var li = document.createElement("li");
-      li.innerHTML = "<svg aria-hidden=\"true\" focusable=\"false\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M20 6L9 17l-5-5\"/></svg>";
-      li.appendChild(document.createTextNode(" " + prop));
-      propsList.appendChild(li);
-    });
-    var moreLink = document.getElementById("modalMoreLink");
-    if (moreLink) moreLink.href = "productos.html";
-    var addBtn = document.getElementById("modalAddBtn");
-    if (addBtn){
-      addBtn.hidden = !p.vendible;
-      addBtn.disabled = !p.vendible;
-      if (p.vendible){
-        addBtn.dataset.id = p.id;
-        addBtn.classList.remove("is-success");
-        addBtn.textContent = "Agregar al carrito";
-      } else {
-        delete addBtn.dataset.id;
-      }
-    }
-    renderRelated(p);
-    modal.classList.add("is-open");
-    modal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-    var close = document.getElementById("modalClose");
-    if (close) close.focus();
-  }
 
   function renderRelated(p){
     var wrap = document.getElementById("modalRelatedWrap");
@@ -189,17 +273,27 @@
       return;
     }
     related.forEach(function(r){
-      var slug = r.slug || slugify(r.name);
-      var card = document.createElement("a");
+      var card = document.createElement("button");
+      card.type = "button";
       card.className = "related-card";
-      card.href = "productos/" + slug + ".html";
-      card.innerHTML =
-        "<img class=\"" + (r.imageClass || "") + "\" src=\"" + r.img + "\" alt=\"" + r.name + ", producto de herboristería artesanal de DORILA\" loading=\"lazy\" width=\"240\" height=\"240\">" +
-        "<span class=\"related-name\">" + r.name + "</span>" +
-        "<span class=\"related-price\">" + r.price + "</span>";
-      card.addEventListener("click", function(e){
-        e.preventDefault();
-        openProductModal(r, true);
+      card.dataset.product = r.slug;
+      var img = document.createElement("img");
+      img.className = r.imageClass || "";
+      img.src = thumbUrl(r.img);
+      img.alt = r.name + ", producto de herboristería artesanal de DORILA";
+      img.loading = "lazy";
+      img.width = 240; img.height = 240;
+      var name = document.createElement("span");
+      name.className = "related-name";
+      name.textContent = r.name;
+      var price = document.createElement("span");
+      price.className = "related-price";
+      price.textContent = r.price || "Ficha botánica";
+      card.appendChild(img);
+      card.appendChild(name);
+      card.appendChild(price);
+      card.addEventListener("click", function(){
+        openProductModal(r.slug);
       });
       relatedGrid.appendChild(card);
     });
@@ -207,12 +301,14 @@
   }
 
   function cardForProduct(p){
-    var slug = p.slug || slugify(p.name);
     var card = document.createElement("article");
     card.className = "product-card";
     card.dataset.id = p.id;
     card.dataset.category = p.category;
     card.dataset.toxicidad = p.toxicidad || "";
+    card.setAttribute("role", "button");
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("aria-label", "Abrir ficha de " + p.name);
 
     var media = document.createElement("div");
     media.className = "product-media";
@@ -237,8 +333,7 @@
       "<div class=\"product-footer\">" +
         "<span class=\"product-price\">" + (p.price || availability) + "</span>" +
         addButton +
-      "</div>" +
-      "<a class=\"card-link\" href=\"productos/" + slug + ".html\" aria-label=\"Ver ficha de " + p.name + "\">Ver ficha</a>";
+      "</div>";
 
     var addBtn = body.querySelector(".add-btn");
     if (addBtn) addBtn.addEventListener("click", function(e){
@@ -251,28 +346,79 @@
       }, 1200);
     });
 
-    var cardLink = body.querySelector(".card-link");
-    if (cardLink) cardLink.addEventListener("click", function(e){ e.stopPropagation(); });
-
-    card.addEventListener("click", function(){ openProductModal(p, false, cardLink); });
+    card.addEventListener("keydown", function(e){
+      if (e.key !== "Enter" && e.key !== " ") return;
+      e.preventDefault();
+      openProductModal(p.slug);
+    });
+    card.addEventListener("click", function(){ openProductModal(p.slug); });
 
     card.appendChild(media);
     card.appendChild(body);
     return card;
   }
 
+  function normalizarTexto(texto){
+    return String(texto || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, " ")
+      .trim();
+  }
+
+  function gramas(texto){
+    var t = " " + normalizarTexto(texto) + " ";
+    var out = [];
+    for (var i = 0; i < t.length - 2; i++) out.push(t.slice(i, i + 3));
+    return out;
+  }
+
+  function searchScore(p, q){
+    var norm = normalizarTexto(q);
+    var termSlug = slugify(q);
+    if (!norm && !termSlug) return 1;
+
+    var texto = [
+      p.name, p.scientific, p.categoriaLabel, p.category, p.familia,
+      p.toxicidadLabel, p.desc, p.botanicalDesc,
+      (p.sinonimos || []).join(" "), (p.palabrasClave || []).join(" "),
+      (p.usos || []).join(" "), (p.props || []).join(" ")
+    ].join(" ");
+    var haystack = normalizarTexto(texto);
+    var haystackSlug = slugify(texto);
+    var score = 0;
+
+    if (haystack.indexOf(norm) !== -1 || haystackSlug.indexOf(termSlug) !== -1) score += 10;
+    if (slugify(p.name).indexOf(termSlug) !== -1) score += 4;
+    (p.sinonimos || []).forEach(function(sinonimo){
+      if (normalizarTexto(sinonimo).indexOf(norm) !== -1 || slugify(sinonimo).indexOf(termSlug) !== -1) score += 6;
+    });
+    if (score) return score;
+
+    var partes = gramas(q);
+    if (!partes.length) return 0;
+    var coincidencias = partes.filter(function(g){ return haystack.indexOf(g) !== -1; }).length;
+    return coincidencias / partes.length >= 0.6 ? 2 + coincidencias : 0;
+  }
+
   function render(){
-    var q  = (document.getElementById("searchInput").value || "").trim().toLowerCase();
+    var q  = (document.getElementById("searchInput").value || "").trim();
     var activeCat = document.querySelector(".filter-btn.is-active");
     var cat = activeCat ? activeCat.dataset.category : "";
     var groupCats = cat ? GROUP_CATS[cat] : null;
 
-    var list = PRODUCTS.filter(function(p){
-      var matchesCat = !cat || (groupCats ? groupCats.indexOf(p.category) !== -1 : p.category === cat);
-      var haystack   = (p.name + " " + p.scientific + " " + p.category + " " + (p.categoriaLabel || "") + " " + (p.familia || "") + " " + (p.toxicidadLabel || "") + " " + p.desc + " " + (p.palabrasClave || []).join(" ") + " " + (p.props || []).join(" ")).toLowerCase();
-      var matchesQ   = !q || haystack.indexOf(q) !== -1;
-      return matchesCat && matchesQ;
-    });
+    var list = PRODUCTS
+      .map(function(p){ return { product: p, score: searchScore(p, q) }; })
+      .filter(function(entry){
+        var p = entry.product;
+        var matchesCat = !cat || (groupCats ? groupCats.indexOf(p.category) !== -1 : p.category === cat);
+        return matchesCat && entry.score > 0;
+      })
+      .sort(function(a, b){
+        return b.score - a.score || String(a.product.name).localeCompare(String(b.product.name), "es");
+      })
+      .map(function(entry){ return entry.product; });
 
     var total = list.length;
     var limit = parseInt(grid.dataset.limit || "0", 10);
@@ -361,25 +507,6 @@
     render();
     searchInput.focus();
   });
-
-  /* Modal: cerrar */
-  var modal = document.getElementById("plantModal");
-  document.getElementById("modalClose").addEventListener("click", closeModal);
-  modal.querySelectorAll("[data-close-modal]").forEach(function(el){
-    el.addEventListener("click", closeModal);
-  });
-  document.addEventListener("keydown", function(e){
-    if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
-  });
-  function closeModal(){
-    modal.classList.remove("is-open");
-    modal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-    if (lastModalTrigger && typeof lastModalTrigger.focus === "function"){
-      lastModalTrigger.focus();
-      lastModalTrigger = null;
-    }
-  }
 
   /* --- 5. CARRITO --- */
   var cart = {};
@@ -593,7 +720,7 @@
   var initialProduct = initialParams.get("p") || initialParams.get("producto");
   if (initialProduct){
     var initialMatch = PRODUCTS.filter(function(p){ return (p.slug || slugify(p.name)) === initialProduct || slugify(p.name) === initialProduct; })[0];
-    if (initialMatch) openProductModal(initialMatch);
+    if (initialMatch) openProductModal(initialMatch.slug);
   }
 
   /* --- 6. FILTROS DESDE NAV --- */
