@@ -591,15 +591,15 @@ console.log("\n5. Integración en las páginas y configuración");
     /@media \(min-width:768px\)\{[\s\S]*?\.category-grid\{ grid-template-columns:repeat\(3,1fr\); gap:var\(--space-2\); \}/.test(homeCss) &&
     !/\.category-grid\{ grid-template-columns:repeat\(3,1fr\)/.test(media640));
   ok("hero posiciona DORILA como yuyos + botica + recetas",
-    index.indexOf('<h1 id="hero-heading">Conectá con lo natural. Descubrí nuevos caminos</h1>') !== -1 &&
+    index.indexOf('<h1 id="hero-heading">Elegí la manera natural de cuidarte con plantas medicinales</h1>') !== -1 &&
     index.indexOf('Explorá el mundo de los yuyos y sus propiedades, descubrí preparados artesanales y compartí recetas y saberes con nuestra comunidad.') !== -1);
   ok("hero CTA lleva al catálogo y al recetario",
     index.indexOf('<a class="btn btn-look" href="/productos/">Explorar yuyos y productos</a>') !== -1 &&
     index.indexOf('<a class="btn btn-look" href="recetas.html#recetas-caseras">Ver y compartir recetas</a>') !== -1);
   ok("SEO de home refleja el nuevo posicionamiento",
-    index.indexOf('<title>DORILA — Botica artesanal, guía de yuyos y recetas compartidas en Uruguay</title>') !== -1 &&
-    index.indexOf('name="description" content="DORILA es botica artesanal, guía de yuyos y recetario comunitario en Uruguay.') !== -1 &&
-    index.indexOf('property="og:title" content="DORILA — Botica artesanal, guía de yuyos y recetas compartidas"') !== -1);
+    index.indexOf('<title>DORILA — Plantas medicinales, botica artesanal y recetas compartidas en Uruguay</title>') !== -1 &&
+    index.indexOf('name="description" content="Elegí la manera natural de cuidarte con plantas medicinales.') !== -1 &&
+    index.indexOf('property="og:title" content="DORILA — Plantas medicinales, botica artesanal y recetas compartidas"') !== -1);
   ok("home explica qué podés hacer en DORILA",
     index.indexOf('id="que-podes-hacer"') !== -1 &&
     (index.match(/class="ecosystem-card reveal"/g) || []).length === 3);
@@ -620,8 +620,8 @@ console.log("\n5. Integración en las páginas y configuración");
   var beneficiosPos = index.indexOf('<section class="benefits"');
   var historiaPos = index.indexOf('<!-- ===================== HISTORIA ===================== -->');
   var recetasBannerPos = index.indexOf('<section class="community-teaser" id="recetas-comunidad"');
-  ok("banner de recetas queda entre Beneficios e Historia",
-    beneficiosPos !== -1 && recetasBannerPos > beneficiosPos && recetasBannerPos < historiaPos &&
+  ok("banner de recetas queda después de Historia",
+    beneficiosPos !== -1 && historiaPos > beneficiosPos && recetasBannerPos > historiaPos &&
     (index.match(/id="recetas-comunidad"/g) || []).length === 1 &&
     index.indexOf('id="community-teaser-heading"') === -1);
   ok("banner de recetas usa la copia actual",

@@ -254,7 +254,9 @@ var ROOT_PAGES = ["index.html", "productos.html", "404.html", "historia.html", "
 var catalogoItems = products.map(function(p, i){
   return '    {\n      "@type": "ListItem",\n      "position": ' + (i + 1) + ',\n      "name": ' + JSON.stringify(p.name) + ',\n      "url": "' + BASE + '/productos/' + p.slug + '.html"\n    }';
 }).join(",\n");
-var catalogoIndex = products.map(function(p){
+var catalogoIndex = products.slice().sort(function(a, b){
+  return String(a.name).localeCompare(String(b.name), "es");
+}).map(function(p){
   return '            <li><a href="productos/' + p.slug + '.html">' + esc(p.name) + "</a></li>";
 }).join("\n");
 var stamped = 0;

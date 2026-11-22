@@ -209,6 +209,11 @@
     var p = PRODUCT_BY_SLUG[slug];
     if (!p || !modal) return;
     modalLastFocus = document.activeElement;
+    if (window.history && window.history.replaceState){
+      var url = window.location.pathname + "?p=" + encodeURIComponent(p.slug) + window.location.hash;
+      window.history.replaceState(null, "", url);
+    }
+    setDeepLinkCanonical(p.slug);
 
     var sinonimos = p.sinonimos || [];
     setText("modalCat", p.categoriaLabel || p.category || "");
@@ -253,6 +258,10 @@
   if (modal){
     modal.addEventListener("close", function(){
       document.body.classList.remove("modal-open");
+      if (window.history && window.history.replaceState){
+        var search = window.location.search.replace(/([?&])p=[^&]*(&)?/g, function(_, start, amp){ return amp ? start : ""; }).replace(/^\?&/, "?");
+        window.history.replaceState(null, "", window.location.pathname + search + window.location.hash);
+      }
       if (modalLastFocus && typeof modalLastFocus.focus === "function"){
         modalLastFocus.focus({ preventScroll: true });
       }
@@ -268,6 +277,16 @@
       el.addEventListener("click", closeModal);
     });
   }
+
+  document.querySelectorAll(".catalog-index-list a[href*='/productos/']").forEach(function(link){
+    link.addEventListener("click", function(e){
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var slug = (link.getAttribute("href").match(/\/productos\/([^/]+)\.html$/) || [])[1];
+      if (!slug || !PRODUCT_BY_SLUG[slug]) return;
+      e.preventDefault();
+      openProductModal(slug);
+    });
+  });
 
   /* --- 4. RENDERIZADO Y FILTROS --- */
   var grid         = document.getElementById("productGrid");
